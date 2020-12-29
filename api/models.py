@@ -8,7 +8,7 @@ class Sample(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     '''
-    def serialize(self):
+    def serializer(self):
         return {
             "a": self.a,
             "b": self.b,

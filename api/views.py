@@ -8,6 +8,7 @@ from .serializers import SampleSerializer
 
 # Create your views here.
 
-class SampleView(generics.CreateAPIView):
+class SampleView(generics.ListAPIView):
     queryset = Sample.objects.all()
     serializer_class = SampleSerializer
+    
