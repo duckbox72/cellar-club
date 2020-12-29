@@ -1,8 +1,13 @@
+from .serializers import SampleSerializer
+from .models import Sample
 from django.shortcuts import render
-from django.http import HttpResponse
+from rest_framework import generics   # creates a class from a generic API view
+
+from .models import Sample
+from .serializers import SampleSerializer
 
 # Create your views here.
 
-
-def main(request):
-    return HttpResponse("<h1>Hello<h1>")
+class SampleView(generics.CreateAPIView):
+    queryset = Sample.objects.all()
+    serializer_class = SampleSerializer
