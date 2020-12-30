@@ -17,5 +17,17 @@ class CreateSampleView(APIView):
     serializer_class = CreateSampleSerializer
 
     def post(self, request, format=None):
-        pass
-    
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            
+            a = serializer.data['a']
+            b = serializer.data['b']
+            c = serializer.data['c']
+        
+            sample = Sample(a=a, b=b, c=c)
+            sample.save()
+            
+            return Response(CreateSampleSerializer(sample).data, status=status.HTTP_201_CREATED)
+
+        else:
+            return Response({'Bad Request': 'Something went wrong'}, status=status.HTTP_400_BAD_REQUEST)

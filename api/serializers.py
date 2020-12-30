@@ -5,7 +5,7 @@ from .models import Sample
 class SampleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sample
-        fields = ('id', 'a', 'b', 'c')
+        fields = ('id', 'a', 'b', 'c', 'created')
 
 
 # POST request serializer (serializes request)
