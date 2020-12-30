@@ -53,7 +53,11 @@ export default class ContactPage extends Component {
         .then((response) => response.json())
         .then((data) => {
             console.log(data)
-
+            // redirects to an external link out of router
+            window.location.href = '/api/';
+            
+            // redirects to an internal router link
+            // this.props.history.push('/');
         });
     }
 
