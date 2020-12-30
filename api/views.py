@@ -18,8 +18,7 @@ class CreateSampleView(APIView):
 
     def post(self, request, format=None):
         serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            
+        if serializer.is_valid():     
             a = serializer.data['a']
             b = serializer.data['b']
             c = serializer.data['c']
