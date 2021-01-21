@@ -9,7 +9,7 @@ class Sample(models.Model):
 
 
 class Lwin(models.Model):
-    lwin = models.CharField(max_length=8, blank=False, null=False)
+    lwin = models.CharField(max_length=8, blank=False, null=False, unique=True)
     display_name = models.CharField(max_length=256)
     producer_title = models.CharField(max_length=64)
     producer_name = models.CharField(max_length=64)
@@ -26,7 +26,7 @@ class Lwin(models.Model):
     classification = models.CharField(max_length=64)
     vintage_config = models.CharField(max_length=16)
     first_vintage = models.CharField(max_length=4)
-    last_vintage = models.CharField(max_length=4)
+    final_vintage = models.CharField(max_length=4)
     reference = models.CharField(max_length=7)
     
 

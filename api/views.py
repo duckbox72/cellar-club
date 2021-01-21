@@ -8,6 +8,8 @@ from rest_framework.response import Response
 from .models import Lwin, Sample
 from .serializers import *
 
+import pandas as pd 
+
 class SampleView(generics.ListAPIView):
     queryset = Sample.objects.all()
     serializer_class = SampleSerializer
@@ -33,9 +35,13 @@ class CreateSampleView(APIView):
 
 
 class LwinView(APIView):
-    queryset = Lwin.objects.all()
     serializer_class = LwinSerializer
+    queryset = Lwin.objects.filter(lwin='1659052')
 
+    
+
+    
+    
 
 class CreateLwinView(APIView):
     serializer_class = CreateLwinSerializer
