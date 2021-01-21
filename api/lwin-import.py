@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_excel('api/LWINdatabase.xlsx', 'LWINdatabase')
+df = pd.read_excel('api/LWINdatabase.xls', 'LWINdatabase')
 
 print (df)
 
