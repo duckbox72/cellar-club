@@ -5,7 +5,7 @@ from rest_framework import generics, serializers, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import Sample
+from .models import Lwin, Sample
 from .serializers import *
 
 class SampleView(generics.ListAPIView):
@@ -30,3 +30,47 @@ class CreateSampleView(APIView):
 
         else:
             return Response({'Bad Request': 'Something went wrong'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LwinView(APIView):
+    queryset = Lwin.objects.all()
+    serializer_class = LwinSerializer
+
+
+class CreateLwinView(APIView):
+    serializer_class = CreateLwinSerializer
+
+    def post(self, request, format=None):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            lwin = serializer.data['lwin']
+            display_name = serializer.data['display_name']
+            producer_title = serializer.data['producer_title']
+            producer_name = serializer.data['producer_name']
+            wine = serializer.data['wine']
+            country = serializer.data['country']
+            region = serializer.data['region']
+            sub_region = serializer.data['sub_region']
+            site = serializer.data['site']
+            parcel = serializer.data['parcel']
+            colour = serializer.data['colour']
+            type = serializer.data['type']
+            sub_type = serializer.data['sub_type']
+            designation = serializer.data['designation']
+            classification = serializer.data['classification']
+            vintage_cofig = serializer.data['vintage_config']
+            first_vintage = serializer.data['first_vintage']
+            last_vintage = serializer.data['last_vintage']
+            reference = serializer.data['reference']
+
+            lwin = Lwin(lwin=lwin, display_name=display_name,producer_title=producer_title, producer_name=producer_name,
+                        wine=wine, country=country, region=region, sub_region=sub_region, site=site, parcel=parcel,
+                        colour=colour, type=type, sub_type=sub_type, designation=designation, classification=classification,
+                        vintage_cofig=vintage_cofig, first_vintage=first_vintage, last_vintage=last_vintage, reference=reference)
+            lwin.save()
+
+            return Response(data=CreateLwinSerializer(lwin).data, status=status.HTTP_201_CREATED)
+        
+        else:
+            return Response({'Bad Request': 'Something went wrong'}, status=status.HTTP_400_BAD_REQUEST)
+

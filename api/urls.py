@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import CreateSampleView, SampleView 
+from .views import CreateLwinView, LwinView, CreateSampleView, SampleView 
 
 urlpatterns = [
-    path('', SampleView.as_view()),
-    path('create', CreateSampleView.as_view()),
+    path('', LwinView.as_view()),
+    path('create', CreateLwinView.as_view()),    
 ]
