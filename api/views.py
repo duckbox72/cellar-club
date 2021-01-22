@@ -36,13 +36,13 @@ class CreateSampleView(APIView):
 
 class LwinView(APIView):
     serializer_class = LwinSerializer
-    queryset = Lwin.objects.filter(lwin='1659052')
+    queryset = Lwin.objects.filter(wine='Margaux')
+    
+    def get(self, request, format=None):
+
+        return Response({"message": "REQUEST OK!"}, status=status.HTTP_200_OK)
 
     
-
-    
-    
-
 class CreateLwinView(APIView):
     serializer_class = CreateLwinSerializer
 
