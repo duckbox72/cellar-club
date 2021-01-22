@@ -34,13 +34,10 @@ class CreateSampleView(APIView):
             return Response({'Bad Request': 'Something went wrong'}, status=status.HTTP_400_BAD_REQUEST)
 
 
-class LwinView(APIView):
+class LwinView(generics.ListAPIView):
+    queryset = Lwin.objects.filter(sub_region="Margaux")
     serializer_class = LwinSerializer
-    queryset = Lwin.objects.filter(wine='Margaux')
     
-    def get(self, request, format=None):
-
-        return Response({"message": "REQUEST OK!"}, status=status.HTTP_200_OK)
 
     
 class CreateLwinView(APIView):
