@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link, Redirect} from "react-rou
 
 import ContactPage from "./ContactPage";
 import ProfilePage from "./ProfilePage"; 
+import CollectionPage from "./CollectionPage";
 
 export default class HomePage extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ export default class HomePage extends Component {
                     <Route exact path='/'><p>This is the HomePage</p></Route>
                     <Route path='/profile' component={ProfilePage} />
                     <Route path='/contact' component={ContactPage} />
+                    <Route path='/collection' component={CollectionPage} />
                 </Switch>
             </Router>
         );
