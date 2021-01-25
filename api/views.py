@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 
 # generics classes from a generic view, access to HTTP status codes
@@ -34,9 +35,21 @@ class CreateSampleView(APIView):
             return Response({'Bad Request': 'Something went wrong'}, status=status.HTTP_400_BAD_REQUEST)
 
 
-class LwinView(generics.ListAPIView):
+class GetLwin(APIView):
     serializer_class = LwinSerializer
-    queryset = Lwin.objects.filter(sub_region='Margaux')
+    lookup_url_kwarg = 'display_name'
+
+    def get(self, request, format=None):
+        display_name = request.GET.get(self.lookup_url_kwarg)
+
+        results = Lwin.objects.filter(display_name__contains=display_name)
+        results = results[:10]
+        
+        print(results)    
+        print(len(results))
+
+        #return Response({'Message': 'Request OK!'})
+        return JsonResponse([result.serialize() for result in results], safe=False, status=status.HTTP_200_OK)
     
 
     

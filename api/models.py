@@ -28,5 +28,12 @@ class Lwin(models.Model):
     first_vintage = models.CharField(max_length=4)
     final_vintage = models.CharField(max_length=4)
     reference = models.CharField(max_length=7)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "display_name": self.display_name,
+            "country": self.country
+        }
     
 
