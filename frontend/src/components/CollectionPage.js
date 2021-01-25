@@ -29,8 +29,7 @@ export default class CollectionPage extends Component {
 
         console.log(e.target.value)
 
-        
-        fetch("/api/search" + "?display_name=" + "margaux")//e.target.value)
+        fetch("/api/search" + "?display_name=" + e.target.value)
         .then((response) => response.json())
         .then(data => {
             console.log(data)
