@@ -33,6 +33,7 @@ class Lwin(models.Model):
         return {
             "id": self.id,
             "display_name": self.display_name,
+            "wine": self.wine,
             "country": self.country
         }
     

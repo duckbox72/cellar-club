@@ -44,11 +44,7 @@ class GetLwin(APIView):
 
         results = Lwin.objects.filter(display_name__contains=display_name)
         results = results[:10]
-        
-        print(results)    
-        print(len(results))
 
-        #return Response({'Message': 'Request OK!'})
         return JsonResponse([result.serialize() for result in results], safe=False, status=status.HTTP_200_OK)
     
 
