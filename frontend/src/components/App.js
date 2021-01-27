@@ -1,23 +1,17 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
+import { Route, Switch } from "react-router-dom";
 
 import HomePage from "./HomePage";
+import ContactPage from "./ContactPage"; 
+import CollectionPage from "./CollectionPage";
 
+export default function App() {
 
-export default class App extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
         return (
-            <div>
-                <HomePage />
-            </div>
+            <Switch>
+                <Route exact path='/' component={HomePage} />
+                <Route path='/contact' component={ContactPage} />
+                <Route path='/collection' component={CollectionPage} />
+            </Switch>
         );
-    }
 }
-
-const appDiv = document.getElementById("app");
-
-render(<App />, appDiv);
