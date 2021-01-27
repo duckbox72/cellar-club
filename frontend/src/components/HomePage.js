@@ -1,11 +1,27 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import { Button, Grid, Paper, Typography } from "@material-ui/core";
 
-export default class HomePage extends Component {
-    constructor(props) {
-        super(props);
-    }
+import Navbar from "./Navbar";
 
-    render() {
-        return <p>This is the NEW HOME PAGE</p>
-    }
+export default function HomePage() {
+    return (
+        <Grid container direction="column">
+            <Grid item>
+                <Navbar />
+            </Grid>
+            <Grid item xs={12}>
+                <Paper>
+                    <Typography variant="h5" color="initial">
+                        This is my Home Page!
+                    </Typography>
+                    <Button variant="contained" color="primary">
+                        My Button
+                    </Button>
+                    <Button variant="contained" color="secondary">
+                        My Button
+                    </Button>
+                </Paper>
+            </Grid>
+        </Grid>
+    );
 }

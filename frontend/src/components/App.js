@@ -10,7 +10,7 @@ export default function App() {
 
         return (
             <Switch>
-                <Route exact path='/' component={HomePage} />
+                <Route exact path='/' render={props => <HomePage {...props} />} />
                 <Route path='/contact' component={ContactPage} />
                 <Route path='/collection' component={CollectionPage} />
                 <Route path='/dashboard' render={props => <Dashboard {...props} />} />
