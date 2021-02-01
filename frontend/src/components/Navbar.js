@@ -8,8 +8,6 @@ import Typography from '@material-ui/core/Typography'
 
 import { makeStyles } from '@material-ui/styles';
 
-
-
 const useStyles = makeStyles(() => ({
     typographyStyles: {
         flex: 1
@@ -23,7 +21,6 @@ const Navbar = (props) => {
     }
     
     const classes = useStyles();
-
 
     return (
         <AppBar position="static" color="primary">

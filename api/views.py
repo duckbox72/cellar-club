@@ -6,7 +6,7 @@ from rest_framework import generics, serializers, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import Lwin, Sample
+from .models import Lwin, Sample, User
 from .serializers import *
 
 import pandas as pd 
@@ -48,7 +48,6 @@ class GetLwin(APIView):
         return JsonResponse([result.serialize() for result in results], safe=False, status=status.HTTP_200_OK)
     
 
-    
 class CreateLwinView(APIView):
     serializer_class = CreateLwinSerializer
 
