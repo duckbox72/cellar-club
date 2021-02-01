@@ -1,5 +1,9 @@
+from django.contrib.auth import authenticate, login, logout
+# from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError
 from django.http import JsonResponse
-from django.shortcuts import render
+#from django.shortcuts import render
+#from django.urls import reverse
 
 # generics classes from a generic view, access to HTTP status codes
 from rest_framework import generics, serializers, status 
@@ -85,3 +89,57 @@ class CreateLwinView(APIView):
         else:
             return Response({'Bad Request': 'Something went wrong'}, status=status.HTTP_400_BAD_REQUEST)
 
+
+# --------------------------- AUTH ROUTES --------------------------- 
+def is_authenticated_view(request):
+    if request.user.is_authenticated:
+        return JsonResponse({"is_authenticated": True})
+    else:
+        return JsonResponse({"is_autenticated": False})
+
+
+def login_view(request):
+    if request.method == "POST":
+        # Attempt to sign user in
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = authenticate(request, username=username, password=password)
+
+        # Check if authentication is sucessfull
+        if user is not None:
+            login(request, user)
+            return JsonResponse({"success": "User logged in"})
+        else:
+            return JsonResponse({"message": "Invalid username and/or password."})
+    else:
+        return JsonResponse({"error": "Invalid request method"})
+
+
+def logout_view(request):
+    logout(request)
+    return JsonResponse({"success": "User logged out"})
+
+
+def register(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        email = request.POST["email"]
+
+        # Ensure password matches confirmation
+        password = request.POST["password"]
+        confirmation = request.POST["confirmation"]
+        if password != confirmation:
+            return JsonResponse({"message": "Passwords must match."})
+
+        # Attempt to create new user
+        try: 
+            user = User.objects.create_user(username, email, password)
+            user.save()
+        except IntegrityError:
+            return JsonResponse({"message": "Username not available."})
+
+        login(request, user)
+        return JsonResponse({"success": "User registered."})
+
+    else:    
+        return JsonResponse({"error": "Invalid request method"})
