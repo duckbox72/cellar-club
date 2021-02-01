@@ -9,7 +9,7 @@ urlpatterns = [
     path('search', GetLwin.as_view()), 
 
     # AUTH Routes
-    #path('is_authenticated', views.is_authenticated_view, name="is_authenticated"),
+    path('is_authenticated', views.is_authenticated_view, name="is_authenticated"),
     path('login', views.login_view, name="login"),
     path('logout', views.logout_view, name="logout"),
     path('register', views.register, name="register"),
