@@ -26,7 +26,7 @@ const Navbar = (props) => {
         <AppBar position="static" color="primary">
             <Toolbar>
                 <Typography className={classes.typographyStyles}>
-                    iCellar 
+                    CellarClub 
                 </Typography>
                 <Switch 
                     checked={props.darKMode}
