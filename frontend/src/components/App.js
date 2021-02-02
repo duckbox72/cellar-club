@@ -2,10 +2,10 @@ import React, { useState }from "react";
 import { Route, Switch } from "react-router-dom";
 import { createMuiTheme, makeStyles, ThemeProvider } from "@material-ui/core/styles"
 import { Paper } from "@material-ui/core"
-import HomePage from "./Dashboard";
 import ContactPage from "./ContactPage"; 
 import CollectionPage from "./CollectionPage";
 import Dashboard from "./Dashboard";
+import Login from "./Login";
 import Navbar from "./Navbar";
 
 const useStyles = makeStyles({
@@ -42,12 +42,12 @@ export default function App() {
                             <Route exact path='/' render={props => <Dashboard {...props} />} />
                             <Route path='/contact' component={ContactPage} />
                             <Route path='/collection' component={CollectionPage} />
-
                             <Route path='/login' render={props => <Login {...props} />} />
                             <Route path='/logout' render={props => <Logout {...props} />} />
-                            <Route path='/register' render={props => <Register {...props} />} />
+                            <Route path='/register' render={props => <Register {...props} />} />          
                         </Switch>
-                    </div>
+                        
+                    </div> 
                 </Paper>
             </ThemeProvider>
         );
