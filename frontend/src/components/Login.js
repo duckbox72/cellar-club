@@ -40,9 +40,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: 'center',
   },
   paper: {
-    background: 'linear-gradient(90deg, #000000 30%, #FFFFFF 90%)',
+    background: 'linear-gradient(225deg, #fff3e0 10%, #ffffff 100%)',
     height: '100vh',
-    border: '1px solid black ',
     //margin: theme.spacing(8, 4),
     padding: theme.spacing(8,4),
     display: 'flex',
@@ -51,11 +50,11 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    //backgroundColor: theme.palette.primary.main,
+    backgroundColor: '#260e04',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(2),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -71,10 +70,10 @@ export default function SignInSide() {
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            <LockOutlinedIcon color="primary"/>
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Log in
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -120,7 +119,7 @@ export default function SignInSide() {
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"Don't have an account? Register"}
                 </Link>
               </Grid>
             </Grid>

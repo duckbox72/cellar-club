@@ -23,12 +23,24 @@ export default function App(props) {
     
     const isAuthenticated = props.isAuthenticated
     
-    console.log(isAuthenticated)
+    console.log(isAuthenticated) // -------------------------- TO BE REMOVED 
 
     const mytheme = createMuiTheme({
         palette: {
-            type: darkMode ? "dark" : "light",
-        }
+        primary:{
+            light: '#ffc947',
+            main: '#ff9800',
+            dark: '#c66900',
+            contrastText: '#3e2723',
+        },
+        secondary:{
+            light: '#7c5e57',
+            main: '#4f342e',
+            dark: '#260e04',
+            contrastText: '#ffd180',
+        },
+        type: darkMode ? "dark" : "light",
+        },
     });
 
     function handleCallback() {
@@ -57,7 +69,7 @@ export default function App(props) {
 
                         : 
                         (<>
-                            <Route exact path='/' render={props => <Login {...props} />} />)
+                            <Route exact path='/' render={props => <Redirect {...props} to="/login" />} />
                             <Route path='/login' render={props => <Login {...props} />} />
                         </>)
                         }

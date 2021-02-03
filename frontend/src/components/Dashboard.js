@@ -16,6 +16,9 @@ export default function Dashboard() {
                 <Button variant="contained" color="secondary">
                     My Button
                 </Button>
+                <Button variant="contained" color="inicial">
+                    My Button
+                </Button>
             </Grid>
         </Grid>
     );
