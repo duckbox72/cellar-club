@@ -47,8 +47,8 @@ export default function App(props) {
         setDarkMode(!darkMode);
     }
 
-    function loginCallback() {
-        updateIsAuthenticated(!isAuthenticated);
+    function loginCallback(status) {
+        updateIsAuthenticated(status);
     }
 
     return (

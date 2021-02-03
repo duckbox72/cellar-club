@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: "url(/static/images/toast.jpg)",
+    backgroundImage: "url(/static/images/toast1.jpg)",
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInSide(props) {
+export default function LogIn(props) {
   const classes = useStyles();
 
   const [username, setUsername] = useState("");
@@ -83,8 +83,15 @@ export default function SignInSide(props) {
     .then(response => response.json())
     .then(data => {
       console.log(data)
-      props.parentCallback()
-      props.history.push('/') 
+      if (data.success) {
+        props.parentCallback(true)
+        props.history.push('/') 
+      } else {
+        setUsername('');
+        setPassword('');
+        alert(data.message)
+      }
+      
     });
   };
 
@@ -97,7 +104,7 @@ export default function SignInSide(props) {
             <LockOutlinedIcon color="primary"/>
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Log in
           </Typography>
           <form className={classes.form} noValidate autoComplete="off">
             
@@ -139,7 +146,7 @@ export default function SignInSide(props) {
               className={classes.submit}
               onClick={handleSignIn}
             >
-              Sign In
+              Log in
             </Button>
             <Grid container>
               <Grid item xs>
