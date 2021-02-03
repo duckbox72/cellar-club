@@ -92,10 +92,13 @@ class CreateLwinView(APIView):
 
 # --------------------------- AUTH ROUTES --------------------------- 
 def is_authenticated_view(request):
+
+    print('is_authenticated_view was CALLED')
+
     if request.user.is_authenticated:
         return JsonResponse({"is_authenticated": True})
     else:
-        return JsonResponse({"is_autenticated": False})
+        return JsonResponse({"is_authenticated": False})
 
 
 def login_view(request):

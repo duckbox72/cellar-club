@@ -3,24 +3,31 @@ import ReactDOM from "react-dom";
 import { Router } from "react-router-dom";
 import { createBrowserHistory } from 'history';
 
-import Paper from "@material-ui/core/Paper"
 import App from "./components/App";
-
 
     
 const history = createBrowserHistory();
 const appDiv = document.getElementById("app");
 
+function getIsAuthenticated() {
 
-ReactDOM.render(
-    <React.StrictMode>     
-        <Router history={history}>
-             
-                
-                    <App />
-            
-            
-        </Router> 
-    </React.StrictMode>,
-    appDiv
-);
+    fetch("/api/is_authenticated")
+    .then(response => response.json())
+    .then(data => {
+        
+        const isAuthenticated = data.is_authenticated;
+
+        ReactDOM.render(
+            <React.StrictMode>     
+                <Router history={history}>
+                    <App isAuthenticated={isAuthenticated} />    
+                </Router> 
+            </React.StrictMode>,
+            appDiv
+        );
+    });
+}
+
+getIsAuthenticated();
+
+
