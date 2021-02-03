@@ -21,7 +21,7 @@ export default function App(props) {
     const classes = useStyles();
     const [darkMode, setDarkMode] = useState(false);
     
-    const isAuthenticated = props.isAuthenticated
+    const [isAuthenticated, updateIsAuthenticated] = useState(props.isAuthenticated);
     
     console.log(isAuthenticated) // -------------------------- TO BE REMOVED 
 
@@ -47,6 +47,10 @@ export default function App(props) {
         setDarkMode(!darkMode);
     }
 
+    function loginCallback() {
+        updateIsAuthenticated(!isAuthenticated);
+    }
+
     return (
         <ThemeProvider theme={mytheme}>
             <Paper style={{ height: "100vh", borderRadius: "0px" }}>
@@ -70,7 +74,7 @@ export default function App(props) {
                         : 
                         (<>
                             <Route exact path='/' render={props => <Redirect {...props} to="/login" />} />
-                            <Route path='/login' render={props => <Login {...props} />} />
+                            <Route path='/login' render={props => <Login  parentCallback={loginCallback} {...props} />} />
                         </>)
                         }
                         <Route path='/contact' component={ContactPage} />

@@ -23,7 +23,7 @@ const Navbar = (props) => {
     const classes = useStyles();
 
     return (
-        <AppBar position="static" color="primary">
+        <AppBar position="static" color="default">
             <Toolbar>
                 <Typography className={classes.typographyStyles}>
                     CellarClub 

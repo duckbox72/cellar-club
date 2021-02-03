@@ -1,9 +1,11 @@
+import json
 from django.contrib.auth import authenticate, login, logout
 # from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import JsonResponse
-#from django.shortcuts import render
+from django.shortcuts import render
 #from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 
 # generics classes from a generic view, access to HTTP status codes
 from rest_framework import generics, serializers, status 
@@ -96,24 +98,29 @@ def is_authenticated_view(request):
     print('is_authenticated_view was CALLED')
 
     if request.user.is_authenticated:
+        user = request.user
         return JsonResponse({"is_authenticated": True})
     else:
         return JsonResponse({"is_authenticated": False})
 
-
+@csrf_exempt
 def login_view(request):
     if request.method == "POST":
         # Attempt to sign user in
-        username = request.POST["username"]
-        password = request.POST["password"]
+        data = json.loads(request.body)
+        
+        username = data["username"]
+        password = data["password"]
         user = authenticate(request, username=username, password=password)
 
         # Check if authentication is sucessfull
         if user is not None:
             login(request, user)
-            return JsonResponse({"success": "User logged in"})
+
+            return JsonResponse({"success": "User signed in", "user_id": user.id, "username": user.username})
         else:
             return JsonResponse({"message": "Invalid username and/or password."})
+        
     else:
         return JsonResponse({"error": "Invalid request method"})
 

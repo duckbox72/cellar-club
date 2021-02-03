@@ -7,7 +7,7 @@ export default function Dashboard() {
     return (
         <Grid container direction="column">
             <Grid item xs={12}>
-                <Typography variant="h5" color="initial">
+                <Typography variant="h5">
                     This is my Home Page!
                 </Typography>
                 <Button variant="contained" color="primary">
@@ -16,7 +16,7 @@ export default function Dashboard() {
                 <Button variant="contained" color="secondary">
                     My Button
                 </Button>
-                <Button variant="contained" color="inicial">
+                <Button variant="contained" color="default">
                     My Button
                 </Button>
             </Grid>
