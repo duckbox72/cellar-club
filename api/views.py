@@ -119,7 +119,7 @@ def user_profile(request):
 
 
 @csrf_exempt
-def login_view(request):
+def sign_in(request):
     if request.method == "POST":
         # Attempt to sign user in
         data = json.loads(request.body)
@@ -140,12 +140,12 @@ def login_view(request):
         return JsonResponse({"error": "Invalid request method"})
 
 
-def logout_view(request):
+def sign_out(request):
     logout(request)
     return JsonResponse({"success": "User logged out"})
 
 
-def register(request):
+def sign_up(request):
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]

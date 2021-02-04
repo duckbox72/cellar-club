@@ -10,9 +10,9 @@ urlpatterns = [
 
     # AUTH API Routes
     path('is_authenticated', views.is_authenticated_view, name="is_authenticated"),
-    path('login', views.login_view, name="login"),
-    path('logout', views.logout_view, name="logout"),
-    path('register', views.register, name="register"),
+    path('signin', views.sign_in, name="signin"),
+    path('signout', views.sign_out, name="signout"),
+    path('signup', views.sign_up, name="signup"),
     path('user_profile', views.user_profile, name="user_profile"),
 
 ]

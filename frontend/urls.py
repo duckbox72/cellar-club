@@ -7,5 +7,5 @@ urlpatterns = [
     path('collection', index),
 
     # AUTH Routes
-    path('login', index),
+    path('signin', index),
 ]
