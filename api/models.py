@@ -8,6 +8,7 @@ class User(AbstractUser):
     pass
 
 
+
 class Sample(models.Model):
     a = models.CharField(max_length=8)
     b = models.CharField(max_length=64)
