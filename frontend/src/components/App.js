@@ -67,8 +67,7 @@ export default function App(props) {
                     <Switch>
                         {isAuthenticated ? 
                         (<>
-                            <Route exact path='/' render={props => <Dashboard {...props} />} />
-                            <Route path="/:user_id" render={props => <Dashboard {...props} />} />
+                            <Route exact path="/" render={props => <Dashboard {...props} />} />
                             <Route path='/login' render={props => <Redirect {...props} to="/:user_id" />} />
                         </>)
 

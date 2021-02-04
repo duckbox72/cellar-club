@@ -85,7 +85,7 @@ export default function LogIn(props) {
       console.log(data)
       if (data.success) {
         props.parentCallback(true)
-        props.history.push(`/${data.user_id}`) 
+        props.history.push('/') 
       } else {
         setUsername('');
         setPassword('');

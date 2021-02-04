@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Button, Grid, Typography } from "@material-ui/core";
 
-import Navbar from "./Navbar";
 
+function getUserData() {
+
+}
+
+// THIS IS USER'S HOME DEFAULT LANDING PAGE FOR THE APP
 export default function Dashboard(props) {
-    const { history, match } = props;
-    const { params } = match;
-    const { user_id } = params;
+    
 
 
 
@@ -14,7 +16,7 @@ export default function Dashboard(props) {
         <Grid container direction="column">
             <Grid item xs={12}>
                 <Typography variant="h3">
-                    This is {user_id} Home Page! 
+                    This Home Page! 
                 </Typography>
                 <Button variant="contained" color="primary">
                     My Button

@@ -8,10 +8,13 @@ import Typography from '@material-ui/core/Typography'
 
 import { makeStyles } from '@material-ui/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     typographyStyles: {
         flex: 1
-    }
+    },
+    //toolbarStyles: {
+    //    backgroundColor: theme.palette.primary.light,
+    //},
 }));
 
 const Navbar = (props) => {
@@ -24,7 +27,7 @@ const Navbar = (props) => {
 
     return (
         <AppBar position="static" color="default">
-            <Toolbar>
+            <Toolbar className={classes.toolbarStyles}>
                 <Typography className={classes.typographyStyles}>
                     CellarClub 
                 </Typography>
