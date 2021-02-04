@@ -1,6 +1,6 @@
 import json
 from django.contrib.auth import authenticate, login, logout
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -92,7 +92,7 @@ class CreateLwinView(APIView):
             return Response({'Bad Request': 'Something went wrong'}, status=status.HTTP_400_BAD_REQUEST)
 
 
-# --------------------------- AUTH ROUTES --------------------------- 
+# --------------------------- AUTH API ROUTES --------------------------- 
 def is_authenticated_view(request):
 
     print('is_authenticated_view was CALLED')
@@ -102,6 +102,18 @@ def is_authenticated_view(request):
         return JsonResponse({"is_authenticated": True})
     else:
         return JsonResponse({"is_authenticated": False})
+
+@login_required
+def user_data(request):
+    
+    print('user_data was CALLED')
+
+    if request.user.is_authenticated:
+        user = request.user
+        return JsonResponse({"username": user.username})
+    else:
+        return JsonResponse({"error": "access forbidden"})    
+
 
 @csrf_exempt
 def login_view(request):
