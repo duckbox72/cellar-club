@@ -109,9 +109,9 @@ def user_profile(request):
         first_name = user.first_name
         last_name = user.last_name
         email = user.email
-        photo = user.photo
+        photo = user.photo #-------TO DO why not serializable?----------#
 
-        user_profile = [user_id, username, first_name, last_name, email, photo]
+        user_profile = [user_id, username, first_name, last_name, email]
 
         return JsonResponse({"user_profile": user_profile})
     else:
