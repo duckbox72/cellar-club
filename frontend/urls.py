@@ -3,7 +3,7 @@ from .views import index
 
 urlpatterns = [
     path('', index),
-    path('profile', index),
+    path('/<int:user_id>', index),
     path('contact', index),
     path('collection', index),
 
