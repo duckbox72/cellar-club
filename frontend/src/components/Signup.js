@@ -104,7 +104,6 @@ export default function SignUp(props) {
         setConfirmation('');
         alert(data.message)
       }
-      
     });
   };
 
@@ -155,7 +154,7 @@ export default function SignUp(props) {
                         required
                         fullWidth
                         name="password"
-                        label="Password"
+                        label="Password (8+ characters)"
                         type="password"
                         id="password"
                         autoComplete="current-password"
@@ -168,7 +167,7 @@ export default function SignUp(props) {
                         required
                         fullWidth
                         name="confirmation"
-                        label="Confirmation"
+                        label="Confirm Password"
                         type="password"
                         id="confirmation"
                         autoComplete="current-confirmation"

@@ -48,9 +48,10 @@ export default function App(props) {
         setDarkMode(!darkMode);
     }
 
-    function loginCallback(status) {
+    function signInCallback(status) {
         updateIsAuthenticated(status);
     }
+
 
     return (
         <ThemeProvider theme={mytheme}>
@@ -75,8 +76,8 @@ export default function App(props) {
                         : 
                         (<>
                             <Route exact path='/' render={props => <Redirect {...props} to="/signin" />} />
-                            <Route path='/signin' render={props => <SignIn  parentCallback={loginCallback} {...props} />} />
-                            <Route path='/signup' render={props => <SignUp {...props} />} />
+                            <Route path='/signin' render={props => <SignIn parentCallback={signInCallback} {...props} />} />
+                            <Route path='/signup' render={props => <SignUp parentCallback={signInCallback} {...props} />} />
                         </>)
                         }
                         <Route path='/contact' component={ContactPage} />

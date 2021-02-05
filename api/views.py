@@ -145,17 +145,29 @@ def sign_out(request):
     return JsonResponse({"success": "User logged out"})
 
 
+@csrf_exempt
 def sign_up(request):
     if request.method == "POST":
-        username = request.POST["username"]
-        email = request.POST["email"]
+        data = json.loads(request.body)
 
+        username = data["username"]
+        # Ensure username is provided
+        if len(username) < 3:
+            return JsonResponse({"message": "Username must have at least 3 characters."})
+
+        email = data["email"]
+        if "@" not in email or "." not in email or len(email) < 7:
+            return JsonResponse({"message": "Not valid email format."})
+
+        password = data["password"]        
+        confirmation = data["confirmation"]
         # Ensure password matches confirmation
-        password = request.POST["password"]
-        confirmation = request.POST["confirmation"]
         if password != confirmation:
             return JsonResponse({"message": "Passwords must match."})
-
+        # Ensure password has at least 8 characters
+        if len(password) < 6:
+            return JsonResponse({"message": "Password must have at least 8 characters."})
+        
         # Attempt to create new user
         try: 
             user = User.objects.create_user(username, email, password)
