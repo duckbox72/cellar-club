@@ -152,8 +152,8 @@ def sign_up(request):
 
         username = data["username"]
         # Ensure username is provided
-        if len(username) < 3:
-            return JsonResponse({"message": "Username must have at least 3 characters."})
+        if len(username) < 2:
+            return JsonResponse({"message": "Username must have at least 2 characters."})
 
         email = data["email"]
         if "@" not in email or "." not in email or len(email) < 7:
