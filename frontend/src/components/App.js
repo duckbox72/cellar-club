@@ -8,6 +8,7 @@ import Dashboard from "./Dashboard";
 import Navbar from "./Navbar";
 import SignIn from "./Signin";
 import SignUp from "./Signup";
+import Landing from "./Landing";
 
 
 const useStyles = makeStyles({
@@ -72,10 +73,11 @@ export default function App(props) {
                             <Route exact path="/" render={props => <Dashboard {...props} />} />
                             <Route path='/signin' render={props => <Redirect {...props} to="/" />} />
                             <Route path='/signup' render={props => <Redirect {...props} to="/" />} />
+                            <Route path='/signout' render={props => <SignOut {...props} />} />
                         </>)
                         : 
                         (<>
-                            <Route exact path='/' render={props => <Redirect {...props} to="/signin" />} />
+                            <Route exact path='/' render={props => <Landing {...props} />} />
                             <Route path='/signin' render={props => <SignIn parentCallback={signInCallback} {...props} />} />
                             <Route path='/signup' render={props => <SignUp parentCallback={signInCallback} {...props} />} />
                         </>)
@@ -83,7 +85,7 @@ export default function App(props) {
                         <Route path='/contact' component={ContactPage} />
                         <Route path='/collection' component={CollectionPage} />
                         
-                        <Route path='/signout' render={props => <SignOut {...props} />} />
+                        
                                 
                     </Switch>
 
