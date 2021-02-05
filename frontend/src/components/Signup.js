@@ -85,10 +85,12 @@ export default function SignUp(props) {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         username: username,
+        email: email,
         password: password,
+        confirmation: confirmation,
       })
     }
-    fetch('/api/signin', requestOptions)
+    fetch('/api/signup', requestOptions)
     .then(response => response.json())
     .then(data => {
       console.log(data)
@@ -97,7 +99,9 @@ export default function SignUp(props) {
         props.history.push('/') 
       } else {
         setUsername('');
+        setEmail('')
         setPassword('');
+        setConfirmation('');
         alert(data.message)
       }
       
