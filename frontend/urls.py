@@ -8,4 +8,6 @@ urlpatterns = [
 
     # AUTH Routes
     path('signin', index),
+    path('signup', index),
+    
 ]

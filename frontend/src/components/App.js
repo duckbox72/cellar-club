@@ -5,9 +5,9 @@ import { Paper } from "@material-ui/core"
 import ContactPage from "./ContactPage"; 
 import CollectionPage from "./CollectionPage";
 import Dashboard from "./Dashboard";
-import Login from "./Signin";
 import Navbar from "./Navbar";
 import SignIn from "./Signin";
+import SignUp from "./Signup";
 
 
 const useStyles = makeStyles({
@@ -70,19 +70,20 @@ export default function App(props) {
                         (<>
                             <Route exact path="/" render={props => <Dashboard {...props} />} />
                             <Route path='/signin' render={props => <Redirect {...props} to="/" />} />
+                            <Route path='/signup' render={props => <Redirect {...props} to="/" />} />
                         </>)
-
                         : 
                         (<>
                             <Route exact path='/' render={props => <Redirect {...props} to="/signin" />} />
                             <Route path='/signin' render={props => <SignIn  parentCallback={loginCallback} {...props} />} />
+                            <Route path='/signup' render={props => <SignUp {...props} />} />
                         </>)
                         }
                         <Route path='/contact' component={ContactPage} />
                         <Route path='/collection' component={CollectionPage} />
                         
                         <Route path='/signout' render={props => <SignOut {...props} />} />
-                        <Route path='/register' render={props => <Register {...props} />} />          
+                                
                     </Switch>
 
                 </div> 
