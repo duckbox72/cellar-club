@@ -1,18 +1,12 @@
 from rest_framework import fields, serializers
-from .models import Lwin, Sample
+from .models import Lwin, User
 
 # GET request serializer (serializes response)
-class SampleSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Sample
-        fields = ('id', 'a', 'b', 'c', 'created')
-
-
-# POST request serializer (serializes request)
-class CreateSampleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Sample
-        fields = ('a', 'b', 'c')
+        model = User
+        fields = ('id', 'username', 'email', 'date_joined')
+        
 
 # GET request serializer (serializes response)
 class LwinSerializer(serializers.ModelSerializer):

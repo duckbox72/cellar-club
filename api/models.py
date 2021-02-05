@@ -8,14 +8,6 @@ class User(AbstractUser):
     pass
 
 
-
-class Sample(models.Model):
-    a = models.CharField(max_length=8)
-    b = models.CharField(max_length=64)
-    c = models.IntegerField()
-    created = models.DateTimeField(auto_now_add=True)
-
-
 class Lwin(models.Model):
     lwin = models.CharField(max_length=8, blank=False, null=False, unique=True)
     display_name = models.CharField(max_length=256)

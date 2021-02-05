@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import CreateLwinView, GetLwin, CreateSampleView, SampleView
+from .views import CreateLwinView, GetLwin, UserView
 from . import views
 
 
 urlpatterns = [
-    path('', SampleView.as_view()),
+    path('', UserView.as_view()),
     path('create', CreateLwinView.as_view()),   
     path('search', GetLwin.as_view()), 
 

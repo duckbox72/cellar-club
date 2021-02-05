@@ -12,33 +12,14 @@ from rest_framework import generics, serializers, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import Lwin, Sample, User
+from .models import Lwin, User
 from .serializers import *
 
 import pandas as pd 
 
-class SampleView(generics.ListAPIView):
-    queryset = Sample.objects.all()
-    serializer_class = SampleSerializer
-
-
-class CreateSampleView(APIView):
-    serializer_class = CreateSampleSerializer
-
-    def post(self, request, format=None):
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():     
-            a = serializer.data['a']
-            b = serializer.data['b']
-            c = serializer.data['c']
-        
-            sample = Sample(a=a, b=b, c=c)
-            sample.save()
-            
-            return Response(CreateSampleSerializer(sample).data, status=status.HTTP_201_CREATED)
-
-        else:
-            return Response({'Bad Request': 'Something went wrong'}, status=status.HTTP_400_BAD_REQUEST)
+class UserView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class GetLwin(APIView):
@@ -109,9 +90,10 @@ def user_profile(request):
         first_name = user.first_name
         last_name = user.last_name
         email = user.email
+        date_joined = user.date_joined
         photo = user.photo #-------TO DO why not serializable?----------#
 
-        user_profile = [user_id, username, first_name, last_name, email]
+        user_profile = [user_id, username, first_name, last_name, email, date_joined]
 
         return JsonResponse({"user_profile": user_profile})
     else:
