@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import CardMedia from '@material-ui/core/CardMedia'
+import AppBar from '@material-ui/core/AppBar';
+import Link from '@material-ui/core/Link';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { Button } from '@material-ui/core';
 
 
 
@@ -21,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'cover',
         backgroundPosition: 'center',
     },
+    toolbarTypography: {
+        flex: 1,
+    },
 }));
 
 
@@ -31,10 +35,16 @@ export default function Landing(props) {
         <Grid container className={classes.root_container}>
             <Grid item xs={12}>
                 <AppBar position="static">
-                  <Toolbar className={classes.toolbar}>                
-                    <Typography variant="h6">
-                      LANDING HERO
+                  <Toolbar>                
+                    <Typography variant="h6" className={classes.toolbarTypography}>
+                      CellarClub
                     </Typography>
+                    <Button variant="text" color="secondary" href="/signin">
+                      Sign In
+                    </Button>
+                    <Button variant="text" color="secondary" href="/signup">
+                      Sign Up
+                    </Button>
                   </Toolbar>
                 </AppBar>
             </Grid>

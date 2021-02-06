@@ -84,9 +84,7 @@ export default function App(props) {
                         }
                         <Route path='/contact' component={ContactPage} />
                         <Route path='/collection' component={CollectionPage} />
-                        
-                        
-                                
+                             
                     </Switch>
 
                 </div> 
