@@ -12,21 +12,27 @@ import { Button, fade } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
     root_container: {
         height: "100vh",
-        
+        flex: 1,
         backgroundImage: "url(/static/images/barrels.jpg)",
         [theme.breakpoints.down("sm")]: {
             backgroundImage: "url(/static/images/toast.jpg)",
         },
-        
         backgroundSize: 'cover',
         backgroundPosition: 'center',
     },
+    
     appbar: {
         backgroundColor: fade(theme.palette.secondary.dark, 0.85),
     },
+    
+    body_container: {
+        border: '2px solid red',
+    },
+    
     button: {
         color: fade(theme.palette.common.white , 0.75),
     },
+    
     img: {
         height: "60px",
         [theme.breakpoints.down("sm")]: {
@@ -34,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
         },
 
     },
+    
     toolbar_typography: {
         flex: 1,
     },
@@ -44,7 +51,7 @@ export default function Landing(props) {
     const classes = useStyles();
 
     return (
-        <Grid container spacing={1} className={classes.root_container} direction="row">
+        <Grid container spacing={3} direction="column">
             <Grid item xs={12}>
                 <AppBar position="static" className={classes.appbar}>
                   <Toolbar  >
@@ -58,15 +65,24 @@ export default function Landing(props) {
                     </Button>
                   </Toolbar>
                 </AppBar>
+            </Grid>    
+                
+            <Grid item container direction="column"
+                spacing={2} 
+                justify="center"
+                alignContent="center"
+                >
+                <Grid item className={classes.body_container}>
+                    <Button variant="contained" color="primary">
+                        Register
+                    </Button>
+                </Grid>
+                <Grid item >
+                    <Button variant="contained" color="primary">
+                        Register
+                    </Button>
+                </Grid>
             </Grid>
-            <Grid container spacing={1}>
-              <Grid item xs={12}>
-                <Button variant="contained" color="primary">
-                  Register
-                </Button>
-              </Grid>
-            </Grid>
-
         </Grid>
     );
 }
