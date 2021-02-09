@@ -7,20 +7,17 @@ import Paper from '@material-ui/core/Paper';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { Button, fade } from '@material-ui/core';
-import grey from '@material-ui/core/colors/grey'
-
-const test = grey[300];
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        height: "100vh",
+        //height: "100vh",
         flexGrow: 1,
-        backgroundImage: "url(/static/images/barrels.jpg)",
-        [theme.breakpoints.down("sm")]: {
-            backgroundImage: "url(/static/images/toast.jpg)",
-        },
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        //backgroundImage: "url(/static/images/barrels.jpg)",
+        //[theme.breakpoints.down("sm")]: {
+        //    backgroundImage: "url(/static/images/toast.jpg)",
+        //},
+        //backgroundSize: 'cover',
+        //backgroundPosition: 'center',
         textAlign: 'center',
         
     },
@@ -44,23 +41,20 @@ const useStyles = makeStyles((theme) => ({
     
         //border: '2px solid red',
         //height: '70vh'
+        marginTop: theme.spacing(8),
+        marginLeft: theme.spacing(4),
+        marginRight: theme.spacing(4),
         
-    },
-    body_paper: {
-        backgroundColor: fade(theme.palette.common.white, 0.50),
-        padding: theme.spacing(2),
-        height: '50vh',
-
     },
     body_typography: {
         fontWeight: theme.typography.fontWeightMedium,
-        margin: theme.spacing(2),
-        color: theme.palette.grey[900],
+        //margin: theme.spacing(4),
     },
     body_button: {
         borderRadius: 0,
         fontWeight: theme.typography.fontWeightMedium,
-        padding: theme.spacing(2, 6),
+        padding: theme.spacing(2, 8),
+        margin: theme.spacing(2),
         boxShadow: 'none',
     },
 }));
@@ -71,7 +65,7 @@ export default function Landing(props) {
 
     return (
         <div className={classes.root}>
-            <Grid container spacing={8} direction="column">
+            <Grid container spacing={6} direction="column">
                 <Grid item container xs={12}>
                     <AppBar position="static" className={classes.appbar}>
                     <Toolbar  >
@@ -87,30 +81,28 @@ export default function Landing(props) {
                     </AppBar>
                 </Grid>    
                 <div className={classes.body_container}>
-                    <Paper className={classes.body_paper}>      
-                        <Grid item container 
-                            spacing={2} 
-                            direction="column"
-                            justify="space-between"
-                            
-                            >
-                            <Grid item>
-                                <Typography variant="h3" className={classes.body_typography}>
-                                    COLLECTION MANAGER
-                                </Typography>
-                            </Grid>
-                            <Grid item>
-                                <Typography variant="h5" className={classes.body_typography}>
-                                    
-                                </Typography>
-                            </Grid>
-                            <Grid item>
-                                <Button variant="contained" color="primary" className={classes.body_button}>
-                                    Register
-                                </Button>
-                            </Grid>
+                    <Grid item container 
+                        spacing={1} 
+                        direction="column"
+                        justify="space-between"
+                        
+                        >
+                        <Grid item>
+                            <Typography variant="h3" className={classes.body_typography}>
+                                UPGRADE YOUR EXPERIENCE 
+                            </Typography>
                         </Grid>
-                    </Paper>
+                        <Grid item>
+                            <Typography variant="h6" className={classes.body_typography}>
+                                Easily find, manage and review collection.  
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <Button variant="contained" color="primary" className={classes.body_button}>
+                                Register
+                            </Button>
+                        </Grid>
+                    </Grid>
                 </div>
             </Grid>
         </div>
