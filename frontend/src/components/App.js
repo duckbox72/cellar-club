@@ -4,7 +4,7 @@ import { createMuiTheme, makeStyles, ThemeProvider } from "@material-ui/core/sty
 import { Paper } from "@material-ui/core"
 import ContactPage from "./ContactPage"; 
 import CollectionPage from "./CollectionPage";
-import Dashboard from "./Dashboard";
+import Home from "./Home";
 import Navbar from "./Navbar";
 import SignIn from "./Signin";
 import SignUp from "./Signup";
@@ -17,32 +17,53 @@ const useStyles = makeStyles({
     }
 })
 
-
 export default function App(props) {
     
     const classes = useStyles();
     const [darkMode, setDarkMode] = useState(false);
     
     const [isAuthenticated, updateIsAuthenticated] = useState(props.isAuthenticated);
+    const [userProfile, setUserProfile] = useState("")
     
-    console.log(isAuthenticated) // -------------------------- TO BE REMOVED 
+    console.log(isAuthenticated) // -------------------------- TO BE REMOVED
+    console.log(userProfile) 
+
+    
+
+    function getUserProfile() {
+        fetch('/api/user_profile')
+        .then(response => response.json())
+        .then(data => {
+            console.log(`GET PROF LOG -- >> ${data}`)
+            setUserProfile(data.username)
+        });
+    }
+
+    useEffect(() => {
+        getUserProfile();
+    })
+
 
     const mytheme = createMuiTheme({
         palette: {
-        primary:{
-            light: '#ffd95b',
-            main: '#ffa726',
-            dark: '#c77800',
-            contrastText: '#3e2723',
-        },
-        secondary:{
-            light: '#7b5e57',
-            main: '#4e342e',
-            dark: '#260e04',
-            contrastText: '#fff3e0',
-        },
-        type: darkMode ? "dark" : "light",
-        },
+            primary:{
+                light: '#ffd95b',
+                main: '#ffa726',
+                dark: '#c77800',
+                contrastText: '#3e2723',
+            },
+            secondary:{
+                light: '#7b5e57',
+                main: '#4e342e',
+                dark: '#260e04',
+                contrastText: '#fff3e0',
+            },
+            type: darkMode ? "dark" : "light",
+            },
+            background: {
+                default: '#fff',
+            }
+        
     });
 
     function handleCallback() {
@@ -51,6 +72,7 @@ export default function App(props) {
 
     function signInCallback(status) {
         updateIsAuthenticated(status);
+        getUserProfile(); 
     }
 
 
@@ -62,7 +84,8 @@ export default function App(props) {
                     (
                     <Navbar 
                         darkMode="darkMode" 
-                        parentCallback = {handleCallback}
+                        userProfile={userProfile}
+                        parentCallback={handleCallback}
                     />
                     ) : (
                         <></>
@@ -70,7 +93,7 @@ export default function App(props) {
                     <Switch>
                         {isAuthenticated ? 
                         (<>
-                            <Route exact path="/" render={props => <Dashboard {...props} />} />
+                            <Route exact path="/" render={props => <Home {...props} />} />
                             <Route path='/signin' render={props => <Redirect {...props} to="/" />} />
                             <Route path='/signup' render={props => <Redirect {...props} to="/" />} />
                             <Route path='/signout' render={props => <SignOut {...props} />} />

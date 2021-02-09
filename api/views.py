@@ -93,9 +93,9 @@ def user_profile(request):
         date_joined = user.date_joined
         photo = user.photo #-------TO DO why not serializable?----------#
 
-        user_profile = [user_id, username, first_name, last_name, email, date_joined]
+        user_profile = {"user_id": user_id, "username": username, "first_name": first_name, "last_name": last_name, "email": email, "date_joined": date_joined}
 
-        return JsonResponse({"user_profile": user_profile})
+        return JsonResponse(user_profile)
     else:
         return JsonResponse({"error": "access forbidden"})    
 

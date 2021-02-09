@@ -10,11 +10,13 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
     typographyStyles: {
-        flex: 1
+        flex: 1,
+        //color: theme.palette.common.white,
     },
-    //toolbarStyles: {
-    //    backgroundColor: theme.palette.primary.light,
-    //},
+    toolbarStyles: {
+        //backgroundColor: theme.palette.secondary,
+
+    },
 }));
 
 const Navbar = (props) => {
@@ -22,7 +24,11 @@ const Navbar = (props) => {
     function toggleDarKMode() {
         props.parentCallback()
     }
+
+    const userProfile = props.userProfile;
     
+    console.log(`NAVBAR user profile ${userProfile}`)
+
     const classes = useStyles();
 
     return (
@@ -31,9 +37,13 @@ const Navbar = (props) => {
                 <Typography className={classes.typographyStyles}>
                     CellarClub 
                 </Typography>
+                <Typography>
+                    {userProfile}
+                </Typography>
                 <Switch 
                     checked={props.darKMode}
                     onChange={toggleDarKMode}
+                    color="primary"
                 />
                 <IconButton aria-label="toggleDarkMode" onClick={toggleDarKMode}>
                   <BrightnessMediumIcon />

@@ -3,14 +3,15 @@ import { Button, Grid, Typography } from "@material-ui/core";
 
 
 // THIS IS USER'S HOME DEFAULT LANDING PAGE FOR THE APP
-export default function Dashboard(props) {
-    const [userProfile, setUserProfile] = useState([])
+export default function Home(props) {
+    const [userProfile, setUserProfile] = useState("")
     
     useEffect(() => {
         fetch('/api/user_profile')
         .then(response => response.json())
         .then(data => {
-            setUserProfile(data.user_profile)
+            console.log(data);
+            setUserProfile(data.username);
         });
     }, []);
 
@@ -21,7 +22,7 @@ export default function Dashboard(props) {
                 <Typography variant="h3">
                     This Home Page!
                 </Typography>
-                <Typography variant="h6">
+                <Typography>
                     {userProfile}
                 </Typography>
                 <Button variant="contained" color="primary">
