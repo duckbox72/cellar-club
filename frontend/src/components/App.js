@@ -53,7 +53,10 @@ export default function App(props) {
 
     function signInCallback(status) {
         updateIsAuthenticated(status);
-        getUserProfile(); 
+    }
+
+    function signOutCallback(status) {
+        updateIsAuthenticated(status)
     }
 
 
@@ -67,16 +70,18 @@ export default function App(props) {
                             <Route exact path="/" render={props => <Home {...props} 
                             darkMode="darkMode"
                             parentCallback={darkModeCallback}
+                            parentSignOutCallback={signOutCallback}
+                            isAuthenticated={isAuthenticated}
                             />} />
                             <Route path='/signin' render={props => <Redirect {...props} to="/" />} />
                             <Route path='/signup' render={props => <Redirect {...props} to="/" />} />
-                            <Route path='/signout' render={props => <SignOut {...props} />} />
+                            <Route path='/signout' render={props => <Redirect {...props} to="/" />} />
                         </>)
                         : 
                         (<>
                             <Route exact path='/' render={props => <Landing {...props} />} />
-                            <Route path='/signin' render={props => <SignIn parentCallback={signInCallback} {...props} />} />
-                            <Route path='/signup' render={props => <SignUp parentCallback={signInCallback} {...props} />} />
+                            <Route path='/signin' render={props => <SignIn parentSigninCallback={signInCallback} {...props} />} />
+                            <Route path='/signup' render={props => <SignUp parentSigninCallback={signInCallback} {...props} />} />
                         </>)
                         }
                         <Route path='/contact' component={ContactPage} />

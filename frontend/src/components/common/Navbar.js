@@ -2,12 +2,12 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar'
 import IconButton from '@material-ui/core/IconButton'
 import BrightnessMediumIcon from '@material-ui/icons/BrightnessMedium';
-import Switch from '@material-ui/core/Switch'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import Toolbar from '@material-ui/core/Toolbar';
+import Tooltip from '@material-ui/core/Tooltip'
+import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/styles';
-import Tooltip from '@material-ui/core/Tooltip'
 
 const useStyles = makeStyles((theme) => ({
     typographyStyles: {
@@ -22,13 +22,31 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = (props) => {
     
+    
+    const handleSignOutButton = () => {
+        
+        fetch('/api/signout')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          if (data.success) {
+            console.log(data.success);
+            props.parentSignOutCallback()
+            props.history.push('/') 
+          } else {
+            alert("Bad Request, please try again.")
+          }
+          
+        });
+      };
+    
+    
     function toggleDarKMode() {
         props.parentCallback()
     }
 
+
     const userProfile = props.userProfile;
-    
-    console.log(`NAVBAR user profile ${userProfile}`)
 
     const classes = useStyles();
 
@@ -41,15 +59,15 @@ const Navbar = (props) => {
                 <Typography>
                     {userProfile.username}
                 </Typography>
-                <Switch 
-                    checked={props.darKMode}
-                    onChange={toggleDarKMode}
-                    color="primary"
-                />
                 <Tooltip title="Toggle light/dark mode">
                     <IconButton aria-label="toggleDarkMode" onClick={toggleDarKMode}>
-                         <BrightnessMediumIcon />
+                        <BrightnessMediumIcon />
                     </IconButton>
+                </Tooltip>
+                <Tooltip title="Sign out">
+                    <IconButton aria-label="signout" onClick={handleSignOutButton}>
+                        <ExitToAppIcon />
+                    </IconButton>                  
                 </Tooltip>
             </Toolbar>
         </AppBar>

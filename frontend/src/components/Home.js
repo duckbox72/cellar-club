@@ -6,17 +6,26 @@ import getUserProfile from "./utils/getUserProfile";
 
 // THIS IS USER'S HOME DEFAULT LANDING PAGE FOR THE APP
 export default function Home(props) {
+
     const userProfile = (getUserProfile());
 
     function darkModeCallback() {
         props.parentCallback();
     }
 
+    function  sigOutCallback() {
+        props.parentSignOutCallback(false);
+    }
+    
+    props.parentSignOutCallback
+
     return (
         <>
         <Navbar 
+        {...props}
         darkMode={props.darkMode} 
         parentCallback={darkModeCallback}
+        parentSignOutCallback={sigOutCallback}
         userProfile={userProfile}
         />
         <Grid container direction="column">

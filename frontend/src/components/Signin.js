@@ -84,7 +84,7 @@ export default function SignIn(props) {
     .then(data => {
       console.log(data)
       if (data.success) {
-        props.parentCallback(true)
+        props.parentSigninCallback(true)
         props.history.push('/') 
       } else {
         setUsername('');
