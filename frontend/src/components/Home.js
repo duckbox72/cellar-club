@@ -8,8 +8,6 @@ import getUserProfile from "./utils/getUserProfile";
 export default function Home(props) {
     const userProfile = (getUserProfile());
 
-    
-
     function darkModeCallback() {
         props.parentCallback();
     }
