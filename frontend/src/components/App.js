@@ -5,7 +5,6 @@ import { Paper } from "@material-ui/core"
 import ContactPage from "./ContactPage"; 
 import CollectionPage from "./CollectionPage";
 import Home from "./Home";
-import Navbar from "./Navbar";
 import SignIn from "./Signin";
 import SignUp from "./Signup";
 import Landing from "./Landing";
@@ -23,26 +22,8 @@ export default function App(props) {
     const [darkMode, setDarkMode] = useState(false);
     
     const [isAuthenticated, updateIsAuthenticated] = useState(props.isAuthenticated);
-    const [userProfile, setUserProfile] = useState("")
     
     console.log(isAuthenticated) // -------------------------- TO BE REMOVED
-    console.log(userProfile) 
-
-    
-
-    function getUserProfile() {
-        fetch('/api/user_profile')
-        .then(response => response.json())
-        .then(data => {
-            console.log(`GET PROF LOG -- >> ${data}`)
-            setUserProfile(data.username)
-        });
-    }
-
-    useEffect(() => {
-        getUserProfile();
-    })
-
 
     const mytheme = createMuiTheme({
         palette: {
@@ -66,7 +47,7 @@ export default function App(props) {
         
     });
 
-    function handleCallback() {
+    function darkModeCallback() {
         setDarkMode(!darkMode);
     }
 
@@ -80,20 +61,13 @@ export default function App(props) {
         <ThemeProvider theme={mytheme}>
             <Paper style={{ height: "100vh", borderRadius: "0px" }}>
                 <div classeName={classes.appStyles}>
-                    {isAuthenticated ? 
-                    (
-                    <Navbar 
-                        darkMode="darkMode" 
-                        userProfile={userProfile}
-                        parentCallback={handleCallback}
-                    />
-                    ) : (
-                        <></>
-                    )} 
                     <Switch>
                         {isAuthenticated ? 
                         (<>
-                            <Route exact path="/" render={props => <Home {...props} />} />
+                            <Route exact path="/" render={props => <Home {...props} 
+                            darkMode="darkMode"
+                            parentCallback={darkModeCallback}
+                            />} />
                             <Route path='/signin' render={props => <Redirect {...props} to="/" />} />
                             <Route path='/signup' render={props => <Redirect {...props} to="/" />} />
                             <Route path='/signout' render={props => <SignOut {...props} />} />
@@ -106,10 +80,8 @@ export default function App(props) {
                         </>)
                         }
                         <Route path='/contact' component={ContactPage} />
-                        <Route path='/collection' component={CollectionPage} />
-                             
+                        <Route path='/collection' component={CollectionPage} />       
                     </Switch>
-
                 </div> 
             </Paper>
         </ThemeProvider>
