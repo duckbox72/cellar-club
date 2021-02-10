@@ -2,20 +2,13 @@ import React, { useEffect, useState, } from "react";
 import { Button, Grid, Typography } from "@material-ui/core";
 
 import Navbar from "./Navbar";
-
+import getUserProfile from "./utils/getUserProfile";
 
 // THIS IS USER'S HOME DEFAULT LANDING PAGE FOR THE APP
 export default function Home(props) {
-    const [userProfile, setUserProfile] = useState(getUserProfile());
+    const userProfile = (getUserProfile());
 
-    function getUserProfile() {
-        fetch('/api/user_profile')
-        .then(response => response.json())
-        .then(data => {
-            console.log(`GET PROF LOG -- >> ${data.user_id}, ${data.username}`)
-            setUserProfile(data.username);
-        });
-    }
+    
 
     function darkModeCallback() {
         props.parentCallback();
