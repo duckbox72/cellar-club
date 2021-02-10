@@ -7,6 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 
 import { makeStyles } from '@material-ui/styles';
+import Tooltip from '@material-ui/core/Tooltip'
 
 const useStyles = makeStyles((theme) => ({
     typographyStyles: {
@@ -38,16 +39,18 @@ const Navbar = (props) => {
                     CellarClub 
                 </Typography>
                 <Typography>
-                    {userProfile}
+                    {userProfile.username}
                 </Typography>
                 <Switch 
                     checked={props.darKMode}
                     onChange={toggleDarKMode}
                     color="primary"
                 />
-                <IconButton aria-label="toggleDarkMode" onClick={toggleDarKMode}>
-                  <BrightnessMediumIcon />
-                </IconButton>
+                <Tooltip title="Toggle light/dark mode">
+                    <IconButton aria-label="toggleDarkMode" onClick={toggleDarKMode}>
+                         <BrightnessMediumIcon />
+                    </IconButton>
+                </Tooltip>
             </Toolbar>
         </AppBar>
     );

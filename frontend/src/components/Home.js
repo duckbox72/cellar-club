@@ -18,16 +18,14 @@ export default function Home(props) {
         darkMode={props.darkMode} 
         parentCallback={darkModeCallback}
         userProfile={userProfile}
-        >
-
-        </Navbar>
+        />
         <Grid container direction="column">
             <Grid item xs={12}>
                 <Typography variant="h3">
                     This Home Page!
                 </Typography>
                 <Typography>
-                    {userProfile}
+                    {userProfile.username}
                 </Typography>
                 <Button variant="contained" color="primary">
                     My Button
