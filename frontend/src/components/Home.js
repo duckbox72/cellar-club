@@ -2,7 +2,7 @@ import React, { useEffect, useState, } from "react";
 import { Button, Grid, Typography } from "@material-ui/core";
 
 import Navbar from "./common/Navbar";
-import getUserProfile from "./utils/getUserProfile";
+import { getUserProfile } from "./utils/getUserProfile";
 
 // THIS IS USER'S HOME DEFAULT LANDING PAGE FOR THE APP
 export default function Home(props) {
