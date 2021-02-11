@@ -98,7 +98,7 @@ export default function Landing(props) {
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <Button variant="contained" color="primary" className={classes.body_button}>
+                            <Button variant="contained" color="primary" className={classes.body_button} href="/signup">
                                 Register
                             </Button>
                         </Grid>

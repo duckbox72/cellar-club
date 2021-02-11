@@ -45,9 +45,7 @@ const Navbar = (props) => {
         props.parentCallback()
     }
 
-
     const userProfile = props.userProfile;
-
     const classes = useStyles();
 
     return (

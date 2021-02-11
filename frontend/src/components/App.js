@@ -55,6 +55,10 @@ export default function App(props) {
         updateIsAuthenticated(status);
     }
 
+    function signUpCallback(status) {
+        updateIsAuthenticated(status);
+    }
+
     function signOutCallback(status) {
         updateIsAuthenticated(status)
     }
@@ -81,7 +85,7 @@ export default function App(props) {
                         (<>
                             <Route exact path='/' render={props => <Landing {...props} />} />
                             <Route path='/signin' render={props => <SignIn parentSigninCallback={signInCallback} {...props} />} />
-                            <Route path='/signup' render={props => <SignUp parentSigninCallback={signInCallback} {...props} />} />
+                            <Route path='/signup' render={props => <SignUp parentSignupCallback={signUpCallback} {...props} />} />
                         </>)
                         }
                         <Route path='/contact' component={ContactPage} />
