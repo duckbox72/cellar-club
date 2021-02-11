@@ -16,18 +16,15 @@ function getIsAuthenticated() {
     .then(data => {
         
         const isAuthenticated = data.is_authenticated;
-
-        ReactDOM.render(
-            <React.StrictMode>     
-                <Router history={history}>
-                    <App isAuthenticated={isAuthenticated} />    
-                </Router> 
-            </React.StrictMode>,
-            appDiv
-        );
+        return isAuthenticated
     });
 }
 
-getIsAuthenticated();
-
-
+ReactDOM.render(
+    <React.StrictMode>     
+        <Router history={history}>
+            <App isAuthenticated={getIsAuthenticated()} />    
+        </Router> 
+    </React.StrictMode>,
+    appDiv
+);

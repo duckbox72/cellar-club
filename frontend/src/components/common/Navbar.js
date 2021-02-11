@@ -49,7 +49,7 @@ const Navbar = (props) => {
     const classes = useStyles();
 
     return (
-        <AppBar position="static" color="default">
+        <AppBar position="sticky" color="default">
             <Toolbar className={classes.toolbarStyles}>
                 <Typography className={classes.typographyStyles}>
                     CellarClub 
