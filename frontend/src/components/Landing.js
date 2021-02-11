@@ -67,7 +67,7 @@ export default function Landing(props) {
         <div className={classes.root}>
             <Grid container spacing={6} direction="column">
                 <Grid item container xs={12}>
-                    <AppBar position="fixed" className={classes.appbar}>
+                    <AppBar position="static" className={classes.appbar}>
                     <Toolbar  >
                         <img src="/static/images/banner_no_bg.png" alt="logo" className={classes.appbar_img}></img>
                         <Typography className={classes.appbar_typography} />                 
