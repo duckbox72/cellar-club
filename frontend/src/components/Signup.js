@@ -33,6 +33,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     },
+  root_paper: {
+    height: '100vh',
+    background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(200, 200, 200, 0.5))'
+  },
     
   paper: {
     height: '100vh',
@@ -109,7 +113,9 @@ export default function SignUp(props) {
 
     return (
         <Grid container component="main" classname={classes.root}>
-            <Grid item xs={false} sm={4} md={7} className={classes.image} />
+            <Grid item xs={false} sm={4} md={7} className={classes.image}>
+              <Paper className={classes.root_paper} />
+            </Grid>
             <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>   
                 <div className={classes.paper}>
                     <Avatar className={classes.avatar}>
@@ -157,7 +163,7 @@ export default function SignUp(props) {
                         label="Password (8+ characters)"
                         type="password"
                         id="password"
-                        autoComplete="current-password"
+                        
                         />
                         <TextField
                         value={confirmation}
@@ -170,7 +176,7 @@ export default function SignUp(props) {
                         label="Confirm Password"
                         type="password"
                         id="confirmation"
-                        autoComplete="current-confirmation"
+                        
                         />
                         <Button
                         //type="submit"
