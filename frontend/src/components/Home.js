@@ -13,11 +13,10 @@ export default function Home(props) {
         props.parentCallback();
     }
 
-    function  sigOutCallback() {
+    function sigOutCallback() {
         props.parentSignOutCallback(false);
     }
-    
-    props.parentSignOutCallback
+
 
     return (
         <>
@@ -34,7 +33,7 @@ export default function Home(props) {
                     This Home Page!
                 </Typography>
                 <Typography>
-                    {userProfile.username}
+                    {userProfile.username} -- is authenticated ? {props.isAuthenticated}
                 </Typography>
                 <Button variant="contained" color="primary">
                     My Button

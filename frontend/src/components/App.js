@@ -22,10 +22,11 @@ export default function App(props) {
     const [darkMode, setDarkMode] = useState(false);
     
     const [isAuthenticated, updateIsAuthenticated] = useState(props.isAuthenticated);
-    
-    console.log(isAuthenticated) // -------------------------- TO BE REMOVED
 
-    const mytheme = createMuiTheme({
+    console.log(`(App) props.isAuthenticated:  ${props.isAuthenticated}`)
+    console.log(`(App) const isAuthenticated:  ${isAuthenticated}`)
+
+    const mytheme = createMuiTheme({ 
         palette: {
             primary:{
                 light: '#ffd95b',
