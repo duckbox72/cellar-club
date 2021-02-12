@@ -163,7 +163,7 @@ export default function SignUp(props) {
                         label="Password (8+ characters)"
                         type="password"
                         id="password"
-                        
+                        autoComplete="password"
                         />
                         <TextField
                         value={confirmation}
@@ -176,7 +176,7 @@ export default function SignUp(props) {
                         label="Confirm Password"
                         type="password"
                         id="confirmation"
-                        
+                        autoComplete="confirmation"
                         />
                         <Button
                         //type="submit"

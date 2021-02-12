@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid'
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 
-export default class CollectionPage extends Component {
+export default class Searchbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
