@@ -20,11 +20,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 const Navbar = (props) => {
     
-    
     const handleSignOutButton = () => {
-        
         fetch('/api/signout')
         .then(response => response.json())
         .then(data => {
@@ -36,12 +35,10 @@ const Navbar = (props) => {
           } else {
             alert("Bad Request, please try again.")
           }
-          
         });
       };
     
-    
-    function toggleDarKMode() {
+    const toggleDarKMode = () => {
         props.parentCallback()
     }
 

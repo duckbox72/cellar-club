@@ -63,7 +63,6 @@ export default function App(props) {
         updateIsAuthenticated(status)
     }
 
-
     return (
         <ThemeProvider theme={mytheme}>
             <Paper style={{ height: "100vh", borderRadius: "0px" }}>

@@ -1,23 +1,22 @@
 import React, { useEffect, useState, } from "react";
 import { Button, Grid, Typography } from "@material-ui/core";
-
 import Navbar from "./common/Navbar";
 import Searchbar from "./common/Searchbar";
 import { getUserProfile } from "./utils/getUserProfile";
+
 
 // THIS IS USER'S HOME DEFAULT LANDING PAGE FOR THE APP
 export default function Home(props) {
 
     const userProfile = (getUserProfile());
 
-    function darkModeCallback() {
+    const darkModeCallback = () => {
         props.parentCallback();
     }
 
-    function sigOutCallback() {
+    const sigOutCallback = () => {
         props.parentSignOutCallback(false);
     }
-
 
     return (
         <div>
