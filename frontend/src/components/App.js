@@ -47,19 +47,19 @@ export default function App(props) {
         
     });
 
-    function darkModeCallback() {
+    const darkModeCallback = () => {
         setDarkMode(!darkMode);
     }
 
-    function signInCallback(status) {
+    const signInCallback = (status) => {
         updateIsAuthenticated(status);
     }
 
-    function signUpCallback(status) {
+    const signUpCallback = (status) => {
         updateIsAuthenticated(status);
     }
 
-    function signOutCallback(status) {
+    const signOutCallback = (status) => {
         updateIsAuthenticated(status)
     }
 
