@@ -32,8 +32,8 @@ export default function Home(props) {
                     <Searchbar />
                 </Grid>
                 <Grid item xs={12}>
-                    <Typography variant="h3">
-                        This Home Page!
+                    <Typography variant="h3"> 
+                        This Home Page dashboard!
                     </Typography>
                     <Typography>
                         {userProfile.username}

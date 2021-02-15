@@ -14,7 +14,7 @@ const useStyles = makeStyles({
         dysplay: "flex",
         width: "100%",
         height: "100%",
-        //position: "absolute",
+        position: "absolute",
         //backgroundColor: "lightyellow",
     }
 })
@@ -45,10 +45,7 @@ export default function App(props) {
                 contrastText: '#fff3e0',
             },
             type: darkMode ? "dark" : "light",
-            },
-            background: {
-                default: { light:'#ffd95b'},
-            },   
+            },  
     });
 
     const darkModeCallback = () => {
