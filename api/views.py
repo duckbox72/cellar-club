@@ -23,7 +23,7 @@ class UserView(generics.ListAPIView):
 
 
 class GetLwin(APIView):
-    serializer_class = LwinSerializer
+    #serializer_class = LwinSerializer
     lookup_url_kwarg = 'display_name'
 
     def get(self, request, format=None):

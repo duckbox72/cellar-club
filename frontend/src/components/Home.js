@@ -20,6 +20,8 @@ export default function Home(props) {
 
     return (
         <div>
+            
+            <Grid container direction="column">
             <Navbar 
             {...props}
             darkMode={props.darkMode} 
@@ -27,16 +29,14 @@ export default function Home(props) {
             parentSignOutCallback={sigOutCallback}
             userProfile={userProfile}
             />
-            <Grid container direction="column">
-                <Grid item xs={10} sm={4}>
+                    
                     <Searchbar />
-                </Grid>
                 <Grid item xs={12}>
                     <Typography variant="h3"> 
                         This Home Page dashboard!
                     </Typography>
                     <Typography>
-                        {userProfile.username}
+                        {userProfile.username} {userProfile.date_joined}
                     </Typography>
                     <Button variant="contained" color="primary">
                         My Button

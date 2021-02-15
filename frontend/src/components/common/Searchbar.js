@@ -2,17 +2,18 @@
 import React, { useState } from "react";
 import TextField from '@material-ui/core/TextField'
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { Grid, Typography } from '@material-ui/core';
 
 
 export default function Searchbar() {
     
-    const [searchbarChange, setSearchbarChange] = useState("")
-    const [searchResult, setSearchResult] = useState([])
+    const [searchbarValue, setSearchbarValue] = useState("");
+    const [searchResult, setSearchResult] = useState([]);
     
     const handleSearchbarChange = e => {
-        setSearchbarChange(e.target.value)
+        setSearchbarValue(e.target.value)
         console.log(e.target.value)
-
+        
         fetch("/api/search" + "?display_name=" + e.target.value)
         .then((response) => response.json())
         .then(data => {
@@ -22,20 +23,23 @@ export default function Searchbar() {
 
     return (
     <div>
-        <Autocomplete
-            id="searchbar"
-            freeSolo
-            options={searchResult.map((option) => option.display_name)}
-            renderInput={(params) => (
-            <TextField 
-            {...params}
-            onChange={handleSearchbarChange} 
-            label="wine search" 
-            margin="normal" 
-            
-            variant="outlined" />
-            )}
-        />
+        <Grid container spacing={1} justify="center">
+            <Grid item xs={12} sm={8} md={6}> 
+                <Autocomplete
+                    id="searchbar"
+                    freeSolo
+                    options={searchResult.map((option) => option.display_name)}
+                    renderInput={(params) => (
+                    <TextField 
+                    {...params}
+                    onChange={handleSearchbarChange} 
+                    label="wine search" 
+                    margin="normal" 
+                    variant="outlined" />
+                    )}
+                />
+            </Grid>
+        </Grid>
     </div>
     )
 };

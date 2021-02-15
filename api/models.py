@@ -32,6 +32,7 @@ class Lwin(models.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "lwin": self.lwin,
             "display_name": self.display_name,
             "wine": self.wine,
             "country": self.country
