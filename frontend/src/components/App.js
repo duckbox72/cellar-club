@@ -11,9 +11,14 @@ import Landing from "./Landing";
 
 const useStyles = makeStyles({
     appStyles: {
-        dysplay: "flex"
+        dysplay: "flex",
+        width: "100%",
+        height: "100%",
+        //position: "absolute",
+        //backgroundColor: "lightyellow",
     }
 })
+
 
 export default function App(props) {
     
@@ -42,9 +47,8 @@ export default function App(props) {
             type: darkMode ? "dark" : "light",
             },
             background: {
-                default: '#fff',
-            }
-        
+                default: { light:'#ffd95b'},
+            },   
     });
 
     const darkModeCallback = () => {
@@ -65,14 +69,14 @@ export default function App(props) {
 
     return (
         <ThemeProvider theme={mytheme}>
-            <Paper style={{ height: "100vh", borderRadius: "0px" }}>
-                <div classeName={classes.appStyles}>
+            <Paper  className={classes.appStyles}>
+                <div classeName>
                     <Switch>
                         {isAuthenticated ? 
                         (<>
                             <Route exact path="/" render={props => <Home {...props} 
                             darkMode="darkMode"
-                            parentCallback={darkModeCallback}
+                            parentDarkModeCallback={darkModeCallback}
                             parentSignOutCallback={signOutCallback}
                             isAuthenticated={isAuthenticated}
                             />} />

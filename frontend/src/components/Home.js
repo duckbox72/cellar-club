@@ -28,7 +28,7 @@ export default function Home(props) {
             userProfile={userProfile}
             />
             <Grid container direction="column">
-                <Grid item xs={8} sm={4}>
+                <Grid item xs={10} sm={4}>
                     <Searchbar />
                 </Grid>
                 <Grid item xs={12}>
@@ -36,7 +36,7 @@ export default function Home(props) {
                         This Home Page!
                     </Typography>
                     <Typography>
-                        {userProfile.username} -- is authenticated ? {props.isAuthenticated}
+                        {userProfile.username}
                     </Typography>
                     <Button variant="contained" color="primary">
                         My Button

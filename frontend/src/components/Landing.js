@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         //height: "100vh",
         flexGrow: 1,
+
         //backgroundImage: "url(/static/images/barrels.jpg)",
         //[theme.breakpoints.down("sm")]: {
         //    backgroundImage: "url(/static/images/toast.jpg)",
@@ -69,7 +70,7 @@ export default function Landing(props) {
                 <Grid item container xs={12}>
                     <AppBar position="static" className={classes.appbar}>
                     <Toolbar  >
-                        <img src="/static/images/banner_no_bg.png" alt="logo" className={classes.appbar_img}></img>
+                        <img src="/static/images/banner_dark.png" alt="logo" className={classes.appbar_img}></img>
                         <Typography className={classes.appbar_typography} />                 
                         <Button variant="text" className={classes.appbar_button} href="/signin">
                             Sign In
