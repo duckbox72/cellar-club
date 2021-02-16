@@ -4,8 +4,16 @@ import BrightnessMediumIcon from '@material-ui/icons/BrightnessMedium';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import { makeStyles } from '@material-ui/styles';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { grey }  from '@material-ui/core/colors';
 
+const theme = createMuiTheme({
+    typography: {
+        fontFamily: [
+            'Quicksand', 'sans-serif',
+        ].join(','),
+    },
+});
 
 
 const Navbar = (props) => {
@@ -18,9 +26,11 @@ const Navbar = (props) => {
             [theme.breakpoints.down("sm")]: {
                 height: "50px",
             },
+            marginRight: theme.spacing(1)
         },
         appbar_typography: {
             flex: 1,
+            color: navbarDarkMode ? theme.palette.secondary.main : theme.palette.primary.main,
         },
         avatar: {
             width: theme.spacing(3),
@@ -60,8 +70,12 @@ const Navbar = (props) => {
     return (
         <AppBar position="static" color="default" elevation={0} className={classes.appbar}>
             <Toolbar className={classes.toolbarStyles}>
-                <img src={navbarDarkMode ? "/static/images/banner_light.png" : "/static/images/banner_dark.png"} alt="logo" className={classes.appbar_img}></img>
-                <Typography className={classes.appbar_typography} /> 
+                <img src={navbarDarkMode ? "/static/images/logo_light.png" : "/static/images/logo_dark.png"} alt="logo" className={classes.appbar_img}></img>
+                <ThemeProvider theme={theme}>
+                    <Typography variant={'h6'} className={classes.appbar_typography}>
+                        C e l l a r C l u b
+                    </Typography> 
+                </ThemeProvider>
                 <Tooltip title="Toggle light/dark mode">
                     <IconButton aria-label="toggleDarkMode" onClick={toggleDarKMode}>
                         <BrightnessMediumIcon className={classes.iconButton} />
