@@ -13,13 +13,12 @@ const useStyles = makeStyles(theme => ({
         padding: '2px 4px',
         display: 'flex',
         alignItems: 'center',
-        width: 400,
         height: 60,
     },
     autocomplete: {
         marginLeft: theme.spacing(1),
         marginBottom: theme.spacing(2),
-        flex: 1,
+        
     },
     iconButton: {
         padding: 10,
@@ -48,9 +47,8 @@ export default function Searchbar() {
         });  
     }
 
-    return (
-    <div>
-        <Paper className={classes.root}>
+    return ( 
+        <Paper className={classes.root} elevation={1}>
             <IconButton className={classes.iconButton}>
                 <MenuIcon />
             </IconButton>
@@ -58,7 +56,7 @@ export default function Searchbar() {
                     className={classes.autocomplete}
                     id="searchbar"
                     value={searchbarValue}
-                    
+                    fullWidth
                     freeSolo
                     clearOnEscape
                     handleHomeEndKeys
@@ -79,10 +77,10 @@ export default function Searchbar() {
                 <SearchIcon />
             </IconButton>
             <Divider className={classes.divider} orientation="vertical" />
-            <IconButton className={classes.iconButton}>
+            <IconButton className={classes.iconButton} colort>
                 <DirectionsIcon />
             </IconButton>
         </Paper>
-    </div>
+    
     )
 };

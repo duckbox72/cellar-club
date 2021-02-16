@@ -1,21 +1,20 @@
 import React, { useEffect, useState }from "react";
 import { Redirect, Route, Switch, } from "react-router-dom";
 import { createMuiTheme, makeStyles, ThemeProvider } from "@material-ui/core/styles"
-import { Paper } from "@material-ui/core"
+import { Paper } from "@material-ui/core";
 import ContactPage from "./ContactPage"; 
 import Home from "./Home";
 import SignIn from "./Signin";
 import SignUp from "./Signup";
 import Landing from "./Landing";
+import { grey } from "@material-ui/core/colors";
 
 
 const useStyles = makeStyles({
     appStyles: {
-        dysplay: "flex",
         width: "100%",
         height: "100%",
         position: "absolute",
-        //backgroundColor: "lightyellow",
     }
 })
 
@@ -45,7 +44,12 @@ export default function App(props) {
                 contrastText: '#fff3e0',
             },
             type: darkMode ? "dark" : "light",
-            },  
+            
+            background: {
+                paper: darkMode ? grey[900] : grey[50],   
+            },
+        },
+            
     });
 
     const darkModeCallback = () => {

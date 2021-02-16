@@ -21,17 +21,20 @@ export default function Home(props) {
     return (
         <div>
             
-            <Grid container direction="column">
-            <Navbar 
-            {...props}
-            darkMode={props.darkMode} 
-            parentCallback={darkModeCallback}
-            parentSignOutCallback={sigOutCallback}
-            userProfile={userProfile}
-            />
-                    
-                    <Searchbar />
+            <Grid container  spacing={2} justify="center"> 
                 <Grid item xs={12}>
+                    <Navbar 
+                    {...props}
+                    darkMode={props.darkMode} 
+                    parentCallback={darkModeCallback}
+                    parentSignOutCallback={sigOutCallback}
+                    userProfile={userProfile}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={8} md={7}>
+                    <Searchbar />
+                </Grid>
+                <Grid item xs={12} sm={8} md={7}>
                     <Typography variant="h3"> 
                         This Home Page dashboard!
                     </Typography>

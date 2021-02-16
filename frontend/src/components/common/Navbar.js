@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
-import AppBar from '@material-ui/core/AppBar'
-import IconButton from '@material-ui/core/IconButton'
+import { AppBar, Avatar, IconButton, Toolbar, Tooltip, Typography} from '@material-ui/core';
 import BrightnessMediumIcon from '@material-ui/icons/BrightnessMedium';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import Toolbar from '@material-ui/core/Toolbar';
-import Tooltip from '@material-ui/core/Tooltip'
-import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/styles';
-import { Avatar } from '@material-ui/core';
+import { grey }  from '@material-ui/core/colors';
+
 
 
 const Navbar = (props) => {
     const useStyles = makeStyles((theme) => ({
-        typographyStyles: {
-            flex: 1,
-            //color: theme.palette.common.white,
+        appbar: {
+            backgroundColor: navbarDarkMode ? grey[200] : grey[800],
         },
         appbar_img: {
             height: "60px",
@@ -62,7 +58,7 @@ const Navbar = (props) => {
     const classes = useStyles();
 
     return (
-        <AppBar position="static" color="default" elevation={0}>
+        <AppBar position="static" color="default" elevation={0} className={classes.appbar}>
             <Toolbar className={classes.toolbarStyles}>
                 <img src={navbarDarkMode ? "/static/images/banner_light.png" : "/static/images/banner_dark.png"} alt="logo" className={classes.appbar_img}></img>
                 <Typography className={classes.appbar_typography} /> 
