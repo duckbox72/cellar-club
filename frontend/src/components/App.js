@@ -32,9 +32,9 @@ export default function App(props) {
     const mytheme = createMuiTheme({ 
         palette: {
             primary:{
-                light: '#ffd95b',
-                main: '#ffa726',
-                dark: '#c77800',
+                light: '#fffd61',
+                main: '#ffca28',
+                dark: '#c79a00',
                 contrastText: '#3e2723',
             },
             secondary:{
