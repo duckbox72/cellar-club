@@ -62,7 +62,7 @@ const Navbar = (props) => {
     const classes = useStyles();
 
     return (
-        <AppBar position="static" color="default">
+        <AppBar position="static" color="default" elevation={0}>
             <Toolbar className={classes.toolbarStyles}>
                 <img src={navbarDarkMode ? "/static/images/banner_light.png" : "/static/images/banner_dark.png"} alt="logo" className={classes.appbar_img}></img>
                 <Typography className={classes.appbar_typography} /> 
