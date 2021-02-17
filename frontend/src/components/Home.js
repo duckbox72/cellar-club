@@ -35,11 +35,11 @@ export default function Home(props) {
                     <Searchbar />
                 </Grid>
                 <Grid item xs={12} sm={8} md={7}>
-                    <Typography variant="h3"> 
-                        This Home Page dashboard!
+                    <Typography variant="h4"> 
+                        placehoder for dashboard info
                     </Typography>
                     <Typography>
-                        {userProfile.username} {userProfile.date_joined}
+                        {userProfile.username} {userProfile.user_id}
                     </Typography>
                     <Button variant="contained" color="primary">
                         My Button

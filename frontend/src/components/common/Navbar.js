@@ -19,18 +19,18 @@ const theme = createMuiTheme({
 const Navbar = (props) => {
     const useStyles = makeStyles((theme) => ({
         appbar: {
-            backgroundColor: navbarDarkMode ? grey[200] : grey[800],
+            backgroundColor: navbarDarkMode ? grey[200] : grey[900],
         },
         appbar_img: {
             height: "60px",
             [theme.breakpoints.down("sm")]: {
-                height: "50px",
+                height: "48px",
             },
             marginRight: theme.spacing(1)
         },
         appbar_typography: {
             flex: 1,
-            color: navbarDarkMode ? theme.palette.secondary.main : theme.palette.primary.main,
+            color: navbarDarkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
         },
         avatar: {
             width: theme.spacing(3),
