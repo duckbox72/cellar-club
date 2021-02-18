@@ -1,55 +1,61 @@
 import React, { useState } from 'react';
-import Grid from '@material-ui/core/Grid';
 
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Paper from '@material-ui/core/Paper';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { Button, fade } from '@material-ui/core';
+import { AppBar, Button, fade, Grid, Paper, Toolbar, Typography } from '@material-ui/core';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+    typography: {
+        fontFamily: [
+            'Quicksand', 'sans-serif',
+        ].join(','),
+    },
+});
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        //height: "100vh",
+        height: "100vh",
         flexGrow: 1,
 
-        //backgroundImage: "url(/static/images/barrels.jpg)",
-        //[theme.breakpoints.down("sm")]: {
-        //    backgroundImage: "url(/static/images/toast.jpg)",
-        //},
-        //backgroundSize: 'cover',
-        //backgroundPosition: 'center',
-        textAlign: 'center',
+        backgroundImage: "url(/static/images/barrels.jpg)",
+        [theme.breakpoints.down("sm")]: {
+            backgroundImage: "url(/static/images/toast.jpg)",
+        },
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         
     },
+    root_paper: {
+        height: '100vh',
+        background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(200, 200, 200, 0.5))'
+      },
     
     appbar: {
         backgroundColor: fade(theme.palette.secondary.dark, 0.85),
     },
     appbar_button: {
-        color: fade(theme.palette.common.white, 0.75),
+        color: theme.palette.primary.main,
     },
     appbar_img: {
-        height: "60px",
-        [theme.breakpoints.down("sm")]: {
-            height: "50px",
-        },
+        height: "56px",
+            [theme.breakpoints.down("sm")]: {
+                height: "48px",
+            },
+            marginRight: theme.spacing(1)
     },
     appbar_typography: {
         flex: 1,
+        color: theme.palette.primary.main,
     },
     body_container: {
-    
-        //border: '2px solid red',
-        //height: '70vh'
+        textAlign: 'center',
         marginTop: theme.spacing(8),
         marginLeft: theme.spacing(4),
         marginRight: theme.spacing(4),
-        
     },
     body_typography: {
         fontWeight: theme.typography.fontWeightMedium,
-        //margin: theme.spacing(4),
+        color: theme.palette.secondary.dark ,
     },
     body_button: {
         borderRadius: 0,
@@ -66,17 +72,19 @@ export default function Landing(props) {
 
     return (
         <div className={classes.root}>
+            <Paper className={classes.root_paper}>
             <Grid container spacing={6} direction="column">
                 <Grid item container xs={12}>
                     <AppBar position="static" className={classes.appbar}>
                     <Toolbar  >
-                        <img src="/static/images/banner_dark.png" alt="logo" className={classes.appbar_img}></img>
-                        <Typography className={classes.appbar_typography} />                 
+                        <img src={"/static/images/logo_dark.png"} alt="logo" className={classes.appbar_img}></img>
+                        <ThemeProvider theme={theme}>
+                            <Typography variant={'h6'} className={classes.appbar_typography}>
+                                C e l l a r C l u b
+                            </Typography> 
+                        </ThemeProvider>               
                         <Button variant="text" className={classes.appbar_button} href="/signin">
                             Sign In
-                        </Button>
-                        <Button variant="text" className={classes.appbar_button} href="/signup">
-                            Sign Up
                         </Button>
                     </Toolbar>
                     </AppBar>
@@ -89,13 +97,13 @@ export default function Landing(props) {
                         
                         >
                         <Grid item>
-                            <Typography variant="h3" className={classes.body_typography}>
+                            <Typography variant="h4" className={classes.body_typography}>
                                 UPGRADE YOUR EXPERIENCE 
                             </Typography>
                         </Grid>
                         <Grid item>
                             <Typography variant="h6" className={classes.body_typography}>
-                                Easily find, manage and review collection.  
+                                and easily find, manage and review collection.  
                             </Typography>
                         </Grid>
                         <Grid item>
@@ -106,6 +114,7 @@ export default function Landing(props) {
                     </Grid>
                 </div>
             </Grid>
+            </Paper>
         </div>
     );
 }

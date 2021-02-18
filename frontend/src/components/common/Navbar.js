@@ -19,10 +19,10 @@ const theme = createMuiTheme({
 const Navbar = (props) => {
     const useStyles = makeStyles((theme) => ({
         appbar: {
-            backgroundColor: navbarDarkMode ? grey[300] : grey[900],
+            backgroundColor: navbarDarkMode ? grey[300] : theme.palette.secondary.dark,
         },
         appbar_img: {
-            height: "60px",
+            height: "56px",
             [theme.breakpoints.down("sm")]: {
                 height: "48px",
             },
