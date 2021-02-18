@@ -12,14 +12,15 @@ const useStyles = makeStyles(theme => ({
         padding: '2px 4px',
         display: 'flex',
         alignItems: 'center',
-        height: 60,
-        margin: theme.spacing(2),
+        height: 50,
+        margin: theme.spacing(2),    
+        border: '1px solid',
+        borderColor: theme.palette.grey[300],   
     },
     autocomplete: {
         marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(2),
+        marginRight: theme.spacing(1),
         marginBottom: theme.spacing(2),
-        
     },
     menuIconButton: {
         padding: 10,
@@ -51,7 +52,7 @@ export default function Searchbar() {
         });  
     }
     
-    const handleSearchbarChange = e => {
+    const handleSearchbarValueChange = e => {
         console.log(`SEARCHBAR VALUE CHANGED TO ${e.target.value}`);
         setSearchbarValue(e.target.value)
 
@@ -85,7 +86,7 @@ export default function Searchbar() {
 
     
     return ( 
-        <Paper className={classes.root} elevation={1}>
+        <Paper className={classes.root} elevation={0}>
             <IconButton className={classes.menuIconButton}>
                 <MenuIcon />
             </IconButton>
@@ -100,14 +101,13 @@ export default function Searchbar() {
                 options={searchResult.map((option) => option.display_name)}
                 renderInput={(params) => (
                     <div>
-                        <TextField 
+                        <TextField
                         id="search-field"
                         {...params}
-                        onChange={handleSearchbarChange} 
+                        onChange={handleSearchbarValueChange} 
                         label="wine search" 
                         margin="normal" 
                         variant="standard"
-                        //color="secondary"
                         />
                     </div>
                 )}
