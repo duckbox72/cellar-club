@@ -1,8 +1,22 @@
 import React, { useState } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Button, fade, Grid, Paper, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Box, Button, fade, Grid, Link, Paper, Toolbar, Typography } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+
+function Copyright() {
+    return (
+      <Typography variant="body2" color="textSecondary" align="center">
+        {'Copyright © '}
+        <Link color="inherit" href="https://material-ui.com/">
+          CellarClub.com
+        </Link>{' '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    );
+  }
 
 const theme = createMuiTheme({
     typography: {
@@ -111,6 +125,9 @@ export default function Landing(props) {
                                 Register
                             </Button>
                         </Grid>
+                        <Box mt={6}>
+                            <Copyright />
+                        </Box>
                     </Grid>
                 </div>
             </Grid>

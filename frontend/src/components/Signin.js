@@ -160,7 +160,7 @@ export default function SignIn(props) {
               </Grid>
             </Grid>
           </form>
-          <Box mt={5}>
+          <Box mt={6}>
             <Copyright />
           </Box>
         </div>
