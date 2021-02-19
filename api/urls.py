@@ -1,11 +1,11 @@
 from django.urls import path
-from .views import CreateLwinView, GetLwin, UserView
+from .views import CreateLwinView, SearchLwin, UserView
 from . import views
 
 urlpatterns = [
     path('', UserView.as_view()),
     path('create', CreateLwinView.as_view()),   
-    path('search', GetLwin.as_view()),
+    path('search_lwin', SearchLwin.as_view()),
 
     # AUTH API Routes
     path('is_authenticated', views.is_authenticated_view, name="is_authenticated"),

@@ -29,13 +29,27 @@ class Lwin(models.Model):
     final_vintage = models.CharField(max_length=4)
     reference = models.CharField(max_length=7)
 
-    def serialize(self):
+    def mini_serializer(self):
+        return {
+            "display_name": self.display_name,
+        }
+    
+    def serializer(self):
         return {
             "id": self.id,
             "lwin": self.lwin,
             "display_name": self.display_name,
             "wine": self.wine,
-            "country": self.country
+            "country": self.country,
+            "region": self.region,
+            "sub_region": self.sub_region,
+            "site": self.site,
+            "parcel": self.parcel, 
+            "colour": self.colour,
+            "type": self.type, 
+            "sub_type":self.sub_type, 
+            "designation": self.designation, 
+            "classification": self.classification,
         }
     
 

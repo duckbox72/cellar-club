@@ -45,25 +45,15 @@ export default function Searchbar() {
     
     
     const getSearchResults = (currentValue) => {
-        fetch("/api/search" + "?display_name=" + currentValue)
+        fetch("/api/search_lwin" + "?display_name=" + currentValue)
         .then((response) => response.json())
         .then(data => {
             setSearchResult(data);
+            console.log(data)
         });  
     }
+
     
-    const handleSearchbarValueChange = e => {
-        console.log(`SEARCHBAR VALUE CHANGED TO ${e.target.value}`);
-        setSearchbarValue(e.target.value)
-
-        if (e.target.value == null ) {
-            setSearchIconDisabled(true);
-        } else {
-            getSearchResults(e.target.value)
-        }
-        
-    }
-
     const handleAutocompleteChange = (value) => {
         console.log(`AUTOCOMPLETE CHANGE TO value ==>> ${value}`);
         setSearchbarValue(value)
@@ -74,17 +64,28 @@ export default function Searchbar() {
             setSearchIconDisabled(false);
         }
     }
-
-    //useEffect(() => {
-    //    const newValue = document.querySelector('#searchbar').value;
-    //    setSearchbarValue(newValue)
-        
-    //    console.log(`ACTUAL VALUE FOR searchbar -->> (${newValue})`);
-    //    console.log(`ACTUAL const searchbarValue -->> ${searchbarValue}`);
-    //});
-
-
     
+    const handleSearchbarValueChange = e => {
+        console.log(`SEARCHBAR VALUE CHANGED TO ${e.target.value}`);
+        setSearchbarValue(e.target.value);
+
+        if (e.target.value == null ) {
+            setSearchIconDisabled(true);
+            setSearchResult([]);
+        } else {
+            if ((e.target.value).length > 2) {
+                getSearchResults(e.target.value);
+            } else {
+                setSearchResult([]);
+            }
+        }  
+    }
+
+    const handleSearchButtonClick = () => {
+        console.log('SEARCH BUTTON CLICKED!');
+        console.log(searchResult);
+    }
+
     return ( 
         <Paper className={classes.root} elevation={0}>
             <IconButton className={classes.menuIconButton}>
@@ -108,6 +109,7 @@ export default function Searchbar() {
                         label="wine search" 
                         margin="normal" 
                         variant="standard"
+                        color="secondary"
                         />
                     </div>
                 )}
@@ -116,6 +118,7 @@ export default function Searchbar() {
             <IconButton
             disabled={searchIconDisabled} 
             className={classes.searchIconButton}
+            onClick={handleSearchButtonClick}
             >
                 <SearchIcon />
             </IconButton>

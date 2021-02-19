@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
         
 
 # GET request serializer (serializes response)
-#class LwinSerializer(serializers.ModelSerializer):
+#class SearchLwinSerializer(serializers.ModelSerializer):
 #    class Meta:
 #        model = Lwin
 #        fields = ('id','lwin', 'display_name', 'producer_title', 'producer_name', 'wine', 'country', 'region', 'sub_region', 'site', 'parcel', 'colour', 'type', 'sub_type', 'designation', 'classification', 'vintage_config', 'first_vintage', 'final_vintage', 'reference')

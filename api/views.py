@@ -22,8 +22,8 @@ class UserView(generics.ListAPIView):
     serializer_class = UserSerializer
 
 
-class GetLwin(APIView):
-    #serializer_class = LwinSerializer
+class SearchLwin(APIView):
+    #serializer_class = SearchLwinSerializer
     lookup_url_kwarg = 'display_name'
 
     def get(self, request, format=None):
@@ -32,8 +32,9 @@ class GetLwin(APIView):
         results = Lwin.objects.filter(display_name__contains=display_name)
         results = results[:10]
 
-        return JsonResponse([result.serialize() for result in results], safe=False, status=status.HTTP_200_OK)
-    
+        #mini_serializer returns solely display_name data
+        return JsonResponse([result.mini_serializer() for result in results], safe=False, status=status.HTTP_200_OK)
+        
 
 class CreateLwinView(APIView):
     serializer_class = CreateLwinSerializer

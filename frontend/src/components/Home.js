@@ -2,6 +2,7 @@ import React, { useEffect, useState, } from "react";
 import { Button, Grid, Typography } from "@material-ui/core";
 import Navbar from "./common/Navbar";
 import Searchbar from "./common/Searchbar";
+import WineProfile from "./common/WineProfile";
 import { getUserProfile } from "./utils/getUserProfile";
 
 
@@ -34,6 +35,10 @@ export default function Home(props) {
                 <Grid item xs={12} sm={8} md={7}>
                     <Searchbar />
                 </Grid>
+                <Grid item xs={12} sm={8} md={7}>
+                    <WineProfile />
+                </Grid>
+
                 <Grid item xs={12} sm={8} md={7}>
                     <Typography variant="h4"> 
                         placehoder for dashboard info
