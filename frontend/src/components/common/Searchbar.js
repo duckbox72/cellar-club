@@ -44,6 +44,16 @@ export default function Searchbar() {
     const [searchIconDisabled, setSearchIconDisabled] = useState(true)
     
     
+    const getLwinData = (currentValue) => {
+        fetch("/api/get_lwin" + "?display_name=" + currentValue)
+        .then((response) => response.json())
+        .then(data => {
+            
+            console.log(data)
+        });  
+    }
+    
+    
     const getSearchResults = (currentValue) => {
         fetch("/api/search_lwin" + "?display_name=" + currentValue)
         .then((response) => response.json())
@@ -83,7 +93,8 @@ export default function Searchbar() {
 
     const handleSearchButtonClick = () => {
         console.log('SEARCH BUTTON CLICKED!');
-        console.log(searchResult);
+        console.log(searchbarValue);
+        getLwinData(searchbarValue)
     }
 
     return ( 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Paper, Typography } from '@material-ui/core';
+import { Paper, Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
@@ -20,9 +20,29 @@ export default function WineProfile() {
     return (
         
         <Paper className={classes.root} elevation={0}>
-            <Typography variant="body1"color="initial">
-                tHIS iS MY wINE pROFILE
-            </Typography>
+            <Grid container spacing={1} direction="column">
+                <Grid item>
+                    <Typography variant="body1"color="initial">
+                        lwin - 
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Typography variant="body1"color="initial">
+                        display_name - 
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Typography variant="body1"color="initial">
+                        producer_title, producer_name
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Typography variant="body1"color="initial">
+                        wine - 
+                    </Typography>
+                </Grid>
+              
+            </Grid>
         </Paper>
         
     );
