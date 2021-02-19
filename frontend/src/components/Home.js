@@ -11,13 +11,22 @@ export default function Home(props) {
 
     const userProfile = (getUserProfile());
 
+    // Navbar callbacks
     const darkModeCallback = () => {
         props.parentCallback();
     }
-
     const sigOutCallback = () => {
         props.parentSignOutCallback(false);
     }
+
+    // Searchbar callbacks
+    const lwinDataCallback = (lwin_data) => {
+        console.log("vv lwinDataCallback");
+        console.log(lwin_data);
+    }
+
+
+
 
     return (
         <div>
@@ -33,10 +42,14 @@ export default function Home(props) {
                     />
                 </Grid>
                 <Grid item xs={12} sm={8} md={7}>
-                    <Searchbar />
+                    <Searchbar 
+                    {...props} 
+                    parentLwinDataCallback={lwinDataCallback}
+                    />
                 </Grid>
                 <Grid item xs={12} sm={8} md={7}>
-                    <WineProfile />
+                    <WineProfile
+                    />
                 </Grid>
 
                 <Grid item xs={12} sm={8} md={7}>

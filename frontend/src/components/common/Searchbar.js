@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function Searchbar() {
+export default function Searchbar(props) {
 
     const classes = useStyles();
     
@@ -45,17 +45,17 @@ export default function Searchbar() {
     
     
     const getLwinData = (currentValue) => {
-        fetch("/api/get_lwin" + "?display_name=" + currentValue)
+        fetch('/api/get_lwin' + '?display_name=' + currentValue)
         .then((response) => response.json())
-        .then(data => {
-            
-            console.log(data)
+        .then(lwin_data => {
+            console.log(lwin_data);
+            props.parentLwinDataCallback(Lwin_data);
         });  
     }
     
     
     const getSearchResults = (currentValue) => {
-        fetch("/api/search_lwin" + "?display_name=" + currentValue)
+        fetch('/api/search_lwin' + '?display_name=' + currentValue)
         .then((response) => response.json())
         .then(data => {
             setSearchResult(data);
