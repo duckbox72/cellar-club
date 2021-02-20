@@ -11,6 +11,9 @@ export default function Home(props) {
 
     const userProfile = (getUserProfile());
 
+    const [LwinData, setLwinData] = useState({});
+
+
     // Navbar callbacks
     const darkModeCallback = () => {
         props.parentCallback();
@@ -23,9 +26,9 @@ export default function Home(props) {
     const lwinDataCallback = (lwin_data) => {
         console.log("vv lwinDataCallback");
         console.log(lwin_data);
+        setLwinData(lwin_data);
+
     }
-
-
 
 
     return (
@@ -49,13 +52,12 @@ export default function Home(props) {
                 </Grid>
                 <Grid item xs={12} sm={8} md={7}>
                     <WineProfile
+                    {...props}
+                    LwinData={LwinData}
                     />
                 </Grid>
 
                 <Grid item xs={12} sm={8} md={7}>
-                    <Typography variant="h4"> 
-                        placehoder for dashboard info
-                    </Typography>
                     <Typography>
                         {userProfile.username} {userProfile.user_id}
                     </Typography>

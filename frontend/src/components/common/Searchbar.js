@@ -49,7 +49,7 @@ export default function Searchbar(props) {
         .then((response) => response.json())
         .then(lwin_data => {
             console.log(lwin_data);
-            props.parentLwinDataCallback(Lwin_data);
+            props.parentLwinDataCallback(lwin_data);
         });  
     }
     

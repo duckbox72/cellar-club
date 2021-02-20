@@ -14,8 +14,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function WineProfile() {
+export default function WineProfile(props) {
     const classes = useStyles();
+    const LwinData = props.LwinData;
 
     return (
         
@@ -23,27 +24,60 @@ export default function WineProfile() {
             <Grid container spacing={1} direction="column">
                 <Grid item>
                     <Typography variant="body1"color="initial">
-                        lwin - 
+                        lwin - {LwinData.lwin}
                     </Typography>
                 </Grid>
                 <Grid item>
                     <Typography variant="body1"color="initial">
-                        display_name - 
+                        display_name - {LwinData.display_name}
                     </Typography>
                 </Grid>
                 <Grid item>
                     <Typography variant="body1"color="initial">
-                        producer_title, producer_name
+                        producer_title, producer_name - {LwinData.producer_title} {LwinData.producer_name}
                     </Typography>
                 </Grid>
                 <Grid item>
                     <Typography variant="body1"color="initial">
-                        wine - 
+                        wine - {LwinData.wine}
                     </Typography>
                 </Grid>
-              
+                <Grid item>
+                    <Typography variant="body1"color="initial">
+                        country - {LwinData.country}
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Typography variant="body1"color="initial">
+                        region - {LwinData.region}
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Typography variant="body1"color="initial">
+                        sub_region - {LwinData.sub_region}
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Typography variant="body1"color="initial">
+                        site - {LwinData.site}
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Typography variant="body1"color="initial">
+                        colour - {LwinData.colour}
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Typography variant="body1"color="initial">
+                        designation - {LwinData.designation}
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Typography variant="body1" color="initial">
+                        classification - {LwinData.classification}
+                    </Typography>
+                </Grid>
             </Grid>
         </Paper>
-        
     );
 }

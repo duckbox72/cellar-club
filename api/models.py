@@ -39,6 +39,8 @@ class Lwin(models.Model):
             "id": self.id,
             "lwin": self.lwin,
             "display_name": self.display_name,
+            "producer_title": self.producer_title,
+            "producer_name": self.producer_name,
             "wine": self.wine,
             "country": self.country,
             "region": self.region,
