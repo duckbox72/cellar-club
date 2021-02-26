@@ -22,7 +22,7 @@ class UserView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-
+'''
 class GetLwin(APIView):
     lookup_url_kwarg = 'display_name'
 
@@ -35,6 +35,17 @@ class GetLwin(APIView):
             return JsonResponse({"message": "Sorry, no results found."})
         
         return JsonResponse(result.serializer(),  safe=False, status=status.HTTP_200_OK)
+'''
+
+
+def GetLwin(request, display_name):
+    try:
+        result = Lwin.objects.get(display_name=display_name)
+    except:
+        return JsonResponse({"message": "Sorry, no results found."})
+    
+    return JsonResponse(result.serializer(),  safe=False, status=status.HTTP_200_OK)
+
 
 
 class SearchLwin(APIView):

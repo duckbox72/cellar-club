@@ -45,7 +45,8 @@ export default function Searchbar(props) {
     
     
     const getLwinData = (currentValue) => {
-        fetch('/api/get_lwin' + '?display_name=' + currentValue)
+        //fetch('/api/get_lwin' + '?display_name=' + currentValue)
+        fetch(`api/get_lwin/${currentValue}`)
         .then((response) => response.json())
         .then(lwin_data => {
             console.log(lwin_data);

@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic.base import View
 from .views import CreateLwinView, GetLwin, SearchLwin, UserView
 from . import views
 
@@ -7,7 +8,7 @@ urlpatterns = [
     
     # LWIN Routes
     path('create', CreateLwinView.as_view()), 
-    path('get_lwin', GetLwin.as_view()),  
+    path('get_lwin/<str:display_name>', views.GetLwin, name="get_lwin"),  
     path('search_lwin', SearchLwin.as_view()),
 
     # AUTH API Routes
