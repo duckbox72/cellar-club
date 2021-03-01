@@ -1,15 +1,15 @@
 from django.urls import path
 from django.views.generic.base import View
-from .views import CreateLwinView, GetLwin, SearchLwin, UserView
+#from .views import CreateLwinView, UserView
 from . import views
 
 urlpatterns = [
-    path('', UserView.as_view()),
+    # path('', UserView.as_view()),
     
     # LWIN Routes
-    path('create', CreateLwinView.as_view()), 
-    path('get_lwin/<str:display_name>', views.GetLwin, name="get_lwin"),  
-    path('search_lwin', SearchLwin.as_view()),
+    # path('create', CreateLwinView.as_view()), 
+    path('get_lwin/<str:display_name>', views.get_lwin, name="get_lwin"),  
+    path('search_lwin/<str:display_name>', views.search_lwin, name="search_lwin"),
 
     # AUTH API Routes
     path('is_authenticated', views.is_authenticated_view, name="is_authenticated"),

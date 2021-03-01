@@ -38,6 +38,8 @@ const useStyles = makeStyles(theme => ({
 export default function Searchbar(props) {
 
     const classes = useStyles();
+
+    console.log(`SEARCHBAR DM REVIEW ${props.darkMode}`);
     
     const [searchbarValue, setSearchbarValue] = useState(null);
     const [searchResult, setSearchResult] = useState([]);
@@ -56,7 +58,8 @@ export default function Searchbar(props) {
     
     
     const getSearchResults = (currentValue) => {
-        fetch('/api/search_lwin' + '?display_name=' + currentValue)
+        //fetch('/api/search_lwin' + '?display_name=' + currentValue)
+        fetch(`/api/search_lwin/${currentValue}`)
         .then((response) => response.json())
         .then(data => {
             setSearchResult(data);
@@ -73,6 +76,7 @@ export default function Searchbar(props) {
             setSearchIconDisabled(true);
         } else {
             setSearchIconDisabled(false);
+            getLwinData(value);
         }
     }
     
@@ -121,7 +125,7 @@ export default function Searchbar(props) {
                         label="wine search" 
                         margin="normal" 
                         variant="standard"
-                        color="secondary"
+                        color={props.darkMode == true ? "primary" : "secondary"}
                         />
                     </div>
                 )}

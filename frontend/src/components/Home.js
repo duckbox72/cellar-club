@@ -2,7 +2,7 @@ import React, { useEffect, useState, } from "react";
 import { Button, Grid, Typography } from "@material-ui/core";
 import Navbar from "./common/Navbar";
 import Searchbar from "./common/Searchbar";
-import WineProfile from "./common/WineProfile";
+import WineProfileCard from "./common/WineProfileCard";
 import { getUserProfile } from "./utils/getUserProfile";
 
 
@@ -47,11 +47,12 @@ export default function Home(props) {
                 <Grid item xs={12} sm={8} md={7}>
                     <Searchbar 
                     {...props} 
+                    darkMode={props.darkMode}
                     parentLwinDataCallback={lwinDataCallback}
                     />
                 </Grid>
                 <Grid item xs={12} sm={8} md={7}>
-                    <WineProfile
+                    <WineProfileCard
                     {...props}
                     LwinData={LwinData}
                     />

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Paper, Typography, Grid } from '@material-ui/core';
+import { Avatar, Card, CardContent, CardHeader, Divider, Grid, IconButton, Paper, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
+import { MoreVert as MoreVertIcon } from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -14,12 +15,60 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function WineProfile(props) {
+export default function WineProfileCard(props) {
     const classes = useStyles();
     const LwinData = props.LwinData;
 
     return (
-        
+        <>
+        <Card>
+            <CardHeader
+            avatar={
+                <Avatar aria-label="">
+                
+                </Avatar>
+            }
+            action={
+                <IconButton aria-label="">
+                <MoreVertIcon />
+                </IconButton>
+            }
+            title={LwinData.display_name}
+            subheader={`${LwinData.region}, ${LwinData.country}`}
+            />
+            <Divider />
+            <CardContent>
+
+            </CardContent>
+        </Card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <Paper className={classes.root} elevation={0}>
             <Grid container spacing={1} direction="column">
                 <Grid item>
@@ -79,5 +128,7 @@ export default function WineProfile(props) {
                 </Grid>
             </Grid>
         </Paper>
+
+        </>
     );
 }

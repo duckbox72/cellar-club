@@ -19,7 +19,7 @@ const theme = createMuiTheme({
 const Navbar = (props) => {
     const useStyles = makeStyles((theme) => ({
         appbar: {
-            backgroundColor: navbarDarkMode ? grey[300] : grey[800],
+            backgroundColor: navbarDarkMode ? grey[900] : grey[300],
         },
         appbar_img: {
             height: "56px",
@@ -30,15 +30,15 @@ const Navbar = (props) => {
         },
         appbar_typography: {
             flex: 1,
-            color: navbarDarkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
+            color: navbarDarkMode ? theme.palette.primary.dark : theme.palette.secondary.main,
         },
         avatar: {
             width: theme.spacing(3),
             height: theme.spacing(3),
-            backgroundColor: navbarDarkMode ? theme.palette.secondary.main : theme.palette.primary.main,
+            backgroundColor: navbarDarkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
         iconButton: {
-            color: navbarDarkMode ? theme.palette.secondary.main : theme.palette.primary.main,
+            color: navbarDarkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
     }));
     
@@ -70,7 +70,7 @@ const Navbar = (props) => {
     return (
         <AppBar position="static" color="default" elevation={0} className={classes.appbar}>
             <Toolbar className={classes.toolbarStyles}>
-                <img src={navbarDarkMode ? "/static/images/logo_light.png" : "/static/images/logo_dark.png"} alt="logo" className={classes.appbar_img}></img>
+                <img src={navbarDarkMode ? "/static/images/logo_dark.png" : "/static/images/logo_light.png"} alt="logo" className={classes.appbar_img}></img>
                 <ThemeProvider theme={theme}>
                     <Typography variant={'h6'} className={classes.appbar_typography}>
                         C e l l a r C l u b
