@@ -13,9 +13,9 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         alignItems: 'center',
         height: 56,
-        margin: theme.spacing(2),    
-        border: '1px solid',
-        borderColor: theme.palette.grey[300],   
+        margin: theme.spacing(1),    
+        //border: '1px solid',
+        //borderColor: theme.palette.grey[300],   
     },
     autocomplete: {
         marginLeft: theme.spacing(1),
@@ -101,7 +101,7 @@ export default function Searchbar(props) {
     }
 
     return ( 
-        <Paper className={classes.root} elevation={0}>
+        <Paper className={classes.root} elevation={1}>
             <IconButton className={classes.menuIconButton}>
                 <MenuIcon />
             </IconButton>

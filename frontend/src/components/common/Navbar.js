@@ -7,6 +7,8 @@ import { makeStyles } from '@material-ui/styles';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { grey }  from '@material-ui/core/colors';
 
+import DrawerMenu from "./DrawerMenu";
+
 const theme = createMuiTheme({
     typography: {
         fontFamily: [
@@ -81,16 +83,15 @@ const Navbar = (props) => {
                         <Brightness4Icon className={classes.iconButton} />
                     </IconButton>
                 </Tooltip>
-                <Tooltip title={userProfile.username}>
-                    <IconButton aria-label="username">
-                        <Avatar className={classes.avatar}>{userProfile.username[0]}</Avatar>
-                    </IconButton>
-                </Tooltip>
                 <Tooltip title="Sign out">
                     <IconButton aria-label="signout" onClick={handleSignOutButton}>
                         <ExitToAppIcon className={classes.iconButton} />
                     </IconButton>                  
                 </Tooltip>
+                <DrawerMenu 
+                    darkMode={props.darkMode}
+                    userProfile={props.userProfile}
+                />
             </Toolbar>
         </AppBar>
     );

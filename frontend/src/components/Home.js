@@ -61,15 +61,6 @@ export default function Home(props) {
                     <Typography>
                         {userProfile.username} {userProfile.user_id}
                     </Typography>
-                    <Button variant="contained" color="primary">
-                        My Button
-                    </Button>
-                    <Button variant="contained" color="secondary">
-                        My Button
-                    </Button>
-                    <Button variant="contained" color="default">
-                        My Button
-                    </Button>
                 </Grid>
             </Grid>
         </div>

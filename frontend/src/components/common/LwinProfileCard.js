@@ -9,7 +9,7 @@ import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined'
 export default function LwinProfileCard(props) {
     const useStyles = makeStyles(theme => ({
         card: {
-            margin: theme.spacing(2),    
+            margin: theme.spacing(1),    
         },
         content_icon: {
             textAlign: "center",
@@ -36,7 +36,7 @@ export default function LwinProfileCard(props) {
             <CardHeader
             avatar={
                 <Avatar  aria-label="">
-                L
+                
                 </Avatar>
             }
             action={
@@ -46,6 +46,7 @@ export default function LwinProfileCard(props) {
             }
             title={LwinData.display_name}
             subheader={origin}
+            
             />
             
             <Divider />
@@ -61,7 +62,7 @@ export default function LwinProfileCard(props) {
                         </Typography >
                     </Grid>
                     <Grid item xs={9} className={classes.content_info}>
-                        <Typography variant="body1" >
+                        <Typography variant="body2" >
                             {LwinData.producer_title === "nan" ? "" : LwinData.producer_title} {LwinData.producer_name}
                         </Typography>
                     </Grid>       
@@ -82,7 +83,7 @@ export default function LwinProfileCard(props) {
                         </Typography >
                     </Grid>
                     <Grid item xs={9} className={classes.content_info}>
-                        <Typography variant="body1" >
+                        <Typography variant="body2" >
                             {LwinData.region}, {LwinData.country}
                         </Typography>
                     </Grid>       
@@ -102,7 +103,7 @@ export default function LwinProfileCard(props) {
                         </Typography >
                     </Grid>
                     <Grid item xs={9} className={classes.content_info}>
-                        <Typography variant="body1" >
+                        <Typography variant="body2" >
                             {LwinData.colour}
                         </Typography>
                     </Grid>       
