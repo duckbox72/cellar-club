@@ -59,7 +59,7 @@ const Navbar = (props) => {
             alert("Bad Request, please try again.")
           }
         });
-      };
+    };
     
     const toggleDarKMode = () => {
         props.parentDarkModeCallback()

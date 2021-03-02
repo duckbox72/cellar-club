@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
+import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+
 import Tooltip from '@material-ui/core/Tooltip';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -14,11 +16,12 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 
-
-export default function TemporaryDrawer(props, theme) {
+export default function TemporaryDrawer(props) {
 
   const darkMode = props.darkMode;
   const userProfile = props.userProfile;
+
+  const theme = useTheme();
 
   const useStyles = makeStyles({
     list: {
@@ -28,22 +31,28 @@ export default function TemporaryDrawer(props, theme) {
       width: 'auto',
     },
     iconButton: {
-      //color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+      color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
     },
   });
 
-
-
+  
   const classes = useStyles();
 
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
   });
+  const [anchor, setAnchor] =  useState("");
 
-  console.log(state)
+  useEffect(() => {
+    window.innerWidth < 600 ? setAnchor("right") : setAnchor("right");
+  });
+
+
+
+  
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -71,6 +80,8 @@ export default function TemporaryDrawer(props, theme) {
           </ListItemIcon>
           <ListItemText primary={userProfile.username} />
         </ListItem>
+
+        <Divider />
         
         <ListItem button key="signout">
           <ListItemIcon>
@@ -88,13 +99,13 @@ export default function TemporaryDrawer(props, theme) {
       <Tooltip title="Menu">
         <IconButton
           aria-label="menu"
-          onClick={toggleDrawer('top', true)}
+          onClick={toggleDrawer(anchor, true)}
         >
           <MoreVertIcon className={classes.iconButton} />
         </IconButton>
       </Tooltip>
-      <Drawer anchor={'top'} open={state['top']} onClose={toggleDrawer('top', false)}>
-        {list('top')}
+      <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
+        {list(anchor)}
       </Drawer>
 
     </div>

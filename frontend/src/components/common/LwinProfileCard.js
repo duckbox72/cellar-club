@@ -3,6 +3,7 @@ import { Avatar, Card, CardContent, CardHeader, Divider, Grid, IconButton, Typog
 import { makeStyles } from '@material-ui/core/styles'
 import { InvertColors, MoreVert as MoreVertIcon, TripOrigin } from '@material-ui/icons'
 
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import LocationCityOutlinedIcon from '@material-ui/icons/LocationCityOutlined';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined'
 
@@ -22,6 +23,9 @@ export default function LwinProfileCard(props) {
         content_label: {
 
         },
+        divider: {
+            margin: theme.spacing(1),
+        },
     }));
 
 
@@ -36,12 +40,12 @@ export default function LwinProfileCard(props) {
             <CardHeader
             avatar={
                 <Avatar  aria-label="">
-                
+                   <InfoOutlinedIcon />
                 </Avatar>
             }
             action={
                 <IconButton aria-label="">
-                <MoreVertIcon />
+                    <MoreVertIcon />
                 </IconButton>
             }
             title={LwinData.display_name}
@@ -49,7 +53,7 @@ export default function LwinProfileCard(props) {
             
             />
             
-            <Divider />
+            <Divider  className={classes.divider} />
 
             <CardContent>
                 <Grid container spacing={0} alignItems="center">
