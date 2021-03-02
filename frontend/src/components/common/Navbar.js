@@ -9,6 +9,7 @@ import { grey }  from '@material-ui/core/colors';
 
 import DrawerMenu from "./DrawerMenu";
 
+
 const theme = createMuiTheme({
     typography: {
         fontFamily: [
@@ -46,27 +47,17 @@ const Navbar = (props) => {
     
     const [navbarDarkMode, setNavbarDarkMode] = useState(props.darkMode);
     
-    const handleSignOutButton = () => {
-        fetch('/api/signout')
-        .then(response => response.json())
-        .then(data => {
-          console.log(data)
-          if (data.success) {
-            console.log(data.success);
-            props.parentSignOutCallback()
-            props.history.push('/') 
-          } else {
-            alert("Bad Request, please try again.")
-          }
-        });
-    };
-    
     const toggleDarKMode = () => {
         props.parentDarkModeCallback()
         setNavbarDarkMode(!navbarDarkMode);
     }
 
+    const sigOutCallback = () => {
+        props.parentSignOutCallback();
+    }
+
     const userProfile = props.userProfile;
+    
     const classes = useStyles();
 
     return (
@@ -83,14 +74,10 @@ const Navbar = (props) => {
                         <Brightness4Icon className={classes.iconButton} />
                     </IconButton>
                 </Tooltip>
-                <Tooltip title="Sign out">
-                    <IconButton aria-label="signout" onClick={handleSignOutButton}>
-                        <ExitToAppIcon className={classes.iconButton} />
-                    </IconButton>                  
-                </Tooltip>
                 <DrawerMenu 
                     darkMode={props.darkMode}
                     userProfile={props.userProfile}
+                    parentSignOutCallback={sigOutCallback}
                 />
             </Toolbar>
         </AppBar>

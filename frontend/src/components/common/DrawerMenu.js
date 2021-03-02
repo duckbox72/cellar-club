@@ -16,6 +16,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 
+
+
 export default function TemporaryDrawer(props) {
 
   const darkMode = props.darkMode;
@@ -35,6 +37,21 @@ export default function TemporaryDrawer(props) {
     },
   });
 
+  const handleSignOutButton = () => {
+    fetch('/api/signout')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      if (data.success) {
+        console.log(data.success);
+        props.parentSignOutCallback()
+        props.history.push('/') 
+      } else {
+        alert("Bad Request, please try again.")
+      }
+    });
+  };
+
   
   const classes = useStyles();
 
@@ -50,10 +67,6 @@ export default function TemporaryDrawer(props) {
     window.innerWidth < 600 ? setAnchor("right") : setAnchor("right");
   });
 
-
-
-  
-
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -61,7 +74,6 @@ export default function TemporaryDrawer(props) {
 
     setState({ ...state, [anchor]: open });
   };
-
 
   const list = (anchor) => (
     <div
@@ -83,7 +95,7 @@ export default function TemporaryDrawer(props) {
 
         <Divider />
         
-        <ListItem button key="signout">
+        <ListItem button key="signout" onClick={handleSignOutButton}>
           <ListItemIcon>
             <ExitToAppIcon className={classes.iconButton} />
           </ListItemIcon>
