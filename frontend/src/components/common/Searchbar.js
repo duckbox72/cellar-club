@@ -38,8 +38,6 @@ const useStyles = makeStyles(theme => ({
 export default function Searchbar(props) {
 
     const classes = useStyles();
-
-    console.log(`SEARCHBAR DM REVIEW ${props.darkMode}`);
     
     const [searchbarValue, setSearchbarValue] = useState(null);
     const [searchResult, setSearchResult] = useState([]);

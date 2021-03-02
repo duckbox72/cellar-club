@@ -2,7 +2,7 @@ import React, { useEffect, useState, } from "react";
 import { Button, Grid, Typography } from "@material-ui/core";
 import Navbar from "./common/Navbar";
 import Searchbar from "./common/Searchbar";
-import WineProfileCard from "./common/WineProfileCard";
+import LwinProfileCard from "./common/LwinProfileCard";
 import { getUserProfile } from "./utils/getUserProfile";
 
 
@@ -10,7 +10,6 @@ import { getUserProfile } from "./utils/getUserProfile";
 export default function Home(props) {
 
     const userProfile = (getUserProfile());
-
     const [LwinData, setLwinData] = useState({});
 
 
@@ -33,7 +32,6 @@ export default function Home(props) {
 
     return (
         <div>
-            
             <Grid container  spacing={2} justify="center"> 
                 <Grid item xs={12}>
                     <Navbar 
@@ -52,8 +50,9 @@ export default function Home(props) {
                     />
                 </Grid>
                 <Grid item xs={12} sm={8} md={7}>
-                    <WineProfileCard
+                    <LwinProfileCard
                     {...props}
+                    darkMode={props.darkMode}
                     LwinData={LwinData}
                     />
                 </Grid>

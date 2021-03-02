@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AppBar, Avatar, IconButton, Toolbar, Tooltip, Typography} from '@material-ui/core';
-import BrightnessMediumIcon from '@material-ui/icons/BrightnessMedium';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import { makeStyles } from '@material-ui/styles';
@@ -30,7 +30,7 @@ const Navbar = (props) => {
         },
         appbar_typography: {
             flex: 1,
-            color: navbarDarkMode ? theme.palette.primary.dark : theme.palette.secondary.main,
+            color: navbarDarkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
         avatar: {
             width: theme.spacing(3),
@@ -78,7 +78,7 @@ const Navbar = (props) => {
                 </ThemeProvider>
                 <Tooltip title="Toggle light/dark mode">
                     <IconButton aria-label="toggleDarkMode" onClick={toggleDarKMode}>
-                        <BrightnessMediumIcon className={classes.iconButton} />
+                        <Brightness4Icon className={classes.iconButton} />
                     </IconButton>
                 </Tooltip>
                 <Tooltip title={userProfile.username}>
