@@ -20,7 +20,7 @@ export default function LwinProfileCard(props) {
         },
         card: {
             margin: theme.spacing(1),
-            //backgroundColor: props.darkMode ? grey[900] : grey[300],    
+            backgroundColor: props.darkMode ? grey[700] : "#FFFFFF",    
         },
         content_icon: {
             textAlign: "center",
@@ -37,7 +37,7 @@ export default function LwinProfileCard(props) {
         header: {
             //backgroundColor: props.darkMode ? grey[900] : grey[300],
         },
-        icon: {
+        icon: { 
             color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
     }));

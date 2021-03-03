@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { AppBar, Avatar, IconButton, Toolbar, Tooltip, Typography} from '@material-ui/core';
+
+import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import { makeStyles } from '@material-ui/styles';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -38,6 +39,12 @@ const Navbar = (props) => {
         iconButton: {
             color: navbarDarkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
+        iconLogo: {
+            color: navbarDarkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+            width: theme.spacing(6),
+            height: theme.spacing(6),
+            margin: theme.spacing(0, 1, 0, 0),
+        },
     }));
     
     const [navbarDarkMode, setNavbarDarkMode] = useState(props.darkMode);
@@ -55,10 +62,13 @@ const Navbar = (props) => {
     
     const classes = useStyles();
 
+
+    //(LOGO) <img src={navbarDarkMode ? "/static/images/logo_dark.png" : "/static/images/logo_light.png"} alt="logo" className={classes.appbar_img}></img>
+
     return (
-        <AppBar position="fixed" color="default" elevation={0} className={classes.appbar}>
-            <Toolbar className={classes.toolbarStyles}>
-                <img src={navbarDarkMode ? "/static/images/logo_dark.png" : "/static/images/logo_light.png"} alt="logo" className={classes.appbar_img}></img>
+        <AppBar position="fixed" color="default" elevation={1} className={classes.appbar}>
+            <Toolbar className={classes.toolbarStyles}>                
+                <AllInclusiveIcon className={classes.iconLogo} />
                 <ThemeProvider theme={theme}>
                     <Typography variant={'h6'} className={classes.appbar_typography}>
                         C e l l a r C l u b

@@ -6,36 +6,38 @@ import { Divider ,Grid, IconButton ,Paper, TextField } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        padding: '2px 4px',
-        display: 'flex',
-        alignItems: 'center',
-        height: 56,
-        margin: theme.spacing(1),    
-        //border: '1px solid',
-        //borderColor: theme.palette.grey[300],   
-    },
-    autocomplete: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        marginBottom: theme.spacing(2),
-    },
-    menuIconButton: {
-        padding: 10,
-    },
-    searchIconButton: {
-        padding: 10,
-    },
-    divider: {
-        height: 28,
-        margin: 4,
-    },
-}));
+import grey from '@material-ui/core/colors/grey';
 
 
 export default function Searchbar(props) {
+
+    const useStyles = makeStyles((theme) => ({
+        root: {
+            padding: '2px 4px',
+            display: 'flex',
+            alignItems: 'center',
+            height: 56,
+            margin: theme.spacing(1),    
+            //border: '1px solid',
+            //borderColor: theme.palette.grey[300], 
+            backgroundColor: props.darkMode ? grey[700] : "#FFFFFF",   
+        },
+        autocomplete: {
+            marginLeft: theme.spacing(1),
+            marginRight: theme.spacing(1),
+            marginBottom: theme.spacing(2),
+        },
+        menuIconButton: {
+            padding: 10,
+        },
+        searchIconButton: {
+            padding: 10,
+        },
+        divider: {
+            height: 28,
+            margin: 4,
+        },
+    }));
 
     const classes = useStyles();
     
