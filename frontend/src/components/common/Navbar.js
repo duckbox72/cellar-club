@@ -6,7 +6,6 @@ import Brightness4Icon from '@material-ui/icons/Brightness4';
 
 import { makeStyles } from '@material-ui/styles';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { grey }  from '@material-ui/core/colors';
 
 import DrawerMenu from "./DrawerMenu";
 
@@ -23,15 +22,7 @@ const logoFontTheme = createMuiTheme({
 const Navbar = (props) => {
     const useStyles = makeStyles((theme) => ({
         appbar: {
-            //backgroundColor: navbarDarkMode ? grey[900] : grey[300],
             backgroundColor: navbarDarkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
-        },
-        appbar_img: {
-            height: "56px",
-            [theme.breakpoints.down("sm")]: {
-                height: "48px",
-            },
-            marginRight: theme.spacing(1)
         },
         appbar_typography: {
             flex: 1,
@@ -62,9 +53,6 @@ const Navbar = (props) => {
     const userProfile = props.userProfile;
     
     const classes = useStyles();
-
-
-    //(LOGO) <img src={navbarDarkMode ? "/static/images/logo_dark.png" : "/static/images/logo_light.png"} alt="logo" className={classes.appbar_img}></img>
 
     return (
         <AppBar position="static" elevation={1} className={classes.appbar}>

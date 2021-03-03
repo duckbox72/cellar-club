@@ -6,7 +6,8 @@ import { Divider ,Grid, IconButton ,Paper, TextField } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
-import grey from '@material-ui/core/colors/grey';
+import amber from '@material-ui/core/colors/amber';
+import brown from '@material-ui/core/colors/brown';
 
 
 export default function Searchbar(props) {
@@ -16,11 +17,9 @@ export default function Searchbar(props) {
             padding: '2px 4px',
             display: 'flex',
             alignItems: 'center',
-            height: 56,
-            margin: theme.spacing(3),    
-            //border: '1px solid',
-            //borderColor: theme.palette.grey[300], 
-            backgroundColor: props.darkMode ? grey[700] : "#FFFFFF",   
+            height: 54,
+            margin: theme.spacing(0, 3),    
+            backgroundColor: props.darkMode ? brown[600] : amber[50],   
         },
         autocomplete: {
             marginLeft: theme.spacing(1),
@@ -108,6 +107,7 @@ export default function Searchbar(props) {
                 <MenuIcon />
             </IconButton>
             <Autocomplete  
+                size="small"
                 className={classes.autocomplete}
                 id="searchbar"
                 fullWidth
@@ -122,7 +122,7 @@ export default function Searchbar(props) {
                         id="search-field"
                         {...params}
                         onChange={handleSearchbarValueChange} 
-                        label="wine search" 
+                        label="Search CellarClub" 
                         margin="normal" 
                         variant="standard"
                         color={props.darkMode == true ? "primary" : "secondary"}

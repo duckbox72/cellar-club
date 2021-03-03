@@ -7,7 +7,7 @@ import Home from "./Home";
 import SignIn from "./Signin";
 import SignUp from "./Signup";
 import Landing from "./Landing";
-import { grey } from "@material-ui/core/colors";
+import { brown, grey } from "@material-ui/core/colors";
 
 
 const useStyles = makeStyles({
@@ -46,8 +46,8 @@ export default function App(props) {
             type: darkMode ? "dark" : "light",
             
             background: {
-                //paper: darkMode ? grey[800] : grey[50], //,'#F5F5F5'   
-                paper: darkMode ?  '#4e342e' : '#bb9e97', 
+                //paper: darkMode ? grey[800] : grey[50], //,'#F5F5F5'
+                paper: darkMode ?  brown[800] : brown[100], 
             },
         },
             

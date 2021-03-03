@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
-import { Avatar, Card, CardContent, CardHeader, Divider, Grid, IconButton, Tooltip, Typography } from '@material-ui/core';
+import clsx from 'clsx';
+
+import { Avatar, Card, CardActions, CardContent, CardHeader, Collapse, Divider, Grid, IconButton, Tooltip, Typography } from '@material-ui/core';
+
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import LocationCityOutlinedIcon from '@material-ui/icons/LocationCityOutlined';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
-import grey from '@material-ui/core/colors/grey';
+
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+import amber from '@material-ui/core/colors/amber';
+import brown from '@material-ui/core/colors/brown';
 
 export default function LwinProfileCard(props) {
     const useStyles = makeStyles((theme) => ({
@@ -16,11 +25,11 @@ export default function LwinProfileCard(props) {
             height: theme.spacing(4),
         },
         avatar_icon: {
-            color: props.darkMode ? grey[900] : grey[300],
+            //color: props.darkMode ? grey[900] : grey[300],
         },
         card: {
-            margin: theme.spacing(3),
-            backgroundColor: props.darkMode ? grey[700] : "#FFFFFF",    
+            margin: theme.spacing(0, 3),
+            backgroundColor: props.darkMode ? brown[600] : amber[50],
         },
         content_icon: {
             textAlign: "center",
@@ -34,6 +43,16 @@ export default function LwinProfileCard(props) {
         divider: {
             margin: theme.spacing(0, 1),
         },
+        expand: {
+            transform: 'rotate(0deg)',
+            marginLeft: 'auto',
+            transition: theme.transitions.create('transform', {
+              duration: theme.transitions.duration.shortest,
+            }),
+        },
+        expandOpen: {
+            transform: 'rotate(180deg)',
+        },        
         header: {
             //backgroundColor: props.darkMode ? grey[900] : grey[300],     
         },
@@ -43,10 +62,19 @@ export default function LwinProfileCard(props) {
     }));
 
 
+    
+    const [expanded, setExpanded] = useState(false);
+
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
+
+
+
+
     const classes = useStyles();
     const LwinData = props.LwinData;
-
-    const origin = `${LwinData.region}, ${LwinData.country}`
+    
 
     return (
         <Card className={classes.card}>
@@ -58,19 +86,24 @@ export default function LwinProfileCard(props) {
                 </Avatar>
             }
             action={
-                <Tooltip title="Add to my cellar">
-                    <IconButton aria-label="">
-                        <AddIcon />
-                    </IconButton>
-                </Tooltip>
+                <IconButton
+                className={clsx(classes.expand, {
+                    [classes.expandOpen]: expanded,
+                })}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+                >
+                    <ExpandMoreIcon />
+                </IconButton>
             }
             title={LwinData.display_name}
-            subheader={origin}
+            subheader={LwinData.region + ", " + LwinData.country}
             />
             
             <Divider className={classes.divider} />
 
-            <CardContent>
+            <CardContent >
                 <Grid container spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
                         <LocationCityOutlinedIcon className={classes.icon} fontSize="small" />
@@ -87,8 +120,6 @@ export default function LwinProfileCard(props) {
                     </Grid>       
                 </Grid> 
             </CardContent>
-            
-            
 
             <CardContent>
                 <Grid container spacing={0} alignItems="center">
@@ -108,8 +139,6 @@ export default function LwinProfileCard(props) {
                 </Grid> 
             </CardContent>
             
-        
-
             <CardContent>
                 <Grid container spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
@@ -127,6 +156,20 @@ export default function LwinProfileCard(props) {
                     </Grid>       
                 </Grid> 
             </CardContent>
+
+            <Divider className={classes.divider} />
+
+            
+            <Collapse in={expanded} timeout="auto" unmountOnExit style={{color: 'red', maxHeight: screen.availHeight,}}>
+                <CardContent>
+                    <Typography paragraph>
+                        Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
+                        heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
+                        browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
+                        and chorizo in the pan. 
+                    </Typography>
+                </CardContent>
+            </Collapse>
         </Card>
     );
 }
