@@ -11,7 +11,7 @@ import { grey }  from '@material-ui/core/colors';
 import DrawerMenu from "./DrawerMenu";
 
 
-const theme = createMuiTheme({
+const logoFontTheme = createMuiTheme({
     typography: {
         fontFamily: [
             'Quicksand', 'sans-serif',
@@ -24,6 +24,7 @@ const Navbar = (props) => {
     const useStyles = makeStyles((theme) => ({
         appbar: {
             backgroundColor: navbarDarkMode ? grey[900] : grey[300],
+            
         },
         appbar_img: {
             height: "56px",
@@ -66,10 +67,10 @@ const Navbar = (props) => {
     //(LOGO) <img src={navbarDarkMode ? "/static/images/logo_dark.png" : "/static/images/logo_light.png"} alt="logo" className={classes.appbar_img}></img>
 
     return (
-        <AppBar position="fixed" color="default" elevation={1} className={classes.appbar}>
+        <AppBar position="static" color="default" elevation={1} className={classes.appbar}>
             <Toolbar className={classes.toolbarStyles}>                
                 <AllInclusiveIcon className={classes.iconLogo} />
-                <ThemeProvider theme={theme}>
+                <ThemeProvider theme={logoFontTheme}>
                     <Typography variant={'h6'} className={classes.appbar_typography}>
                         C e l l a r C l u b
                     </Typography> 

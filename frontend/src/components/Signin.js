@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+
+import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 function Copyright() {
@@ -27,7 +29,8 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
+    //height: '100vh',
+    height: screen.availHeight,
   },
   image: {
     backgroundImage: "url(/static/images/toast.jpg)",
@@ -36,16 +39,24 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     //background: 'linear-gradient(225deg, #fff3e0 10%, #ffffff 100%)',
-    height: '100vh',
+    //height: '100vh',
+    height: screen.availHeight,
     //margin: theme.spacing(8, 4),
-    padding: theme.spacing(8,4),
+    padding: theme.spacing(6,4),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
+  icon_logo: {
+    color: theme.palette.primary.main,
+    width: theme.spacing(6),
+    height: theme.spacing(6),
+  },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
+    width: theme.spacing(7),
+    height: theme.spacing(7),
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -99,9 +110,9 @@ export default function SignIn(props) {
     <Grid container component="main" className={classes.root}>
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <div className={classes.paper}>
+        <div className={classes.paper}>        
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon color="primary"/>
+            <AllInclusiveIcon className={classes.icon_logo} />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in

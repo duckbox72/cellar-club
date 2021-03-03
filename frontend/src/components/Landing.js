@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Box, Button, fade, Grid, Link, Paper, Toolbar, Typography } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
+import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
+
 
 function Copyright() {
     return (
@@ -18,7 +20,7 @@ function Copyright() {
     );
   }
 
-const theme = createMuiTheme({
+const logoFontTheme = createMuiTheme({
     typography: {
         fontFamily: [
             'Quicksand', 'sans-serif',
@@ -50,12 +52,11 @@ const useStyles = makeStyles((theme) => ({
     appbar_button: {
         color: theme.palette.primary.main,
     },
-    appbar_img: {
-        height: "56px",
-            [theme.breakpoints.down("sm")]: {
-                height: "48px",
-            },
-            marginRight: theme.spacing(1)
+    appbar_logo: {
+        color: theme.palette.primary.main,
+        width: theme.spacing(6),
+        height: theme.spacing(6),
+        margin: theme.spacing(0, 1, 0, 0),
     },
     appbar_typography: {
         flex: 1,
@@ -91,8 +92,8 @@ export default function Landing(props) {
                 <Grid item container xs={12}>
                     <AppBar position="static" className={classes.appbar}>
                     <Toolbar  >
-                        <img src={"/static/images/logo_dark.png"} alt="logo" className={classes.appbar_img}></img>
-                        <ThemeProvider theme={theme}>
+                    <AllInclusiveIcon className={classes.appbar_logo} />
+                        <ThemeProvider theme={logoFontTheme}>
                             <Typography variant={'h6'} className={classes.appbar_typography}>
                                 C e l l a r C l u b
                             </Typography> 

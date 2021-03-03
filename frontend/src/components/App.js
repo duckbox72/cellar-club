@@ -47,6 +47,7 @@ export default function App(props) {
             
             background: {
                 paper: darkMode ? grey[800] : grey[50], //,'#F5F5F5'   
+                
             },
         },
             
