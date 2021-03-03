@@ -23,8 +23,8 @@ const logoFontTheme = createMuiTheme({
 const Navbar = (props) => {
     const useStyles = makeStyles((theme) => ({
         appbar: {
-            backgroundColor: navbarDarkMode ? grey[900] : grey[300],
-            
+            //backgroundColor: navbarDarkMode ? grey[900] : grey[300],
+            backgroundColor: navbarDarkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
         },
         appbar_img: {
             height: "56px",
@@ -67,7 +67,7 @@ const Navbar = (props) => {
     //(LOGO) <img src={navbarDarkMode ? "/static/images/logo_dark.png" : "/static/images/logo_light.png"} alt="logo" className={classes.appbar_img}></img>
 
     return (
-        <AppBar position="static" color="default" elevation={1} className={classes.appbar}>
+        <AppBar position="static" elevation={1} className={classes.appbar}>
             <Toolbar className={classes.toolbarStyles}>                
                 <AllInclusiveIcon className={classes.iconLogo} />
                 <ThemeProvider theme={logoFontTheme}>

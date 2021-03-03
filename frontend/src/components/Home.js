@@ -1,5 +1,5 @@
 import React, { useState, } from "react";
-import { Grid } from "@material-ui/core";
+import { AppBar, Grid, Toolbar } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles"
 
@@ -51,17 +51,14 @@ export default function Home(props) {
                     userProfile={userProfile}
                     />
                 </Grid>
-                <Grid item xs={12} style={{height: 56}}>
-
-                </Grid>
-                <Grid item xs={12} sm={8} md={7}>
+                <Grid item xs={12} sm={10} md={8}>
                     <Searchbar 
                     {...props} 
                     darkMode={props.darkMode}
                     parentLwinDataCallback={lwinDataCallback}
                     />
                 </Grid>
-                <Grid item xs={12} sm={8} md={7}>
+                <Grid item xs={12} sm={10} md={8}>
                     <LwinProfileCard
                     {...props}
                     darkMode={props.darkMode}

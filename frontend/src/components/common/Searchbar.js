@@ -17,7 +17,7 @@ export default function Searchbar(props) {
             display: 'flex',
             alignItems: 'center',
             height: 56,
-            margin: theme.spacing(1),    
+            margin: theme.spacing(2),    
             //border: '1px solid',
             //borderColor: theme.palette.grey[300], 
             backgroundColor: props.darkMode ? grey[700] : "#FFFFFF",   
