@@ -40,8 +40,8 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     //background: 'linear-gradient(225deg, #fff3e0 10%, #ffffff 100%)',
     //height: '100vh',
+    backgroundColor: "#fafafa",
     height: screen.availHeight,
-    //margin: theme.spacing(8, 4),
     padding: theme.spacing(6,4),
     display: 'flex',
     flexDirection: 'column',

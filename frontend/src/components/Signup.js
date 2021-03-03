@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     
   paper: {
     height: screen.availHeight,
+    backgroundColor: "#fafafa",
     //margin: theme.spacing(4,4),
     padding: theme.spacing(4,4),
     display: 'flex',

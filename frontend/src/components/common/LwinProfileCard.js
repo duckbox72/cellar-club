@@ -156,18 +156,60 @@ export default function LwinProfileCard(props) {
                     </Grid>       
                 </Grid> 
             </CardContent>
-
-            <Divider className={classes.divider} />
-
             
-            <Collapse in={expanded} timeout="auto" unmountOnExit style={{color: 'red', maxHeight: screen.availHeight,}}>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <CardContent >
+                    <Grid container spacing={0} alignItems="center">
+                        <Grid item xs={1} className={classes.content_icon}>
+                            <LocationCityOutlinedIcon className={classes.icon} fontSize="small" />
+                        </Grid>       
+                        <Grid item xs={2}>
+                            <Typography variant="caption" className={classes.content_label}>
+                                Producer
+                            </Typography >
+                        </Grid>
+                        <Grid item xs={9} className={classes.content_info}>
+                            <Typography variant="body2" >
+                                {LwinData.producer_title === "nan" ? "" : LwinData.producer_title} {LwinData.producer_name}
+                            </Typography>
+                        </Grid>       
+                    </Grid> 
+                </CardContent>
+
                 <CardContent>
-                    <Typography paragraph>
-                        Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-                        heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-                        browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-                        and chorizo in the pan. 
-                    </Typography>
+                    <Grid container spacing={0} alignItems="center">
+                        <Grid item xs={1} className={classes.content_icon}>
+                            <LocationOnOutlinedIcon className={classes.icon} fontSize="small" />
+                        </Grid>       
+                        <Grid item xs={2}>
+                            <Typography variant="caption" className={classes.content_label}>
+                                Origin
+                            </Typography >
+                        </Grid>
+                        <Grid item xs={9} className={classes.content_info}>
+                            <Typography variant="body2" >
+                                {LwinData.region}, {LwinData.country}
+                            </Typography>
+                        </Grid>       
+                    </Grid> 
+                </CardContent>
+                
+                <CardContent>
+                    <Grid container spacing={0} alignItems="center">
+                        <Grid item xs={1} className={classes.content_icon}>
+                            <InvertColorsIcon className={classes.icon} fontSize="small" />
+                        </Grid>       
+                        <Grid item xs={2}>
+                            <Typography variant="caption" className={classes.content_label}>
+                                Color
+                            </Typography >
+                        </Grid>
+                        <Grid item xs={9} className={classes.content_info}>
+                            <Typography variant="body2" >
+                                {LwinData.colour}
+                            </Typography>
+                        </Grid>       
+                    </Grid> 
                 </CardContent>
             </Collapse>
         </Card>

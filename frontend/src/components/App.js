@@ -46,8 +46,7 @@ export default function App(props) {
             type: darkMode ? "dark" : "light",
             
             background: {
-                //paper: darkMode ? grey[800] : grey[50], //,'#F5F5F5'
-                paper: darkMode ?  brown[800] : brown[100], 
+                paper: darkMode ?  brown[900] : brown[100], 
             },
         },
             
