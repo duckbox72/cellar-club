@@ -28,7 +28,7 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        height: "100vh",
+        height: screen.availHeight,
         flexGrow: 1,
 
         backgroundImage: "url(/static/images/barrels.jpg)",
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
         
     },
     root_paper: {
-        height: '100vh',
+        height: screen.availHeight,
         background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(200, 200, 200, 0.5))'
       },
     

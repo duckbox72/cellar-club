@@ -35,11 +35,6 @@ const Navbar = (props) => {
             flex: 1,
             color: navbarDarkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
-        avatar: {
-            width: theme.spacing(3),
-            height: theme.spacing(3),
-            backgroundColor: navbarDarkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-        },
         iconButton: {
             color: navbarDarkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
@@ -61,7 +56,7 @@ const Navbar = (props) => {
     const classes = useStyles();
 
     return (
-        <AppBar position="static" color="default" elevation={0} className={classes.appbar}>
+        <AppBar position="fixed" color="default" elevation={0} className={classes.appbar}>
             <Toolbar className={classes.toolbarStyles}>
                 <img src={navbarDarkMode ? "/static/images/logo_dark.png" : "/static/images/logo_light.png"} alt="logo" className={classes.appbar_img}></img>
                 <ThemeProvider theme={theme}>

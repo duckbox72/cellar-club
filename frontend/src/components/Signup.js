@@ -26,7 +26,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
+    height: screen.availHeight,
     },
     image: {
     backgroundImage: "url(/static/images/toast1.jpg)",
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
     
   paper: {
-    height: '100vh',
+    height: screen.availHeight,
     //margin: theme.spacing(4,4),
     padding: theme.spacing(4,4),
     display: 'flex',

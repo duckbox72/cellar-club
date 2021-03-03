@@ -1,30 +1,44 @@
 import React, { useState } from 'react';
-import { Avatar, Card, CardContent, CardHeader, Divider, Grid, IconButton, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles'
-import { InvertColors, MoreVert as MoreVertIcon, TripOrigin } from '@material-ui/icons'
-
+import { Avatar, Card, CardContent, CardHeader, Divider, Grid, IconButton, Tooltip, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import AddIcon from '@material-ui/icons/Add';
+import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import LocationCityOutlinedIcon from '@material-ui/icons/LocationCityOutlined';
-import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined'
+import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
+import grey from '@material-ui/core/colors/grey';
 
 export default function LwinProfileCard(props) {
-    const useStyles = makeStyles(theme => ({
+    const useStyles = makeStyles((theme) => ({
+        avatar: {
+            backgroundColor: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+            width: theme.spacing(4),
+            height: theme.spacing(4),
+        },
+        avatar_icon: {
+            color: props.darkMode ? grey[900] : grey[300],
+        },
         card: {
-            margin: theme.spacing(1),    
+            margin: theme.spacing(1),
+            //backgroundColor: props.darkMode ? grey[900] : grey[300],    
         },
         content_icon: {
             textAlign: "center",
         },
         content_info: {
-            color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
             textAlign: "right",
-            
         },
         content_label: {
-
+            color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
         divider: {
-            margin: theme.spacing(1),
+            margin: theme.spacing(0, 1),
+        },
+        header: {
+            //backgroundColor: props.darkMode ? grey[900] : grey[300],
+        },
+        icon: {
+            color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
     }));
 
@@ -38,30 +52,32 @@ export default function LwinProfileCard(props) {
     return (
         <Card className={classes.card}>
             <CardHeader
+            className={classes.header}
             avatar={
-                <Avatar  aria-label="">
-                   <InfoOutlinedIcon />
+                <Avatar className={classes.avatar} aria-label="">
+                   <InfoOutlinedIcon className={classes.avatar_icon} />
                 </Avatar>
             }
             action={
-                <IconButton aria-label="">
-                    <MoreVertIcon />
-                </IconButton>
+                <Tooltip title="Add to my cellar">
+                    <IconButton aria-label="">
+                        <AddIcon />
+                    </IconButton>
+                </Tooltip>
             }
             title={LwinData.display_name}
             subheader={origin}
-            
             />
             
-            <Divider  className={classes.divider} />
+            <Divider className={classes.divider} />
 
             <CardContent>
                 <Grid container spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
-                        <LocationCityOutlinedIcon fontSize="small" />
+                        <LocationCityOutlinedIcon className={classes.icon} fontSize="small" />
                     </Grid>       
                     <Grid item xs={2}>
-                        <Typography variant="body2" className={classes.content_label}>
+                        <Typography variant="caption" className={classes.content_label}>
                             Producer
                         </Typography >
                     </Grid>
@@ -78,11 +94,10 @@ export default function LwinProfileCard(props) {
             <CardContent>
                 <Grid container spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
-                        <LocationOnOutlinedIcon
-                         fontSize="small" />
+                        <LocationOnOutlinedIcon className={classes.icon} fontSize="small" />
                     </Grid>       
                     <Grid item xs={2}>
-                        <Typography variant="body2" className={classes.content_label}>
+                        <Typography variant="caption" className={classes.content_label}>
                             Origin
                         </Typography >
                     </Grid>
@@ -99,10 +114,10 @@ export default function LwinProfileCard(props) {
             <CardContent>
                 <Grid container spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
-                        <InvertColors fontSize="small" />
+                        <InvertColorsIcon className={classes.icon} fontSize="small" />
                     </Grid>       
                     <Grid item xs={2}>
-                        <Typography variant="body2" className={classes.content_label}>
+                        <Typography variant="caption" className={classes.content_label}>
                             Color
                         </Typography >
                     </Grid>

@@ -26,6 +26,12 @@ export default function TemporaryDrawer(props) {
   const theme = useTheme();
 
   const useStyles = makeStyles({
+    
+    avatar: {
+      width: theme.spacing(4),
+      height: theme.spacing(4),
+      backgroundColor: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+    },
     list: {
       width: 250,
     },
