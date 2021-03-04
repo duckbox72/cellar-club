@@ -33,10 +33,9 @@ export default function Home(props) {
 
     // Searchbar callbacks
     const lwinDataCallback = (lwin_data) => {
-        console.log("vv lwinDataCallback");
-        console.log(lwin_data);
+        //console.log("vv lwinDataCallback");
+        //console.log(lwin_data);
         setLwinData(lwin_data);
-
     }
 
     return (
@@ -56,8 +55,10 @@ export default function Home(props) {
                     {...props} 
                     darkMode={props.darkMode}
                     parentLwinDataCallback={lwinDataCallback}
+                    parent="Home"
+                    pushedSearchbarValue={null}
                     />
-                </Grid>           
+                </Grid>
             </Grid>
         </div>
     );

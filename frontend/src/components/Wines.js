@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { useLocation } from 'react-router-dom';
 import { Grid } from "@material-ui/core";
 
@@ -18,12 +18,11 @@ export default function Wines(props) {
         },
     });
 
-    const location = useLocation();
     const classes = useStyles();
 
     const userProfile = (getUserProfile());
     const [LwinData, setLwinData] = useState({});
-
+    const location = useLocation();
 
     // Navbar callbacks
     const darkModeCallback = () => {
@@ -35,10 +34,9 @@ export default function Wines(props) {
 
     // Searchbar callbacks
     const lwinDataCallback = (lwin_data) => {
-        console.log("vv lwinDataCallback");
-        console.log(lwin_data);
+        //console.log("vv lwinDataCallback");
+        //console.log(lwin_data);
         setLwinData(lwin_data);
-
     }
 
 
@@ -59,6 +57,8 @@ export default function Wines(props) {
                     {...props} 
                     darkMode={props.darkMode}
                     parentLwinDataCallback={lwinDataCallback}
+                    parent="Wines"
+                    pushedSearchbarValue={location.state !== undefined ? location.state.searchbarValue : null}
                     />
                 </Grid>
                 <Grid item xs={12} sm={10} md={8}>

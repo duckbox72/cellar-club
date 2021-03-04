@@ -39,10 +39,12 @@ export default function Searchbar(props) {
     }));
 
     const classes = useStyles();
-    
-    const [searchbarValue, setSearchbarValue] = useState(null);
+
+    const parent = props.parent;
+
+    const [searchbarValue, setSearchbarValue] = useState(props.pushedSearchbarValue);
     const [searchResult, setSearchResult] = useState([]);
-    const [searchIconDisabled, setSearchIconDisabled] = useState(true)
+    const [searchIconDisabled, setSearchIconDisabled] = useState(true);
     
     
     const getLwinData = (currentValue) => {
@@ -74,11 +76,19 @@ export default function Searchbar(props) {
         if (value == null) {
             setSearchIconDisabled(true);
         } else {
-            setSearchIconDisabled(false);
-            getLwinData(value);
+            if (parent == "Wines") {
+                setSearchIconDisabled(false);
+                getLwinData(value);
+            } else {
+                props.history.push({
+                        pathname: '/wines',
+                        state: {searchbarValue: value},
+                        })
+            }
         }
     }
     
+
     const handleSearchbarValueChange = e => {
         console.log(`SEARCHBAR VALUE CHANGED TO ${e.target.value}`);
         setSearchbarValue(e.target.value);
@@ -96,8 +106,6 @@ export default function Searchbar(props) {
     }
 
     const handleSearchButtonClick = () => {
-        console.log('SEARCH BUTTON CLICKED!');
-        console.log(searchbarValue);
         getLwinData(searchbarValue)
     }
 
@@ -113,15 +121,18 @@ export default function Searchbar(props) {
                 fullWidth
                 freeSolo
                 onChange={(event,value) => handleAutocompleteChange(value)} 
+                onFocus={() => {props.history.push('/wines')}}
                 clearOnEscape
                 handleHomeEndKeys
                 options={searchResult.map((option) => option.display_name)}
                 renderInput={(params) => (
                     <div>
                         <TextField
+                        autoFocus={parent === "Wines" ? true : false}
                         id="search-field"
                         {...params}
-                        onChange={handleSearchbarValueChange} 
+                        onChange={handleSearchbarValueChange}
+                        value={searchbarValue}
                         label="Search CellarClub" 
                         margin="normal" 
                         variant="standard"
