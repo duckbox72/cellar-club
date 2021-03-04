@@ -1,11 +1,10 @@
 import React, { useState, } from "react";
-import { Grid } from "@material-ui/core";
-
 import { makeStyles } from "@material-ui/core/styles"
+
+import Grid  from "@material-ui/core/Grid";
 
 import Navbar from "./common/Navbar";
 import Searchbar from "./common/Searchbar";
-import LwinProfileCard from "./common/LwinProfileCard";
 import { getUserProfile } from "./utils/getUserProfile";
 
 
@@ -30,13 +29,7 @@ export default function Home(props) {
     const sigOutCallback = () => {
         props.parentSignOutCallback(false);
     }
-
-    // Searchbar callbacks
-    const lwinDataCallback = (lwin_data) => {
-        //console.log("vv lwinDataCallback");
-        //console.log(lwin_data);
-        setLwinData(lwin_data);
-    }
+    
 
     return (
         <div className={classes.root}>
@@ -48,15 +41,6 @@ export default function Home(props) {
                     parentCallback={darkModeCallback}
                     parentSignOutCallback={sigOutCallback}
                     userProfile={userProfile}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={10} md={8}>
-                    <Searchbar 
-                    {...props} 
-                    darkMode={props.darkMode}
-                    parentLwinDataCallback={lwinDataCallback}
-                    parent="Home"
-                    pushedSearchbarValue={null}
                     />
                 </Grid>
             </Grid>

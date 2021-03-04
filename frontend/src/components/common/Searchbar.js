@@ -39,12 +39,10 @@ export default function Searchbar(props) {
     }));
 
     const classes = useStyles();
-
-    const parent = props.parent;
-
-    const [searchbarValue, setSearchbarValue] = useState(props.pushedSearchbarValue);
+    
+    const [searchbarValue, setSearchbarValue] = useState(null);
     const [searchResult, setSearchResult] = useState([]);
-    const [searchIconDisabled, setSearchIconDisabled] = useState(true);
+    const [searchIconDisabled, setSearchIconDisabled] = useState(true)
     
     
     const getLwinData = (currentValue) => {
@@ -52,7 +50,6 @@ export default function Searchbar(props) {
         fetch(`api/get_lwin/${currentValue}`)
         .then((response) => response.json())
         .then(lwin_data => {
-            console.log(lwin_data);
             props.parentLwinDataCallback(lwin_data);
         });  
     }
@@ -64,7 +61,6 @@ export default function Searchbar(props) {
         .then((response) => response.json())
         .then(data => {
             setSearchResult(data);
-            console.log(data)
         });  
     }
 
@@ -76,19 +72,12 @@ export default function Searchbar(props) {
         if (value == null) {
             setSearchIconDisabled(true);
         } else {
-            if (parent == "Wines") {
-                setSearchIconDisabled(false);
-                getLwinData(value);
-            } else {
-                props.history.push({
-                        pathname: '/wines',
-                        state: {searchbarValue: value},
-                        })
-            }
+            setSearchIconDisabled(false);
+            getLwinData(value);
         }
     }
     
-
+    
     const handleSearchbarValueChange = e => {
         console.log(`SEARCHBAR VALUE CHANGED TO ${e.target.value}`);
         setSearchbarValue(e.target.value);
@@ -105,9 +94,11 @@ export default function Searchbar(props) {
         }  
     }
 
+
     const handleSearchButtonClick = () => {
         getLwinData(searchbarValue)
     }
+
 
     return ( 
         <Paper className={classes.root} elevation={1}>
@@ -121,18 +112,15 @@ export default function Searchbar(props) {
                 fullWidth
                 freeSolo
                 onChange={(event,value) => handleAutocompleteChange(value)} 
-                onFocus={() => {props.history.push('/wines')}}
                 clearOnEscape
                 handleHomeEndKeys
                 options={searchResult.map((option) => option.display_name)}
                 renderInput={(params) => (
                     <div>
                         <TextField
-                        autoFocus={parent === "Wines" ? true : false}
                         id="search-field"
                         {...params}
-                        onChange={handleSearchbarValueChange}
-                        value={searchbarValue}
+                        onChange={handleSearchbarValueChange} 
                         label="Search CellarClub" 
                         margin="normal" 
                         variant="standard"
