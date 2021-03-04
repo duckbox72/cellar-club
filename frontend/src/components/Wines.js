@@ -1,4 +1,5 @@
-import React, { useState, } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 import { Grid } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles"
@@ -10,13 +11,14 @@ import { getUserProfile } from "./utils/getUserProfile";
 
 
 // THIS IS USER'S HOME DEFAULT LANDING PAGE FOR THE APP
-export default function Home(props) {
+export default function Wines(props) {
     const useStyles = makeStyles({
         root: {
             height: screen.availHeight,
         },
     });
 
+    const location = useLocation();
     const classes = useStyles();
 
     const userProfile = (getUserProfile());
@@ -39,6 +41,7 @@ export default function Home(props) {
 
     }
 
+
     return (
         <div className={classes.root}>
             <Grid container  spacing={3} justify="center"> 
@@ -57,7 +60,14 @@ export default function Home(props) {
                     darkMode={props.darkMode}
                     parentLwinDataCallback={lwinDataCallback}
                     />
-                </Grid>           
+                </Grid>
+                <Grid item xs={12} sm={10} md={8}>
+                    <LwinProfileCard
+                    {...props}
+                    darkMode={props.darkMode}
+                    LwinData={LwinData}
+                    />
+                </Grid>
             </Grid>
         </div>
     );

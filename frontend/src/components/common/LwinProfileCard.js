@@ -28,7 +28,7 @@ export default function LwinProfileCard(props) {
             //color: props.darkMode ? grey[900] : grey[300],
         },
         card: {
-            margin: theme.spacing(0, 3),
+            margin: theme.spacing(0, 0),
             backgroundColor: props.darkMode ? brown[600] : amber[50],
         },
         content_icon: {

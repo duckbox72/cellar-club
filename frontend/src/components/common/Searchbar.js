@@ -18,7 +18,7 @@ export default function Searchbar(props) {
             display: 'flex',
             alignItems: 'center',
             height: 54,
-            margin: theme.spacing(0, 3),    
+            margin: theme.spacing(0, 0),    
             backgroundColor: props.darkMode ? brown[600] : amber[50],   
         },
         autocomplete: {

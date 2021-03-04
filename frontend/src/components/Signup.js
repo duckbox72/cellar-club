@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(200, 200, 200, 0.5))'
   },
-    
   paper: {
     height: screen.availHeight,
     backgroundColor: "#fafafa",

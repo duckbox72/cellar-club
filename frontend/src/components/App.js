@@ -1,13 +1,15 @@
-import React, { useEffect, useState }from "react";
+import React, { useState }from "react";
 import { Redirect, Route, Switch, } from "react-router-dom";
 import { createMuiTheme, makeStyles, ThemeProvider } from "@material-ui/core/styles"
 import { Paper } from "@material-ui/core";
 import ContactPage from "./ContactPage"; 
 import Home from "./Home";
+import Landing from "./Landing";
 import SignIn from "./Signin";
 import SignUp from "./Signup";
-import Landing from "./Landing";
-import { brown, grey } from "@material-ui/core/colors";
+import Wines from "./Wines";
+import { brown } from "@material-ui/core/colors";
+
 
 
 const useStyles = makeStyles({
@@ -81,6 +83,13 @@ export default function App(props) {
                             parentSignOutCallback={signOutCallback}
                             isAuthenticated={isAuthenticated}
                             />} />
+                            <Route path='/wines' render={props => <Wines {...props} 
+                            darkMode={darkMode}
+                            parentDarkModeCallback={darkModeCallback}
+                            parentSignOutCallback={signOutCallback}
+                            isAuthenticated={isAuthenticated}
+                            />} />
+                            
                             <Route path='/signin' render={props => <Redirect {...props} to="/" />} />
                             <Route path='/signup' render={props => <Redirect {...props} to="/" />} />
                             <Route path='/signout' render={props => <Redirect {...props} to="/" />} />
