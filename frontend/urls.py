@@ -3,8 +3,8 @@ from .views import index
 
 urlpatterns = [
     path('', index),
-    path('wines', index),
-    path('contact', index),
+    path('search', index),
+    
     
     # AUTH Routes
     path('signin', index),

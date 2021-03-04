@@ -5,11 +5,11 @@ import { Paper } from "@material-ui/core";
 import ContactPage from "./ContactPage"; 
 import Home from "./Home";
 import Landing from "./Landing";
+import Search from "./Search";
 import SignIn from "./Signin";
 import SignUp from "./Signup";
-import Wines from "./Wines";
-import { brown } from "@material-ui/core/colors";
 
+import { brown } from "@material-ui/core/colors";
 
 
 const useStyles = makeStyles({
@@ -83,7 +83,7 @@ export default function App(props) {
                             parentSignOutCallback={signOutCallback}
                             isAuthenticated={isAuthenticated}
                             />} />
-                            <Route path='/wines' render={props => <Wines {...props} 
+                            <Route path='/search' render={props => <Search {...props} 
                             darkMode={darkMode}
                             parentDarkModeCallback={darkModeCallback}
                             parentSignOutCallback={signOutCallback}

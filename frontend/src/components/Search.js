@@ -10,7 +10,7 @@ import { getUserProfile } from "./utils/getUserProfile";
 
 
 // THIS IS USER'S HOME DEFAULT LANDING PAGE FOR THE APP
-export default function Wines(props) {
+export default function Search(props) {
     const useStyles = makeStyles({
         root: {
             height: screen.availHeight,
