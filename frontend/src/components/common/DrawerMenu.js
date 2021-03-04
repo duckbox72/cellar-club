@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
+
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 
@@ -12,10 +14,11 @@ import Tooltip from '@material-ui/core/Tooltip';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-
-
+import SearchIcon from '@material-ui/icons/Search';
+import ViewListOutlinedIcon from '@material-ui/icons/ViewListOutlined';
 
 
 export default function TemporaryDrawer(props) {
@@ -26,7 +29,6 @@ export default function TemporaryDrawer(props) {
   const theme = useTheme();
 
   const useStyles = makeStyles({
-    
     avatar: {
       width: theme.spacing(4),
       height: theme.spacing(4),
@@ -43,11 +45,11 @@ export default function TemporaryDrawer(props) {
     },
   });
 
+
   const handleSignOutButton = () => {
     fetch('/api/signout')
     .then(response => response.json())
     .then(data => {
-      console.log(data)
       if (data.success) {
         console.log(data.success);
         props.parentSignOutCallback()
@@ -67,11 +69,14 @@ export default function TemporaryDrawer(props) {
     bottom: false,
     right: false,
   });
+
   const [anchor, setAnchor] =  useState("");
+
 
   useEffect(() => {
     window.innerWidth < 600 ? setAnchor("right") : setAnchor("right");
   });
+
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -80,6 +85,7 @@ export default function TemporaryDrawer(props) {
 
     setState({ ...state, [anchor]: open });
   };
+
 
   const list = (anchor) => (
     <div
@@ -101,6 +107,27 @@ export default function TemporaryDrawer(props) {
 
         <Divider />
         
+        <ListItem button key="home" to="/" component={Link}>
+          <ListItemIcon>
+            <HomeOutlinedIcon className={classes.iconButton} />
+          </ListItemIcon>
+          <ListItemText primary={"Home"} />
+        </ListItem>
+
+        <ListItem button key="cellar" to="/" component={Link}>
+          <ListItemIcon>
+            <ViewListOutlinedIcon className={classes.iconButton} />
+          </ListItemIcon>
+          <ListItemText primary={"My Cellar"} />
+        </ListItem>
+
+        <ListItem button key="search" to="/search" component={Link}>
+          <ListItemIcon>
+            <SearchIcon className={classes.iconButton} />
+          </ListItemIcon>
+          <ListItemText primary={"Search"} />
+        </ListItem>
+
         <ListItem button key="signout" onClick={handleSignOutButton}>
           <ListItemIcon>
             <ExitToAppIcon className={classes.iconButton} />
@@ -112,6 +139,7 @@ export default function TemporaryDrawer(props) {
     </div>
   );
 
+  
   return (
     <div>
       <Tooltip title="Menu">

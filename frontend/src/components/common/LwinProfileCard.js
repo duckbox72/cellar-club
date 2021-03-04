@@ -61,7 +61,6 @@ export default function LwinProfileCard(props) {
         },
     }));
 
-
     
     const [expanded, setExpanded] = useState(false);
 
@@ -69,9 +68,7 @@ export default function LwinProfileCard(props) {
         setExpanded(!expanded);
     };
 
-
-
-
+    
     const classes = useStyles();
     const LwinData = props.LwinData;
     
