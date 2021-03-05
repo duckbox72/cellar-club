@@ -67,7 +67,7 @@ export default function Dashboard(props) {
                     </Typography>
                     <Avatar className={classes.toolbar_avatar}>{userProfile.username[0]}</Avatar>
                     <Typography  className={classes.toolbar_typography_username} variant="body1" style={{textAlign: 'right'}}>
-                        duckboxduckboxdu
+                        {userProfile.username}
                     </Typography>
                 </Toolbar>
             </AppBar>
