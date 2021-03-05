@@ -12,7 +12,7 @@ import { getUserProfile } from "./utils/getUserProfile";
 export default function Home(props) {
     const useStyles = makeStyles({
         root: {
-            height: screen.availHeight,
+            //height: screen.availHeight,
         },
     });
 
@@ -51,6 +51,57 @@ export default function Home(props) {
                     userProfile={userProfile}
                     />
                 </Grid>
+                <Grid item xs={12} sm={10} md={8}>
+                    <Dashboard
+                    {...props} 
+                    darkMode={props.darkMode}
+                    userProfile={userProfile}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={10} md={8}>
+                    <Dashboard
+                    {...props} 
+                    darkMode={props.darkMode}
+                    userProfile={userProfile}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={10} md={8}>
+                    <Dashboard
+                    {...props} 
+                    darkMode={props.darkMode}
+                    userProfile={userProfile}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={10} md={8}>
+                    <Dashboard
+                    {...props} 
+                    darkMode={props.darkMode}
+                    userProfile={userProfile}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={10} md={8}>
+                    <Dashboard
+                    {...props} 
+                    darkMode={props.darkMode}
+                    userProfile={userProfile}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={10} md={8}>
+                    <Dashboard
+                    {...props} 
+                    darkMode={props.darkMode}
+                    userProfile={userProfile}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={10} md={8}>
+                    <Dashboard
+                    {...props} 
+                    darkMode={props.darkMode}
+                    userProfile={userProfile}
+                    />
+                </Grid>
+                
+                
             </Grid>
         </div>
     );

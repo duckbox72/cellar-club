@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     },
     body_typography: {
         fontWeight: theme.typography.fontWeightMedium,
-        color: theme.palette.secondary.dark ,
+        color: theme.palette.secondary.main ,
     },
     body_button: {
         borderRadius: 0,

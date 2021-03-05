@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AppBar, Avatar, IconButton, Toolbar, Tooltip, Typography} from '@material-ui/core';
+import { AppBar, IconButton, Toolbar, Tooltip, Typography} from '@material-ui/core';
 
 import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import Brightness4Icon from '@material-ui/icons/Brightness4';

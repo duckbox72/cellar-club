@@ -27,14 +27,14 @@ export default function Dashboard(props) {
         },
         appbar: {
             borderRadius: '15px 15px 0px 0px',
-            height: 42,
+            //height: 42,
             backgroundColor: darkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
         },
         toolbar: {
             //height: 40,
         },
         toolbar_avatar: {
-            margin: theme.spacing(1),
+            marginRight: theme.spacing(1),
             width: theme.spacing(3),
             height: theme.spacing(3),
             backgroundColor: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
@@ -42,10 +42,10 @@ export default function Dashboard(props) {
         },
         toolbar_typography_title: {
             color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-            flex: 1,
         },
         toolbar_typography_username: {
             color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+            flex: 1,
         },
         main_container: {
             marginTop: theme.spacing(2),
@@ -62,13 +62,14 @@ export default function Dashboard(props) {
         <Paper className={classes.root_paper}>
             <AppBar className={classes.appbar} position="relative" >
                 <Toolbar classeName={classes.toolbar} variant="dense" >
+                    <Avatar className={classes.toolbar_avatar}>{userProfile.username[0]}</Avatar>
+                    <Typography  className={classes.toolbar_typography_username} variant="body1">
+                        {userProfile.username}
+                    </Typography>
                     <Typography className={classes.toolbar_typography_title} variant="body1">
                         DASHBOARD
                     </Typography>
-                    <Avatar className={classes.toolbar_avatar}>{userProfile.username[0]}</Avatar>
-                    <Typography  className={classes.toolbar_typography_username} variant="body1" style={{textAlign: 'right'}}>
-                        {userProfile.username}
-                    </Typography>
+                    
                 </Toolbar>
             </AppBar>
             <Grid className={classes.main_container} container spacing={2} direction="row" justify="center" >
