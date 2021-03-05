@@ -21,7 +21,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import ViewListOutlinedIcon from '@material-ui/icons/ViewListOutlined';
 
 
-export default function TemporaryDrawer(props) {
+export default function DrawerMenu(props) {
 
   const darkMode = props.darkMode;
   const userProfile = props.userProfile;
@@ -52,10 +52,10 @@ export default function TemporaryDrawer(props) {
     .then(data => {
       if (data.success) {
         console.log(data.success);
-        props.parentSignOutCallback()
-        props.history.push('/') 
+        props.parentSignOutCallback();
+        props.history.push('/');
       } else {
-        alert("Bad Request, please try again.")
+        alert("Bad Request, please try again.");
       }
     });
   };

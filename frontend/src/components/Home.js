@@ -3,8 +3,8 @@ import { makeStyles } from "@material-ui/core/styles"
 
 import Grid  from "@material-ui/core/Grid";
 
+import Dashboard from "./common/Dashboard";
 import Navbar from "./common/Navbar";
-import Searchbar from "./common/Searchbar";
 import { getUserProfile } from "./utils/getUserProfile";
 
 
@@ -33,13 +33,21 @@ export default function Home(props) {
 
     return (
         <div className={classes.root}>
-            <Grid container  spacing={3} justify="center"> 
-                <Grid item xs={12}>
-                    <Navbar 
+            <Navbar 
                     {...props}
                     darkMode={props.darkMode} 
                     parentCallback={darkModeCallback}
                     parentSignOutCallback={sigOutCallback}
+                    userProfile={userProfile}
+                    />
+            <Grid container  spacing={3} justify="center"> 
+                <Grid item xs={12}>
+                    
+                </Grid>
+                <Grid item xs={12} sm={10} md={8}>
+                    <Dashboard
+                    {...props} 
+                    darkMode={props.darkMode}
                     userProfile={userProfile}
                     />
                 </Grid>

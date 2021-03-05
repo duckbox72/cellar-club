@@ -21,7 +21,7 @@ const logoFontTheme = createMuiTheme({
 });
 
 
-const Navbar = (props) => {
+export default function Navbar(props) {
     const useStyles = makeStyles((theme) => ({
         appbar: {
             backgroundColor: navbarDarkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
@@ -71,6 +71,7 @@ const Navbar = (props) => {
                     </IconButton>
                 </Tooltip>
                 <DrawerMenu 
+                    {...props}
                     darkMode={props.darkMode}
                     userProfile={props.userProfile}
                     parentSignOutCallback={sigOutCallback}
@@ -79,5 +80,3 @@ const Navbar = (props) => {
         </AppBar>
     );
 };
-
-export default Navbar;

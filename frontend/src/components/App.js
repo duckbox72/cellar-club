@@ -97,6 +97,7 @@ export default function App(props) {
                         : 
                         (<>
                             <Route exact path='/' render={props => <Landing {...props} />} />
+                            <Route path='/search' render={props => <Landing {...props} />} />
                             <Route path='/signin' render={props => <SignIn parentSigninCallback={signInCallback} {...props} />} />
                             <Route path='/signup' render={props => <SignUp parentSignupCallback={signUpCallback} {...props} />} />
                         </>)

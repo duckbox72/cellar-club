@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function getUserProfile() {
+export function getUserProfile(props) {
 
     const [username, setUsername] = useState("");
     const [user_id, setUserId] = useState("");
