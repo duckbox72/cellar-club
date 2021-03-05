@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import { AppBar, Avatar, IconButton, Toolbar, Tooltip, Typography} from '@material-ui/core';
 
 import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
@@ -57,9 +59,9 @@ const Navbar = (props) => {
     return (
         <AppBar position="static" elevation={1} className={classes.appbar}>
             <Toolbar className={classes.toolbarStyles}>                
-                <AllInclusiveIcon className={classes.iconLogo} />
+                <AllInclusiveIcon className={classes.iconLogo} onClick={() => {props.history.push('/')}}/>
                 <ThemeProvider theme={logoFontTheme}>
-                    <Typography variant={'h6'} className={classes.appbar_typography}>
+                    <Typography variant={'h6'} className={classes.appbar_typography} onClick={() => {props.history.push('/')}}>
                         C e l l a r C l u b
                     </Typography> 
                 </ThemeProvider>
