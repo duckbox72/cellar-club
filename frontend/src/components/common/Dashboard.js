@@ -28,7 +28,8 @@ export default function Dashboard(props) {
         appbar: {
             borderRadius: '15px 15px 0px 0px',
             //height: 42,
-            backgroundColor: darkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
+            //backgroundColor: darkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
+            backgroundColor: darkMode ? brown[600] : amber[50],
         },
         toolbar: {
             //height: 40,
@@ -45,6 +46,7 @@ export default function Dashboard(props) {
         },
         toolbar_typography_username: {
             color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+            fontWeight: 500,
             flex: 1,
         },
         main_container: {
@@ -60,7 +62,7 @@ export default function Dashboard(props) {
 
     return (
         <Paper className={classes.root_paper}>
-            <AppBar className={classes.appbar} position="relative" >
+            <AppBar className={classes.appbar} position="relative" elevation={1}>
                 <Toolbar classeName={classes.toolbar} variant="dense" >
                     <Avatar className={classes.toolbar_avatar}>{userProfile.username[0]}</Avatar>
                     <Typography  className={classes.toolbar_typography_username} variant="body1">

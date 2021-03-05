@@ -57,7 +57,7 @@ export default function Navbar(props) {
     const classes = useStyles();
 
     return (
-        <AppBar position="static" elevation={1} className={classes.appbar}>
+        <AppBar position="sticky" elevation={1} className={classes.appbar}>
             <Toolbar className={classes.toolbarStyles}>                
                 <AllInclusiveIcon className={classes.iconLogo} onClick={() => {props.history.push('/')}}/>
                 <ThemeProvider theme={logoFontTheme}>

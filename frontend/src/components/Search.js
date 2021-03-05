@@ -13,7 +13,8 @@ import { getUserProfile } from "./utils/getUserProfile";
 export default function Search(props) {
     const useStyles = makeStyles({
         root: {
-            //minHeight: screen.availHeight,
+            //height: screen.availHeight,
+            minHeight: '100vh',
         },
     });
 
