@@ -58,8 +58,10 @@ export default function Navbar(props) {
 
     return (
         <AppBar position="sticky" elevation={1} className={classes.appbar}>
-            <Toolbar className={classes.toolbarStyles}>                
-                <AllInclusiveIcon className={classes.iconLogo} onClick={() => {props.history.push('/')}}/>
+            <Toolbar className={classes.toolbarStyles}>   
+                <Tooltip title="Home">          
+                    <AllInclusiveIcon className={classes.iconLogo} onClick={() => {props.history.push('/')}}/>
+                </Tooltip>   
                 <ThemeProvider theme={logoFontTheme}>
                     <Typography variant={'h6'} className={classes.appbar_typography} onClick={() => {props.history.push('/')}}>
                         C e l l a r C l u b

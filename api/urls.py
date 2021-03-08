@@ -6,7 +6,7 @@ from . import views
 urlpatterns = [
     # path('', UserView.as_view()),
     
-    # LWIN Routes
+    # LWIN Database Routes
     # path('create', CreateLwinView.as_view()), 
     path('get_lwin/<str:display_name>', views.get_lwin, name="get_lwin"),  
     path('search_lwin/<str:display_name>', views.search_lwin, name="search_lwin"),
