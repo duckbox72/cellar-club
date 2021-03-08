@@ -18,59 +18,6 @@ from .serializers import *
 
 import pandas as pd 
 
-'''
-class UserView(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-'''
-'''
-class GetLwin(APIView):
-    lookup_url_kwarg = 'display_name'
-
-    def get(self, request, format=None):
-        display_name = request.GET.get(self.lookup_url_kwarg)
-
-        try:
-            result = Lwin.objects.get(display_name=display_name)
-        except:
-            return JsonResponse({"message": "Sorry, no results found."})
-        
-        return JsonResponse(result.serializer(),  safe=False, status=status.HTTP_200_OK)
-'''
-'''
-class SearchLwin(APIView):
-    #serializer_class = SearchLwinSerializer
-    lookup_url_kwarg = 'display_name'
-
-    def get(self, request, format=None):
-        display_name = request.GET.get(self.lookup_url_kwarg)
-
-        results = Lwin.objects.filter(display_name__contains=display_name)
-        results = results[:10]
-
-        #mini_serializer returns solely display_name data
-        return JsonResponse([result.mini_serializer() for result in results], safe=False, status=status.HTTP_200_OK)
-'''     
-
-
-# --------------------------- LWIN DATABASE ROUTES --------------------------- 
-
-def get_lwin(request, display_name):
-    try:
-        result = Lwin.objects.get(display_name=display_name)
-    except:
-        return JsonResponse({"message": "Sorry, no results found."})
-    
-    return JsonResponse(result.serializer(),  safe=False, status=status.HTTP_200_OK)
-
-
-def search_lwin(request, display_name):
-    results = Lwin.objects.filter(display_name__contains=display_name)
-    results = results[:10]
-    
-    #mini_serializer returns solely display_name data
-    return JsonResponse([result.mini_serializer() for result in results], safe=False, status=status.HTTP_200_OK)
-
 
 # --------------------------- AUTH API ROUTES --------------------------- 
 def is_authenticated_view(request):
@@ -161,3 +108,24 @@ def sign_up(request):
 
     else:    
         return JsonResponse({"error": "Invalid request method"})
+
+
+
+# --------------------------- LWIN DATABASE ROUTES --------------------------- 
+
+def get_lwin(request, display_name):
+    try:
+        result = Lwin.objects.get(display_name=display_name)
+    except:
+        return JsonResponse({"message": "Sorry, no results found."})
+    
+    return JsonResponse(result.serializer(),  safe=False, status=status.HTTP_200_OK)
+
+
+def search_lwin(request, display_name):
+    results = Lwin.objects.filter(display_name__contains=display_name)
+    results = results[:10]
+    
+    #mini_serializer returns solely display_name data
+    return JsonResponse([result.mini_serializer() for result in results], safe=False, status=status.HTTP_200_OK)
+
