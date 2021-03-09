@@ -2,7 +2,6 @@ import React, { useState }from "react";
 import { Redirect, Route, Switch, } from "react-router-dom";
 import { createMuiTheme, makeStyles, ThemeProvider } from "@material-ui/core/styles"
 import { Paper } from "@material-ui/core";
-import ContactPage from "./ContactPage"; 
 import Home from "./Home";
 import Landing from "./Landing";
 import Search from "./Search";
@@ -101,8 +100,7 @@ export default function App(props) {
                             <Route path='/signin' render={props => <SignIn parentSigninCallback={signInCallback} {...props} />} />
                             <Route path='/signup' render={props => <SignUp parentSignupCallback={signUpCallback} {...props} />} />
                         </>)
-                        }
-                        <Route path='/contact' component={ContactPage} />      
+                        }   
                     </Switch>
                 </div> 
             </Paper>

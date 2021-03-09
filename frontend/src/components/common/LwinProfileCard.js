@@ -18,6 +18,7 @@ import amber from '@material-ui/core/colors/amber';
 import brown from '@material-ui/core/colors/brown';
 
 export default function LwinProfileCard(props) {
+    
     const useStyles = makeStyles((theme) => ({
         avatar: {
             backgroundColor: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
@@ -43,6 +44,9 @@ export default function LwinProfileCard(props) {
         },
         divider: {
             margin: theme.spacing(0, 1),
+        },
+        container: {
+            padding: theme.spacing(1,2),
         },
         expand: {
             transform: 'rotate(0deg)',
@@ -101,59 +105,53 @@ export default function LwinProfileCard(props) {
             
             <Divider className={classes.divider} />
 
-            <CardContent >
-                <Grid container spacing={0} alignItems="center">
-                    <Grid item xs={1} className={classes.content_icon}>
-                        <LocationCityOutlinedIcon className={classes.icon} fontSize="small" />
-                    </Grid>       
-                    <Grid item xs={2}>
-                        <Typography variant="caption" className={classes.content_label}>
-                            Producer
-                        </Typography >
-                    </Grid>
-                    <Grid item xs={9} className={classes.content_info}>
-                        <Typography variant="body2" >
-                            {LwinData.producer_title === "nan" ? "" : LwinData.producer_title} {LwinData.producer_name}
-                        </Typography>
-                    </Grid>       
-                </Grid> 
-            </CardContent>
-
-            <CardContent>
-                <Grid container spacing={0} alignItems="center">
-                    <Grid item xs={1} className={classes.content_icon}>
-                        <LocationOnOutlinedIcon className={classes.icon} fontSize="small" />
-                    </Grid>       
-                    <Grid item xs={2}>
-                        <Typography variant="caption" className={classes.content_label}>
-                            Origin
-                        </Typography >
-                    </Grid>
-                    <Grid item xs={9} className={classes.content_info}>
-                        <Typography variant="body2" >
-                            {LwinData.region}, {LwinData.country}
-                        </Typography>
-                    </Grid>       
-                </Grid> 
-            </CardContent>
-            
-            <CardContent>
-                <Grid container spacing={0} alignItems="center">
-                    <Grid item xs={1} className={classes.content_icon}>
-                        <InvertColorsIcon className={classes.icon} fontSize="small" />
-                    </Grid>       
-                    <Grid item xs={2}>
-                        <Typography variant="caption" className={classes.content_label}>
-                            Color
-                        </Typography >
-                    </Grid>
-                    <Grid item xs={9} className={classes.content_info}>
-                        <Typography variant="body2" >
-                            {LwinData.colour}
-                        </Typography>
-                    </Grid>       
-                </Grid> 
-            </CardContent>
+            <Grid container className={classes.container} spacing={0} alignItems="center">
+                <Grid item xs={1} className={classes.content_icon}>
+                    <LocationCityOutlinedIcon className={classes.icon} fontSize="small" />
+                </Grid>       
+                <Grid item xs={2}>
+                    <Typography variant="caption" className={classes.content_label}>
+                        Producer
+                    </Typography >
+                </Grid>
+                <Grid item xs={9} className={classes.content_info}>
+                    <Typography variant="body2" >
+                        {LwinData.producer_title === "nan" ? "" : LwinData.producer_title} {LwinData.producer_name}
+                    </Typography>
+                </Grid>       
+            </Grid> 
+    
+            <Grid container className={classes.container} spacing={0} alignItems="center">
+                <Grid item xs={1} className={classes.content_icon}>
+                    <LocationOnOutlinedIcon className={classes.icon} fontSize="small" />
+                </Grid>       
+                <Grid item xs={2}>
+                    <Typography variant="caption" className={classes.content_label}>
+                        Origin
+                    </Typography >
+                </Grid>
+                <Grid item xs={9} className={classes.content_info}>
+                    <Typography variant="body2" >
+                        {LwinData.region}, {LwinData.country}
+                    </Typography>
+                </Grid>       
+            </Grid> 
+    
+            <Grid container className={classes.container} spacing={0} alignItems="center">
+                <Grid item xs={1} className={classes.content_icon}>
+                    <InvertColorsIcon className={classes.icon} fontSize="small" />
+                </Grid>       
+                <Grid item xs={2}>
+                    <Typography variant="caption" className={classes.content_label}>
+                        Color
+                    </Typography >
+                </Grid>
+                <Grid item xs={9} className={classes.content_info}>
+                    <Typography variant="body2" >
+                        {LwinData.colour}
+                    </Typography>
+                </Grid>       
+            </Grid> 
             
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent >
