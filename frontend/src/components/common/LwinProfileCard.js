@@ -33,6 +33,9 @@ export default function LwinProfileCard(props) {
             borderRadius: 15,
             backgroundColor: props.darkMode ? brown[600] : amber[50],
         },
+        container: {
+            padding: theme.spacing(1,2),
+        },
         content_icon: {
             textAlign: "center",
         },
@@ -44,9 +47,6 @@ export default function LwinProfileCard(props) {
         },
         divider: {
             margin: theme.spacing(0, 1),
-        },
-        container: {
-            padding: theme.spacing(1,2),
         },
         expand: {
             transform: 'rotate(0deg)',
@@ -60,6 +60,13 @@ export default function LwinProfileCard(props) {
         },        
         header: {
             //backgroundColor: props.darkMode ? grey[900] : grey[300],     
+        },
+        header_title: {
+            fontWeight: 500,
+                         
+        },
+        header_subheader: {
+    
         },
         icon: { 
             color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
@@ -81,6 +88,7 @@ export default function LwinProfileCard(props) {
     return (
         <Card className={classes.card}>
             <CardHeader
+            disableTypography={true}
             className={classes.header}
             avatar={
                 <Avatar className={classes.avatar} aria-label="">
@@ -99,8 +107,17 @@ export default function LwinProfileCard(props) {
                     <ExpandMoreIcon />
                 </IconButton>
             }
-            title={LwinData.display_name}
-            subheader={LwinData.region + ", " + LwinData.country}
+            title={
+                <Typography variant="body2" className={classes.header_title}>
+                   {LwinData.display_name}
+                </Typography>
+            }
+            subheader={
+                <Typography variant="body2" color="textSecondary" className={classes.header_subheader}>
+                   {LwinData.region + ", " + LwinData.country}
+                </Typography>
+ 
+            }
             />
             
             <Divider className={classes.divider} />
