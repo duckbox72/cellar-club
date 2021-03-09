@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
+import { loadCSS } from 'fg-loadcss';
 
-import { Avatar, Card, CardActions, CardContent, CardHeader, Collapse, Divider, Grid, Icon, IconButton, Tooltip, Typography } from '@material-ui/core';
+import { Avatar, Card, CardHeader, Collapse, Divider, Grid, Icon, IconButton, SvgIcon, Tooltip, Typography } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import LocationCityOutlinedIcon from '@material-ui/icons/LocationCityOutlined';
+
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+import { LeafIcon } from './SvgIcons';
 
 import amber from '@material-ui/core/colors/amber';
 import brown from '@material-ui/core/colors/brown';
@@ -66,16 +68,13 @@ export default function LwinProfileCard(props) {
             backgroundColor: props.darkMode ? brown[600] : amber[50],   
         },
         header_title: {
-            fontWeight: 500,
-                         
+            fontWeight: 600,                
         },
         header_subheader: {
-    
-        },
-        icon: { 
-            color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+
         },
         iconbutton_wslogo: {
+            margin: theme.spacing(1,1,0,1),
             height: theme.spacing(6),
             width: theme.spacing(6)
             
@@ -84,7 +83,15 @@ export default function LwinProfileCard(props) {
             backgroundImage: "url(/static/images/ws-logo-nobg.png)",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-        }
+        },
+        icon: { 
+            color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+        },
+        svg_icon: { 
+            height: theme.spacing(2),
+            width: theme.spacing(2),
+            color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+        },
     }));
 
     
@@ -93,11 +100,9 @@ export default function LwinProfileCard(props) {
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-
     
     const classes = useStyles();
     const LwinData = props.LwinData;
-    
 
     return (
         <Card className={classes.card}>
@@ -129,7 +134,7 @@ export default function LwinProfileCard(props) {
             }
             subheader={
                 <Typography variant="body2" color="textSecondary" className={classes.header_subheader}>
-                   {LwinData.region + ", " + LwinData.country}
+                   {LwinData.region !== undefined ? LwinData.colour + " " + LwinData.region + ", " + LwinData.country : "Search CellarClub for almost 100K products"}
                 </Typography>
             }
             />
@@ -137,7 +142,7 @@ export default function LwinProfileCard(props) {
             <Divider className={classes.divider} />
 
             <Grid container spacing={1} className={classes.container_actions} alignItems="center">
-                <IconButton className={classes.iconbutton_wslogo}>
+                <IconButton>
                     <AddIcon />
                 </IconButton>
                 <IconButton >
@@ -161,13 +166,14 @@ export default function LwinProfileCard(props) {
             <Divider className={classes.divider} />
 
             <Collapse in={expanded} timeout="auto" unmountOnExit>
+                
                 <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
-                        <LocationCityOutlinedIcon className={classes.icon} fontSize="small" />
+                        <LeafIcon className={classes.svg_icon} />
                     </Grid>       
                     <Grid item xs={2}>
-                        <Typography variant="caption" className={classes.content_label}>
-                            Producer
+                        <Typography variant="body2" className={classes.content_label}>
+                            Vintage
                         </Typography >
                     </Grid>
                     <Grid item xs={9} className={classes.content_info}>
@@ -177,12 +183,12 @@ export default function LwinProfileCard(props) {
                     </Grid>       
                 </Grid> 
         
-                <Grid container className={classes.container} spacing={0} alignItems="center">
+                <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
                         <LocationOnOutlinedIcon className={classes.icon} fontSize="small" />
                     </Grid>       
                     <Grid item xs={2}>
-                        <Typography variant="caption" className={classes.content_label}>
+                        <Typography variant="body2" className={classes.content_label}>
                             Origin
                         </Typography >
                     </Grid>
@@ -193,12 +199,12 @@ export default function LwinProfileCard(props) {
                     </Grid>       
                 </Grid> 
         
-                <Grid container className={classes.container} spacing={0} alignItems="center">
+                <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
                         <InvertColorsIcon className={classes.icon} fontSize="small" />
                     </Grid>       
                     <Grid item xs={2}>
-                        <Typography variant="caption" className={classes.content_label}>
+                        <Typography variant="body2" className={classes.content_label}>
                             Color
                         </Typography >
                     </Grid>
@@ -207,7 +213,58 @@ export default function LwinProfileCard(props) {
                             {LwinData.colour}
                         </Typography>
                     </Grid>       
-                </Grid> 
+                </Grid>
+
+                <Divider className={classes.divider} />
+
+                <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
+                    <Grid item xs={1} className={classes.content_icon}>
+                        <InvertColorsIcon className={classes.icon} fontSize="small" />
+                    </Grid>       
+                    <Grid item xs={2}>
+                        <Typography variant="body2" className={classes.content_label}>
+                            Color
+                        </Typography >
+                    </Grid>
+                    <Grid item xs={9} className={classes.content_info}>
+                        <Typography variant="body2" >
+                            {LwinData.colour}
+                        </Typography>
+                    </Grid>       
+                </Grid>
+
+                <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
+                    <Grid item xs={1} className={classes.content_icon}>
+                        <InvertColorsIcon className={classes.icon} fontSize="small" />
+                    </Grid>       
+                    <Grid item xs={2}>
+                        <Typography variant="body2" className={classes.content_label}>
+                            Color
+                        </Typography >
+                    </Grid>
+                    <Grid item xs={9} className={classes.content_info}>
+                        <Typography variant="body2" >
+                            {LwinData.colour}
+                        </Typography>
+                    </Grid>       
+                </Grid>
+
+                <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
+                    <Grid item xs={1} className={classes.content_icon}>
+                        <InvertColorsIcon className={classes.icon} fontSize="small" />
+                    </Grid>       
+                    <Grid item xs={2}>
+                        <Typography variant="body2" className={classes.content_label}>
+                            Color
+                        </Typography >
+                    </Grid>
+                    <Grid item xs={9} className={classes.content_info}>
+                        <Typography variant="body2" >
+                            {LwinData.colour}
+                        </Typography>
+                    </Grid>       
+                </Grid>
+
             </Collapse>
         </Card>
     );
