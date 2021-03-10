@@ -2,19 +2,21 @@ import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { loadCSS } from 'fg-loadcss';
 
-import { Avatar, Card, CardHeader, Collapse, Divider, Grid, Icon, IconButton, SvgIcon, Tooltip, Typography } from '@material-ui/core';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
+import { Avatar, Card, CardHeader, Collapse, Divider, Grid, IconButton, TextField, Tooltip, Typography } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 
-import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
-
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import ShareIcon from '@material-ui/icons/Share';
 
-import { LeafIcon } from './SvgIcons';
+import { CompassIcon, ExpandAltIcon,LeafIcon, SortIcon, StoreIcon, WineBottleIcon } from './SvgIcons';
 
 import amber from '@material-ui/core/colors/amber';
 import brown from '@material-ui/core/colors/brown';
@@ -92,6 +94,16 @@ export default function LwinProfileCard(props) {
             width: theme.spacing(2),
             color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
+
+        //form classes:
+        autocomplete_vintage: {
+            margin: theme.spacing(0,0),
+            height: 28,
+        },
+        text_field_vintage: {
+            margin: theme.spacing(0,0),
+        },
+
     }));
 
     
@@ -103,6 +115,14 @@ export default function LwinProfileCard(props) {
     
     const classes = useStyles();
     const LwinData = props.LwinData;
+
+    const vintages = [
+        {vintage: '2000'},
+        {vintage: '2001'},
+        {vintage: '2002'},
+        {vintage: '2003'},
+        {vintage: '2004'},
+    ];
 
     return (
         <Card className={classes.card}>
@@ -174,41 +194,104 @@ export default function LwinProfileCard(props) {
                     <Grid item xs={2}>
                         <Typography variant="body2" className={classes.content_label}>
                             Vintage
-                        </Typography >
+                        </Typography>
                     </Grid>
                     <Grid item xs={9} className={classes.content_info}>
-                        <Typography variant="body2" >
-                            {LwinData.producer_title === "nan" ? "" : LwinData.producer_title} {LwinData.producer_name}
-                        </Typography>
+                        <Autocomplete  
+                        size="small"
+                        className={classes.autocomplete_vintage}
+                        id="vintage"
+                        fullWidth
+                        freeSolo
+                        onChange={(event,value) => console.log(value)} 
+                        clearOnEscape
+                        handleHomeEndKeys
+                        options={vintages.map((option) => option.vintage)}
+                        renderInput={(params) => (
+                            <div>
+                                <TextField
+                                className={classes.text_field_vintage}
+                                id="vintage"
+                                size="small"
+                                type="number"
+                                {...params}
+                                onChange={console.log('CHANGED')} 
+                                label="Vintage" 
+                                margin="none" 
+                                variant="outlined"
+                                color={props.darkMode == true ? "primary" : "secondary"}
+                                />
+                            </div>
+                        )}
+                        />
                     </Grid>       
                 </Grid> 
         
                 <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
-                        <LocationOnOutlinedIcon className={classes.icon} fontSize="small" />
+                        <WineBottleIcon className={classes.svg_icon} fontSize="small" />
                     </Grid>       
                     <Grid item xs={2}>
                         <Typography variant="body2" className={classes.content_label}>
-                            Origin
+                            Size
                         </Typography >
                     </Grid>
                     <Grid item xs={9} className={classes.content_info}>
-                        <Typography variant="body2" >
-                            {LwinData.region}, {LwinData.country}
-                        </Typography>
+                    <Autocomplete  
+                        size="small"
+                        className={classes.autocomplete_vintage}
+                        id="vintage"
+                        fullWidth
+                        freeSolo
+                        onChange={(event,value) => console.log(value)} 
+                        clearOnEscape
+                        handleHomeEndKeys
+                        options={vintages.map((option) => option.vintage)}
+                        renderInput={(params) => (
+                            <div>
+                                <TextField
+                                className={classes.text_field_vintage}
+                                id="vintage"
+                                size="small"
+                                {...params}
+                                onChange={console.log('CHANGED')} 
+                                label="Vintage" 
+                                margin="none" 
+                                variant="outlined"
+                                color={props.darkMode == true ? "primary" : "secondary"}
+                                />
+                            </div>
+                        )}
+                        />
                     </Grid>       
                 </Grid> 
         
                 <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
-                        <InvertColorsIcon className={classes.icon} fontSize="small" />
+                        <SortIcon className={classes.svg_icon} fontSize="small" />
                     </Grid>       
                     <Grid item xs={2}>
                         <Typography variant="body2" className={classes.content_label}>
-                            Color
+                            Units
                         </Typography >
                     </Grid>
                     <Grid item xs={9} className={classes.content_info}>
+                        <Typography variant="body2" >
+                            {LwinData.colour}
+                        </Typography>
+                    </Grid>       
+                </Grid>
+
+                <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
+                    <Grid item xs={1} className={classes.content_icon}>
+                        <CompassIcon className={classes.svg_icon} fontSize="small" />
+                    </Grid>       
+                    <Grid item xs={3}>
+                        <Typography variant="body2" className={classes.content_label}>
+                            Location
+                        </Typography >
+                    </Grid>
+                    <Grid item xs={8} className={classes.content_info}>
                         <Typography variant="body2" >
                             {LwinData.colour}
                         </Typography>
@@ -219,11 +302,11 @@ export default function LwinProfileCard(props) {
 
                 <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
-                        <InvertColorsIcon className={classes.icon} fontSize="small" />
+                        <StoreIcon className={classes.svg_icon} fontSize="small" />
                     </Grid>       
                     <Grid item xs={2}>
                         <Typography variant="body2" className={classes.content_label}>
-                            Color
+                            Store
                         </Typography >
                     </Grid>
                     <Grid item xs={9} className={classes.content_info}>
@@ -235,11 +318,11 @@ export default function LwinProfileCard(props) {
 
                 <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
-                        <InvertColorsIcon className={classes.icon} fontSize="small" />
+                        <MonetizationOnOutlinedIcon className={classes.icon} fontSize="small" />
                     </Grid>       
                     <Grid item xs={2}>
                         <Typography variant="body2" className={classes.content_label}>
-                            Color
+                            Cost
                         </Typography >
                     </Grid>
                     <Grid item xs={9} className={classes.content_info}>
@@ -251,11 +334,11 @@ export default function LwinProfileCard(props) {
 
                 <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
-                        <InvertColorsIcon className={classes.icon} fontSize="small" />
+                        <EventAvailableIcon className={classes.icon} fontSize="small" />
                     </Grid>       
                     <Grid item xs={2}>
                         <Typography variant="body2" className={classes.content_label}>
-                            Color
+                            Added
                         </Typography >
                     </Grid>
                     <Grid item xs={9} className={classes.content_info}>
