@@ -8,12 +8,11 @@ import { Avatar, Card, CardHeader, Collapse, Divider, Grid, IconButton, TextFiel
 
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
-import InvertColorsIcon from '@material-ui/icons/InvertColors';
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
+import RemoveIcon from '@material-ui/icons/Remove'
 import ShareIcon from '@material-ui/icons/Share';
 
 import { CompassIcon, ExpandAltIcon,LeafIcon, SortIcon, StoreIcon, WineBottleIcon } from './SvgIcons';
@@ -90,15 +89,15 @@ export default function LwinProfileCard(props) {
             color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
         svg_icon: { 
-            height: theme.spacing(2),
-            width: theme.spacing(2),
+            height: theme.spacing(2.5),
+            width: theme.spacing(2.5),
             color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
 
         //form classes:
         autocomplete_vintage: {
             margin: theme.spacing(0,0),
-            height: 28,
+            height: 32,
         },
         text_field_vintage: {
             margin: theme.spacing(0,0),
@@ -160,7 +159,7 @@ export default function LwinProfileCard(props) {
             />
             
             <Divider className={classes.divider} />
-
+            
             <Grid container spacing={1} className={classes.container_actions} alignItems="center">
                 <IconButton>
                     <AddIcon />
@@ -179,7 +178,7 @@ export default function LwinProfileCard(props) {
                 aria-expanded={expanded}
                 aria-label="add to cellar"
                 >
-                    <AddIcon />
+                    { expanded ? <RemoveIcon /> : <AddIcon /> }
                 </IconButton>
             </Grid>
             
@@ -229,7 +228,7 @@ export default function LwinProfileCard(props) {
         
                 <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
-                        <WineBottleIcon className={classes.svg_icon} fontSize="small" />
+                        <WineBottleIcon className={classes.svg_icon} />
                     </Grid>       
                     <Grid item xs={2}>
                         <Typography variant="body2" className={classes.content_label}>
@@ -268,7 +267,7 @@ export default function LwinProfileCard(props) {
         
                 <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
-                        <SortIcon className={classes.svg_icon} fontSize="small" />
+                        <SortIcon className={classes.svg_icon} />
                     </Grid>       
                     <Grid item xs={2}>
                         <Typography variant="body2" className={classes.content_label}>
@@ -284,7 +283,7 @@ export default function LwinProfileCard(props) {
 
                 <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
-                        <CompassIcon className={classes.svg_icon} fontSize="small" />
+                        <CompassIcon className={classes.svg_icon} />
                     </Grid>       
                     <Grid item xs={3}>
                         <Typography variant="body2" className={classes.content_label}>
@@ -302,7 +301,7 @@ export default function LwinProfileCard(props) {
 
                 <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
-                        <StoreIcon className={classes.svg_icon} fontSize="small" />
+                        <StoreIcon className={classes.svg_icon} />
                     </Grid>       
                     <Grid item xs={2}>
                         <Typography variant="body2" className={classes.content_label}>
@@ -318,7 +317,7 @@ export default function LwinProfileCard(props) {
 
                 <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
-                        <MonetizationOnOutlinedIcon className={classes.icon} fontSize="small" />
+                        <MonetizationOnOutlinedIcon className={classes.icon} />
                     </Grid>       
                     <Grid item xs={2}>
                         <Typography variant="body2" className={classes.content_label}>
@@ -334,7 +333,7 @@ export default function LwinProfileCard(props) {
 
                 <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
                     <Grid item xs={1} className={classes.content_icon}>
-                        <EventAvailableIcon className={classes.icon} fontSize="small" />
+                        <EventAvailableIcon className={classes.icon} />
                     </Grid>       
                     <Grid item xs={2}>
                         <Typography variant="body2" className={classes.content_label}>
