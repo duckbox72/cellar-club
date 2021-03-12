@@ -36,22 +36,13 @@ export default function LwinProfileCard(props) {
             backgroundColor: props.darkMode ? brown[600] : '#FFFFFF',//amber[50],
         },
         container_actions: {
-            padding: theme.spacing(1),
+            padding: theme.spacing(1, 2, 1, 1),
         },
         container_collapse: {
             padding: theme.spacing(1,2),
         },
-        content_icon: {
-            //textAlign: "center",
-        },
-        content_info: {
-            //textAlign: "right",
-        },
-        content_label: {
-            //color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-        },
         divider: {
-            margin: theme.spacing(0, 1),
+            margin: theme.spacing(1, 1, 0, 1),
         },
         expand: {
             transform: 'rotate(0deg)',
@@ -147,8 +138,6 @@ export default function LwinProfileCard(props) {
             }
             />
             
-            
-            
             <Grid container spacing={1} className={classes.container_actions} alignItems="center">
                 <IconButton>
                     <AddIcon />
@@ -175,7 +164,7 @@ export default function LwinProfileCard(props) {
 
                 <Divider className={classes.divider} />
                 
-                <Grid container className={classes.container_collapse} spacing={1} alignItems="center" justify="center" >
+                <Grid container className={classes.container_collapse} spacing={1} justify="center" >
                                          
                     <Grid item xs={6} className={classes.content_info}>
                         <Autocomplete  
@@ -187,12 +176,12 @@ export default function LwinProfileCard(props) {
                         clearOnEscape
                         options={infodata.map((option) => option.vintage)}
                         renderInput={(params) => (
-                            <Grid container spacing={1} alignItems="center">
-                                <Grid item className={classes.content_icon}>
+                            <Grid container spacing={1} justify="center" alignItems="center">
+                                <Grid item>
                                     <LeafIcon className={classes.svg_icon} />
                                 </Grid>   
 
-                                <Grid item xs={8} className={classes.content_icon}>
+                                <Grid item xs={8}>
                                 <TextField
                                 id="vintage"
                                 type="number"
@@ -218,12 +207,12 @@ export default function LwinProfileCard(props) {
                         clearOnEscape
                         options={infodata.map((option) => option.size)}
                         renderInput={(params) => (
-                            <Grid container spacing={1} alignItems="center">
-                                <Grid item  className={classes.content_icon}>
+                            <Grid container spacing={1} justify="center" alignItems="center">
+                                <Grid item >
                                     <WineBottleIcon className={classes.svg_icon} />
                                 </Grid>   
 
-                                <Grid item xs={8} className={classes.content_icon}>
+                                <Grid item xs={8}>
                                     <TextField
                                     id="size"
                                     {...params}
@@ -249,12 +238,12 @@ export default function LwinProfileCard(props) {
                         clearOnEscape
                         options={infodata.map((option) => option.size)}
                         renderInput={(params) => (
-                            <Grid container spacing={1} alignItems="center">
-                                <Grid item className={classes.content_icon}>
+                            <Grid container spacing={1} justify="center" alignItems="center">
+                                <Grid item>
                                     <CompassIcon className={classes.svg_icon} />
                                 </Grid>   
 
-                                <Grid item xs={8}  className={classes.content_icon}>
+                                <Grid item xs={8} >
                                     <TextField
                                     id="location-cellar"
                                     {...params}
@@ -279,12 +268,12 @@ export default function LwinProfileCard(props) {
                         clearOnEscape
                         options={infodata.map((option) => option.size)}
                         renderInput={(params) => (
-                            <Grid container spacing={1} alignItems="center">
-                                <Grid item className={classes.content_icon}>
+                            <Grid container spacing={1} justify="center" alignItems="center">
+                                <Grid item>
                                     <CompassIcon className={classes.svg_icon} />
                                 </Grid>   
 
-                                <Grid item xs={8} className={classes.content_icon}>
+                                <Grid item xs={8}>
                                     <TextField
                                     id="location-bin"
                                     {...params}
@@ -309,12 +298,12 @@ export default function LwinProfileCard(props) {
                         clearOnEscape
                         options={infodata.map((option) => option.size)}
                         renderInput={(params) => (
-                            <Grid container spacing={1} alignItems="center">
-                                <Grid item className={classes.content_icon}>
+                            <Grid container spacing={1} justify="center" alignItems="center">
+                                <Grid item>
                                     <CommentOutlinedIcon className={classes.icon} />
                                 </Grid>   
 
-                                <Grid item xs={10}  className={classes.content_icon}>
+                                <Grid item xs={10} >
                                     <TextField
                                     id="comment"
                                     {...params}
@@ -345,12 +334,12 @@ export default function LwinProfileCard(props) {
                         clearOnEscape
                         options={infodata.map((option) => option.store)}
                         renderInput={(params) => (
-                            <Grid container spacing={1} alignItems="center">
-                                <Grid item className={classes.content_icon}>
+                            <Grid container spacing={1} justify="center" alignItems="center">
+                                <Grid item>
                                     <StoreIcon className={classes.svg_icon} />
                                 </Grid>   
 
-                                <Grid item xs={8}  className={classes.content_icon}>
+                                <Grid item xs={8} >
                                     <TextField
                                     id="Store"
                                     {...params}
@@ -367,12 +356,12 @@ export default function LwinProfileCard(props) {
 
                     <Grid item xs={6} className={classes.content_info}>
                             
-                        <Grid container spacing={1} alignItems="center">
-                            <Grid item  className={classes.content_icon}>
+                        <Grid container spacing={1} justify="center" alignItems="center">
+                            <Grid item >
                                 <MonetizationOnOutlinedIcon className={classes.icon} />
                             </Grid>   
 
-                            <Grid item xs={8} className={classes.content_icon}>
+                            <Grid item xs={8}>
                                 <TextField
                                 id="cost"
                                 type="number"
@@ -389,12 +378,12 @@ export default function LwinProfileCard(props) {
 
                     <Grid item xs={6} className={classes.content_info}>
                             
-                        <Grid container spacing={1} alignItems="center">
-                            <Grid item  className={classes.content_icon}>
+                        <Grid container spacing={1} justify="center" alignItems="center">
+                            <Grid item >
                                 <MonetizationOnOutlinedIcon className={classes.icon} />
                             </Grid>   
 
-                            <Grid item xs={8} className={classes.content_icon}>
+                            <Grid item xs={8}>
                                 <TextField
                                 id="added"
                                 type="number"
@@ -411,12 +400,12 @@ export default function LwinProfileCard(props) {
 
                     <Grid item xs={6} className={classes.content_info}>
                             
-                        <Grid container spacing={1} alignItems="center">
-                            <Grid item  className={classes.content_icon}>
+                        <Grid container spacing={1} justify="center" alignItems="center">
+                            <Grid item >
                                 <SortIcon className={classes.svg_icon} />
                             </Grid>   
 
-                            <Grid item xs={8} className={classes.content_icon}>
+                            <Grid item xs={8}>
                                 <TextField
                                 id="quantity"
                                 type="number"
