@@ -9,6 +9,7 @@ import { Avatar, Card, CardHeader, Collapse, Divider, Grid, IconButton, TextFiel
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
+import CompareArrowsOutlinedIcon from '@material-ui/icons/CompareArrowsOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
@@ -16,7 +17,7 @@ import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutline
 import RemoveIcon from '@material-ui/icons/Remove'
 import ShareIcon from '@material-ui/icons/Share';
 
-import { CompassIcon, ExpandAltIcon,LeafIcon, SortIcon, StoreIcon, WineBottleIcon } from './SvgIcons';
+import { CompassIcon, ExpandAltIcon, LeafIcon, SortIcon, StoreIcon, WineBottleIcon } from './SvgIcons';
 
 import amber from '@material-ui/core/colors/amber';
 import brown from '@material-ui/core/colors/brown';
@@ -114,8 +115,19 @@ export default function LwinProfileCard(props) {
                    <InfoOutlinedIcon className={classes.avatar_icon} />
                 </Avatar>
             }
-            
-            
+            action={
+                <Tooltip title="Find in Wine-Searcher">              
+                    <IconButton
+                    className={classes.iconbutton_wslogo}
+                    onClick={() => {console.log('CLICK!')}}
+                    aria-label="find in wine-searcher"
+                    >
+                        <Avatar className={classes.avatar_wslogo}>
+                            <Typography></Typography>
+                        </Avatar>
+                    </IconButton>
+                </Tooltip>
+            }
             title={
                 <Typography variant="body2" className={classes.header_title}>
                    {LwinData.display_name}
@@ -260,7 +272,7 @@ export default function LwinProfileCard(props) {
                         renderInput={(params) => (
                             <Grid container spacing={1} justify="center" alignItems="center">
                                 <Grid item>
-                                    <CompassIcon className={classes.svg_icon} />
+                                    <CompareArrowsOutlinedIcon className={classes.icon} />
                                 </Grid>   
 
                                 <Grid item xs={8}>
@@ -281,7 +293,7 @@ export default function LwinProfileCard(props) {
                     <Grid item xs={12} className={classes.content_info}>
                         <Autocomplete  
                         size="small"
-                        id="NOTE"
+                        id="comment"
                         fullWidth
                         freeSolo
                         onChange={(event,value) => console.log(value)} 
@@ -370,7 +382,7 @@ export default function LwinProfileCard(props) {
                             
                         <Grid container spacing={1} justify="center" alignItems="center">
                             <Grid item >
-                                <MonetizationOnOutlinedIcon className={classes.icon} />
+                                <EventAvailableIcon className={classes.icon} />
                             </Grid>   
 
                             <Grid item xs={8}>

@@ -113,7 +113,8 @@ class Bottle(models.Model):
 
     # auto entered data
     lwin11 = models.CharField(max_length=11)
-    date_added = models.DateTimeField(default=timezone.now)
+    date_added = models.DateField(default=timezone.now)
+    created = models.DateTimeField(default=timezone.now)
 
     def serializer(self):
         return {
@@ -134,6 +135,7 @@ class Bottle(models.Model):
             "note": self.note,
             "lwin11": self.lwin11,
             "date_added": self.date_added,
+            "created": self.created,
         }
 
 

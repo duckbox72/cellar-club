@@ -6,6 +6,8 @@ import { Divider ,Grid, IconButton ,Paper, TextField } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
+import { SearchLocationIcon } from './SvgIcons';
+
 import amber from '@material-ui/core/colors/amber';
 import brown from '@material-ui/core/colors/brown';
 
@@ -28,7 +30,7 @@ export default function Searchbar(props) {
             marginBottom: theme.spacing(2),
         },
         menuIconButton: {
-            padding: 10,
+            //padding: 10,
         },
         searchIconButton: {
             padding: 10,
@@ -36,6 +38,11 @@ export default function Searchbar(props) {
         divider: {
             height: 28,
             margin: 4,
+        },
+        svg_icon: { 
+            height: theme.spacing(2.5),
+            width: theme.spacing(2.5),
+            //color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
     }));
 
@@ -104,8 +111,9 @@ export default function Searchbar(props) {
     return ( 
         <Paper className={classes.root} elevation={1}>
             <IconButton className={classes.menuIconButton}>
-                <MenuIcon />
+                <SearchLocationIcon className={classes.svg_icon} />
             </IconButton>
+                <Divider className={classes.divider} orientation="vertical" />
             <Autocomplete  
                 size="small"
                 className={classes.autocomplete}
@@ -130,14 +138,6 @@ export default function Searchbar(props) {
                     </div>
                 )}
             />
-            <Divider className={classes.divider} orientation="vertical" />
-            <IconButton
-            disabled={searchIconDisabled} 
-            className={classes.searchIconButton}
-            onClick={handleSearchButtonClick}
-            >
-                <SearchIcon />
-            </IconButton>
         </Paper>
     )
 };
