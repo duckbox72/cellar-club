@@ -114,19 +114,8 @@ export default function LwinProfileCard(props) {
                    <InfoOutlinedIcon className={classes.avatar_icon} />
                 </Avatar>
             }
-            action={
-                <Tooltip title="Find in Wine-Searcher">              
-                    <IconButton
-                    className={classes.iconbutton_wslogo}
-                    onClick={() => {console.log('CLICK!')}}
-                    aria-label="find in wine-searcher"
-                    >
-                        <Avatar className={classes.avatar_wslogo}>
-                            <Typography></Typography>
-                        </Avatar>
-                    </IconButton>
-                </Tooltip>
-            }
+            
+            
             title={
                 <Typography variant="body2" className={classes.header_title}>
                    {LwinData.display_name}

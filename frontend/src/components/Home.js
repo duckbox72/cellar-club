@@ -40,7 +40,7 @@ export default function Home(props) {
                     parentSignOutCallback={sigOutCallback}
                     userProfile={userProfile}
                     />
-            <Grid container  spacing={3} justify="center"> 
+            <Grid container  spacing={2} justify="center"> 
                 <Grid item xs={12}>
                     
                 </Grid>
