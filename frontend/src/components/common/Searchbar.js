@@ -20,7 +20,7 @@ export default function Searchbar(props) {
             height: 54,
             margin: theme.spacing(0, 3),
             borderRadius: 15,    
-            backgroundColor: props.darkMode ? brown[600] : amber[50],   
+            backgroundColor: props.darkMode ? brown[600] : '#FFFFFF',//amber[50],   
         },
         autocomplete: {
             marginLeft: theme.spacing(1),

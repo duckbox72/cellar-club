@@ -8,6 +8,7 @@ import { Avatar, Card, CardHeader, Collapse, Divider, Grid, IconButton, TextFiel
 
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
+import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
@@ -32,7 +33,7 @@ export default function LwinProfileCard(props) {
         card: {
             margin: theme.spacing(0, 3),
             borderRadius: 15,
-            backgroundColor: props.darkMode ? brown[600] : amber[50],
+            backgroundColor: props.darkMode ? brown[600] : '#FFFFFF',//amber[50],
         },
         container_actions: {
             padding: theme.spacing(1),
@@ -63,7 +64,7 @@ export default function LwinProfileCard(props) {
             transform: 'rotate(180deg)',
         },        
         header: {
-            backgroundColor: props.darkMode ? brown[600] : amber[50],   
+            //backgroundColor: props.darkMode ? brown[600] : '#FFFFFF',//amber[50],   
         },
         header_title: {
             fontWeight: 600,                
@@ -102,12 +103,12 @@ export default function LwinProfileCard(props) {
     const LwinData = props.LwinData;
 
     const infodata = [
-        {vintage: '2000', size: '750ml'},
-        {vintage: '2001', size: '375ml'},
-        {vintage: '2002', size: '187ml'},
-        {vintage: '2003', size: '1.5L'},
-        {vintage: '2004', size: '3.0L'},
-        {vintage: '2005', size: '6.0L'},
+        {vintage: '2000', size: '750ml', store: 'ABC Wine and Spirits'},
+        {vintage: '2001', size: '375ml', store: 'Total Wine & More'},
+        {vintage: '2002', size: '187ml', store: 'Crown Wine and Spirits'},
+        {vintage: '2003', size: '1.5L', store: 'Goody Goody'},
+        {vintage: '2004', size: '3.0L', store: 'Speck\'s Wines'},
+        {vintage: '2005', size: '6.0L', store: 'Cellaraiders.com'},
     
     ];
 
@@ -239,28 +240,6 @@ export default function LwinProfileCard(props) {
                     </Grid>
 
                     <Grid item xs={6} className={classes.content_info}>
-                        
-                            <Grid container spacing={1} alignItems="center">
-                                <Grid item  className={classes.content_icon}>
-                                    <SortIcon className={classes.svg_icon} />
-                                </Grid>   
-
-                                <Grid item xs={8} className={classes.content_icon}>
-                                    <TextField
-                                    id="quantity"
-                                    type="number"
-                                    fullWidth
-                                    InputProps={{ inputProps: { min: 1 } }}
-                                    onChange={console.log('CHANGED')} 
-                                    label="Bottle Count" 
-                                    variant="standard"
-                                    color={props.darkMode == true ? "primary" : "secondary"}
-                                    />
-                                </Grid>
-                            </Grid>
-                    </Grid>
-
-                    <Grid item xs={6} className={classes.content_info}>
                         <Autocomplete  
                         size="small"
                         id="location-cellar"
@@ -320,58 +299,138 @@ export default function LwinProfileCard(props) {
                         />
                     </Grid>  
 
+                    <Grid item xs={12} className={classes.content_info}>
+                        <Autocomplete  
+                        size="small"
+                        id="NOTE"
+                        fullWidth
+                        freeSolo
+                        onChange={(event,value) => console.log(value)} 
+                        clearOnEscape
+                        options={infodata.map((option) => option.size)}
+                        renderInput={(params) => (
+                            <Grid container spacing={1} alignItems="center">
+                                <Grid item className={classes.content_icon}>
+                                    <CommentOutlinedIcon className={classes.icon} />
+                                </Grid>   
+
+                                <Grid item xs={10}  className={classes.content_icon}>
+                                    <TextField
+                                    id="comment"
+                                    {...params}
+                                    onChange={console.log('CHANGED')} 
+                                    label="Comment" 
+                                    variant="standard"
+                                    color={props.darkMode == true ? "primary" : "secondary"}
+                                    />
+                                </Grid>
+                            </Grid>
+                        )}
+                        />   
+                    </Grid>    
+
                 </Grid> 
 
                 <Divider className={classes.divider} />
 
-                <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
-                    <Grid item xs={1} className={classes.content_icon}>
-                        <StoreIcon className={classes.svg_icon} />
-                    </Grid>       
-                    <Grid item xs={2}>
-                        <Typography variant="body2" className={classes.content_label}>
-                            Store
-                        </Typography >
-                    </Grid>
-                    <Grid item xs={9} className={classes.content_info}>
-                        <Typography variant="body2" >
-                            {LwinData.colour}
-                        </Typography>
-                    </Grid>       
-                </Grid>
+                <Grid container className={classes.container_collapse} spacing={1} alignItems="center" justify="center" >
+                    
+                <Grid item xs={6} className={classes.content_info}>
+                        <Autocomplete  
+                        size="small"
+                        id="Store"
+                        fullWidth
+                        freeSolo
+                        onChange={(event,value) => console.log(value)} 
+                        clearOnEscape
+                        options={infodata.map((option) => option.store)}
+                        renderInput={(params) => (
+                            <Grid container spacing={1} alignItems="center">
+                                <Grid item className={classes.content_icon}>
+                                    <StoreIcon className={classes.svg_icon} />
+                                </Grid>   
 
-                <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
-                    <Grid item xs={1} className={classes.content_icon}>
-                        <MonetizationOnOutlinedIcon className={classes.icon} />
-                    </Grid>       
-                    <Grid item xs={2}>
-                        <Typography variant="body2" className={classes.content_label}>
-                            Cost
-                        </Typography >
+                                <Grid item xs={8}  className={classes.content_icon}>
+                                    <TextField
+                                    id="Store"
+                                    {...params}
+                                    onChange={console.log('CHANGED')} 
+                                    label="Store" 
+                                    variant="standard"
+                                    color={props.darkMode == true ? "primary" : "secondary"}
+                                    />
+                                </Grid>
+                            </Grid>
+                        )}
+                        />
                     </Grid>
-                    <Grid item xs={9} className={classes.content_info}>
-                        <Typography variant="body2" >
-                            {LwinData.colour}
-                        </Typography>
-                    </Grid>       
-                </Grid>
 
-                <Grid container className={classes.container_collapse} spacing={0} alignItems="center">
-                    <Grid item xs={1} className={classes.content_icon}>
-                        <EventAvailableIcon className={classes.icon} />
-                    </Grid>       
-                    <Grid item xs={2}>
-                        <Typography variant="body2" className={classes.content_label}>
-                            Added
-                        </Typography >
+                    <Grid item xs={6} className={classes.content_info}>
+                            
+                        <Grid container spacing={1} alignItems="center">
+                            <Grid item  className={classes.content_icon}>
+                                <MonetizationOnOutlinedIcon className={classes.icon} />
+                            </Grid>   
+
+                            <Grid item xs={8} className={classes.content_icon}>
+                                <TextField
+                                id="cost"
+                                type="number"
+                                fullWidth
+                                InputProps={{ inputProps: { min: 0 } }}
+                                onChange={console.log('CHANGED')} 
+                                label="Cost" 
+                                variant="standard"
+                                color={props.darkMode == true ? "primary" : "secondary"}
+                                />
+                            </Grid>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={9} className={classes.content_info}>
-                        <Typography variant="body2" >
-                            {LwinData.colour}
-                        </Typography>
-                    </Grid>       
-                </Grid>
 
+                    <Grid item xs={6} className={classes.content_info}>
+                            
+                        <Grid container spacing={1} alignItems="center">
+                            <Grid item  className={classes.content_icon}>
+                                <MonetizationOnOutlinedIcon className={classes.icon} />
+                            </Grid>   
+
+                            <Grid item xs={8} className={classes.content_icon}>
+                                <TextField
+                                id="added"
+                                type="number"
+                                fullWidth
+                                InputProps={{ inputProps: { min: 1 } }}
+                                onChange={console.log('CHANGED')} 
+                                label="Date added" 
+                                variant="standard"
+                                color={props.darkMode == true ? "primary" : "secondary"}
+                                />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item xs={6} className={classes.content_info}>
+                            
+                        <Grid container spacing={1} alignItems="center">
+                            <Grid item  className={classes.content_icon}>
+                                <SortIcon className={classes.svg_icon} />
+                            </Grid>   
+
+                            <Grid item xs={8} className={classes.content_icon}>
+                                <TextField
+                                id="quantity"
+                                type="number"
+                                fullWidth
+                                InputProps={{ inputProps: { min: 1 } }}
+                                onChange={console.log('CHANGED')} 
+                                label="Quantity" 
+                                variant="standard"
+                                color={props.darkMode == true ? "primary" : "secondary"}
+                                />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>    
             </Collapse>
         </Card>
     );
