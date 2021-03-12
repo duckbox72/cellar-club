@@ -89,11 +89,6 @@ export default function LwinProfileCard(props) {
             width: theme.spacing(2.5),
             color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
-        
-        text_resize: {
-            fontSize: 12,
-        }
-
     }));
 
     
@@ -205,9 +200,6 @@ export default function LwinProfileCard(props) {
                                 label="Vintage" 
                                 variant="standard"
                                 color={props.darkMode == true ? "primary" : "secondary"}
-                                InputProps={{ classes: {
-                                    input: classes.text_resize,
-                                }, }}
                                 />
                                 </Grid>
                             </Grid>
