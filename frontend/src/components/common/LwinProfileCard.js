@@ -8,16 +8,16 @@ import { Avatar, Card, CardHeader, Collapse, Divider, Grid, IconButton, TextFiel
 
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import CompareArrowsOutlinedIcon from '@material-ui/icons/CompareArrowsOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import RemoveIcon from '@material-ui/icons/Remove'
 import ShareIcon from '@material-ui/icons/Share';
 
-import { CompassIcon, ExpandAltIcon, LeafIcon, SortIcon, StoreIcon, WineBottleIcon } from './SvgIcons';
+import { CompassIcon, GlassCheersIcon, SortIcon, StoreIcon, WineBottleIcon } from './SvgIcons';
 
 import amber from '@material-ui/core/colors/amber';
 import brown from '@material-ui/core/colors/brown';
@@ -180,7 +180,7 @@ export default function LwinProfileCard(props) {
                         renderInput={(params) => (
                             <Grid container spacing={1} justify="center" alignItems="center">
                                 <Grid item>
-                                    <LeafIcon className={classes.svg_icon} />
+                                    <GlassCheersIcon className={classes.svg_icon} />
                                 </Grid>   
 
                                 <Grid item xs={8}>
@@ -360,7 +360,7 @@ export default function LwinProfileCard(props) {
                             
                         <Grid container spacing={1} justify="center" alignItems="center">
                             <Grid item >
-                                <MonetizationOnOutlinedIcon className={classes.icon} />
+                                <AttachMoneyIcon className={classes.icon} />
                             </Grid>   
 
                             <Grid item xs={8}>
