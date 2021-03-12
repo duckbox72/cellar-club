@@ -35,7 +35,7 @@ export default function LwinProfileCard(props) {
             margin: theme.spacing(0, 2),
             paddingBottom: theme.spacing(1), 
             borderRadius: 15,
-            backgroundColor: props.darkMode ? brown[600] : '#FFFFFF',//amber[50],
+            backgroundColor: props.darkMode ? brown[600] : theme.palette.common.white ,//brown[600]//amber[50],
         },
         container_actions: {
             padding: theme.spacing(1, 2, 1, 1),
@@ -77,6 +77,9 @@ export default function LwinProfileCard(props) {
         },
         icon: { 
             color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+        },
+        section_title: {
+            //backgroundColor: props.darkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
         },
         svg_icon: { 
             height: theme.spacing(2.5),
@@ -167,6 +170,11 @@ export default function LwinProfileCard(props) {
                 <Divider className={classes.divider} />
                 
                 <Grid container className={classes.container_collapse} spacing={1} justify="center" >
+                    <Grid item xs={12} className={classes.section_title}>
+                        <Typography size="small" variant="button">
+                            Add to my cellar
+                        </Typography>
+                    </Grid>
                                          
                     <Grid item xs={6} className={classes.content_info}>
                         <Autocomplete  
