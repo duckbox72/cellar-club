@@ -40,7 +40,7 @@ export default function Search(props) {
     
     return (
         <div className={classes.root}>
-            <Grid container  spacing={3} justify="center"> 
+            <Grid container  spacing={2} justify="center"> 
                 <Grid item xs={12}>
                     <Navbar 
                     {...props}
