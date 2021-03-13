@@ -38,7 +38,7 @@ export default function LwinProfileCard(props) {
             backgroundColor: props.darkMode ? brown[600] : theme.palette.common.white ,//brown[600]//amber[50],
         },
         container_actions: {
-            padding: theme.spacing(1, 2, 1, 1),
+            padding: theme.spacing(1, 2),
         },
         container_collapse: {
             padding: theme.spacing(1,2),
@@ -48,7 +48,6 @@ export default function LwinProfileCard(props) {
         },
         expand: {
             transform: 'rotate(0deg)',
-            marginLeft: 'auto',
             transition: theme.transitions.create('transform', {
               duration: theme.transitions.duration.shortest,
             }),
@@ -57,18 +56,19 @@ export default function LwinProfileCard(props) {
             transform: 'rotate(180deg)',
         },        
         header: {
+            marginRight: theme.spacing(1),
             //backgroundColor: props.darkMode ? brown[600] : '#FFFFFF',//amber[50],   
         },
         header_title: {
             fontWeight: 600,                
         },
         header_subheader: {
-
+            fontWeight: 500,
         },
         iconbutton_wslogo: {
-            margin: theme.spacing(1,1,0,1),
-            height: theme.spacing(6),
-            width: theme.spacing(6)
+            height: theme.spacing(6.5),
+            width: theme.spacing(6.5),
+            marginLeft: 'auto',
         },
         avatar_wslogo: {
             backgroundImage: "url(/static/images/ws-logo-nobg.png)",
@@ -111,15 +111,16 @@ export default function LwinProfileCard(props) {
 
     return (
         <Card className={classes.card}>
-            <CardHeader
-            disableTypography={true}
-            className={classes.header}
-            avatar={
-                <Avatar className={classes.avatar} aria-label="">
-                   <InfoOutlinedIcon className={classes.avatar_icon} />
-                </Avatar>
-            }
-            action={
+            <Grid container spacing={1} className={classes.container_actions} alignItems="center">
+                <IconButton>
+                    <AddIcon />
+                </IconButton>
+                <IconButton >
+                    <ShareIcon />
+                </IconButton>
+                <IconButton>
+                    <FavoriteIcon />
+                </IconButton>
                 <Tooltip title="Find in Wine-Searcher">              
                     <IconButton
                     className={classes.iconbutton_wslogo}
@@ -129,6 +130,31 @@ export default function LwinProfileCard(props) {
                         <Avatar className={classes.avatar_wslogo}>
                             <Typography></Typography>
                         </Avatar>
+                    </IconButton>
+                </Tooltip>
+            </Grid>
+
+            <Divider />
+
+            <CardHeader
+            disableTypography={true}
+            className={classes.header}
+            avatar={
+                <Avatar className={classes.avatar} aria-label="">
+                   <InfoOutlinedIcon className={classes.avatar_icon} />
+                </Avatar>
+            }
+            action={
+                <Tooltip title="Add to my cellar">
+                    <IconButton
+                    className={clsx(classes.expand, {
+                        [classes.expandOpen]: expanded,
+                    })}
+                    onClick={handleExpandClick}
+                    aria-expanded={expanded}
+                    aria-label="add to cellar"
+                    >
+                        { expanded ? <RemoveIcon /> : <AddIcon /> }
                     </IconButton>
                 </Tooltip>
             }
@@ -143,28 +169,7 @@ export default function LwinProfileCard(props) {
                 </Typography>
             }
             />
-            
-            <Grid container spacing={1} className={classes.container_actions} alignItems="center">
-                <IconButton>
-                    <AddIcon />
-                </IconButton>
-                <IconButton >
-                    <ShareIcon />
-                </IconButton>
-                <IconButton>
-                    <FavoriteIcon />
-                </IconButton>
-                <IconButton
-                className={clsx(classes.expand, {
-                    [classes.expandOpen]: expanded,
-                })}
-                onClick={handleExpandClick}
-                aria-expanded={expanded}
-                aria-label="add to cellar"
-                >
-                    { expanded ? <RemoveIcon /> : <AddIcon /> }
-                </IconButton>
-            </Grid>
+
 
             <Collapse in={expanded} timeout="auto" unmountOnExit>
 
@@ -176,7 +181,7 @@ export default function LwinProfileCard(props) {
                             Add to my cellar
                         </Typography>
                     </Grid>
-                                         
+                                    
                     <Grid item xs={6} className={classes.content_info}>
                         <Autocomplete  
                         size="small"
