@@ -13,6 +13,7 @@ export default function Home(props) {
     const useStyles = makeStyles({
         root: {
             height: screen.availHeight,
+            width: window.width,
         },
     });
 

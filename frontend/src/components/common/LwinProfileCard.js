@@ -80,6 +80,7 @@ export default function LwinProfileCard(props) {
         },
         section_title: {
             //backgroundColor: props.darkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
+            textAlign: "center",
         },
         svg_icon: { 
             height: theme.spacing(2.5),
@@ -170,7 +171,7 @@ export default function LwinProfileCard(props) {
                 <Divider className={classes.divider} />
                 
                 <Grid container className={classes.container_collapse} spacing={1} justify="center" >
-                    <Grid item xs={12} className={classes.section_title}>
+                    <Grid item xs={12} className={classes.section_title}  >
                         <Typography size="small" variant="button">
                             Add to my cellar
                         </Typography>

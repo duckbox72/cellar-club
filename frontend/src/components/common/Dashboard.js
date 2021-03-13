@@ -29,7 +29,7 @@ export default function Dashboard(props) {
             borderRadius: '15px 15px 0px 0px',
             //height: 42,
             //backgroundColor: darkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
-            backgroundColor: darkMode ? brown[600] : amber[50],
+            backgroundColor: props.darkMode ? brown[600] : theme.palette.common.white ,//brown[600]//amber[50],
         },
         toolbar: {
             //height: 40,
