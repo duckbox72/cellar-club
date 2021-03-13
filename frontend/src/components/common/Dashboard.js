@@ -22,7 +22,7 @@ export default function Dashboard(props) {
             //height: 150,
             margin: theme.spacing(0, 3),
             borderRadius: 15,
-            backgroundColor: darkMode ? brown[600] : amber[50],
+            backgroundColor: props.darkMode ? brown[600] : theme.palette.common.white ,//brown[600]//amber[50],
             
         },
         appbar: {
