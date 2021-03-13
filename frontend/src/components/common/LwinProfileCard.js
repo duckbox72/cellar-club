@@ -56,7 +56,7 @@ export default function LwinProfileCard(props) {
             transform: 'rotate(180deg)',
         },        
         header: {
-            marginRight: theme.spacing(1),
+            marginRight: theme.spacing(0.75),
             //backgroundColor: props.darkMode ? brown[600] : '#FFFFFF',//amber[50],   
         },
         header_title: {
