@@ -21,16 +21,13 @@ export default function Searchbar(props) {
             alignItems: 'center',
             height: 54,
             margin: theme.spacing(0, 2),
-            borderRadius: 15,    
+            borderRadius: 10,    
             backgroundColor: props.darkMode ? brown[600] : theme.palette.common.white ,//brown[600]//amber[50],   
         },
         autocomplete: {
             marginLeft: theme.spacing(1),
             marginRight: theme.spacing(1),
             marginBottom: theme.spacing(2),
-        },
-        menuIconButton: {
-            //padding: 10,
         },
         searchIconButton: {
             padding: 10,
@@ -42,7 +39,6 @@ export default function Searchbar(props) {
         svg_icon: { 
             height: theme.spacing(2.5),
             width: theme.spacing(2.5),
-            //color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
     }));
 
@@ -50,7 +46,6 @@ export default function Searchbar(props) {
     
     const [searchbarValue, setSearchbarValue] = useState(null);
     const [searchResult, setSearchResult] = useState([]);
-    const [searchIconDisabled, setSearchIconDisabled] = useState(true)
     
     
     const getLwinData = (currentValue) => {
@@ -77,10 +72,7 @@ export default function Searchbar(props) {
         console.log(`AUTOCOMPLETE CHANGE TO value ==>> ${value}`);
         setSearchbarValue(value)
 
-        if (value == null) {
-            setSearchIconDisabled(true);
-        } else {
-            setSearchIconDisabled(false);
+        if (value !== null) {
             getLwinData(value);
         }
     }
@@ -91,7 +83,6 @@ export default function Searchbar(props) {
         setSearchbarValue(e.target.value);
 
         if (e.target.value == null ) {
-            setSearchIconDisabled(true);
             setSearchResult([]);
         } else {
             if ((e.target.value).length > 2) {
@@ -100,11 +91,6 @@ export default function Searchbar(props) {
                 setSearchResult([]);
             }
         }  
-    }
-
-
-    const handleSearchButtonClick = () => {
-        getLwinData(searchbarValue)
     }
 
 

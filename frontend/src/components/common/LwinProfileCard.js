@@ -16,6 +16,7 @@ import CompareArrowsOutlinedIcon from '@material-ui/icons/CompareArrowsOutlined'
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import ImportExportIcon from '@material-ui/icons/ImportExport';
 import RemoveIcon from '@material-ui/icons/Remove'
 import ShareIcon from '@material-ui/icons/Share';
 
@@ -26,18 +27,21 @@ import brown from '@material-ui/core/colors/brown';
 
 
 export default function LwinProfileCard(props) {
+
+    const LwinData = props.LwinData;
+    const darkMode = props.darkMode;
     
     const useStyles = makeStyles((theme) => ({
         avatar: {
-            backgroundColor: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+            backgroundColor: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
             width: theme.spacing(3),
             height: theme.spacing(3),
         },
         card: {
             margin: theme.spacing(0, 2),
             paddingBottom: theme.spacing(1), 
-            borderRadius: 15,
-            backgroundColor: props.darkMode ? brown[600] : theme.palette.common.white ,//brown[600]//amber[50],
+            borderRadius: 10,
+            backgroundColor: darkMode ? brown[600] : theme.palette.common.white ,//brown[600]//amber[50],
         },
         container_actions: {
             padding: theme.spacing(1, 1.25, 1, 1),
@@ -59,10 +63,11 @@ export default function LwinProfileCard(props) {
         },        
         header: {
             //marginRight: theme.spacing(0.75),
-            //backgroundColor: props.darkMode ? brown[600] : '#FFFFFF',//amber[50],   
+            //backgroundColor: darkMode ? brown[600] : '#FFFFFF',//amber[50],   
         },
         header_title: {
-            fontWeight: 600,                
+            fontWeight: 600,
+            fontSize: theme.spacing(2),                
         },
         header_subheader: {
             fontWeight: 500,
@@ -80,28 +85,25 @@ export default function LwinProfileCard(props) {
             backgroundColor: theme.palette.text.secondary,
         },
         icon: { 
-            color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+            color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
         section_title: {
-            //backgroundColor: props.darkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
+            //backgroundColor: darkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
             textAlign: "center",
         },
         svg_icon: { 
             height: theme.spacing(2.5),
             width: theme.spacing(2.5),
-            color: props.darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+            color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
     }));
 
-    
+    const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-    
-    const classes = useStyles();
-    const LwinData = props.LwinData;
 
     const [selectedDate, handleDateChange] = useState(null);
 
@@ -147,9 +149,7 @@ export default function LwinProfileCard(props) {
             disableTypography={true}
             className={classes.header}
             avatar={
-                <Avatar className={classes.avatar} aria-label="">
-                   <InfoOutlinedIcon className={classes.avatar_icon} />
-                </Avatar>
+                <WineBottleIcon className={classes.svg_icon} />
             }
             action={
                 <Tooltip title="Add to my cellar">
@@ -213,7 +213,7 @@ export default function LwinProfileCard(props) {
                                     onChange={console.log('CHANGED')} 
                                     label="Vintage" 
                                     variant="standard"
-                                    color={props.darkMode == true ? "primary" : "secondary"}
+                                    color={darkMode == true ? "primary" : "secondary"}
                                     />
                                     </Grid>
                                 </Grid>
@@ -233,7 +233,7 @@ export default function LwinProfileCard(props) {
                             renderInput={(params) => (
                                 <Grid container spacing={1} justify="center" alignItems="center">
                                     <Grid item >
-                                        <WineBottleIcon className={classes.svg_icon} />
+                                        <ImportExportIcon className={classes.svg_icon} />
                                     </Grid>   
 
                                     <Grid item xs={8}>
@@ -243,8 +243,7 @@ export default function LwinProfileCard(props) {
                                         onChange={console.log('CHANGED')} 
                                         label="Size" 
                                         variant="standard"
-                                        color={props.darkMode == true ? "primary" : "secondary"}
-                                        style={{ fontSize: '24px' }}
+                                        color={darkMode == true ? "primary" : "secondary"}
                                         />
                                     </Grid>
                                 </Grid>
@@ -274,7 +273,7 @@ export default function LwinProfileCard(props) {
                                         onChange={console.log('CHANGED')} 
                                         label="Cellar" 
                                         variant="standard"
-                                        color={props.darkMode == true ? "primary" : "secondary"}
+                                        color={darkMode == true ? "primary" : "secondary"}
                                         />
                                     </Grid>
                                 </Grid>
@@ -304,7 +303,7 @@ export default function LwinProfileCard(props) {
                                         onChange={console.log('CHANGED')} 
                                         label="Bin" 
                                         variant="standard"
-                                        color={props.darkMode == true ? "primary" : "secondary"}
+                                        color={darkMode == true ? "primary" : "secondary"}
                                         />
                                     </Grid>
                                 </Grid>
@@ -334,7 +333,7 @@ export default function LwinProfileCard(props) {
                                         onChange={console.log('CHANGED')} 
                                         label="Comment" 
                                         variant="standard"
-                                        color={props.darkMode == true ? "primary" : "secondary"}
+                                        color={darkMode == true ? "primary" : "secondary"}
                                         />
                                     </Grid>
                                 </Grid>
@@ -370,7 +369,7 @@ export default function LwinProfileCard(props) {
                                         onChange={console.log('CHANGED')} 
                                         label="Store" 
                                         variant="standard"
-                                        color={props.darkMode == true ? "primary" : "secondary"}
+                                        color={darkMode == true ? "primary" : "secondary"}
                                         />
                                     </Grid>
                                 </Grid>
@@ -394,7 +393,7 @@ export default function LwinProfileCard(props) {
                                     onChange={console.log('CHANGED')} 
                                     label="Cost" 
                                     variant="standard"
-                                    color={props.darkMode == true ? "primary" : "secondary"}
+                                    color={darkMode == true ? "primary" : "secondary"}
                                     />
                                 </Grid>
                             </Grid>
@@ -411,13 +410,12 @@ export default function LwinProfileCard(props) {
                                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                     <DatePicker
                                     autoOk
-                                    
                                     clearable 
                                     value={selectedDate} 
                                     label="Date"
+                                    format="MM/dd/yyyy"
                                     onChange={handleDateChange}
-
-                                    color={props.darkMode == true ? "primary" : "secondary"}
+                                    color={darkMode == true ? "primary" : "secondary"}
                                     />
                                 </MuiPickersUtilsProvider>
                                 </Grid>
@@ -440,7 +438,7 @@ export default function LwinProfileCard(props) {
                                     onChange={console.log('CHANGED')} 
                                     label="Quantity" 
                                     variant="standard"
-                                    color={props.darkMode == true ? "primary" : "secondary"}
+                                    color={darkMode == true ? "primary" : "secondary"}
                                     />
                                 </Grid>
                             </Grid>

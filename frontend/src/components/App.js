@@ -15,7 +15,9 @@ const useStyles = makeStyles({
     appStyles: {
         //width: "100%",
         //height: "100%",
-        //position: "absolute"
+        position: "absolute",
+        marginTop: 0,
+        overflowY: "hidden",
     }
 });
 

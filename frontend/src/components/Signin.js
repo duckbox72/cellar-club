@@ -96,6 +96,7 @@ export default function SignIn(props) {
       console.log(data)
       if (data.success) {
         props.parentSigninCallback(true)
+        window.scrollTo(0, 0)
         props.history.push('/') 
       } else {
         setUsername('');
