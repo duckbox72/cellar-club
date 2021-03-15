@@ -414,6 +414,7 @@ export default function LwinProfileCard(props) {
                                     value={selectedDate} 
                                     label="Date"
                                     format="MM/dd/yyyy"
+                                    inputVariant="standard"
                                     onChange={handleDateChange}
                                     color={darkMode == true ? "primary" : "secondary"}
                                     />

@@ -12,7 +12,7 @@ import { getUserProfile } from "./utils/getUserProfile";
 export default function Home(props) {
     const useStyles = makeStyles({
         root: {
-            height: screen.availHeight,
+            //height: screen.availHeight,
         },
     });
 
