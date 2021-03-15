@@ -3,8 +3,10 @@ import clsx from 'clsx';
 
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
-//import DateFnsUtils from '@date-io/date-fns'; //choose lib in future
-//import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns'; //choose lib in future
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DP from './DatePicker';
+
 
 import { Avatar, Card, CardHeader, Collapse, Divider, Grid, IconButton, TextField, Tooltip, Typography } from '@material-ui/core';
 
@@ -103,7 +105,7 @@ export default function LwinProfileCard(props) {
     const classes = useStyles();
     const LwinData = props.LwinData;
 
-    //const [selectedDate, handleDateChange] = useState(new Date());
+    const [selectedDate, handleDateChange] = useState(new Date());
 
 
 
@@ -191,7 +193,7 @@ export default function LwinProfileCard(props) {
                             </Typography>
                         </Grid>
                                         
-                        <Grid item xs={6} className={classes.content_info}>
+                        <Grid item xs={6}>
                             <Autocomplete  
                             size="small"
                             id="vintage"
@@ -222,7 +224,7 @@ export default function LwinProfileCard(props) {
                             />
                         </Grid>
 
-                        <Grid item xs={6} className={classes.content_info}>
+                        <Grid item xs={6}>
                             <Autocomplete  
                             size="small"
                             id="size"
@@ -253,7 +255,7 @@ export default function LwinProfileCard(props) {
                             />
                         </Grid>
 
-                        <Grid item xs={6} className={classes.content_info}>
+                        <Grid item xs={6}>
                             <Autocomplete  
                             size="small"
                             id="location-cellar"
@@ -283,7 +285,7 @@ export default function LwinProfileCard(props) {
                             />
                         </Grid>
 
-                        <Grid item xs={6} className={classes.content_info}>
+                        <Grid item xs={6}>
                             <Autocomplete  
                             size="small"
                             id="location-bin"
@@ -313,7 +315,7 @@ export default function LwinProfileCard(props) {
                             />
                         </Grid>  
 
-                        <Grid item xs={12} className={classes.content_info}>
+                        <Grid item xs={12}>
                             <Autocomplete  
                             size="small"
                             id="comment"
@@ -349,7 +351,7 @@ export default function LwinProfileCard(props) {
 
                     <Grid container className={classes.container_collapse} spacing={1} alignItems="center" justify="center" >
                         
-                    <Grid item xs={6} className={classes.content_info}>
+                    <Grid item xs={6}>
                             <Autocomplete  
                             size="small"
                             id="Store"
@@ -379,7 +381,7 @@ export default function LwinProfileCard(props) {
                             />
                         </Grid>
 
-                        <Grid item xs={6} className={classes.content_info}>
+                        <Grid item xs={6}>
                                 
                             <Grid container spacing={1} justify="center" alignItems="center">
                                 <Grid item >
@@ -401,7 +403,7 @@ export default function LwinProfileCard(props) {
                             </Grid>
                         </Grid>
 
-                        <Grid item xs={6} className={classes.content_info}>
+                        <Grid item xs={6}>
                                 
                             <Grid container spacing={1} justify="center" alignItems="center">
                                 <Grid item >
@@ -423,7 +425,7 @@ export default function LwinProfileCard(props) {
                             </Grid>
                         </Grid>
 
-                        <Grid item xs={6} className={classes.content_info}>
+                        <Grid item xs={6}>
                                 
                             <Grid container spacing={1} justify="center" alignItems="center">
                                 <Grid item >
@@ -444,6 +446,15 @@ export default function LwinProfileCard(props) {
                                 </Grid>
                             </Grid>
                         </Grid>
+
+                        <Grid item xs={12} >
+                            <Grid container spacing={1} justify="center" alignItems="center">
+                                <Grid item>
+                                    <DP />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        
                     </Grid>
                 </form>    
             </Collapse>
