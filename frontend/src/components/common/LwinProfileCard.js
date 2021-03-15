@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import DateFnsUtils from '@date-io/date-fns'; //choose lib in future
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DP from './DatePicker';
-
 
 import { Avatar, Card, CardHeader, Collapse, Divider, Grid, IconButton, TextField, Tooltip, Typography } from '@material-ui/core';
 
@@ -105,8 +103,7 @@ export default function LwinProfileCard(props) {
     const classes = useStyles();
     const LwinData = props.LwinData;
 
-    const [selectedDate, handleDateChange] = useState(new Date());
-
+    const [selectedDate, handleDateChange] = useState(null);
 
 
     const infodata = [
@@ -411,16 +408,18 @@ export default function LwinProfileCard(props) {
                                 </Grid>   
 
                                 <Grid item xs={8}>
-                                    <TextField
-                                    id="date_"
-                                    type="text"
-                                    fullWidth
+                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                    <DatePicker
+                                    autoOk
                                     
-                                    onChange={console.log('CHANGED')} 
-                                    label="Date" 
-                                    variant="standard"
+                                    clearable 
+                                    value={selectedDate} 
+                                    label="Date"
+                                    onChange={handleDateChange}
+
                                     color={props.darkMode == true ? "primary" : "secondary"}
                                     />
+                                </MuiPickersUtilsProvider>
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -447,14 +446,6 @@ export default function LwinProfileCard(props) {
                             </Grid>
                         </Grid>
 
-                        <Grid item xs={12} >
-                            <Grid container spacing={1} justify="center" alignItems="center">
-                                <Grid item>
-                                    <DP />
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                        
                     </Grid>
                 </form>    
             </Collapse>
