@@ -17,7 +17,8 @@ const useStyles = makeStyles({
         minHeight: screen.availHeight,
         position: "absolute",
         marginTop: 0,
-        overflowY: "hidden",
+        borderRadius: 0,
+        overflowY: "hidden",   
     }
 });
 
