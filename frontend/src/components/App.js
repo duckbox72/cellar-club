@@ -13,7 +13,7 @@ import { brown } from "@material-ui/core/colors";
 
 const useStyles = makeStyles({
     appStyles: {
-        //width: "100%",
+        minWidth: '100%',
         minHeight: screen.availHeight,
         position: "absolute",
         marginTop: 0,

@@ -68,7 +68,7 @@ export default function Dashboard(props) {
                     <Typography  className={classes.toolbar_typography_username} variant="body1">
                         {userProfile.username}
                     </Typography>
-                    <Typography className={classes.toolbar_typography_title} variant="body1">
+                    <Typography className={classes.toolbar_typography_title} variant="button">
                         DASHBOARD
                     </Typography>
                     

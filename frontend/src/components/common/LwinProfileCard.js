@@ -6,17 +6,18 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import DateFnsUtils from '@date-io/date-fns'; //choose lib in future
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
-import { Avatar, Card, CardHeader, Collapse, Divider, Grid, IconButton, TextField, Tooltip, Typography } from '@material-ui/core';
+import { Avatar, Button, Card, CardHeader, Collapse, Divider, Grid, IconButton, TextField, Tooltip, Typography } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import CloseIcon from '@material-ui/icons/Close';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import CompareArrowsOutlinedIcon from '@material-ui/icons/CompareArrowsOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import ImportExportIcon from '@material-ui/icons/ImportExport';
+import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import RemoveIcon from '@material-ui/icons/Remove'
 import ShareIcon from '@material-ui/icons/Share';
 
@@ -183,11 +184,16 @@ export default function LwinProfileCard(props) {
                 <Divider className={classes.divider} />
                 
                 <form>
-                    <Grid container className={classes.container_collapse} spacing={1} justify="center" >
-                        <Grid item xs={12} className={classes.section_title}  >
-                            <Typography size="small" variant="button">
-                                Add to my cellar
-                            </Typography>
+                    <Grid container className={classes.container_collapse} spacing={1} justify="space-evenly" >
+                        
+                        <Grid item xs={6}>
+                                <Typography size="small" variant="button">
+                                    Add to my cellar
+                                </Typography>
+                        </Grid>
+
+                        <Grid item xs={4}>
+                                
                         </Grid>
                                         
                         <Grid item xs={6}>
@@ -407,18 +413,19 @@ export default function LwinProfileCard(props) {
                                 </Grid>   
 
                                 <Grid item xs={8}>
-                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                    <DatePicker
-                                    autoOk
-                                    clearable 
-                                    value={selectedDate} 
-                                    label="Date"
-                                    format="MM/dd/yyyy"
-                                    inputVariant="standard"
-                                    onChange={handleDateChange}
-                                    color={darkMode == true ? "primary" : "secondary"}
-                                    />
-                                </MuiPickersUtilsProvider>
+                                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                        <DatePicker
+                                        autoOk
+                                        clearable 
+                                        value={selectedDate} 
+                                        label="Date"
+                                        format="MM/dd/yyyy"
+                                        inputVariant="standard"
+                                        onChange={handleDateChange}
+                                        color={darkMode == true ? "primary" : "secondary"}
+                                        fullWidth
+                                        />
+                                    </MuiPickersUtilsProvider>
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -442,6 +449,21 @@ export default function LwinProfileCard(props) {
                                     color={darkMode == true ? "primary" : "secondary"}
                                     />
                                 </Grid>
+                            </Grid>
+                        </Grid>
+                       
+                        <Grid item xs={12} container spacing={1} style={{ marginTop: 12 }}>
+                            <Grid item style={{ marginLeft: "auto" }}>
+                                <Button size="small" variant="contained" color={ darkMode ? "primary" : "secondary" } >
+                                    <PlaylistAddCheckIcon />
+                                    Add
+                                </Button>
+                            </Grid>
+                            <Grid item>
+                                <Button size="small" variant="contained" color="default">
+                                    <CloseIcon />
+                                    Back
+                                </Button>
                             </Grid>
                         </Grid>
 
