@@ -97,6 +97,10 @@ export default function LwinProfileCard(props) {
             width: theme.spacing(2.5),
             color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
+        button: { 
+            margin: theme.spacing(1),
+            borderRadius: 10,
+        }
     }));
 
     const classes = useStyles();
@@ -452,17 +456,27 @@ export default function LwinProfileCard(props) {
                             </Grid>
                         </Grid>
                        
-                        <Grid item xs={12} container spacing={1} style={{ marginTop: 12 }}>
-                            <Grid item style={{ marginLeft: "auto" }}>
-                                <Button size="small" variant="contained" color={ darkMode ? "primary" : "secondary" } >
-                                    <PlaylistAddCheckIcon />
-                                    Add
+                        <Grid item xs={12} container spacing={0} style={{ marginTop: 12 }} justify="space-around">
+                            <Grid item xs={4}>
+                                <Button
+                                fullWidth
+                                className={classes.button}   
+                                variant="contained" 
+                                color="default"
+                                startIcon={<CloseIcon />}
+                                >
+                                    Back
                                 </Button>
                             </Grid>
-                            <Grid item>
-                                <Button size="small" variant="contained" color="default">
-                                    <CloseIcon />
-                                    Back
+                            <Grid item xs={4}>
+                                <Button
+                                fullWidth
+                                className={classes.button} 
+                                variant="contained" 
+                                color={ darkMode ? "secondary" : "primary" } 
+                                startIcon={<PlaylistAddCheckIcon />}
+                                >    
+                                    Add
                                 </Button>
                             </Grid>
                         </Grid>
