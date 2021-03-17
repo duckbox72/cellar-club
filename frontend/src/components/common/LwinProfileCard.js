@@ -83,8 +83,9 @@ export default function LwinProfileCard(props) {
             backgroundImage: "url(/static/images/ws-logo-nobg.png)",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            backgroundColor: theme.palette.text.secondary,
+            backgroundColor: darkMode ? theme.palette.secondary.main : theme.palette.text.secondary,
         },
+        
         icon: { 
             color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
