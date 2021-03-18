@@ -109,6 +109,7 @@ export default function LwinProfileCard(props) {
 
     
     const [cost, setCost] = useState(null);
+    const [quantity, setQuantity] = useState(null);
 
     const [selectedDate, handleDateChange] = useState(null);
     const [selectedSize, setSelectedSize] = useState(null);
@@ -119,6 +120,10 @@ export default function LwinProfileCard(props) {
 
     const handleCostFieldChange = (e) => {
         setCost(parseInt(e.target.value));
+    };
+
+    const handleQuantityFieldChange = (e) => {
+        setQuantity(e.target.value);
     };
 
     const handleSelectedSizeAutocompleteChange = (value) => {
@@ -147,6 +152,8 @@ export default function LwinProfileCard(props) {
         console.log(cost);
         console.log(selectedVintage);
         console.log(selectedSize);
+        console.log(quantity);
+
 
     }
     
@@ -312,8 +319,10 @@ export default function LwinProfileCard(props) {
                                     id="quantity"
                                     type="number"
                                     fullWidth
-                                    InputProps={{ inputProps: { min: 1 } }}
-                                    onChange={console.log('CHANGED')} 
+                                    value={quantity !== null ? quantity : undefined}
+                                    InputProps={{ inputProps: { min: 1 },
+                                    }}
+                                    onChange={handleQuantityFieldChange}
                                     label="Quantity" 
                                     variant="standard"
                                     color={darkMode == true ? "primary" : "secondary"}
