@@ -3,6 +3,7 @@ from re import L
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
+from django.db.models.fields import BooleanField
 from django.http import JsonResponse
 from django.shortcuts import render
 #from django.urls import reverse
@@ -13,7 +14,7 @@ from rest_framework import generics, serializers, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import Lwin, User
+from .models import BottleSize, Lwin, User
 from .serializers import *
 
 import pandas as pd 
@@ -112,7 +113,7 @@ def sign_up(request):
 
 
 # --------------------------- LWIN DATABASE ROUTES --------------------------- 
-
+@login_required
 def get_lwin(request, display_name):
     try:
         result = Lwin.objects.get(display_name=display_name)
@@ -122,10 +123,20 @@ def get_lwin(request, display_name):
     return JsonResponse(result.serializer(),  safe=False, status=status.HTTP_200_OK)
 
 
+@login_required
 def search_lwin(request, display_name):
     results = Lwin.objects.filter(display_name__contains=display_name)
     results = results[:10]
     
     #mini_serializer returns solely display_name data
     return JsonResponse([result.mini_serializer() for result in results], safe=False, status=status.HTTP_200_OK)
+
+
+
+# ------------------------- BOTTLE model RELATED ROUTES
+
+@login_required
+def get_bottle_sizes(request):
+    sizes = BottleSize.objects.all()
+    return JsonResponse([size.serializer() for size in sizes], safe=False, status=status.HTTP_200_OK)
 

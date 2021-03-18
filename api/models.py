@@ -32,7 +32,6 @@ class Lwin(models.Model):
     def mini_serializer(self):
         return {
             "display_name": self.display_name,
-            "lwin": self.lwin
         }
     
     def serializer(self):

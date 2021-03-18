@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -26,11 +26,13 @@ import { CompassIcon, GlassCheersIcon, SortIcon, StoreIcon, WineBottleIcon } fro
 import amber from '@material-ui/core/colors/amber';
 import brown from '@material-ui/core/colors/brown';
 
+import { getBottleSizesOptions } from "../utils/getBottleSizesOptions";
+
 
 export default function LwinProfileCard(props) {
 
-    const LwinData = props.LwinData;
     const darkMode = props.darkMode;
+    const LwinData = props.LwinData;
     
     const useStyles = makeStyles((theme) => ({
         avatar: {
@@ -113,7 +115,10 @@ export default function LwinProfileCard(props) {
 
     const [selectedDate, handleDateChange] = useState(null);
 
-
+    const bottleSizes = getBottleSizesOptions();
+    
+    
+    
     const infodata = [
         {vintage: '2000', size: '750ml', store: 'ABC Wine and Spirits'},
         {vintage: '2001', size: '375ml', store: 'Total Wine & More'},
@@ -121,8 +126,8 @@ export default function LwinProfileCard(props) {
         {vintage: '2003', size: '1.5L', store: 'Goody Goody'},
         {vintage: '2004', size: '3.0L', store: 'Speck\'s Wines'},
         {vintage: '2005', size: '6.0L', store: 'Cellaraiders.com'},
-    
     ];
+
 
     return (
         <Card className={classes.card}>
@@ -240,7 +245,7 @@ export default function LwinProfileCard(props) {
                             freeSolo
                             onChange={(event,value) => console.log(value)} 
                             clearOnEscape
-                            options={infodata.map((option) => option.size)}
+                            options={bottleSizes}
                             renderInput={(params) => (
                                 <Grid container spacing={1} justify="center" alignItems="center">
                                     <Grid item >
@@ -429,6 +434,8 @@ export default function LwinProfileCard(props) {
                                         onChange={handleDateChange}
                                         color={darkMode == true ? "primary" : "secondary"}
                                         fullWidth
+                                        disableToolbar
+                                        showTodayButton
                                         />
                                     </MuiPickersUtilsProvider>
                                 </Grid>
@@ -466,18 +473,19 @@ export default function LwinProfileCard(props) {
                                 color="default"
                                 startIcon={<CloseIcon />}
                                 >
-                                    Back
+                                    Cancel
                                 </Button>
                             </Grid>
                             <Grid item xs={4}>
                                 <Button
+                                disabled={false}
                                 fullWidth
                                 className={classes.button} 
                                 variant="contained" 
                                 color={ darkMode ? "secondary" : "primary" } 
                                 startIcon={<PlaylistAddCheckIcon />}
                                 >    
-                                    Add
+                                    Submit
                                 </Button>
                             </Grid>
                         </Grid>
