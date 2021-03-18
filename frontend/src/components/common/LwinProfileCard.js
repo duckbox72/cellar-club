@@ -26,6 +26,7 @@ import { CompassIcon, GlassCheersIcon, SortIcon, StoreIcon, WineBottleIcon } fro
 import brown from '@material-ui/core/colors/brown';
 
 import { getBottleSizesOptions } from "../utils/getBottleSizesOptions";
+import { getVintageOptions } from "../utils/getVintageOptions";
 
 
 export default function LwinProfileCard(props) {
@@ -105,6 +106,7 @@ export default function LwinProfileCard(props) {
     const [selectedDate, handleDateChange] = useState(null);
 
     const bottleSizes = getBottleSizesOptions();
+    const vintages = getVintageOptions();
     
     
     const infodata = [
@@ -202,7 +204,7 @@ export default function LwinProfileCard(props) {
                             freeSolo
                             onChange={(event,value) => console.log(value)} 
                             clearOnEscape
-                            options={infodata.map((option) => option.vintage)}
+                            options={vintages}
                             renderInput={(params) => (
                                 <Grid container spacing={1} justify="center" alignItems="center">
                                     <Grid item>
@@ -212,7 +214,7 @@ export default function LwinProfileCard(props) {
                                     <Grid item xs={8}>
                                     <TextField
                                     id="vintage"
-                                    type="number"
+                                    type="text"
                                     {...params}
                                     onChange={console.log('CHANGED')} 
                                     label="Vintage" 
