@@ -111,26 +111,30 @@ export default function LwinProfileCard(props) {
     const [cost, setCost] = useState(null);
 
     const [selectedDate, handleDateChange] = useState(null);
+    const [selectedSize, setSelectedSize] = useState(null);
     const [selectedVintage, setSelectedVintage] = useState(null);
     const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);// < ---- TO BE CHANGED
 
 
 
-   
-
     const handleCostFieldChange = (e) => {
         setCost(parseInt(e.target.value));
-        console.log(e.target.value);
     };
+
+    const handleSelectedSizeAutocompleteChange = (value) => {
+        setSelectedSize(value);
+    }
+
+    const handleSelectedSizeTextFieldChange = (e) => {
+        setSelectedSize(e.target.value);
+    }
 
     const handleSelectedVintageAutocompleteChange = (value) => {
         setSelectedVintage(value);
-        console.log(value);
     }
 
     const handleSelectedVintageTextFieldChange = (e) => {
         setSelectedVintage(e.target.value);
-        console.log(e.target.value);
     }
 
 
@@ -142,6 +146,7 @@ export default function LwinProfileCard(props) {
         console.log('CLICK')
         console.log(cost);
         console.log(selectedVintage);
+        console.log(selectedSize);
 
     }
     
@@ -269,7 +274,7 @@ export default function LwinProfileCard(props) {
                             id="size"
                             fullWidth
                             freeSolo
-                            onChange={(event,value) => console.log(value)} 
+                            onChange={(event,value) => handleSelectedSizeAutocompleteChange(value)}
                             clearOnEscape
                             options={bottleSizes}
                             renderInput={(params) => (
@@ -283,7 +288,7 @@ export default function LwinProfileCard(props) {
                                         required
                                         id="size"
                                         {...params}
-                                        onChange={console.log('CHANGED')} 
+                                        onChange={handleSelectedSizeTextFieldChange} 
                                         label="Size" 
                                         variant="standard"
                                         color={darkMode == true ? "primary" : "secondary"}
