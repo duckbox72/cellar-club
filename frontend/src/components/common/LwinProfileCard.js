@@ -23,7 +23,6 @@ import ShareIcon from '@material-ui/icons/Share';
 
 import { CompassIcon, GlassCheersIcon, SortIcon, StoreIcon, WineBottleIcon } from './SvgIcons';
 
-import amber from '@material-ui/core/colors/amber';
 import brown from '@material-ui/core/colors/brown';
 
 import { getBottleSizesOptions } from "../utils/getBottleSizesOptions";
@@ -50,7 +49,7 @@ export default function LwinProfileCard(props) {
             padding: theme.spacing(1, 1.25, 1, 1),
         },
         container_collapse: {
-            padding: theme.spacing(1,2),
+            padding: theme.spacing(1,1),
         },
         divider: {
             margin: theme.spacing(1, 1, 0, 1),
@@ -62,11 +61,7 @@ export default function LwinProfileCard(props) {
             }),
         },
         expandOpen: {
-            transform: 'rotate(180deg)',
-        },        
-        header: {
-            //marginRight: theme.spacing(0.75),
-            //backgroundColor: darkMode ? brown[600] : '#FFFFFF',//amber[50],   
+            transform: 'rotate(180deg)', 
         },
         header_title: {
             fontWeight: 600,
@@ -78,8 +73,7 @@ export default function LwinProfileCard(props) {
         iconbutton_wslogo: {
             height: theme.spacing(6.5),
             width: theme.spacing(6.5),
-            marginLeft: 'auto',
-            
+            marginLeft: 'auto',   
         },
         avatar_wslogo: {
             backgroundImage: "url(/static/images/ws-logo-nobg.png)",
@@ -87,13 +81,8 @@ export default function LwinProfileCard(props) {
             backgroundPosition: 'center',
             backgroundColor: darkMode ? theme.palette.secondary.main : theme.palette.text.secondary,
         },
-        
         icon: { 
             color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-        },
-        section_title: {
-            //backgroundColor: darkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
-            textAlign: "center",
         },
         svg_icon: { 
             height: theme.spacing(2.5),
@@ -116,7 +105,6 @@ export default function LwinProfileCard(props) {
     const [selectedDate, handleDateChange] = useState(null);
 
     const bottleSizes = getBottleSizesOptions();
-    
     
     
     const infodata = [
