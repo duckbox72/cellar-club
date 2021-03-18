@@ -100,27 +100,50 @@ export default function LwinProfileCard(props) {
 
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
-
-    const [cost, setCost] = useState(null);
-    const [selectedDate, handleDateChange] = useState(null);
-
-    const bottleSizes = getBottleSizesOptions();
-    const vintages = getVintageOptions();
-
-
-
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
 
-    const handleCostFieldChange = (event) => {
-        setCost(parseInt(event.target.value));
+    const bottleSizes = getBottleSizesOptions();
+    const vintages = getVintageOptions();
+
+    
+    const [cost, setCost] = useState(null);
+
+    const [selectedDate, handleDateChange] = useState(null);
+    const [selectedVintage, setSelectedVintage] = useState(null);
+    const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);// < ---- TO BE CHANGED
+
+
+
+   
+
+    const handleCostFieldChange = (e) => {
+        setCost(parseInt(e.target.value));
+        console.log(e.target.value);
     };
+
+    const handleSelectedVintageAutocompleteChange = (value) => {
+        setSelectedVintage(value);
+        console.log(value);
+    }
+
+    const handleSelectedVintageTextFieldChange = (e) => {
+        setSelectedVintage(e.target.value);
+        console.log(e.target.value);
+    }
+
 
     const handleCancelButtonClick = () => {
         setExpanded(false);
     };
     
+    const handleSubmitButtonClick = () => {
+        console.log('CLICK')
+        console.log(cost);
+        console.log(selectedVintage);
+
+    }
     
     
     const infodata = [
@@ -214,7 +237,7 @@ export default function LwinProfileCard(props) {
                             id="vintage"
                             fullWidth
                             freeSolo
-                            onChange={(event,value) => console.log(value)} 
+                            onChange={(event,value) => handleSelectedVintageAutocompleteChange(value)} 
                             clearOnEscape
                             options={vintages}
                             renderInput={(params) => (
@@ -229,7 +252,7 @@ export default function LwinProfileCard(props) {
                                     id="vintage"
                                     type="text"
                                     {...params}
-                                    onChange={console.log('CHANGED')} 
+                                    onChange={handleSelectedVintageTextFieldChange}
                                     label="Vintage" 
                                     variant="standard"
                                     color={darkMode == true ? "primary" : "secondary"}
@@ -269,6 +292,52 @@ export default function LwinProfileCard(props) {
                                 </Grid>
                             )}
                             />
+                        </Grid>
+
+                        <Grid item xs={6}>
+                                
+                            <Grid container spacing={1} justify="center" alignItems="center">
+                                <Grid item >
+                                    <SortIcon className={classes.svg_icon} />
+                                </Grid>   
+
+                                <Grid item xs={8}>
+                                    <TextField
+                                    required
+                                    id="quantity"
+                                    type="number"
+                                    fullWidth
+                                    InputProps={{ inputProps: { min: 1 } }}
+                                    onChange={console.log('CHANGED')} 
+                                    label="Quantity" 
+                                    variant="standard"
+                                    color={darkMode == true ? "primary" : "secondary"}
+                                    />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+
+                        <Grid item xs={6}>   
+                            <Grid container spacing={1} justify="center" alignItems="center">
+                                <Grid item >
+                                    <AttachMoneyIcon className={classes.icon} />
+                                </Grid>   
+
+                                <Grid item xs={8}>
+                                    <TextField
+                                    id="cost"
+                                    fullWidth
+                                    InputProps={{ 
+                                        inputProps: { min: 0 }, 
+                                        inputComponent: currencyNumberFormat,
+                                    }}
+                                    onChange={handleCostFieldChange} 
+                                    label="Cost" 
+                                    variant="standard"
+                                    color={darkMode == true ? "primary" : "secondary"}
+                                    />
+                                </Grid>
+                            </Grid>
                         </Grid>
 
                         <Grid item xs={6}>
@@ -330,44 +399,8 @@ export default function LwinProfileCard(props) {
                             )}
                             />
                         </Grid>  
-
-                        <Grid item xs={12}>
-                            <Autocomplete  
-                            size="small"
-                            id="comment"
-                            fullWidth
-                            freeSolo
-                            onChange={(event,value) => console.log(value)} 
-                            clearOnEscape
-                            options={infodata.map((option) => option.mock)}
-                            renderInput={(params) => (
-                                <Grid container spacing={1} justify="center" alignItems="center">
-                                    <Grid item>
-                                        <CommentOutlinedIcon className={classes.icon} />
-                                    </Grid>   
-
-                                    <Grid item xs={10} >
-                                        <TextField
-                                        id="comment"
-                                        {...params}
-                                        onChange={console.log('CHANGED')} 
-                                        label="Comment" 
-                                        variant="standard"
-                                        color={darkMode == true ? "primary" : "secondary"}
-                                        />
-                                    </Grid>
-                                </Grid>
-                            )}
-                            />   
-                        </Grid>    
-
-                    </Grid> 
-
-                    <Divider className={classes.divider} />
-
-                    <Grid container className={classes.container_collapse} spacing={1} alignItems="center" justify="center" >
                         
-                    <Grid item xs={6}>
+                        <Grid item xs={6}>
                             <Autocomplete  
                             size="small"
                             id="Store"
@@ -401,30 +434,6 @@ export default function LwinProfileCard(props) {
                                 
                             <Grid container spacing={1} justify="center" alignItems="center">
                                 <Grid item >
-                                    <AttachMoneyIcon className={classes.icon} />
-                                </Grid>   
-
-                                <Grid item xs={8}>
-                                    <TextField
-                                    id="cost"
-                                    fullWidth
-                                    InputProps={{ 
-                                        inputProps: { min: 0 }, 
-                                        inputComponent: currencyNumberFormat,
-                                    }}
-                                    onChange={handleCostFieldChange} 
-                                    label="Cost" 
-                                    variant="standard"
-                                    color={darkMode == true ? "primary" : "secondary"}
-                                    />
-                                </Grid>
-                            </Grid>
-                        </Grid>
-
-                        <Grid item xs={6}>
-                                
-                            <Grid container spacing={1} justify="center" alignItems="center">
-                                <Grid item >
                                     <EventAvailableIcon className={classes.icon} />
                                 </Grid>   
 
@@ -447,31 +456,42 @@ export default function LwinProfileCard(props) {
                                 </Grid>
                             </Grid>
                         </Grid>
+    
+                        <Grid item xs={12}>
+                            <Autocomplete  
+                            size="small"
+                            id="comment"
+                            fullWidth
+                            freeSolo
+                            onChange={(event,value) => console.log(value)} 
+                            clearOnEscape
+                            options={infodata.map((option) => option.mock)}
+                            renderInput={(params) => (
+                                <Grid container spacing={1} justify="center" alignItems="center">
+                                    <Grid item>
+                                        <CommentOutlinedIcon className={classes.icon} />
+                                    </Grid>   
 
-                        <Grid item xs={6}>
-                                
-                            <Grid container spacing={1} justify="center" alignItems="center">
-                                <Grid item >
-                                    <SortIcon className={classes.svg_icon} />
-                                </Grid>   
-
-                                <Grid item xs={8}>
-                                    <TextField
-                                    required
-                                    id="quantity"
-                                    type="number"
-                                    fullWidth
-                                    InputProps={{ inputProps: { min: 1 } }}
-                                    onChange={console.log('CHANGED')} 
-                                    label="Quantity" 
-                                    variant="standard"
-                                    color={darkMode == true ? "primary" : "secondary"}
-                                    />
+                                    <Grid item xs={10} >
+                                        <TextField
+                                        id="comment"
+                                        {...params}
+                                        onChange={console.log('CHANGED')} 
+                                        label="Comment" 
+                                        variant="standard"
+                                        color={darkMode == true ? "primary" : "secondary"}
+                                        />
+                                    </Grid>
                                 </Grid>
-                            </Grid>
-                        </Grid>
+                            )}
+                            />   
+                        </Grid>  
                        
-                        <Grid item xs={12} container spacing={0} style={{ marginTop: 12 }} justify="space-around">
+                        <Grid item xs={12}>   
+                             <Divider className={classes.divider} />
+                        </Grid>
+
+                        <Grid item xs={12} container spacing={0} alignItems="center" justify="space-around">
                             <Grid item xs={4}>
                                 <Button
                                 fullWidth
@@ -486,9 +506,10 @@ export default function LwinProfileCard(props) {
                             </Grid>
                             <Grid item xs={4}>
                                 <Button
-                                disabled={false}
+                                disabled={submitButtonDisabled}
                                 fullWidth
                                 className={classes.button} 
+                                onClick={handleSubmitButtonClick}
                                 variant="contained" 
                                 color={ darkMode ? "secondary" : "primary" } 
                                 startIcon={<PlaylistAddCheckIcon />}
