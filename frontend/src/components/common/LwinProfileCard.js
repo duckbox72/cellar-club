@@ -25,6 +25,7 @@ import { CompassIcon, GlassCheersIcon, SortIcon, StoreIcon, WineBottleIcon } fro
 
 import brown from '@material-ui/core/colors/brown';
 
+import { currencyNumberFormat} from "../utils/currencyNumberFormat";
 import { getBottleSizesOptions } from "../utils/getBottleSizesOptions";
 import { getVintageOptions } from "../utils/getVintageOptions";
 
@@ -100,14 +101,26 @@ export default function LwinProfileCard(props) {
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
 
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
-
+    const [cost, setCost] = useState(null);
     const [selectedDate, handleDateChange] = useState(null);
 
     const bottleSizes = getBottleSizesOptions();
     const vintages = getVintageOptions();
+
+
+
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
+
+    const handleCostFieldChange = (event) => {
+        setCost(parseInt(event.target.value));
+    };
+
+    const handleCancelButtonClick = () => {
+        setExpanded(false);
+    };
+    
     
     
     const infodata = [
@@ -212,6 +225,7 @@ export default function LwinProfileCard(props) {
 
                                     <Grid item xs={8}>
                                     <TextField
+                                    required
                                     id="vintage"
                                     type="text"
                                     {...params}
@@ -243,6 +257,7 @@ export default function LwinProfileCard(props) {
 
                                     <Grid item xs={8}>
                                         <TextField
+                                        required
                                         id="size"
                                         {...params}
                                         onChange={console.log('CHANGED')} 
@@ -392,10 +407,12 @@ export default function LwinProfileCard(props) {
                                 <Grid item xs={8}>
                                     <TextField
                                     id="cost"
-                                    type="number"
                                     fullWidth
-                                    InputProps={{ inputProps: { min: 0 } }}
-                                    onChange={console.log('CHANGED')} 
+                                    InputProps={{ 
+                                        inputProps: { min: 0 }, 
+                                        inputComponent: currencyNumberFormat,
+                                    }}
+                                    onChange={handleCostFieldChange} 
                                     label="Cost" 
                                     variant="standard"
                                     color={darkMode == true ? "primary" : "secondary"}
@@ -440,6 +457,7 @@ export default function LwinProfileCard(props) {
 
                                 <Grid item xs={8}>
                                     <TextField
+                                    required
                                     id="quantity"
                                     type="number"
                                     fullWidth
@@ -457,7 +475,8 @@ export default function LwinProfileCard(props) {
                             <Grid item xs={4}>
                                 <Button
                                 fullWidth
-                                className={classes.button}   
+                                className={classes.button}  
+                                onClick={handleCancelButtonClick} 
                                 variant="contained" 
                                 color="default"
                                 startIcon={<CloseIcon />}
