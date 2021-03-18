@@ -62,6 +62,7 @@ export default function Search(props) {
                     {...props}
                     darkMode={props.darkMode}
                     LwinData={LwinData}
+                    userProfile={userProfile}
                     />
                 </Grid>
             </Grid>

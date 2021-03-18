@@ -32,6 +32,7 @@ import { getVintageOptions } from "../utils/getVintageOptions";
 export default function LwinProfileCard(props) {
 
     const darkMode = props.darkMode;
+    const userProfile = props.userProfile;
     const LwinData = props.LwinData;
     
     const useStyles = makeStyles((theme) => ({
@@ -110,14 +111,12 @@ export default function LwinProfileCard(props) {
     
     
     const infodata = [
-        {vintage: '2000', size: '750ml', store: 'ABC Wine and Spirits'},
-        {vintage: '2001', size: '375ml', store: 'Total Wine & More'},
-        {vintage: '2002', size: '187ml', store: 'Crown Wine and Spirits'},
-        {vintage: '2003', size: '1.5L', store: 'Goody Goody'},
-        {vintage: '2004', size: '3.0L', store: 'Speck\'s Wines'},
-        {vintage: '2005', size: '6.0L', store: 'Cellaraiders.com'},
+        {mock: 'some string', store: 'ABC Wine and Spirits'},
+        {mock: 'some string', store: 'Total Wine & More'},
+        {mock: 'some string', store: 'Goody Goody'},
+        {mock: 'some string', store: 'Speck\'s Wines'},
+        {mock: 'some string', store: 'Cellaraiders.com'},
     ];
-
 
     return (
         <Card className={classes.card}>
@@ -265,7 +264,7 @@ export default function LwinProfileCard(props) {
                             freeSolo
                             onChange={(event,value) => console.log(value)} 
                             clearOnEscape
-                            options={infodata.map((option) => option.size)}
+                            options={infodata.map((option) => option.mock)}
                             renderInput={(params) => (
                                 <Grid container spacing={1} justify="center" alignItems="center">
                                     <Grid item>
@@ -295,7 +294,7 @@ export default function LwinProfileCard(props) {
                             freeSolo
                             onChange={(event,value) => console.log(value)} 
                             clearOnEscape
-                            options={infodata.map((option) => option.size)}
+                            options={infodata.map((option) => option.mock)}
                             renderInput={(params) => (
                                 <Grid container spacing={1} justify="center" alignItems="center">
                                     <Grid item>
@@ -325,7 +324,7 @@ export default function LwinProfileCard(props) {
                             freeSolo
                             onChange={(event,value) => console.log(value)} 
                             clearOnEscape
-                            options={infodata.map((option) => option.size)}
+                            options={infodata.map((option) => option.mock)}
                             renderInput={(params) => (
                                 <Grid container spacing={1} justify="center" alignItems="center">
                                     <Grid item>

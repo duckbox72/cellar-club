@@ -5,7 +5,6 @@ export function getVintageOptions() {
     
     const vintages = years.reverse().map(String);
     vintages.splice(0, 0, 'N/V')
-    console.log(vintages);
-    
+     
     return vintages;
 }
