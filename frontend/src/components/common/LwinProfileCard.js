@@ -110,9 +110,11 @@ export default function LwinProfileCard(props) {
     
     const [cost, setCost] = useState(null);
     const [quantity, setQuantity] = useState(null);
-
+    const [selectedBin, setSelectedBin] = useState(null);
+    const [selectedCellar, setSelectedCellar] = useState(null);
     const [selectedDate, handleDateChange] = useState(null);
     const [selectedSize, setSelectedSize] = useState(null);
+    const [selectedStore, setSelectedStore] = useState(null);
     const [selectedVintage, setSelectedVintage] = useState(null);
     const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);// < ---- TO BE CHANGED
 
@@ -126,11 +128,35 @@ export default function LwinProfileCard(props) {
         setQuantity(e.target.value);
     };
 
+    const handleSelectedBinAutocompleteChange = (value) => {
+        setSelectedBin(value);
+    }
+
+    const handleSelectedBinTextFieldChange = (e) => {
+        setSelectedBin(e.target.value);
+    }
+
+    const handleSelectedCellarAutocompleteChange = (value) => {
+        setSelectedCellar(value);
+    }
+
+    const handleSelectedCellarTextFieldChange = (e) => {
+        setSelectedCellar(e.target.value);
+    }
+    
     const handleSelectedSizeAutocompleteChange = (value) => {
         setSelectedSize(value);
     }
 
     const handleSelectedSizeTextFieldChange = (e) => {
+        setSelectedSize(e.target.value);
+    }
+
+    const handleSelectedStoreAutocompleteChange = (value) => {
+        setSelectedSize(value);
+    }
+
+    const handleSelectedStoreTextFieldChange = (e) => {
         setSelectedSize(e.target.value);
     }
 
@@ -360,7 +386,7 @@ export default function LwinProfileCard(props) {
                             id="location-cellar"
                             fullWidth
                             freeSolo
-                            onChange={(event,value) => console.log(value)} 
+                            onChange={(event,value) => handleSelectedCellarAutocompleteChange(value)}
                             clearOnEscape
                             options={infodata.map((option) => option.mock)}
                             renderInput={(params) => (
@@ -373,7 +399,7 @@ export default function LwinProfileCard(props) {
                                         <TextField
                                         id="location-cellar"
                                         {...params}
-                                        onChange={console.log('CHANGED')} 
+                                        onChange={handleSelectedCellarTextFieldChange} 
                                         label="Cellar" 
                                         variant="standard"
                                         color={darkMode == true ? "primary" : "secondary"}
@@ -390,7 +416,7 @@ export default function LwinProfileCard(props) {
                             id="location-bin"
                             fullWidth
                             freeSolo
-                            onChange={(event,value) => console.log(value)} 
+                            onChange={(event,value) => handleSelectedBinAutocompleteChange(value)} 
                             clearOnEscape
                             options={infodata.map((option) => option.mock)}
                             renderInput={(params) => (
@@ -403,7 +429,7 @@ export default function LwinProfileCard(props) {
                                         <TextField
                                         id="location-bin"
                                         {...params}
-                                        onChange={console.log('CHANGED')} 
+                                        onChange={handleSelectedBinTextFieldChange}
                                         label="Bin" 
                                         variant="standard"
                                         color={darkMode == true ? "primary" : "secondary"}
@@ -420,7 +446,7 @@ export default function LwinProfileCard(props) {
                             id="Store"
                             fullWidth
                             freeSolo
-                            onChange={(event,value) => console.log(value)} 
+                            onChange={(event,value) => handleSelectedStoreAutocompleteChange(value)} 
                             clearOnEscape
                             options={infodata.map((option) => option.store)}
                             renderInput={(params) => (
@@ -433,7 +459,7 @@ export default function LwinProfileCard(props) {
                                         <TextField
                                         id="Store"
                                         {...params}
-                                        onChange={console.log('CHANGED')} 
+                                        onChange={handleSelectedStoreTextFieldChange} 
                                         label="Store" 
                                         variant="standard"
                                         color={darkMode == true ? "primary" : "secondary"}
