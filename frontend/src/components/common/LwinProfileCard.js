@@ -102,6 +102,7 @@ export default function LwinProfileCard(props) {
     const [expanded, setExpanded] = useState(false);
     const handleExpandClick = () => {
         setExpanded(!expanded);
+        clearFormState();
     };
 
     const bottleSizes = getBottleSizesOptions();
@@ -109,6 +110,7 @@ export default function LwinProfileCard(props) {
 
     
     const [cost, setCost] = useState(null);
+    const [comment, setComment] = useState(null);
     const [quantity, setQuantity] = useState(null);
     const [selectedBin, setSelectedBin] = useState(null);
     const [selectedCellar, setSelectedCellar] = useState(null);
@@ -116,9 +118,25 @@ export default function LwinProfileCard(props) {
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedStore, setSelectedStore] = useState(null);
     const [selectedVintage, setSelectedVintage] = useState(null);
-    const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);// < ---- TO BE CHANGED
+    
+    const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
 
-
+    const clearFormState = () => {
+        setCost(null);
+        setComment(null);
+        setQuantity(null);
+        setSelectedBin(null);
+        setSelectedCellar(null);
+        handleDateChange(null);
+        setSelectedSize(null);
+        setSelectedStore(null);
+        setSelectedVintage(null);
+        setSubmitButtonDisabled(true);
+    };
+    
+    const handleCommentFieldChange = (e) => {
+        setComment(e.target.value);
+    }
 
     const handleCostFieldChange = (e) => {
         setCost(parseInt(e.target.value));
@@ -171,19 +189,33 @@ export default function LwinProfileCard(props) {
 
     const handleCancelButtonClick = () => {
         setExpanded(false);
+        clearFormState();
     };
     
     const handleSubmitButtonClick = () => {
         console.log('CLICK')
+        console.log(LwinData)
         console.log(cost);
         console.log(selectedVintage);
         console.log(selectedSize);
         console.log(quantity);
+        console.log(selectedCellar);
+        console.log(selectedBin);
+        console.log(selectedDate);
+        console.log(selectedStore)
+        console.log(comment);
+    };
+
+    const handleSubmitButtonDisabledStatus = () => {
+        selectedVintage !== null && selectedSize !== null && quantity !== null ?
+        setSubmitButtonDisabled(false) : setSubmitButtonDisabled(true);
+    };
+    
+    useEffect(() => {
+        handleSubmitButtonDisabledStatus()
+    });
 
 
-    }
-    
-    
     const infodata = [
         {mock: 'some string', store: 'ABC Wine and Spirits'},
         {mock: 'some string', store: 'Total Wine & More'},
@@ -498,33 +530,22 @@ export default function LwinProfileCard(props) {
                         </Grid>
     
                         <Grid item xs={12}>
-                            <Autocomplete  
-                            size="small"
-                            id="comment"
-                            fullWidth
-                            freeSolo
-                            onChange={(event,value) => console.log(value)} 
-                            clearOnEscape
-                            options={infodata.map((option) => option.mock)}
-                            renderInput={(params) => (
-                                <Grid container spacing={1} justify="center" alignItems="center">
-                                    <Grid item>
-                                        <CommentOutlinedIcon className={classes.icon} />
-                                    </Grid>   
+                            <Grid container spacing={1} justify="center" alignItems="center">
+                                <Grid item>
+                                    <CommentOutlinedIcon className={classes.icon} />
+                                </Grid>   
 
-                                    <Grid item xs={10} >
-                                        <TextField
-                                        id="comment"
-                                        {...params}
-                                        onChange={console.log('CHANGED')} 
-                                        label="Comment" 
-                                        variant="standard"
-                                        color={darkMode == true ? "primary" : "secondary"}
-                                        />
-                                    </Grid>
+                                <Grid item xs={10} >
+                                    <TextField
+                                    id="comment"
+                                    fullWidth
+                                    onChange={handleCommentFieldChange} 
+                                    label="Comment" 
+                                    variant="standard"
+                                    color={darkMode == true ? "primary" : "secondary"}
+                                    />
                                 </Grid>
-                            )}
-                            />   
+                            </Grid> 
                         </Grid>  
                        
                         <Grid item xs={12}>   
