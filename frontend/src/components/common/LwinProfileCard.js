@@ -13,17 +13,18 @@ import AddIcon from '@material-ui/icons/Add';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import CloseIcon from '@material-ui/icons/Close';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
-import CompareArrowsOutlinedIcon from '@material-ui/icons/CompareArrowsOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ImportExportIcon from '@material-ui/icons/ImportExport';
+import KitchenIcon from '@material-ui/icons/Kitchen';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import RemoveIcon from '@material-ui/icons/Remove'
 import ShareIcon from '@material-ui/icons/Share';
 import SpeakerNotesOutlinedIcon from '@material-ui/icons/SpeakerNotesOutlined';
+import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
 
-import { CompassIcon, GlassCheersIcon, SortIcon, StoreIcon, WineBottleIcon } from './SvgIcons';
+import { CompassIcon, GlassCheersIcon, StoreIcon, WineBottleIcon } from './SvgIcons';
 
 import brown from '@material-ui/core/colors/brown';
 
@@ -90,12 +91,27 @@ export default function LwinProfileCard(props) {
             backgroundColor: darkMode ? theme.palette.secondary.main : theme.palette.text.secondary,
         },
         icon: { 
+            height: theme.spacing(2.5),
+            width: theme.spacing(2.5), 
             color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         },
         svg_icon: { 
             height: theme.spacing(2.5),
             width: theme.spacing(2.5),
+            paddingTop: theme.spacing(1.5),
             color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+        },
+        autocomplete:{ 
+            paddingBottom: theme.spacing(2),
+        },
+        autocomplete_store:{
+            marginTop: theme.spacing(0.5),
+        },
+        datepicker:{
+            paddingBottom: theme.spacing(2),
+        },
+        textfield:{
+            paddingBottom: theme.spacing(2),
         },
         button: { 
             margin: theme.spacing(1),
@@ -294,7 +310,7 @@ export default function LwinProfileCard(props) {
                 <Divider className={classes.divider} />
                 
                 <form>
-                    <Grid container className={classes.container_collapse} spacing={1} justify="space-evenly" >
+                    <Grid container className={classes.container_collapse} spacing={0} justify="space-evenly" >
                         
                         <Grid item xs={6} >
                                 <Typography size="small" variant="button">
@@ -308,6 +324,7 @@ export default function LwinProfileCard(props) {
                                         
                         <Grid item xs={6}>
                             <Autocomplete  
+                            className={classes.autocomplete}
                             size="small"
                             id="vintage"
                             fullWidth
@@ -339,7 +356,8 @@ export default function LwinProfileCard(props) {
                         </Grid>
 
                         <Grid item xs={6}>
-                            <Autocomplete  
+                            <Autocomplete
+                            className={classes.autocomplete}  
                             size="small"
                             id="size"
                             fullWidth
@@ -373,11 +391,12 @@ export default function LwinProfileCard(props) {
                                 
                             <Grid container spacing={1} justify="center" alignItems="center">
                                 <Grid item >
-                                    <SortIcon className={classes.svg_icon} />
+                                    <UnfoldMoreIcon className={classes.icon} />
                                 </Grid>   
 
                                 <Grid item xs={8}>
                                     <TextField
+                                    className={classes.textfield}
                                     required
                                     id="quantity"
                                     type="number"
@@ -402,6 +421,7 @@ export default function LwinProfileCard(props) {
 
                                 <Grid item xs={8}>
                                     <TextField
+                                    className={classes.textfield}
                                     id="cost"
                                     fullWidth
                                     InputProps={{ 
@@ -418,7 +438,8 @@ export default function LwinProfileCard(props) {
                         </Grid>
 
                         <Grid item xs={6}>
-                            <Autocomplete  
+                            <Autocomplete
+                            className={classes.autocomplete}  
                             size="small"
                             id="location-cellar"
                             fullWidth
@@ -429,7 +450,7 @@ export default function LwinProfileCard(props) {
                             renderInput={(params) => (
                                 <Grid container spacing={1} justify="center" alignItems="center">
                                     <Grid item>
-                                        <CompassIcon className={classes.svg_icon} />
+                                        <KitchenIcon className={classes.svg_icon} />
                                     </Grid>   
 
                                     <Grid item xs={8} >
@@ -448,7 +469,8 @@ export default function LwinProfileCard(props) {
                         </Grid>
 
                         <Grid item xs={6}>
-                            <Autocomplete  
+                            <Autocomplete
+                            className={classes.autocomplete}  
                             size="small"
                             id="location-bin"
                             fullWidth
@@ -459,7 +481,7 @@ export default function LwinProfileCard(props) {
                             renderInput={(params) => (
                                 <Grid container spacing={1} justify="center" alignItems="center">
                                     <Grid item>
-                                        <CompareArrowsOutlinedIcon className={classes.icon} />
+                                    <CompassIcon className={classes.svg_icon} />
                                     </Grid>   
 
                                     <Grid item xs={8}>
@@ -478,7 +500,8 @@ export default function LwinProfileCard(props) {
                         </Grid>  
                         
                         <Grid item xs={6}>
-                            <Autocomplete  
+                            <Autocomplete
+                            className={classes.autocomplete_store}  
                             size="small"
                             id="Store"
                             fullWidth
@@ -517,6 +540,7 @@ export default function LwinProfileCard(props) {
                                 <Grid item xs={8}>
                                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                         <DatePicker
+                                        className={classes.datepicker}
                                         autoOk
                                         clearable 
                                         value={selectedDate} 
@@ -542,6 +566,7 @@ export default function LwinProfileCard(props) {
 
                                 <Grid item xs={10} >
                                     <TextField
+                                    className={classes.textfield}
                                     id="comment"
                                     fullWidth
                                     onChange={handleCommentFieldChange} 
