@@ -16,10 +16,12 @@ import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import CompareArrowsOutlinedIcon from '@material-ui/icons/CompareArrowsOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ImportExportIcon from '@material-ui/icons/ImportExport';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import RemoveIcon from '@material-ui/icons/Remove'
 import ShareIcon from '@material-ui/icons/Share';
+import SpeakerNotesOutlinedIcon from '@material-ui/icons/SpeakerNotesOutlined';
 
 import { CompassIcon, GlassCheersIcon, SortIcon, StoreIcon, WineBottleIcon } from './SvgIcons';
 
@@ -52,10 +54,10 @@ export default function LwinProfileCard(props) {
             padding: theme.spacing(1, 1.25, 1, 1),
         },
         container_collapse: {
-            padding: theme.spacing(1,1),
+            padding: theme.spacing(2,2,1,2),
         },
         divider: {
-            margin: theme.spacing(1, 1, 0, 1),
+            margin: theme.spacing(0, 2),
         },
         expand: {
             transform: 'rotate(0deg)',
@@ -65,6 +67,9 @@ export default function LwinProfileCard(props) {
         },
         expandOpen: {
             transform: 'rotate(180deg)', 
+        },
+        header: {
+            
         },
         header_title: {
             fontWeight: 600,
@@ -226,30 +231,30 @@ export default function LwinProfileCard(props) {
 
     return (
         <Card className={classes.card}>
-            <Grid container spacing={1} className={classes.container_actions} alignItems="center">
-                <IconButton>
-                    <AddIcon />
-                </IconButton>
-                <IconButton >
-                    <ShareIcon />
-                </IconButton>
-                <IconButton>
-                    <FavoriteIcon />
-                </IconButton>
-                <Tooltip title="Find in Wine-Searcher">              
-                    <IconButton
-                    className={classes.iconbutton_wslogo}
-                    onClick={() => {console.log('CLICK!')}}
-                    aria-label="find in wine-searcher"
-                    >
-                        <Avatar className={classes.avatar_wslogo}>
-                            <Typography></Typography>
-                        </Avatar>
+            <div id="actions">
+                <Grid container spacing={1} className={classes.container_actions} alignItems="center">
+                    <IconButton>
+                        <FavoriteBorderIcon />
                     </IconButton>
-                </Tooltip>
-            </Grid>
-
-            <Divider />
+                    <IconButton >
+                        <ShareIcon />
+                    </IconButton>
+                    <IconButton>
+                        <SpeakerNotesOutlinedIcon />
+                    </IconButton>
+                    <Tooltip title="Find in Wine-Searcher">              
+                        <IconButton
+                        className={classes.iconbutton_wslogo}
+                        onClick={() => {console.log('CLICK!')}}
+                        aria-label="find in wine-searcher"
+                        >
+                            <Avatar className={classes.avatar_wslogo}>
+                                <Typography></Typography>
+                            </Avatar>
+                        </IconButton>
+                    </Tooltip>
+                </Grid>
+            </div>
 
             <CardHeader
             disableTypography={true}
@@ -291,7 +296,7 @@ export default function LwinProfileCard(props) {
                 <form>
                     <Grid container className={classes.container_collapse} spacing={1} justify="space-evenly" >
                         
-                        <Grid item xs={6}>
+                        <Grid item xs={6} >
                                 <Typography size="small" variant="button">
                                     Add to my cellar
                                 </Typography>
@@ -548,9 +553,7 @@ export default function LwinProfileCard(props) {
                             </Grid> 
                         </Grid>  
                        
-                        <Grid item xs={12}>   
-                             <Divider className={classes.divider} />
-                        </Grid>
+                        
 
                         <Grid item xs={12} container spacing={0} alignItems="center" justify="space-around">
                             <Grid item xs={4}>

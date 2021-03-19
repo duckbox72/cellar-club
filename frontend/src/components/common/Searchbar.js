@@ -2,13 +2,10 @@
 import React, { useEffect ,useState } from "react";
 import { makeStyles } from '@material-ui/core/styles'
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { Divider ,Grid, IconButton ,Paper, TextField } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+import { Divider ,IconButton ,Paper, TextField } from '@material-ui/core';
 
 import { SearchLocationIcon } from './SvgIcons';
 
-import amber from '@material-ui/core/colors/amber';
 import brown from '@material-ui/core/colors/brown';
 
 
@@ -16,25 +13,25 @@ export default function Searchbar(props) {
 
     const useStyles = makeStyles((theme) => ({
         root: {
-            padding: '2px 4px',
+            paddingLeft: theme.spacing(0.5),
             display: 'flex',
+            height: theme.spacing(7.5),
             alignItems: 'center',
-            height: 54,
             margin: theme.spacing(0, 2),
             borderRadius: 10,    
-            backgroundColor: props.darkMode ? brown[600] : theme.palette.common.white ,//brown[600]//amber[50],   
+            backgroundColor: props.darkMode ? brown[600] : theme.palette.common.white 
         },
         autocomplete: {
             marginLeft: theme.spacing(1),
-            marginRight: theme.spacing(1),
-            marginBottom: theme.spacing(2),
+            marginRight: theme.spacing(2),
+            paddingBottom: theme.spacing(1.75),
         },
         searchIconButton: {
             padding: 10,
         },
         divider: {
-            height: 28,
-            margin: 4,
+            height: theme.spacing(4),
+            margin: theme.spacing(.5),
         },
         svg_icon: { 
             height: theme.spacing(2.5),
