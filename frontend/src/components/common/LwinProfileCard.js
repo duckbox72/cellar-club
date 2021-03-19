@@ -402,7 +402,7 @@ export default function LwinProfileCard(props) {
                                     type="number"
                                     fullWidth
                                     value={quantity !== null ? quantity : undefined}
-                                    InputProps={{ inputProps: { min: 1 },
+                                    InputProps={{ inputProps: { min: 1 }, 
                                     }}
                                     onChange={handleQuantityFieldChange}
                                     label="Quantity" 

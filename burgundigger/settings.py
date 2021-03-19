@@ -9,6 +9,12 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+# Included to handle enviroment variables
+import environ
+# Initialise environment variables
+env = environ.Env()
+# reading .env file
+environ.Env.read_env()
 
 from pathlib import Path
 
@@ -20,7 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '9^0w=lr(d3oq7b73=bx-6uwm=r-@p5j_zffo$)4re33r%x2w30'
+# SECRET_KEY = '9^0w=lr(d3oq7b73=bx-6uwm=r-@p5j_zffo$)4re33r%x2w30'
+# original key above moved to .env file
+
+# Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
+SECRET_KEY = env('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

@@ -1,4 +1,7 @@
 /api/lwin-import.py
 /api/LWINdatabase.xls
 /api/LWINdatabase2.xls
+
 /frontend/src/components/common/Searchbar as class comp.js
+
+/burgundigger/.env
