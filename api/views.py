@@ -136,6 +136,9 @@ def search_lwin(request, display_name):
 # ------------------------- GWS API LOOKUP --------------------------------------
 @login_required
 def get_gws_data(lwin7, vintage):
+    gws_api_key = os.environ.get("GWS_API_KEY")
+    headers = {'Authorization': f'Token {gws_api_key}'}
+    limit = f"limit={100}"
     return "TO DO"
     
 
