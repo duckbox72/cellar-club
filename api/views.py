@@ -1,3 +1,4 @@
+import os
 import json
 from re import L
 from django.contrib.auth import authenticate, login, logout
@@ -132,8 +133,14 @@ def search_lwin(request, display_name):
     return JsonResponse([result.mini_serializer() for result in results], safe=False, status=status.HTTP_200_OK)
 
 
+# ------------------------- GWS API LOOKUP --------------------------------------
+@login_required
+def get_gws_data(lwin7, vintage):
+    return "TO DO"
+    
 
-# ------------------------- BOTTLE model RELATED ROUTES
+
+# ------------------------- BOTTLE model RELATED ROUTES -------------------------
 
 @login_required
 def get_bottle_sizes(request):

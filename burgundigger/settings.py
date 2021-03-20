@@ -16,6 +16,8 @@ env = environ.Env()
 # reading .env file
 environ.Env.read_env()
 
+GWS_API_KEY = env('GWS_API_KEY')
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
