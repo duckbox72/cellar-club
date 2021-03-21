@@ -1,4 +1,5 @@
 import os
+import requests
 import json
 from re import L
 from django.contrib.auth import authenticate, login, logout
@@ -135,13 +136,25 @@ def search_lwin(request, display_name):
 
 # ------------------------- GWS API LOOKUP --------------------------------------
 @login_required
-def get_gws_data(lwin7, vintage):
-    gws_api_key = os.environ.get("GWS_API_KEY")
-    headers = {'Authorization': f'Token {gws_api_key}'}
-    limit = f"limit={100}"
-    return "TO DO"
-    
+def get_gws_data(request, lwin7, vintage):
 
+    lwin11 = f'{lwin7}{vintage}'
+    
+    try:
+        gws_api_key = os.environ.get("GWS_API_KEY")
+        headers = {'Authorization': f'Token {gws_api_key}'}
+
+        response = requests.get(f"https://api.globalwinescore.com/globalwinescores/latest?lwin11={lwin11}", headers=headers)
+        
+        #count = response.json().count
+        print(response)
+
+    except:
+        return JsonResponse({'error': 'Bad request.'}, status=status.HTTP_200_OK)
+
+    return JsonResponse({'MESSAGE': lwin11}, safe=False, status=status.HTTP_200_OK)
+    
+    
 
 # ------------------------- BOTTLE model RELATED ROUTES -------------------------
 
