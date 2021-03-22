@@ -35,9 +35,11 @@ import { getVintageOptions } from "../utils/getVintageOptions";
 
 export default function LwinProfileCard(props) {
 
+    // Component props
     const darkMode = props.darkMode;
     const userProfile = props.userProfile;
     const LwinData = props.LwinData;
+    const gwsScores = props.gwsScores;
     
     const useStyles = makeStyles((theme) => ({
         avatar: {
@@ -126,10 +128,11 @@ export default function LwinProfileCard(props) {
         clearFormState();
     };
 
+    // Form options
     const bottleSizes = getBottleSizesOptions();
     const vintages = getVintageOptions();
 
-    
+    // Form fields
     const [cost, setCost] = useState(null);
     const [comment, setComment] = useState(null);
     const [quantity, setQuantity] = useState(null);
@@ -139,7 +142,8 @@ export default function LwinProfileCard(props) {
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedStore, setSelectedStore] = useState(null);
     const [selectedVintage, setSelectedVintage] = useState(null);
-    
+
+    const [score, setScore] = useState(null);
     const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
 
     const clearFormState = () => {
@@ -152,6 +156,8 @@ export default function LwinProfileCard(props) {
         setSelectedSize(null);
         setSelectedStore(null);
         setSelectedVintage(null);
+
+        setScore(null);
         setSubmitButtonDisabled(true);
     };
     
@@ -201,6 +207,7 @@ export default function LwinProfileCard(props) {
 
     const handleSelectedVintageAutocompleteChange = (value) => {
         setSelectedVintage(value);
+        
     }
 
     const handleSelectedVintageTextFieldChange = (e) => {
@@ -232,8 +239,27 @@ export default function LwinProfileCard(props) {
         setSubmitButtonDisabled(false) : setSubmitButtonDisabled(true);
     };
     
+    const getBottleScore = (vintage) => {
+        gwsScores.forEach(element => {
+            if (element.vintage == vintage) {
+                console.log(element.vintage, element.score)
+                setScore(element.score);
+            }
+        });
+    };
+
     useEffect(() => {
         handleSubmitButtonDisabledStatus()
+
+        //getBottleScore(value);
+        //if (gwsScores !== null) {
+        //    console.log(gwsScores);
+        if (gwsScores !== null & selectedVintage !== null) {
+            getBottleScore(selectedVintage);
+            console.log("BOTH gwsScores and selectedVintage are set")
+        } else {
+            console.log('GWS NOT RETURNED YET')
+        }  
     });
 
 
@@ -294,12 +320,12 @@ export default function LwinProfileCard(props) {
             }
             title={
                 <Typography variant="body2" className={classes.header_title}>
-                   {LwinData.display_name}
+                   {LwinData !== null ? LwinData.display_name : ""}
                 </Typography>
             }
             subheader={
                 <Typography variant="body2" color="textSecondary" className={classes.header_subheader}>
-                   {LwinData.region !== undefined ? LwinData.colour + " " + LwinData.region + ", " + LwinData.country : "Search CellarClub for almost 100K products"}
+                   {LwinData !== null ? LwinData.colour + " " + LwinData.region + ", " + LwinData.country : "Search CellarClub for almost 100K products"}
                 </Typography>
             }
             />
@@ -313,15 +339,17 @@ export default function LwinProfileCard(props) {
                     <Grid container className={classes.container_collapse} spacing={0} justify="space-evenly" >
                         
                         <Grid item xs={6} >
-                                <Typography size="small" variant="button">
-                                    Add to my cellar
-                                </Typography>
+                            <Typography size="small" variant="button">
+                                Add to my cellar --- {score !== null ? score : ''}
+                            </Typography>
                         </Grid>
 
                         <Grid item xs={4}>
-                                
+                            <Typography size="small" variant="button">
+                                GWS {score !== null ? score : ''}pts
+                            </Typography>            
                         </Grid>
-                                        
+            
                         <Grid item xs={6}>
                             <Autocomplete  
                             className={classes.autocomplete}

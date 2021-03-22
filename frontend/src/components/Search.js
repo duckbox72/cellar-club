@@ -20,26 +20,21 @@ export default function Search(props) {
     const classes = useStyles();
 
     const userProfile = (getUserProfile());
-    const [LwinData, setLwinData] = useState({});
-    const [gwsScores, setGwsScores] = useState({});
+    const [LwinData, setLwinData] = useState(null);
+    const [gwsScores, setGwsScores] = useState(null);
 
-    const getGwsData = async (lwin=lwin) => {
+    const getGwsScores = async (lwin=lwin) => {
         const response = await fetch(`/api/get_gws_data/${lwin}`);
         const json = await response.json();
-        //json.forEach(element => {
-        //    console.log(element.vintage, element.score);
-        //});
-        console.log(json)
-        const gws  = json['2001']
-        console.log(gws);
-
+        setGwsScores(json);
     }
+
 
     // Navbar callbacks
     const darkModeCallback = () => {
         props.parentCallback();
     }
-    const sigOutCallback = () => {
+    const signOutCallback = () => {
         props.parentSignOutCallback(false);
     }
 
@@ -47,14 +42,9 @@ export default function Search(props) {
     // Searchbar callbacks
     const lwinDataCallback = (lwin_data) => {
         setLwinData(lwin_data);
-        
+        getGwsScores(lwin_data.lwin);  
     }
     
-    useEffect(() => {
-        if (LwinData.lwin !== undefined) {
-            getGwsData(LwinData.lwin);
-        }
-    })
     
     return (
         <div className={classes.root}>
@@ -64,7 +54,7 @@ export default function Search(props) {
                     {...props}
                     darkMode={props.darkMode} 
                     parentCallback={darkModeCallback}
-                    parentSignOutCallback={sigOutCallback}
+                    parentSignOutCallback={signOutCallback}
                     userProfile={userProfile}
                     />
                 </Grid>
@@ -80,8 +70,9 @@ export default function Search(props) {
                     {...props}
                     darkMode={props.darkMode}
                     LwinData={LwinData}
+                    gwsScores={gwsScores}
                     userProfile={userProfile}
-
+                    
                     />
                 </Grid>
             </Grid>
