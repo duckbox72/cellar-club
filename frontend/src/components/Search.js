@@ -42,7 +42,9 @@ export default function Search(props) {
     // Searchbar callbacks
     const lwinDataCallback = (lwin_data) => {
         setLwinData(lwin_data);
-        getGwsScores(lwin_data.lwin);  
+        if (lwin_data !== null) {
+            getGwsScores(lwin_data.lwin)
+        }  
     }
     
     

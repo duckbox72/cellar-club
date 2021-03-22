@@ -257,6 +257,7 @@ export default function LwinProfileCard(props) {
         if (gwsScores !== null & selectedVintage !== null) {
             getBottleScore(selectedVintage);
             console.log("BOTH gwsScores and selectedVintage are set")
+            console.log(gwsScores)
         } else {
             console.log('GWS NOT RETURNED YET')
         }  

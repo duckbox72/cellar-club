@@ -68,9 +68,10 @@ export default function Searchbar(props) {
     const handleAutocompleteChange = (value) => {
         console.log(`AUTOCOMPLETE CHANGE TO value ==>> ${value}`);
         setSearchbarValue(value)
-
         if (value !== null) {
             getLwinData(value);
+        } else {
+            props.parentLwinDataCallback(value);
         }
     }
     
