@@ -118,7 +118,7 @@ export default function LwinProfileCard(props) {
         },
         button: { 
             margin: theme.spacing(1),
-            borderRadius: 10,
+            borderRadius: 20,
         }
     }));
 
@@ -171,7 +171,12 @@ export default function LwinProfileCard(props) {
     };
 
     const handleQuantityFieldChange = (e) => {
-        setQuantity(e.target.value);
+        e.target.value >= 1 ?
+        setQuantity(e.target.value)
+        :
+        setQuantity(null)
+        
+        console.log(e.target.value)
     };
 
     const handleSelectedBinAutocompleteChange = (value) => {
@@ -238,7 +243,7 @@ export default function LwinProfileCard(props) {
     };
 
     const handleSubmitButtonDisabledStatus = () => {
-        selectedVintage !== null && selectedSize !== null && quantity !== null ?
+        LwinData !== null && selectedVintage !== null && selectedSize !== null && quantity !== null ?
         setSubmitButtonDisabled(false) : setSubmitButtonDisabled(true);
     };
     
@@ -458,8 +463,9 @@ export default function LwinProfileCard(props) {
                                     id="quantity"
                                     type="number"
                                     fullWidth
-                                    value={quantity !== null ? quantity : undefined}
-                                    InputProps={{ inputProps: { min: 1 }, 
+                                    //value={quantity !== null ? quantity : null}
+                                    value={quantity}
+                                    InputProps={{ inputProps: { min: 0 }, 
                                     }}
                                     onChange={handleQuantityFieldChange}
                                     label="Quantity" 
@@ -486,7 +492,7 @@ export default function LwinProfileCard(props) {
                                         inputComponent: currencyNumberFormat,
                                     }}
                                     onChange={handleCostFieldChange} 
-                                    label="Cost" 
+                                    label="Unit Cost" 
                                     variant="standard"
                                     color={darkMode == true ? "primary" : "secondary"}
                                     />
