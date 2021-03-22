@@ -198,11 +198,11 @@ export default function LwinProfileCard(props) {
     }
 
     const handleSelectedStoreAutocompleteChange = (value) => {
-        setSelectedSize(value);
+        setSelectedStore(value);
     }
 
     const handleSelectedStoreTextFieldChange = (e) => {
-        setSelectedSize(e.target.value);
+        setSelectedStore(e.target.value);
     }
 
     const handleSelectedVintageAutocompleteChange = (value) => {
@@ -239,14 +239,23 @@ export default function LwinProfileCard(props) {
         setSubmitButtonDisabled(false) : setSubmitButtonDisabled(true);
     };
     
-    const getBottleScore = (vintage) => {
+    const getBottleScore = (vintage) => {     
+        const availableVintages = [];
         gwsScores.forEach(element => {
-            if (element.vintage == vintage) {
-                console.log(element.vintage, element.score)
-                setScore(element.score);
-            }
+            availableVintages.push(element.vintage);
         });
+        
+        availableVintages.includes(vintage) ? 
+            gwsScores.forEach(element => {
+                if  (element.vintage == vintage) {
+                    console.log(element.vintage, element.score)
+                    setScore(element.score);
+                }
+            })
+            :
+            setScore(null);
     };
+
 
     useEffect(() => {
         handleSubmitButtonDisabledStatus()
@@ -331,7 +340,6 @@ export default function LwinProfileCard(props) {
             }
             />
 
-
             <Collapse in={expanded} timeout="auto" unmountOnExit>
 
                 <Divider className={classes.divider} />
@@ -347,7 +355,7 @@ export default function LwinProfileCard(props) {
 
                         <Grid item xs={4}>
                             <Typography size="small" variant="button">
-                                GWS {score !== null ? score : ''}pts
+                                Score {score !== null ? score : ''}pts
                             </Typography>            
                         </Grid>
             
@@ -580,7 +588,6 @@ export default function LwinProfileCard(props) {
                                         color={darkMode == true ? "primary" : "secondary"}
                                         fullWidth
                                         disableToolbar
-                                        showTodayButton
                                         />
                                     </MuiPickersUtilsProvider>
                                 </Grid>

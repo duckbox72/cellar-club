@@ -71,7 +71,7 @@ export default function Searchbar(props) {
         if (value !== null) {
             getLwinData(value);
         } else {
-            props.parentLwinDataCallback(value);
+            props.parentLwinDataCallback(value); // value = false
         }
     }
     
