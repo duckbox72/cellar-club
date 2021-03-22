@@ -266,6 +266,10 @@ export default function LwinProfileCard(props) {
         if (gwsScores !== null & selectedVintage !== null) {
             getBottleScore(selectedVintage);
         }
+
+        if (LwinData === null) {
+            setScore(null);
+        }
     });
 
     const infodata = [
@@ -356,14 +360,16 @@ export default function LwinProfileCard(props) {
                         </Grid>
                         
                         { score !== null ?
-                        <Grid item xs={6} container spacing={1} justify="center" alignItems="center" style={{marginBottom: 8}} >       
-                            <Grid item>
-                                <AllInclusiveIcon className={classes.icon} />
-                            </Grid>
-                            <Grid item xs={8}>
-                                <Typography size="small" variant="body2" >
-                                    {score} pts
-                                </Typography>  
+                        <Grid item xs={6} style={{marginBottom: 8}}> 
+                            <Grid container spacing={1} justify="center" alignItems="center">       
+                                <Grid item>
+                                    <AllInclusiveIcon className={classes.icon} />
+                                </Grid>
+                                <Grid item xs={8}>
+                                    <Typography size="small" variant="body2" >
+                                        {score} pts
+                                    </Typography>  
+                                </Grid>
                             </Grid> 
                         </Grid>
                         :
@@ -379,6 +385,7 @@ export default function LwinProfileCard(props) {
                             id="vintage"
                             fullWidth
                             freeSolo
+                            value={selectedVintage}
                             onChange={(event,value) => handleSelectedVintageAutocompleteChange(value)} 
                             clearOnEscape
                             options={vintages}
