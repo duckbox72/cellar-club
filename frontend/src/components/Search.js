@@ -1,4 +1,4 @@
-import React, { useState, } from "react";
+import React, { useEffect, useState, } from "react";
 import { makeStyles } from "@material-ui/core/styles"
 
 import Grid  from "@material-ui/core/Grid";
@@ -21,7 +21,19 @@ export default function Search(props) {
 
     const userProfile = (getUserProfile());
     const [LwinData, setLwinData] = useState({});
+    const [gwsScores, setGwsScores] = useState({});
 
+    const getGwsData = async (lwin=lwin) => {
+        const response = await fetch(`/api/get_gws_data/${lwin}`);
+        const json = await response.json();
+        //json.forEach(element => {
+        //    console.log(element.vintage, element.score);
+        //});
+        console.log(json)
+        const gws  = json['2001']
+        console.log(gws);
+
+    }
 
     // Navbar callbacks
     const darkModeCallback = () => {
@@ -35,8 +47,14 @@ export default function Search(props) {
     // Searchbar callbacks
     const lwinDataCallback = (lwin_data) => {
         setLwinData(lwin_data);
+        
     }
-
+    
+    useEffect(() => {
+        if (LwinData.lwin !== undefined) {
+            getGwsData(LwinData.lwin);
+        }
+    })
     
     return (
         <div className={classes.root}>
@@ -63,6 +81,7 @@ export default function Search(props) {
                     darkMode={props.darkMode}
                     LwinData={LwinData}
                     userProfile={userProfile}
+
                     />
                 </Grid>
             </Grid>

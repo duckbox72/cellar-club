@@ -136,24 +136,23 @@ def search_lwin(request, display_name):
 
 # ------------------------- GWS API LOOKUP --------------------------------------
 @login_required
-def get_gws_data(request, lwin7, vintage):
-
-    lwin11 = f'{lwin7}{vintage}'
-    
+def get_gws_data(request, lwin):
     try:
         gws_api_key = os.environ.get("GWS_API_KEY")
-        headers = {'Authorization': f'Token {gws_api_key}'}
+        headers = {'Accept': 'application/json', 'Authorization': f'Token {gws_api_key}'}
 
-        response = requests.get(f"https://api.globalwinescore.com/globalwinescores/latest?lwin11={lwin11}", headers=headers)
-        
-        #count = response.json().count
-        print(response)
+        response = requests.get(f"https://api.globalwinescore.com/globalwinescores/latest?lwin={lwin}", headers=headers)
+
+        results = response.json()['results']
+        gws_data = []
+        for result in results:
+            gws_data.append({'vintage': result['vintage'], 'score': result['score']})
 
     except:
         return JsonResponse({'error': 'Bad request.'}, status=status.HTTP_200_OK)
 
-    return JsonResponse({'MESSAGE': lwin11}, safe=False, status=status.HTTP_200_OK)
-    
+    #return JsonResponse([result for result in results], safe=False, status=status.HTTP_200_OK)
+    return JsonResponse(gws_data, safe=False, status=status.HTTP_200_OK)
     
 
 # ------------------------- BOTTLE model RELATED ROUTES -------------------------

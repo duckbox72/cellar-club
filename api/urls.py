@@ -19,7 +19,7 @@ urlpatterns = [
     path('search_lwin/<str:display_name>', views.search_lwin, name="search_lwin"),
 
     # GWS external API ROUTE
-    path('get_gws_data/<str:lwin7>/<str:vintage>', views.get_gws_data, name="get_gws_data"),
+    path('get_gws_data/<str:lwin>', views.get_gws_data, name="get_gws_data"),
 
     # BOTTLE related ROUTES
     path('get_bottle_sizes', views.get_bottle_sizes, name="get_bottle_sizes"),

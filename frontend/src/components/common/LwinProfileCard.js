@@ -225,14 +225,6 @@ export default function LwinProfileCard(props) {
         console.log(selectedDate);
         console.log(selectedStore)
         console.log(comment);
-
-        console.log(LwinData.lwin + selectedVintage)
-
-        fetch(`/api/get_gws_data/${LwinData.lwin}/${selectedVintage}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-        });
     };
 
     const handleSubmitButtonDisabledStatus = () => {
