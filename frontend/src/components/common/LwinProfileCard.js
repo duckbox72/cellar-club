@@ -10,6 +10,7 @@ import { Avatar, Button, Card, CardHeader, Collapse, Divider, Grid, IconButton, 
 
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
+import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import CloseIcon from '@material-ui/icons/Close';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
@@ -243,35 +244,28 @@ export default function LwinProfileCard(props) {
         const availableVintages = [];
         gwsScores.forEach(element => {
             availableVintages.push(element.vintage);
+            
         });
+
         
         availableVintages.includes(vintage) ? 
             gwsScores.forEach(element => {
                 if  (element.vintage == vintage) {
                     console.log(element.vintage, element.score)
-                    setScore(element.score);
+                    setScore(Math.round(element.score));
                 }
             })
             :
             setScore(null);
     };
 
-
     useEffect(() => {
         handleSubmitButtonDisabledStatus()
 
-        //getBottleScore(value);
-        //if (gwsScores !== null) {
-        //    console.log(gwsScores);
         if (gwsScores !== null & selectedVintage !== null) {
             getBottleScore(selectedVintage);
-            console.log("BOTH gwsScores and selectedVintage are set")
-            console.log(gwsScores)
-        } else {
-            console.log('GWS NOT RETURNED YET')
-        }  
+        }
     });
-
 
     const infodata = [
         {mock: 'some string', store: 'ABC Wine and Spirits'},
@@ -347,18 +341,36 @@ export default function LwinProfileCard(props) {
                 <form>
                     <Grid container className={classes.container_collapse} spacing={0} justify="space-evenly" >
                         
-                        <Grid item xs={6} >
-                            <Typography size="small" variant="button">
-                                Add to my cellar --- {score !== null ? score : ''}
-                            </Typography>
+                        <Grid item xs={6} style={{marginBottom: 8}}>
+                            <Grid container>
+                                <Grid item xs={1}>
+                
+                                </Grid>
+                                <Grid item>   
+                                    <Typography size="small" variant="button">
+                                        Add to my cellar
+                                    </Typography>
+                                </Grid>
+                            </Grid>
                         </Grid>
+                        
+                        { score !== null ?
+                        <Grid item xs={6} container spacing={1} justify="center" alignItems="center" style={{marginBottom: 8}} >       
+                            <Grid item>
+                                <AllInclusiveIcon className={classes.icon} />
+                            </Grid>
+                            <Grid item xs={8}>
+                                <Typography size="small" variant="body2" >
+                                    {score} pts
+                                </Typography>  
+                            </Grid> 
+                        </Grid>
+                        :
+                        <Grid itmem xs={6} style={{marginBottom: 8}}>
+                        
+                        </Grid>
+                        }
 
-                        <Grid item xs={4}>
-                            <Typography size="small" variant="button">
-                                Score {score !== null ? score : ''}pts
-                            </Typography>            
-                        </Grid>
-            
                         <Grid item xs={6}>
                             <Autocomplete  
                             className={classes.autocomplete}
