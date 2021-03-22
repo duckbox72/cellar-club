@@ -208,7 +208,9 @@ export default function LwinProfileCard(props) {
 
     const handleSelectedVintageAutocompleteChange = (value) => {
         setSelectedVintage(value);
-        
+        if (value === null) {
+            setScore(null)
+        }
     }
 
     const handleSelectedVintageTextFieldChange = (e) => {
@@ -247,7 +249,6 @@ export default function LwinProfileCard(props) {
             
         });
 
-        
         availableVintages.includes(vintage) ? 
             gwsScores.forEach(element => {
                 if  (element.vintage == vintage) {
