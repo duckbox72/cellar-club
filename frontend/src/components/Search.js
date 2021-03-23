@@ -37,7 +37,7 @@ export default function Search(props) {
         lwin_profile_card: {
             visibility: 'hidden',
             opacity: 0,
-            transition: theme.transitions.create('opacity', {
+            transition: theme.transitions.create('opacity', 'visibility', {
                 duration: theme.transitions.long,
             }),
         },

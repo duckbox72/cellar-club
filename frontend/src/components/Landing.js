@@ -118,7 +118,7 @@ export default function Landing(props) {
                         </Grid>
                         <Grid item>
                             <Typography variant="h6" className={classes.body_typography}>
-                                and easily find, manage and review collection.  
+                                easily setup, manage and review your collection.  
                             </Typography>
                         </Grid>
                         <Grid item>
