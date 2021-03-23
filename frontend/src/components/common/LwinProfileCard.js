@@ -247,7 +247,7 @@ export default function LwinProfileCard(props) {
         setSubmitButtonDisabled(false) : setSubmitButtonDisabled(true);
     };
     
-    const getBottleScore = (vintage) => {     
+    const handleBottleScore = (vintage) => {     
         const availableVintages = [];
         gwsScores.forEach(element => {
             availableVintages.push(element.vintage);
@@ -269,7 +269,7 @@ export default function LwinProfileCard(props) {
         handleSubmitButtonDisabledStatus()
 
         if (gwsScores !== null & selectedVintage !== null) {
-            getBottleScore(selectedVintage);
+            handleBottleScore(selectedVintage);
         }
 
         if (LwinData === null) {
@@ -334,12 +334,12 @@ export default function LwinProfileCard(props) {
             }
             title={
                 <Typography variant="body2" className={classes.header_title}>
-                   {LwinData !== null ? LwinData.display_name : ""}
+                   {LwinData !== null && LwinData !== undefined ? LwinData.display_name : ""}
                 </Typography>
             }
             subheader={
                 <Typography variant="body2" color="textSecondary" className={classes.header_subheader}>
-                   {LwinData !== null ? LwinData.colour + " " + LwinData.region + ", " + LwinData.country : "Search CellarClub for almost 100K products"}
+                   {LwinData !== null && LwinData !== undefined ? LwinData.colour + " " + LwinData.region + ", " + LwinData.country : ""}
                 </Typography>
             }
             />

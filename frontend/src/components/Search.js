@@ -1,5 +1,7 @@
 import React, { useEffect, useState, } from "react";
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, ThemeProvider } from "@material-ui/core/styles"
+
+import clsx from 'clsx';
 
 import Grid  from "@material-ui/core/Grid";
 
@@ -9,17 +11,13 @@ import NavbarTransparent from "./common/NavbarTransparent";
 import Searchbar from "./common/Searchbar";
 
 import { getUserProfile } from "./utils/getUserProfile";
+import { Hidden } from "@material-ui/core";
 
 
 // THIS IS USER'S HOME DEFAULT LANDING PAGE FOR THE APP
 export default function Search(props) {
-    const useStyles = makeStyles({
-        root: {
-            //minHeight: screen.availHeight,
-        },
-    });
 
-    const classes = useStyles();
+    const [lwinProfileCardOpened, setLwinProfileCardOpened] = useState(false);
 
     const userProfile = (getUserProfile());
     const [LwinData, setLwinData] = useState(null);
@@ -30,6 +28,26 @@ export default function Search(props) {
         const json = await response.json();
         setGwsScores(json);
     }
+
+
+    const useStyles = makeStyles((theme) => ({
+        root: {
+            //minHeight: screen.availHeight,
+        },
+        lwin_profile_card: {
+            visibility: 'hidden',
+            opacity: 0,
+            transition: theme.transitions.create('opacity', {
+                duration: theme.transitions.long,
+            }),
+        },
+        lwin_profile_card_open: {
+            visibility: 'visible',
+            opacity: 1,
+        },
+    }));
+
+    const classes = useStyles();
 
 
     // Navbar callbacks
@@ -45,8 +63,11 @@ export default function Search(props) {
     const lwinDataCallback = (lwin_data) => {
         setLwinData(lwin_data);
         if (lwin_data !== null) {
-            getGwsScores(lwin_data.lwin)
-        }  
+            getGwsScores(lwin_data.lwin);
+            setLwinProfileCardOpened(true);
+        }  else {
+            setLwinProfileCardOpened(false)
+        }
     }
     
     
@@ -69,19 +90,18 @@ export default function Search(props) {
                     parentLwinDataCallback={lwinDataCallback}
                     />
                 </Grid>
-                <Grid item xs={12} sm={10} md={8}>
-                    {LwinData ? 
-                        <LwinProfileCard
-                        {...props}
-                        darkMode={props.darkMode}
-                        LwinData={LwinData}
-                        gwsScores={gwsScores}
-                        userProfile={userProfile}
-                        />
-                        :
-                        <>
-                        </>
-                    }
+                <Grid item xs={12} sm={10} md={8}
+                className={clsx(classes.lwin_profile_card, {
+                    [classes.lwin_profile_card_open]: lwinProfileCardOpened,
+                })}
+                >               
+                    <LwinProfileCard
+                    {...props}            
+                    darkMode={props.darkMode}
+                    LwinData={LwinData}
+                    gwsScores={gwsScores}
+                    userProfile={userProfile}
+                    />     
                 </Grid>
             </Grid>
         </div>
