@@ -3,9 +3,11 @@ import { makeStyles } from "@material-ui/core/styles"
 
 import Grid  from "@material-ui/core/Grid";
 
-import Navbar from "./common/Navbar";
-import Searchbar from "./common/Searchbar";
 import LwinProfileCard from "./common/LwinProfileCard";
+import Navbar from "./common/Navbar";
+import NavbarTransparent from "./common/NavbarTransparent";
+import Searchbar from "./common/Searchbar";
+
 import { getUserProfile } from "./utils/getUserProfile";
 
 
@@ -60,6 +62,7 @@ export default function Search(props) {
                     userProfile={userProfile}
                     />
                 </Grid>
+            
                 <Grid item xs={12} sm={10} md={8}>
                     <Searchbar 
                     {...props} 
@@ -68,14 +71,18 @@ export default function Search(props) {
                     />
                 </Grid>
                 <Grid item xs={12} sm={10} md={8}>
-                    <LwinProfileCard
-                    {...props}
-                    darkMode={props.darkMode}
-                    LwinData={LwinData}
-                    gwsScores={gwsScores}
-                    userProfile={userProfile}
-                    
-                    />
+                    {LwinData ? 
+                        <LwinProfileCard
+                        {...props}
+                        darkMode={props.darkMode}
+                        LwinData={LwinData}
+                        gwsScores={gwsScores}
+                        userProfile={userProfile}
+                        />
+                        :
+                        <>
+                        </>
+                    }
                 </Grid>
             </Grid>
         </div>

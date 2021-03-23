@@ -57,8 +57,8 @@ export default function Navbar(props) {
     const classes = useStyles();
 
     return (
-        <AppBar position="static" elevation={1} className={classes.appbar}>
-            <Toolbar className={classes.toolbar}>   
+        <AppBar position="fixed" elevation={1} className={classes.appbar}>
+            <Toolbar>   
                 <Tooltip title="Home">          
                     <AllInclusiveIcon className={classes.iconLogo} onClick={() => {props.history.push('/')}}/>
                 </Tooltip>   
