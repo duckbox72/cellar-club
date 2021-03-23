@@ -1,17 +1,18 @@
 import React, { useEffect, useState, } from "react";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/core/styles";
 
 import clsx from 'clsx';
 
 import Grid  from "@material-ui/core/Grid";
 
+import CCLogo from "./common/CCLogo";
+import Copyright from './common/Copyright';
 import LwinProfileCard from "./common/LwinProfileCard";
 import Navbar from "./common/Navbar";
 import NavbarTransparent from "./common/NavbarTransparent";
 import Searchbar from "./common/Searchbar";
 
 import { getUserProfile } from "./utils/getUserProfile";
-import { Hidden } from "@material-ui/core";
 
 
 // THIS IS USER'S HOME DEFAULT LANDING PAGE FOR THE APP
@@ -23,6 +24,7 @@ export default function Search(props) {
     const [LwinData, setLwinData] = useState(null);
     const [gwsScores, setGwsScores] = useState(null);
 
+    
     const getGwsScores = async (lwin=lwin) => {
         const response = await fetch(`/api/get_gws_data/${lwin}`);
         const json = await response.json();
@@ -41,12 +43,13 @@ export default function Search(props) {
                 duration: theme.transitions.long,
             }),
         },
-        lwin_profile_card_open: {
+        lwin_profile_card_open: {   
             visibility: 'visible',
             opacity: 1,
         },
     }));
 
+    
     const classes = useStyles();
 
 
@@ -102,6 +105,15 @@ export default function Search(props) {
                     gwsScores={gwsScores}
                     userProfile={userProfile}
                     />     
+                </Grid> 
+                <Grid item xs={12} sm={10} md={8}>
+                    <CCLogo 
+                    {...props}
+                    darkMode={props.darkMode}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={10} md={8} style={{margin: 24}}>
+                    <Copyright />
                 </Grid>
             </Grid>
         </div>
