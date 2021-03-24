@@ -351,7 +351,7 @@ export default function LwinProfileCard(props) {
 
                 <Divider className={classes.divider} />
                 
-                <form>
+                <form id="bottle-form" >
                     <Grid container className={classes.container_collapse} spacing={0} justify="space-evenly" >
                         
                         <Grid item xs={6} style={{marginBottom: 8}}>
@@ -466,7 +466,6 @@ export default function LwinProfileCard(props) {
                                     id="quantity"
                                     type="number"
                                     fullWidth
-                                    //value={quantity !== null ? quantity : null}
                                     value={quantity}
                                     InputProps={{ inputProps: { min: 0 }, 
                                     }}

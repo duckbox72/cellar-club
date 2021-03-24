@@ -14,18 +14,8 @@ import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        CellarClub.com
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Copyright from './common/Copyright';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
