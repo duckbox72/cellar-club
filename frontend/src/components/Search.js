@@ -36,6 +36,7 @@ export default function Search(props) {
     const useStyles = makeStyles((theme) => ({
         root: {
             //minHeight: screen.availHeight,
+            //backgroundImage:"url(/static/images/background2.png)",
         },
         lwin_profile_card: {
             visibility: 'hidden',

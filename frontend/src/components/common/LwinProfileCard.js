@@ -297,6 +297,13 @@ export default function LwinProfileCard(props) {
         }
     });
 
+    const infodata = [
+        {mock: 'some string', store: 'ABC Wine and Spirits'},
+        {mock: 'some string', store: 'Total Wine & More'},
+        {mock: 'some string', store: 'Goody Goody'},
+        {mock: 'some string', store: 'Speck\'s Wines'},
+        {mock: 'some string', store: 'Cellaraiders.com'},
+    ];
 
     return (
         <Card className={classes.card}>
