@@ -259,6 +259,8 @@ export default function LwinProfileCard(props) {
         console.log(comment);
         console.log(score);
 
+        
+
 
 
 

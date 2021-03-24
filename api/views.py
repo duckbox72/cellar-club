@@ -16,7 +16,7 @@ from rest_framework import generics, serializers, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import BottleSize, Lwin, User
+from .models import Bottle, BottleSize, Lwin, User
 from .serializers import *
 
 import pandas as pd 
@@ -162,3 +162,21 @@ def get_bottle_sizes(request):
     sizes = BottleSize.objects.all()
     return JsonResponse([size.serializer() for size in sizes], safe=False, status=status.HTTP_200_OK)
 
+
+@csrf_exempt
+@login_required
+def add_bottle_to_collection(request):
+    if request.method != 'POST{{{':
+        return JsonResponse({"error": "POST request required."}, safe=False, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    user = request.user
+    bottle_data = json.loads(request.body)
+
+    bottle = Bottle(
+        user=user
+    )
+
+    print(bottle_data)
+
+
+    return JsonResponse({"success": "posted successfully"}, safe=False, status=status.HTTP_200_OK)
