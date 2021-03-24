@@ -2,9 +2,9 @@
 import React, { useEffect ,useState } from "react";
 import { makeStyles } from '@material-ui/core/styles'
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { Divider ,IconButton ,Paper, TextField } from '@material-ui/core';
+import { Divider ,IconButton , InputAdornment, Menu, MenuItem, Paper, TextField } from '@material-ui/core';
 
-import { SearchLocationIcon } from './SvgIcons';
+import FindReplaceIcon from '@material-ui/icons/FindReplace';
 
 import brown from '@material-ui/core/colors/brown';
 
@@ -33,14 +33,14 @@ export default function Searchbar(props) {
             height: theme.spacing(4),
             margin: theme.spacing(.5),
         },
-        svg_icon: { 
-            height: theme.spacing(2.5),
-            width: theme.spacing(2.5),
+        adornmentButton: { 
+            paddingBottom: theme.spacing(1.75),
         },
     }));
 
     const classes = useStyles();
     
+    const [sourceMenuAnchor, setSourceMenuAnchor] = useState(null);
     const [searchbarValue, setSearchbarValue] = useState(null);
     const [searchResult, setSearchResult] = useState([]);
     
@@ -92,11 +92,38 @@ export default function Searchbar(props) {
     }
 
 
+    const handleSourceMenuClick = (event) => {
+        setSourceMenuAnchor(event.currentTarget);
+        console.log(event.currentTarget);
+    }
+
+
+    const handleSourceMenuClose = (event) => {
+        setSourceMenuAnchor(null);
+        console.log(sourceMenuAnchor);
+    }
+
+
     return ( 
         <Paper className={classes.root} elevation={1}>
-            <IconButton className={classes.menuIconButton}>
-                <SearchLocationIcon className={classes.svg_icon} />
+            <IconButton 
+            aria-controls="source-menu" 
+            aria-haspopup="true"
+            onClick={handleSourceMenuClick}
+            >
+                <FindReplaceIcon />
             </IconButton>
+            <Menu
+            id="source-menu"
+            anchorEl={sourceMenuAnchor}
+            keepMounted
+            open={Boolean(sourceMenuAnchor)}
+            onClose={handleSourceMenuClose}
+            >
+                <MenuItem onClick={handleSourceMenuClose}>Search CellarClub</MenuItem>
+                <MenuItem onClick={handleSourceMenuClose}>Search My Collection</MenuItem>
+                <MenuItem onClick={handleSourceMenuClose}>Search My Reviews</MenuItem>
+            </Menu>
                 <Divider className={classes.divider} orientation="vertical" />
             <Autocomplete  
                 size="small"
