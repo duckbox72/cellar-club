@@ -94,7 +94,7 @@ class Bottle(models.Model):
     bin = models.CharField(max_length=64)
     gws = models.CharField(max_length=6)
     
-    lwin7 = models.CharField(max_length=7)
+    lwin = models.CharField(max_length=7)
     display_name = models.CharField(max_length=256, null=False, blank=False)
     producer_title = models.CharField(max_length=64)
     producer_name = models.CharField(max_length=64)
@@ -121,7 +121,7 @@ class Bottle(models.Model):
             "cellar": self.cellar,
             "bin": self.bin,
             "gws": self.gws,
-            "lwin7": self.lwin7,
+            "lwin": self.lwin,
             "display_name": self.display_name,
             "producer_title": self.producer_title,
             "producer_name": self.producer_name,

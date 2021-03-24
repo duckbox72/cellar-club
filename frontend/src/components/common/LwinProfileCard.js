@@ -259,7 +259,12 @@ export default function LwinProfileCard(props) {
         console.log(comment);
         console.log(score);
 
-        
+        fetch('/api/add_bottle_to_collection', {
+            method: 'POST',
+            body: JSON.stringify({
+                
+            })
+        });
 
 
 
