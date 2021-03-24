@@ -19,6 +19,7 @@ import { getUserProfile } from "./utils/getUserProfile";
 export default function Search(props) {
 
     const [lwinProfileCardOpened, setLwinProfileCardOpened] = useState(false);
+    const [formExpanded, setFormExpanded] = useState(false);
 
     const userProfile = (getUserProfile());
     const [LwinData, setLwinData] = useState(null);
@@ -47,6 +48,9 @@ export default function Search(props) {
             visibility: 'visible',
             opacity: 1,
         },
+        cc_logo: {
+            display: formExpanded ? 'none' : 'block', 
+        }
     }));
 
     
@@ -71,6 +75,11 @@ export default function Search(props) {
         }  else {
             setLwinProfileCardOpened(false)
         }
+    }
+
+    // LwinProfileCard Callback
+    const formExpandedCallback = (expanded) => {
+        setFormExpanded(expanded);
     }
     
     
@@ -104,9 +113,12 @@ export default function Search(props) {
                     LwinData={LwinData}
                     gwsScores={gwsScores}
                     userProfile={userProfile}
+                    parentFormExpandedCallback={formExpandedCallback}
                     />     
                 </Grid> 
-                <Grid item xs={12} sm={10} md={8}>
+                <Grid item xs={12} sm={10} md={8}
+                className={classes.cc_logo}
+                >
                     <CCLogo 
                     {...props}
                     darkMode={props.darkMode}

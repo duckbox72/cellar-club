@@ -124,9 +124,11 @@ export default function LwinProfileCard(props) {
 
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
+    
     const handleExpandClick = () => {
         setExpanded(!expanded);
         clearFormState();
+        props.parentFormExpandedCallback(!expanded);
     };
 
     // Form options
@@ -226,6 +228,7 @@ export default function LwinProfileCard(props) {
     const handleCancelButtonClick = () => {
         setExpanded(false);
         clearFormState();
+        props.parentFormExpandedCallback(false);
     };
     
     const handleSubmitButtonClick = () => {
