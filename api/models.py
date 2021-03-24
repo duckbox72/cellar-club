@@ -92,7 +92,7 @@ class Bottle(models.Model):
     user = models.ForeignKey("User", on_delete=models.CASCADE, null=False, blank=False)
     cellar = models.CharField(max_length=64)
     bin = models.CharField(max_length=64)
-    gws = models.CharField(max_length=6)
+    score = models.CharField(max_length=6)
     
     lwin = models.CharField(max_length=7)
     display_name = models.CharField(max_length=256, null=False, blank=False)
@@ -120,7 +120,7 @@ class Bottle(models.Model):
             "user": self.user,
             "cellar": self.cellar,
             "bin": self.bin,
-            "gws": self.gws,
+            "score": self.score,
             "lwin": self.lwin,
             "display_name": self.display_name,
             "producer_title": self.producer_title,

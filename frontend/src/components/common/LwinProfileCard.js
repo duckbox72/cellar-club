@@ -261,8 +261,26 @@ export default function LwinProfileCard(props) {
 
         fetch('/api/add_bottle_to_collection', {
             method: 'POST',
+            headers: {'Content-Type': 'application/json'}
             body: JSON.stringify({
-                
+                cellar: selectedCellar,
+                bin: selectedBin,
+                score: self.score,
+                "lwin": self.lwin,
+                "display_name": self.display_name,
+                "producer_title": self.producer_title,
+                "producer_name": self.producer_name,
+                "country": self.country,
+                "region": self.region,
+                "vintage": self.vintage,
+                "size": self.vintage,
+                "store": self.store,
+                "cost": self.cost,
+                "note": self.note,
+                "lwin11": self.lwin11,
+                "date_added": self.date_added,
+                "created": self.created,
+
             })
         });
 
