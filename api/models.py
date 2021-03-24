@@ -89,13 +89,13 @@ class Vintage(models.Model):
 
 class Bottle(models.Model):
     # retrieved data
-    user = models.ForeignKey("User", on_delete=models.CASCADE)
+    user = models.ForeignKey("User", on_delete=models.CASCADE, null=False, blank=False)
     cellar = models.CharField(max_length=64)
     bin = models.CharField(max_length=64)
     gws = models.CharField(max_length=6)
     
     lwin7 = models.CharField(max_length=7)
-    display_name = models.CharField(max_length=256)
+    display_name = models.CharField(max_length=256, null=False, blank=False)
     producer_title = models.CharField(max_length=64)
     producer_name = models.CharField(max_length=64)
     country = models.CharField(max_length=64)

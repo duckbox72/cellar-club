@@ -257,6 +257,13 @@ export default function LwinProfileCard(props) {
         console.log(selectedDate);
         console.log(selectedStore)
         console.log(comment);
+        console.log(score);
+
+
+
+
+
+
     };
 
 
