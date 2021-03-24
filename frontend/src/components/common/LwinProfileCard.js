@@ -149,6 +149,7 @@ export default function LwinProfileCard(props) {
     const [score, setScore] = useState(null);
     const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
 
+    
     const clearFormState = () => {
         setCost(null);
         setComment(null);
@@ -164,13 +165,16 @@ export default function LwinProfileCard(props) {
         setSubmitButtonDisabled(true);
     };
     
+
     const handleCommentFieldChange = (e) => {
         setComment(e.target.value);
     }
 
+
     const handleCostFieldChange = (e) => {
         setCost(parseInt(e.target.value));
     };
+
 
     const handleQuantityFieldChange = (e) => {
         e.target.value >= 1 ?
@@ -181,29 +185,36 @@ export default function LwinProfileCard(props) {
         console.log(e.target.value)
     };
 
+
     const handleSelectedBinAutocompleteChange = (value) => {
         setSelectedBin(value);
     }
+
 
     const handleSelectedBinTextFieldChange = (e) => {
         setSelectedBin(e.target.value);
     }
 
+
     const handleSelectedCellarAutocompleteChange = (value) => {
         setSelectedCellar(value);
     }
+
 
     const handleSelectedCellarTextFieldChange = (e) => {
         setSelectedCellar(e.target.value);
     }
     
+
     const handleSelectedSizeAutocompleteChange = (value) => {
         setSelectedSize(value);
     }
 
+
     const handleSelectedSizeTextFieldChange = (e) => {
         setSelectedSize(e.target.value);
     }
+
 
     const handleSelectedStoreAutocompleteChange = (value) => {
         setSelectedStore(value);
@@ -213,12 +224,14 @@ export default function LwinProfileCard(props) {
         setSelectedStore(e.target.value);
     }
 
+
     const handleSelectedVintageAutocompleteChange = (value) => {
         setSelectedVintage(value);
         if (value === null) {
             setScore(null)
         }
     }
+
 
     const handleSelectedVintageTextFieldChange = (e) => {
         setSelectedVintage(e.target.value);
@@ -231,6 +244,7 @@ export default function LwinProfileCard(props) {
         props.parentFormExpandedCallback(false);
     };
     
+
     const handleSubmitButtonClick = () => {
         console.log('CLICK')
         console.log(LwinData)
@@ -245,11 +259,13 @@ export default function LwinProfileCard(props) {
         console.log(comment);
     };
 
+
     const handleSubmitButtonDisabledStatus = () => {
         LwinData !== null && selectedVintage !== null && selectedSize !== null && quantity !== null ?
         setSubmitButtonDisabled(false) : setSubmitButtonDisabled(true);
     };
     
+
     const handleBottleScore = (vintage) => {     
         const availableVintages = [];
         gwsScores.forEach(element => {
@@ -268,6 +284,7 @@ export default function LwinProfileCard(props) {
             setScore(null);
     };
 
+
     useEffect(() => {
         handleSubmitButtonDisabledStatus()
 
@@ -280,16 +297,10 @@ export default function LwinProfileCard(props) {
         }
     });
 
-    const infodata = [
-        {mock: 'some string', store: 'ABC Wine and Spirits'},
-        {mock: 'some string', store: 'Total Wine & More'},
-        {mock: 'some string', store: 'Goody Goody'},
-        {mock: 'some string', store: 'Speck\'s Wines'},
-        {mock: 'some string', store: 'Cellaraiders.com'},
-    ];
 
     return (
         <Card className={classes.card}>
+
             <div id="actions">
                 <Grid container spacing={1} className={classes.container_actions} alignItems="center">
                     <IconButton>
@@ -641,8 +652,6 @@ export default function LwinProfileCard(props) {
                                 </Grid>
                             </Grid> 
                         </Grid>  
-                       
-                        
 
                         <Grid item xs={12} container spacing={0} alignItems="center" justify="space-around">
                             <Grid item xs={4}>
