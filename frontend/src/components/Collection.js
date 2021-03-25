@@ -15,7 +15,7 @@ import Searchbar from "./common/Searchbar";
 import { getUserProfile } from "./utils/getUserProfile";
 
 
-export default function Search(props) {
+export default function Collection(props) {
 
     const [lwinProfileCardOpened, setLwinProfileCardOpened] = useState(false);
     const [formExpanded, setFormExpanded] = useState(false);
