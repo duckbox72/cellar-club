@@ -17,20 +17,18 @@ import { getUserProfile } from "./utils/getUserProfile";
 
 export default function Search(props) {
 
-    const [lwinProfileCardOpened, setLwinProfileCardOpened] = useState(false);
-    const [formExpanded, setFormExpanded] = useState(false);
-
     const userProfile = (getUserProfile());
     const [LwinData, setLwinData] = useState(null);
     const [gwsScores, setGwsScores] = useState(null);
 
-    
     const getGwsScores = async (lwin=lwin) => {
-            const response = await fetch(`/api/get_gws_data/${lwin}`);
-            const json = await response.json();
-            setGwsScores(json);
+        const response = await fetch(`/api/get_gws_data/${lwin}`);
+        const json = await response.json();
+        setGwsScores(json);
     }
-
+    
+    const [lwinProfileCardOpened, setLwinProfileCardOpened] = useState(false);
+    const [formExpanded, setFormExpanded] = useState(false);
 
     const useStyles = makeStyles((theme) => ({
         root: {

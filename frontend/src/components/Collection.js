@@ -1,13 +1,10 @@
 import React, { useEffect, useState, } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-import clsx from 'clsx';
-
 import Grid  from "@material-ui/core/Grid";
 
 import CCLogo from "./common/CCLogo";
 import Copyright from './common/Copyright';
-import LwinProfileCard from "./common/LwinProfileCard";
 import Navbar from "./common/Navbar";
 import NavbarTransparent from "./common/NavbarTransparent";
 import Searchbar from "./common/Searchbar";
@@ -17,38 +14,17 @@ import { getUserProfile } from "./utils/getUserProfile";
 
 export default function Collection(props) {
 
-    const [lwinProfileCardOpened, setLwinProfileCardOpened] = useState(false);
-    const [formExpanded, setFormExpanded] = useState(false);
-
     const userProfile = (getUserProfile());
-    const [LwinData, setLwinData] = useState(null);
-    const [gwsScores, setGwsScores] = useState(null);
-
-    
-    const getGwsScores = async (lwin=lwin) => {
-            const response = await fetch(`/api/get_gws_data/${lwin}`);
-            const json = await response.json();
-            setGwsScores(json);
-    }
+    const [BottleData, setBottleData] = useState(null);
 
 
     const useStyles = makeStyles((theme) => ({
         root: {
             //minHeight: screen.availHeight,
         },
-        lwin_profile_card: {
-            visibility: 'hidden',
-            opacity: 0,
-            transition: theme.transitions.create('opacity', 'visibility', {
-                duration: theme.transitions.long,
-            }),
-        },
-        lwin_profile_card_open: {   
-            visibility: 'visible',
-            opacity: 1,
-        },
+        
         cc_logo: {
-            display: formExpanded ? 'none' : 'block', 
+            //display: formExpanded ? 'none' : 'block', 
         }
     }));
 
@@ -66,26 +42,10 @@ export default function Collection(props) {
 
 
     // Searchbar callbacks
-    const lwinDataCallback = (lwin_data) => {
-        setLwinData(lwin_data);
-        if (lwin_data !== null) {
-            setLwinProfileCardOpened(true);
-            if (lwin_data.lwin !== undefined) {
-                getGwsScores(lwin_data.lwin);
-            } else {
-                setLwinProfileCardOpened(false)
-            }
-        } 
-        else {
-            setLwinProfileCardOpened(false)
-        }
+    const BottleDataCallback = (bottle_data) => {
+        setBottleData(bottle_data);
     }
 
-    // LwinProfileCard Callback
-    const formExpandedCallback = (expanded) => {
-        setFormExpanded(expanded);
-    }
-    
     
     return (
         <div className={classes.root}>
@@ -103,27 +63,11 @@ export default function Collection(props) {
                     <Searchbar 
                     {...props} 
                     darkMode={props.darkMode}
-                    parentLwinDataCallback={lwinDataCallback}
-                    searchLocation={'Search CellarClub'}
+                    parentBottleDataCallback={BottleDataCallback}
+                    searchLocation={'Search My Collection'}
                     />
                 </Grid>
-                <Grid item xs={12} sm={10} md={8}
-                className={clsx(classes.lwin_profile_card, {
-                    [classes.lwin_profile_card_open]: lwinProfileCardOpened,
-                })}
-                >               
-                    <LwinProfileCard
-                    {...props}            
-                    darkMode={props.darkMode}
-                    LwinData={LwinData}
-                    gwsScores={gwsScores}
-                    userProfile={userProfile}
-                    parentFormExpandedCallback={formExpandedCallback}
-                    />     
-                </Grid> 
-                <Grid item xs={12} sm={10} md={8}
-                className={classes.cc_logo}
-                >
+                <Grid item className={classes.cc_logo} xs={12} sm={10} md={8} >
                     <CCLogo 
                     {...props}
                     darkMode={props.darkMode}

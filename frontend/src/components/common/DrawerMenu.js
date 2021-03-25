@@ -114,7 +114,7 @@ export default function DrawerMenu(props) {
           <ListItemText primary={"Home"} />
         </ListItem>
 
-        <ListItem button key="cellar" to="/" component={Link}>
+        <ListItem button key="My Collection" to="/collection" component={Link}>
           <ListItemIcon>
             <ViewListOutlinedIcon className={classes.iconButton} />
           </ListItemIcon>

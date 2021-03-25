@@ -40,7 +40,7 @@ export default function Searchbar(props) {
 
     const classes = useStyles();
 
-    const searchLocation = props.searchLocation
+    const searchLocation = props.searchLocation;
     
     const [sourceMenuAnchor, setSourceMenuAnchor] = useState(null);
     
@@ -48,19 +48,26 @@ export default function Searchbar(props) {
     const [searchResult, setSearchResult] = useState([]);
     
     
-    const getLwinData = (value, searchLocation) => {
-        //fetch('/api/get_lwin' + '?display_name=' + value)
+    const getBottleData = (value) => {
+        fetch(`api/get_bottle/${value}`)
+        .then((response) => response.json())
+        .then(bottle_data => {
+            props.parentBottleDataCallback(bottle_data);
+        });  
+    }
+
+
+    const getLwinData = (value) => {
         fetch(`api/get_lwin/${value}`)
         .then((response) => response.json())
         .then(lwin_data => {
             props.parentLwinDataCallback(lwin_data);
         });  
     }
+                           
     
-    
-    const getSearchResults = (currentValue) => {
-        //fetch('/api/search_lwin' + '?display_name=' + currentValue)
-        fetch(`/api/search_lwin/${currentValue}`)
+    const getSearchResults = (location, value) => {
+        fetch(`/api/search_${location}/${value}`)
         .then((response) => response.json())
         .then(data => {
             setSearchResult(data);
@@ -75,29 +82,53 @@ export default function Searchbar(props) {
         // Search.js calls
         if (searchLocation == 'Search CellarClub') {
             if (value !== null) {
-                getLwinData(value, searchLocation);
+                getLwinData(value);
             } else {
                 props.parentLwinDataCallback(value); // value = false
             }
         }
-        
-       
+
+        // Collection.js calls
+        if (searchLocation == 'Search My Collection') {
+
+            console.log('SEARCH MY COLLECTION SELECTED')
+        }        
     }
     
     
     const handleSearchbarValueChange = e => {
         console.log(`SEARCHBAR VALUE CHANGED TO ${e.target.value}`);
         setSearchbarValue(e.target.value);
-
-        if (e.target.value == null ) {
-            setSearchResult([]);
-        } else {
-            if ((e.target.value).length > 2) {
-                getSearchResults(e.target.value);
-            } else {
+        
+        // Search.js calls
+        if (searchLocation == 'Search CellarClub') {
+            const location = 'lwin';
+            
+            if (e.target.value == null ) {
                 setSearchResult([]);
+            } else {
+                if ((e.target.value).length > 2) {
+                    getSearchResults(location, e.target.value);
+                } else {
+                    setSearchResult([]);
+                }
+            }  
+        }
+
+        // Collection.js calls
+        if (searchLocation == 'Search My Collection') {
+            const location = 'bottle';
+
+            if (e.target.value == null ) {
+                setSearchResult([]);
+            } else {
+                if ((e.target.value).length > 2) {
+                    getSearchResults(location, e.target.value);
+                } else {
+                    setSearchResult([]);
+                }
             }
-        }  
+        }
     }
 
 

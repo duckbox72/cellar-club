@@ -9,6 +9,7 @@ import SignIn from "./Signin";
 import SignUp from "./Signup";
 
 import { brown } from "@material-ui/core/colors";
+import Collection from "./Collection";
 
 
 const useStyles = makeStyles({
@@ -85,13 +86,19 @@ export default function App(props) {
                             parentSignOutCallback={signOutCallback}
                             isAuthenticated={isAuthenticated}
                             />} />
+                            <Route path='/collection' render= {props => <Collection {...props} 
+                            darkMode={darkMode}
+                            parentDarkModeCallback={darkModeCallback}
+                            parentSignOutCallback={signOutCallback}
+                            isAuthenticated={isAuthenticated}
+                            />} />
                             <Route path='/search' render={props => <Search {...props} 
                             darkMode={darkMode}
                             parentDarkModeCallback={darkModeCallback}
                             parentSignOutCallback={signOutCallback}
                             isAuthenticated={isAuthenticated}
                             />} />
-                            
+
                             <Route path='/signin' render={props => <Redirect {...props} to="/" />} />
                             <Route path='/signup' render={props => <Redirect {...props} to="/" />} />
                             <Route path='/signout' render={props => <Redirect {...props} to="/" />} />
