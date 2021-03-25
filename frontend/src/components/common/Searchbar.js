@@ -73,7 +73,7 @@ export default function Searchbar(props) {
         setSearchbarValue(value)
         
         // Search.js calls
-        if (searchLocation == 'lwin_data') {
+        if (searchLocation == 'Search CellarClub') {
             if (value !== null) {
                 getLwinData(value, searchLocation);
             } else {
@@ -103,14 +103,11 @@ export default function Searchbar(props) {
 
     const handleSourceMenuClick = (event) => {
         setSourceMenuAnchor(event.currentTarget);
-        console.log(event.currentTarget);
     }
 
 
     const handleSourceMenuClose = (event) => {
         setSourceMenuAnchor(null);
-        console.log(sourceMenuAnchor);
-        console.log(event.child)
     }
 
 
@@ -151,7 +148,7 @@ export default function Searchbar(props) {
                         id="search-field"
                         {...params}
                         onChange={handleSearchbarValueChange} 
-                        label="Search CellarClub" 
+                        label={searchLocation} 
                         margin="normal" 
                         variant="standard"
                         color={props.darkMode == true ? "primary" : "secondary"}

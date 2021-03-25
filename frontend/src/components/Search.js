@@ -105,7 +105,7 @@ export default function Search(props) {
                     {...props} 
                     darkMode={props.darkMode}
                     parentLwinDataCallback={lwinDataCallback}
-                    searchLocation={'lwin_data'}
+                    searchLocation={'Search CellarClub'}
                     />
                 </Grid>
                 <Grid item xs={12} sm={10} md={8}
