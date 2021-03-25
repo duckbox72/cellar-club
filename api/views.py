@@ -130,7 +130,7 @@ def get_lwin(request, display_name):
 @login_required
 def search_lwin(request, display_name):
     results = Lwin.objects.filter(display_name__contains=display_name)
-    results = results[:10]
+    results = results[:15]
     
     #mini_serializer returns solely display_name data
     return JsonResponse([result.mini_serializer() for result in results], safe=False, status=status.HTTP_200_OK)
@@ -174,17 +174,28 @@ def add_bottle_to_collection(request):
     user = request.user
     data = json.loads(request.body)
 
+    print(data)
+
+
+    # Parse date_added
     if data['date_added'] == None:
         date_added = None
     else:
         date_added = data['date_added'][0:9]
+
+    # Parse lwin
+    if 'lwin' not in data:
+        print("NO DATA NO DATA")
+        lwin = '9999999'
+    else:
+        lwin = data['lwin']
 
     bottle = Bottle(
         user = user,
         cellar = data['cellar'],
         bin = data['bin'],
         score = data['score'],
-        lwin = data['lwin'],
+        lwin = lwin,
         display_name = data['display_name'],
         producer_title = data['producer_title'],
         producer_name = data['producer_name'],

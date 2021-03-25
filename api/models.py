@@ -94,7 +94,7 @@ class Bottle(models.Model):
     bin = models.CharField(max_length=64, null=True)
     score = models.CharField(max_length=6, null=True)
     
-    lwin = models.CharField(max_length=7, null=True)
+    lwin = models.CharField(max_length=7, null=True, blank=True)
     display_name = models.CharField(max_length=256, null=False, blank=False)
     producer_title = models.CharField(max_length=64, null=True)
     producer_name = models.CharField(max_length=64,null=True)
@@ -111,7 +111,7 @@ class Bottle(models.Model):
     consumed = models.BooleanField(default=False)
 
     # auto entered data
-    lwin11 = models.CharField(max_length=11)
+    lwin11 = models.CharField(max_length=11,null=True)
     date_added = models.DateField(default=timezone.now, null=True)
     created = models.DateTimeField(default=timezone.now)
 

@@ -27,9 +27,9 @@ export default function Search(props) {
 
     
     const getGwsScores = async (lwin=lwin) => {
-        const response = await fetch(`/api/get_gws_data/${lwin}`);
-        const json = await response.json();
-        setGwsScores(json);
+            const response = await fetch(`/api/get_gws_data/${lwin}`);
+            const json = await response.json();
+            setGwsScores(json);
     }
 
 
@@ -70,9 +70,14 @@ export default function Search(props) {
     const lwinDataCallback = (lwin_data) => {
         setLwinData(lwin_data);
         if (lwin_data !== null) {
-            getGwsScores(lwin_data.lwin);
             setLwinProfileCardOpened(true);
-        }  else {
+            if (lwin_data.lwin !== undefined) {
+                getGwsScores(lwin_data.lwin);
+            } else {
+                setLwinProfileCardOpened(false)
+            }
+        } 
+        else {
             setLwinProfileCardOpened(false)
         }
     }
