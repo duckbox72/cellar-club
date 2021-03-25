@@ -39,15 +39,18 @@ export default function Searchbar(props) {
     }));
 
     const classes = useStyles();
+
+    const searchLocation = props.searchLocation
     
     const [sourceMenuAnchor, setSourceMenuAnchor] = useState(null);
+    
     const [searchbarValue, setSearchbarValue] = useState(null);
     const [searchResult, setSearchResult] = useState([]);
     
     
-    const getLwinData = (currentValue) => {
-        //fetch('/api/get_lwin' + '?display_name=' + currentValue)
-        fetch(`api/get_lwin/${currentValue}`)
+    const getLwinData = (value, searchLocation) => {
+        //fetch('/api/get_lwin' + '?display_name=' + value)
+        fetch(`api/get_lwin/${value}`)
         .then((response) => response.json())
         .then(lwin_data => {
             props.parentLwinDataCallback(lwin_data);
@@ -68,11 +71,17 @@ export default function Searchbar(props) {
     const handleAutocompleteChange = (value) => {
         console.log(`AUTOCOMPLETE CHANGE TO value ==>> ${value}`);
         setSearchbarValue(value)
-        if (value !== null) {
-            getLwinData(value);
-        } else {
-            props.parentLwinDataCallback(value); // value = false
+        
+        // Search.js calls
+        if (searchLocation == 'lwin_data') {
+            if (value !== null) {
+                getLwinData(value, searchLocation);
+            } else {
+                props.parentLwinDataCallback(value); // value = false
+            }
         }
+        
+       
     }
     
     
@@ -101,6 +110,7 @@ export default function Searchbar(props) {
     const handleSourceMenuClose = (event) => {
         setSourceMenuAnchor(null);
         console.log(sourceMenuAnchor);
+        console.log(event.child)
     }
 
 
