@@ -90,8 +90,11 @@ export default function Searchbar(props) {
 
         // Collection.js calls
         if (searchLocation == 'Search My Collection') {
-
-            console.log('SEARCH MY COLLECTION SELECTED')
+            if (value !== null) {
+                getBottleData(value);
+            } else {
+                props.parentBottleDataCallback(value); // value = false
+            }
         }        
     }
     
