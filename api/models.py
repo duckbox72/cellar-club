@@ -90,29 +90,29 @@ class Vintage(models.Model):
 class Bottle(models.Model):
     # retrieved data
     user = models.ForeignKey("User", on_delete=models.CASCADE, null=False, blank=False)
-    cellar = models.CharField(max_length=64)
-    bin = models.CharField(max_length=64)
-    score = models.CharField(max_length=6)
+    cellar = models.CharField(max_length=64, null=True)
+    bin = models.CharField(max_length=64, null=True)
+    score = models.CharField(max_length=6, null=True)
     
-    lwin = models.CharField(max_length=7)
+    lwin = models.CharField(max_length=7, null=True)
     display_name = models.CharField(max_length=256, null=False, blank=False)
-    producer_title = models.CharField(max_length=64)
-    producer_name = models.CharField(max_length=64)
-    country = models.CharField(max_length=64)
-    region = models.CharField(max_length=64)
-    colour = models.CharField(max_length=16)
+    producer_title = models.CharField(max_length=64, null=True)
+    producer_name = models.CharField(max_length=64,null=True)
+    country = models.CharField(max_length=64, null=True)
+    region = models.CharField(max_length=64, null=True)
+    colour = models.CharField(max_length=16, null=True)
 
     # data entered by user
     vintage = models.CharField(max_length=4)
-    size = size = models.CharField(max_length=8)
-    store = models.CharField(max_length=64)
-    cost = models.IntegerField(default=0)
-    note = models.CharField(max_length=128)
+    size = models.CharField(max_length=8)
+    store = models.CharField(max_length=64, null=True)
+    cost = models.IntegerField(default=0, null=True)
+    note = models.CharField(max_length=128, null=True)
     consumed = models.BooleanField(default=False)
 
     # auto entered data
     lwin11 = models.CharField(max_length=11)
-    date_added = models.DateField(default=timezone.now)
+    date_added = models.DateField(default=timezone.now, null=True)
     created = models.DateTimeField(default=timezone.now)
 
     def serializer(self):
@@ -127,8 +127,9 @@ class Bottle(models.Model):
             "producer_name": self.producer_name,
             "country": self.country,
             "region": self.region,
+            "colour": self.colour,
             "vintage": self.vintage,
-            "size": self.vintage,
+            "size": self.size,
             "store": self.store,
             "cost": self.cost,
             "note": self.note,

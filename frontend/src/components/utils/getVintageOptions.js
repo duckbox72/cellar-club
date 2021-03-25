@@ -4,7 +4,7 @@ export function getVintageOptions() {
     const years = Array.from(new Array((currentYear+1)-initialYear), (x,i) => i + (currentYear - (currentYear-initialYear)));   
     
     const vintages = years.reverse().map(String);
-    vintages.splice(0, 0, 'N/V')
+    vintages.splice(0, 0, 'N.V.')
      
     return vintages;
 }

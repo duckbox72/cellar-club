@@ -131,13 +131,22 @@ export default function LwinProfileCard(props) {
         props.parentFormExpandedCallback(!expanded);
     };
 
+
     // Form options
     const bottleSizes = getBottleSizesOptions();
     const vintages = getVintageOptions();
+    const infodata = [
+        {mock: 'some string', store: 'ABC Wine and Spirits'},
+        {mock: 'some string', store: 'Total Wine & More'},
+        {mock: 'some string', store: 'Goody Goody'},
+        {mock: 'some string', store: 'Speck\'s Wines'},
+        {mock: 'some string', store: 'Cellaraiders.com'},
+    ];
+
 
     // Form fields
     const [cost, setCost] = useState(null);
-    const [comment, setComment] = useState(null);
+    const [note, setNote] = useState(null);
     const [quantity, setQuantity] = useState(null);
     const [selectedBin, setSelectedBin] = useState(null);
     const [selectedCellar, setSelectedCellar] = useState(null);
@@ -152,7 +161,7 @@ export default function LwinProfileCard(props) {
     
     const clearFormState = () => {
         setCost(null);
-        setComment(null);
+        setNote(null);
         setQuantity(null);
         setSelectedBin(null);
         setSelectedCellar(null);
@@ -166,8 +175,8 @@ export default function LwinProfileCard(props) {
     };
     
 
-    const handleCommentFieldChange = (e) => {
-        setComment(e.target.value);
+    const handleNoteFieldChange = (e) => {
+        setNote(e.target.value);
     }
 
 
@@ -181,7 +190,7 @@ export default function LwinProfileCard(props) {
         setQuantity(e.target.value)
         :
         setQuantity(null)
-        
+
         console.log(e.target.value)
     };
 
@@ -230,6 +239,7 @@ export default function LwinProfileCard(props) {
         if (value === null) {
             setScore(null)
         }
+        console.log(value)
     }
 
 
@@ -246,49 +256,39 @@ export default function LwinProfileCard(props) {
     
 
     const handleSubmitButtonClick = () => {
-        console.log('CLICK')
-        console.log(LwinData)
-        console.log(cost);
-        console.log(selectedVintage);
-        console.log(selectedSize);
-        console.log(quantity);
-        console.log(selectedCellar);
-        console.log(selectedBin);
-        console.log(selectedDate);
-        console.log(selectedStore)
-        console.log(comment);
-        console.log(score);
 
         fetch('/api/add_bottle_to_collection', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'}
+            //headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 cellar: selectedCellar,
                 bin: selectedBin,
-                score: self.score,
-                "lwin": self.lwin,
-                "display_name": self.display_name,
-                "producer_title": self.producer_title,
-                "producer_name": self.producer_name,
-                "country": self.country,
-                "region": self.region,
-                "vintage": self.vintage,
-                "size": self.vintage,
-                "store": self.store,
-                "cost": self.cost,
-                "note": self.note,
-                "lwin11": self.lwin11,
-                "date_added": self.date_added,
-                "created": self.created,
-
-            })
+                score: score,
+                lwin: LwinData.lwin,
+                display_name: LwinData.display_name,
+                producer_title: LwinData.producer_title,
+                producer_name: LwinData.producer_name,
+                country: LwinData.country,
+                region: LwinData.region,
+                colour: LwinData.colour,
+                vintage: selectedVintage,
+                size: selectedSize,
+                store: selectedStore,
+                cost: cost,
+                note: note,
+                lwin11: LwinData.lwin + selectedVintage,
+                date_added: selectedDate,
+            }),
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            if (result.success) {
+                console.log(result);
+              } else {
+                alert(result.error)
+              }
         });
-
-
-
-
-
-
     };
 
 
@@ -329,13 +329,6 @@ export default function LwinProfileCard(props) {
         }
     });
 
-    const infodata = [
-        {mock: 'some string', store: 'ABC Wine and Spirits'},
-        {mock: 'some string', store: 'Total Wine & More'},
-        {mock: 'some string', store: 'Goody Goody'},
-        {mock: 'some string', store: 'Speck\'s Wines'},
-        {mock: 'some string', store: 'Cellaraiders.com'},
-    ];
 
     return (
         <Card className={classes.card}>
@@ -443,7 +436,7 @@ export default function LwinProfileCard(props) {
                             id="vintage"
                             fullWidth
                             freeSolo
-                            value={selectedVintage}
+                            //value={selectedVintage}
                             onChange={(event,value) => handleSelectedVintageAutocompleteChange(value)} 
                             clearOnEscape
                             options={vintages}
@@ -681,10 +674,10 @@ export default function LwinProfileCard(props) {
                                 <Grid item xs={10} >
                                     <TextField
                                     className={classes.textfield}
-                                    id="comment"
+                                    id="note"
                                     fullWidth
-                                    onChange={handleCommentFieldChange} 
-                                    label="Comment" 
+                                    onChange={handleNoteFieldChange} 
+                                    label="Note" 
                                     variant="standard"
                                     color={darkMode == true ? "primary" : "secondary"}
                                     />

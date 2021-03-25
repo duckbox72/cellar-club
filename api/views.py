@@ -1,4 +1,6 @@
 import os
+from typing import Sized
+from django.db.models.query_utils import RegisterLookupMixin
 import requests
 import json
 from re import L
@@ -16,7 +18,7 @@ from rest_framework import generics, serializers, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import Bottle, BottleSize, Lwin, User
+from .models import Bottle, BottleSize, Lwin, User, Vintage
 from .serializers import *
 
 import pandas as pd 
@@ -166,17 +168,40 @@ def get_bottle_sizes(request):
 @csrf_exempt
 @login_required
 def add_bottle_to_collection(request):
-    if request.method != 'POST{{{':
+    if request.method != 'POST':
         return JsonResponse({"error": "POST request required."}, safe=False, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
     user = request.user
-    bottle_data = json.loads(request.body)
+    data = json.loads(request.body)
+
+    if data['date_added'] == None:
+        date_added = None
+    else:
+        date_added = data['date_added'][0:9]
 
     bottle = Bottle(
-        user=user
+        user = user,
+        cellar = data['cellar'],
+        bin = data['bin'],
+        score = data['score'],
+        lwin = data['lwin'],
+        display_name = data['display_name'],
+        producer_title = data['producer_title'],
+        producer_name = data['producer_name'],
+        country = data['country'],
+        region = data['region'],
+        colour = data['colour'],
+        vintage = data['vintage'],
+        size = data['size'],
+        store = data['store'],
+        cost = data['cost'],
+        note = data['note'],
+        lwin11 = data['lwin11'],
+        date_added = date_added,  
     )
 
-    print(bottle_data)
-
+    print(data)
+    print(bottle.vintage)
+    bottle.save()
 
     return JsonResponse({"success": "posted successfully"}, safe=False, status=status.HTTP_200_OK)
