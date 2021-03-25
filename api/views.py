@@ -115,28 +115,7 @@ def sign_up(request):
         return JsonResponse({"error": "Invalid request method"})
 
 
-
-# --------------------------- LWIN DATABASE ROUTES --------------------------- 
-@login_required
-def get_lwin(request, display_name):
-    try:
-        result = Lwin.objects.get(display_name=display_name)
-    except:
-        return JsonResponse({"message": "Sorry, no results found."})
-    
-    return JsonResponse(result.serializer(),  safe=False, status=status.HTTP_200_OK)
-
-
-@login_required
-def search_lwin(request, display_name):
-    results = Lwin.objects.filter(display_name__contains=display_name)
-    results = results[:15]
-    
-    #mini_serializer returns solely display_name data
-    return JsonResponse([result.mini_serializer() for result in results], safe=False, status=status.HTTP_200_OK)
-
-
-# ------------------------- GWS API LOOKUP --------------------------------------
+# ------------------------- GWS EXTERNAL API LOOKUP --------------------------------------
 @login_required
 def get_gws_data(request, lwin):
     try:
@@ -155,6 +134,26 @@ def get_gws_data(request, lwin):
 
     #return JsonResponse([result for result in results], safe=False, status=status.HTTP_200_OK)
     return JsonResponse(gws_data, safe=False, status=status.HTTP_200_OK)
+
+
+# --------------------------- LWIN DATABASE ROUTES --------------------------- 
+@login_required
+def get_lwin(request, display_name):
+    try:
+        result = Lwin.objects.get(display_name=display_name)
+    except:
+        return JsonResponse({"message": "Sorry, no results found."})
+    
+    return JsonResponse(result.serializer(),  safe=False, status=status.HTTP_200_OK)
+
+
+@login_required
+def search_lwin(request, display_name):
+    results = Lwin.objects.filter(display_name__contains=display_name)
+    results = results[:15]
+    
+    #mini_serializer returns display_name data only
+    return JsonResponse([result.mini_serializer() for result in results], safe=False, status=status.HTTP_200_OK)
     
 
 # ------------------------- BOTTLE model RELATED ROUTES -------------------------
@@ -216,3 +215,22 @@ def add_bottle_to_collection(request):
     bottle.save()
 
     return JsonResponse({"success": "posted successfully"}, safe=False, status=status.HTTP_200_OK)
+
+
+@login_required
+def get_bottle(request, display_name):
+    try:
+        result = Bottle.objects.get(display_name=display_name)
+    except:
+        return JsonResponse({"error": "Sorry, no results found."})
+    
+    return JsonResponse(result.serializer(),  safe=False, status=status.HTTP_200_OK)
+
+
+@login_required
+def search_bottle(request, display_name):
+    results = Bottle.objects.filter(display_name__contains=display_name)
+    results = results[:15]
+    
+    #mini_serializer returns display_name data only
+    return JsonResponse([result.mini_serializer() for result in results], safe=False, status=status.HTTP_200_OK)

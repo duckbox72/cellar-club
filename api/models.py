@@ -115,6 +115,13 @@ class Bottle(models.Model):
     date_added = models.DateField(default=timezone.now, null=True)
     created = models.DateTimeField(default=timezone.now)
 
+    
+    def mini_serializer(self):
+        return {
+            "display_name": self.display_name,
+        }
+
+    
     def serializer(self):
         return {
             "user": self.user,
