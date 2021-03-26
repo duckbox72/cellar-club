@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Grid  from "@material-ui/core/Grid";
 
+import BottleList from './common/BottleList';
 import Copyright from './common/Copyright';
 import Navbar from "./common/Navbar";
 import NavbarTransparent from "./common/NavbarTransparent";

@@ -230,6 +230,13 @@ def get_bottle(request, bottle_id):
 
 
 @login_required
+def get_bottle_list(request, bottle_name):
+    return 'to do'
+
+
+
+
+@login_required
 def get_bottle_name(request, display_name):
     try:
         result = Bottle.objects.filter(display_name=display_name)
