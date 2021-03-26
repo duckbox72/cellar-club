@@ -221,25 +221,27 @@ def add_bottle_to_collection(request):
 @login_required
 def get_bottle(request, display_name):
     try:
-        result = Bottle.objects.get(display_name=display_name)
+        result = Bottle.objects.filter(display_name=display_name)
     except:
         return JsonResponse({"error": "Sorry, no results found."})
     
-    return JsonResponse(result.serializer(),  safe=False, status=status.HTTP_200_OK)
+    # Return first occurence of display_name // mini_serializer returns display_name data only
+    return JsonResponse(result[0].mini_serializer(),  safe=False, status=status.HTTP_200_OK)
 
 
 @login_required
 def search_bottle(request, display_name):
     results = Bottle.objects.filter(display_name__contains=display_name)
+    
+    # Lists only display_name (aka mini_serializer)
     all_results = []
     for result in results:
         all_results.append({'display_name': result.display_name})
 
+    # Parse results to return only distinct items
     response = []
     for result in all_results:
         if result not in response:
             response.append(result)
 
-    #mini_serializer returns display_name data only
-    #return JsonResponse([result.mini_serializer() for result in results], safe=False, status=status.HTTP_200_OK)
     return JsonResponse(response, safe=False, status=status.HTTP_200_OK)
