@@ -15,7 +15,7 @@ import Searchbar from "./common/Searchbar";
 import { getUserProfile } from "./utils/getUserProfile";
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme, LwinData) => ({
     root: {
         //minHeight: screen.availHeight,
     },
@@ -42,11 +42,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Search(props) {
-    const classes = useStyles();
 
     const userProfile = (getUserProfile());
     const [LwinData, setLwinData] = useState(null);
     const [gwsScores, setGwsScores] = useState(null);
+
+    const classes = useStyles(LwinData);
+
 
     const getGwsScores = async (lwin=lwin) => {
         const response = await fetch(`/api/get_gws_data/${lwin}`);
