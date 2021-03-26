@@ -46,16 +46,18 @@ export default function Searchbar(props) {
     
     const [searchbarValue, setSearchbarValue] = useState(null);
     const [searchResult, setSearchResult] = useState([]);
+
     
-    
-    const getBottleName = (value) => {
-        fetch(`api/get_bottle_name/${value}`)
+
+
+    const getSearchResults = (location, value) => {
+        fetch(`/api/search_${location}/${value}`)
         .then((response) => response.json())
-        .then(bottle_data => {
-            props.parentBottleDataCallback(bottle_data); // TO DO 
+        .then(data => {
+            setSearchResult(data);
         });  
     }
-
+    
 
     const getLwinData = (value) => {
         fetch(`api/get_lwin/${value}`)
@@ -64,13 +66,22 @@ export default function Searchbar(props) {
             props.parentLwinDataCallback(lwin_data);
         });  
     }
-                           
+
     
-    const getSearchResults = (location, value) => {
-        fetch(`/api/search_${location}/${value}`)
+    const getBottleName = (value) => {
+        fetch(`api/get_bottle_name/${value}`)
         .then((response) => response.json())
-        .then(data => {
-            setSearchResult(data);
+        .then(bottle_name => {
+            props.parentBottleNameCallback(bottle_name);
+        });  
+    }
+
+    // TO BE MOVED
+    const getBottleData = (bottle_id) => {
+        fetch(`api/get_bottle/${bottle_id}`)
+        .then((response) => response.json())
+        .then(bottle_data => {
+            props.parentBottleDataCallback(bottle_data);
         });  
     }
 

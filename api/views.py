@@ -219,6 +219,17 @@ def add_bottle_to_collection(request):
 
 
 @login_required
+def get_bottle(request, bottle_id):
+    try:
+        result = Bottle.objects.get(id=bottle_id)
+    except:
+        return JsonResponse({"error": "Sorry, no results found."})
+    
+    return JsonResponse(result.serializer(),  safe=False, status=status.HTTP_200_OK)
+    
+
+
+@login_required
 def get_bottle_name(request, display_name):
     try:
         result = Bottle.objects.filter(display_name=display_name)

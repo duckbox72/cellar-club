@@ -122,6 +122,7 @@ class Bottle(models.Model):
     
     def serializer(self):
         return {
+            "id": self.id,
             "cellar": self.cellar,
             "bin": self.bin,
             "score": self.score,
