@@ -23,9 +23,6 @@ export default function Collection(props) {
             //minHeight: screen.availHeight,
         },
         
-        cc_logo: {
-            //display: formExpanded ? 'none' : 'block', 
-        }
     }));
 
     
@@ -44,6 +41,7 @@ export default function Collection(props) {
     // Searchbar callbacks
     const BottleDataCallback = (bottle_data) => {
         setBottleData(bottle_data);
+        console.log(bottle_data);
     }
 
     
@@ -65,12 +63,6 @@ export default function Collection(props) {
                     darkMode={props.darkMode}
                     parentBottleDataCallback={BottleDataCallback}
                     searchLocation={'Search My Collection'}
-                    />
-                </Grid>
-                <Grid item className={classes.cc_logo} xs={12} sm={10} md={8} >
-                    <CCLogo 
-                    {...props}
-                    darkMode={props.darkMode}
                     />
                 </Grid>
                 <Grid item xs={12} sm={10} md={8} style={{margin: 24}}>

@@ -25,7 +25,6 @@ urlpatterns = [
     path('get_bottle/<str:display_name>', views.get_bottle, name="get_bottle"),  
     path('search_bottle/<str:display_name>', views.search_bottle, name="search_bottle"),
 
-
     path('add_bottle_to_collection', views.add_bottle_to_collection, name="add_bottle_to_collection"),
     path('get_bottle_sizes', views.get_bottle_sizes, name="get_bottle_sizes"),
 ]

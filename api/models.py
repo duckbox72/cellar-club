@@ -140,6 +140,7 @@ class Bottle(models.Model):
             "lwin11": self.lwin11,
             "date_added": self.date_added,
             "created": self.created,
+            "consumed": self.consumed,
         }
 
 
