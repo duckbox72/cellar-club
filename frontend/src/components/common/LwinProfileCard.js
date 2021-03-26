@@ -326,6 +326,7 @@ export default function LwinProfileCard(props) {
 
         if (LwinData === null) {
             setScore(null);
+            setExpanded(false);
         }
     });
 
