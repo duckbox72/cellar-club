@@ -16,24 +16,24 @@ const logoFontTheme = createMuiTheme({
 });
 
 
+const useStyles = makeStyles((theme, darkMode) => ({
+    logo_icon: {
+        height: theme.spacing(15),
+        width: theme.spacing(15),
+        marginTop: -theme.spacing(2),
+        color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+    },
+    logo_typo: {
+        marginTop: -theme.spacing(4),
+        color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+    }
+}));
+
+
 export default function CClogo(props) {
     const darkMode = props.darkMode;
 
-    const useStyles = makeStyles((theme) => ({
-        logo_icon: {
-            height: theme.spacing(15),
-            width: theme.spacing(15),
-            marginTop: -theme.spacing(2),
-            color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-        },
-        logo_typo: {
-            marginTop: -theme.spacing(4),
-            color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-        }
-    }));
-
-
-    const classes = useStyles();
+    const classes = useStyles(darkMode);
 
     return (
 

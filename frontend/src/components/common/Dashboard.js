@@ -12,53 +12,52 @@ import amber from '@material-ui/core/colors/amber';
 import brown from '@material-ui/core/colors/brown';
 
 
+
+const useStyles = makeStyles((theme, darkMode) => ({
+    root_paper: {
+        //height: 150,
+        margin: theme.spacing(0, 3),
+        borderRadius: 10,
+        backgroundColor: darkMode ? brown[600] : theme.palette.common.white ,//brown[600]//amber[50],
+        
+    },
+    appbar: {
+        borderRadius: '15px 15px 0px 0px',
+        //height: 42,
+        //backgroundColor: darkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
+        backgroundColor: darkMode ? brown[600] : theme.palette.common.white ,//brown[600]//amber[50],
+    },
+    toolbar: {
+        //height: 40,
+    },
+    toolbar_avatar: {
+        marginRight: theme.spacing(1),
+        width: theme.spacing(3),
+        height: theme.spacing(3),
+        backgroundColor: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+        color: darkMode ? theme.palette.secondary.main : theme.palette.primary.main,
+    },
+    toolbar_typography_title: {
+        color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+    },
+    toolbar_typography_username: {
+        color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+        fontWeight: 500,
+        flex: 1,
+    },
+    main_container: {
+        marginTop: theme.spacing(2),
+    },
+}));
+
+
 export default function Dashboard(props) {
 
     const darkMode = props.darkMode
     const userProfile = props.userProfile;
 
-    const useStyles = makeStyles((theme) => ({
-        root_paper: {
-            //height: 150,
-            margin: theme.spacing(0, 3),
-            borderRadius: 10,
-            backgroundColor: props.darkMode ? brown[600] : theme.palette.common.white ,//brown[600]//amber[50],
-            
-        },
-        appbar: {
-            borderRadius: '15px 15px 0px 0px',
-            //height: 42,
-            //backgroundColor: darkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
-            backgroundColor: props.darkMode ? brown[600] : theme.palette.common.white ,//brown[600]//amber[50],
-        },
-        toolbar: {
-            //height: 40,
-        },
-        toolbar_avatar: {
-            marginRight: theme.spacing(1),
-            width: theme.spacing(3),
-            height: theme.spacing(3),
-            backgroundColor: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-            color: darkMode ? theme.palette.secondary.main : theme.palette.primary.main,
-        },
-        toolbar_typography_title: {
-            color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-        },
-        toolbar_typography_username: {
-            color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-            fontWeight: 500,
-            flex: 1,
-        },
-        main_container: {
-            marginTop: theme.spacing(2),
-        },
-    }));
-
-    const classes = useStyles();
+    const classes = useStyles(darkMode);
     
-    
-
-
 
     return (
         <Paper className={classes.root_paper}>

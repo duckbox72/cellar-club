@@ -21,40 +21,43 @@ const logoFontTheme = createMuiTheme({
 });
 
 
+const useStyles = makeStyles((theme, darkMode) => ({
+    appbar: {
+        backgroundColor: darkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
+    },
+    appbar_typography: {
+        flex: 1,
+        color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+    },
+    iconButton: {
+        color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+    },
+    iconLogo: {
+        color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+        width: theme.spacing(6),
+        height: theme.spacing(6),
+        margin: theme.spacing(0, 1, 0, 0),
+    },
+}));
+
+
 export default function Navbar(props) {
-    const useStyles = makeStyles((theme) => ({
-        appbar: {
-            backgroundColor: navbarDarkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
-        },
-        appbar_typography: {
-            flex: 1,
-            color: navbarDarkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-        },
-        iconButton: {
-            color: navbarDarkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-        },
-        iconLogo: {
-            color: navbarDarkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-            width: theme.spacing(6),
-            height: theme.spacing(6),
-            margin: theme.spacing(0, 1, 0, 0),
-        },
-    }));
     
-    const [navbarDarkMode, setNavbarDarkMode] = useState(props.darkMode);
+    const [darkMode, setdarkMode] = useState(props.darkMode);
+    const userProfile = props.userProfile;
     
+    const classes = useStyles(darkMode);
+   
+   
     const toggleDarKMode = () => {
         props.parentDarkModeCallback()
-        setNavbarDarkMode(!navbarDarkMode);
+        setdarkMode(!darkMode);
     }
 
     const sigOutCallback = () => {
         props.parentSignOutCallback();
     }
 
-    const userProfile = props.userProfile;
-    
-    const classes = useStyles();
 
     return (
         <AppBar position="fixed" elevation={1} className={classes.appbar}>

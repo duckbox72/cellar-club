@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme, darkMode) => ({
     },
 }));
 
+
 export default function Searchbar(props) {
 
     const classes = useStyles(props.darkMode);

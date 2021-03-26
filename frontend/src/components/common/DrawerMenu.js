@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
@@ -21,29 +21,29 @@ import SearchIcon from '@material-ui/icons/Search';
 import ViewListOutlinedIcon from '@material-ui/icons/ViewListOutlined';
 
 
+const useStyles = makeStyles((theme, darkMode) => ({
+  avatar: {
+    width: theme.spacing(4),
+    height: theme.spacing(4),
+    backgroundColor: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+  },
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
+  iconButton: {
+    color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+  },
+}));
+
 export default function DrawerMenu(props) {
 
   const darkMode = props.darkMode;
   const userProfile = props.userProfile;
 
-  const theme = useTheme();
-
-  const useStyles = makeStyles({
-    avatar: {
-      width: theme.spacing(4),
-      height: theme.spacing(4),
-      backgroundColor: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-    },
-    list: {
-      width: 250,
-    },
-    fullList: {
-      width: 'auto',
-    },
-    iconButton: {
-      color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-    },
-  });
+  const classes = useStyles(darkMode);
 
 
   const handleSignOutButton = () => {
@@ -60,8 +60,6 @@ export default function DrawerMenu(props) {
     });
   };
 
-  
-  const classes = useStyles();
 
   const [state, setState] = useState({
     top: false,
