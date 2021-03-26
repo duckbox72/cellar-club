@@ -34,6 +34,87 @@ import { getBottleSizesOptions } from "../utils/getBottleSizesOptions";
 import { getVintageOptions } from "../utils/getVintageOptions";
 
 
+const useStyles = makeStyles((theme, darkMode) => ({
+    avatar: {
+        backgroundColor: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+        width: theme.spacing(3),
+        height: theme.spacing(3),
+    },
+    card: {
+        margin: theme.spacing(0, 2),
+        paddingBottom: theme.spacing(1), 
+        borderRadius: 10,
+        backgroundColor: darkMode ? brown[600] : theme.palette.common.white,
+    },
+    container_actions: {
+        padding: theme.spacing(1, 1.25, 1, 1),
+    },
+    container_collapse: {
+        padding: theme.spacing(2,2,1,2),
+    },
+    divider: {
+        margin: theme.spacing(0, 2),
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        transition: theme.transitions.create('transform', {
+          duration: theme.transitions.duration.shortest,
+        }),
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)', 
+    },
+    header: {
+        
+    },
+    header_title: {
+        fontWeight: 600,
+        fontSize: theme.spacing(2),                
+    },
+    header_subheader: {
+        fontWeight: 500,
+    },
+    iconbutton_wslogo: {
+        height: theme.spacing(6.5),
+        width: theme.spacing(6.5),
+        marginLeft: 'auto',   
+    },
+    avatar_wslogo: {
+        backgroundImage: "url(/static/images/ws-logo-nobg.png)",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundColor: darkMode ? theme.palette.secondary.main : theme.palette.text.secondary,
+    },
+    icon: { 
+        height: theme.spacing(2.5),
+        width: theme.spacing(2.5), 
+        color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+    },
+    svg_icon: { 
+        height: theme.spacing(2.5),
+        width: theme.spacing(2.5),
+        paddingTop: theme.spacing(1.5),
+        color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+    },
+    autocomplete:{ 
+        paddingBottom: theme.spacing(2),
+    },
+    autocomplete_store:{
+        marginTop: theme.spacing(0.5),
+    },
+    datepicker:{
+        paddingBottom: theme.spacing(2),
+    },
+    textfield:{
+        paddingBottom: theme.spacing(2),
+    },
+    button: { 
+        margin: theme.spacing(1),
+        borderRadius: 20,
+    }
+}));
+
+
 export default function LwinProfileCard(props) {
 
     // Component props
@@ -42,87 +123,8 @@ export default function LwinProfileCard(props) {
     const LwinData = props.LwinData;
     const gwsScores = props.gwsScores;
     
-    const useStyles = makeStyles((theme) => ({
-        avatar: {
-            backgroundColor: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-            width: theme.spacing(3),
-            height: theme.spacing(3),
-        },
-        card: {
-            margin: theme.spacing(0, 2),
-            paddingBottom: theme.spacing(1), 
-            borderRadius: 10,
-            backgroundColor: darkMode ? brown[600] : theme.palette.common.white ,//brown[600]//amber[50],
-        },
-        container_actions: {
-            padding: theme.spacing(1, 1.25, 1, 1),
-        },
-        container_collapse: {
-            padding: theme.spacing(2,2,1,2),
-        },
-        divider: {
-            margin: theme.spacing(0, 2),
-        },
-        expand: {
-            transform: 'rotate(0deg)',
-            transition: theme.transitions.create('transform', {
-              duration: theme.transitions.duration.shortest,
-            }),
-        },
-        expandOpen: {
-            transform: 'rotate(180deg)', 
-        },
-        header: {
-            
-        },
-        header_title: {
-            fontWeight: 600,
-            fontSize: theme.spacing(2),                
-        },
-        header_subheader: {
-            fontWeight: 500,
-        },
-        iconbutton_wslogo: {
-            height: theme.spacing(6.5),
-            width: theme.spacing(6.5),
-            marginLeft: 'auto',   
-        },
-        avatar_wslogo: {
-            backgroundImage: "url(/static/images/ws-logo-nobg.png)",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundColor: darkMode ? theme.palette.secondary.main : theme.palette.text.secondary,
-        },
-        icon: { 
-            height: theme.spacing(2.5),
-            width: theme.spacing(2.5), 
-            color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-        },
-        svg_icon: { 
-            height: theme.spacing(2.5),
-            width: theme.spacing(2.5),
-            paddingTop: theme.spacing(1.5),
-            color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-        },
-        autocomplete:{ 
-            paddingBottom: theme.spacing(2),
-        },
-        autocomplete_store:{
-            marginTop: theme.spacing(0.5),
-        },
-        datepicker:{
-            paddingBottom: theme.spacing(2),
-        },
-        textfield:{
-            paddingBottom: theme.spacing(2),
-        },
-        button: { 
-            margin: theme.spacing(1),
-            borderRadius: 20,
-        }
-    }));
 
-    const classes = useStyles();
+    const classes = useStyles(darkMode);
     const [expanded, setExpanded] = useState(false);
     
     const handleExpandClick = () => {

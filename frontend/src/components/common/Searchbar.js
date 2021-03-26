@@ -9,47 +9,44 @@ import FindReplaceIcon from '@material-ui/icons/FindReplace';
 import brown from '@material-ui/core/colors/brown';
 
 
+const useStyles = makeStyles((theme, darkMode) => ({
+    root: {
+        paddingLeft: theme.spacing(0.5),
+        display: 'flex',
+        height: theme.spacing(7.5),
+        alignItems: 'center',
+        margin: theme.spacing(0, 2),
+        borderRadius: 10,    
+        backgroundColor: darkMode ? brown[600] : theme.palette.common.white 
+    },
+    autocomplete: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(2),
+        paddingBottom: theme.spacing(1.75),
+    },
+    searchIconButton: {
+        padding: 10,
+    },
+    divider: {
+        height: theme.spacing(4),
+        margin: theme.spacing(.5),
+    },
+    adornmentButton: { 
+        paddingBottom: theme.spacing(1.75),
+    },
+}));
+
 export default function Searchbar(props) {
 
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            paddingLeft: theme.spacing(0.5),
-            display: 'flex',
-            height: theme.spacing(7.5),
-            alignItems: 'center',
-            margin: theme.spacing(0, 2),
-            borderRadius: 10,    
-            backgroundColor: props.darkMode ? brown[600] : theme.palette.common.white 
-        },
-        autocomplete: {
-            marginLeft: theme.spacing(1),
-            marginRight: theme.spacing(2),
-            paddingBottom: theme.spacing(1.75),
-        },
-        searchIconButton: {
-            padding: 10,
-        },
-        divider: {
-            height: theme.spacing(4),
-            margin: theme.spacing(.5),
-        },
-        adornmentButton: { 
-            paddingBottom: theme.spacing(1.75),
-        },
-    }));
-
-    const classes = useStyles();
+    const classes = useStyles(props.darkMode);
 
     const searchLocation = props.searchLocation;
-    
     const [sourceMenuAnchor, setSourceMenuAnchor] = useState(null);
     
     const [searchbarValue, setSearchbarValue] = useState(null);
     const [searchResult, setSearchResult] = useState([]);
 
     
-
-
     const getSearchResults = (location, value) => {
         fetch(`/api/search_${location}/${value}`)
         .then((response) => response.json())

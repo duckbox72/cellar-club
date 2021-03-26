@@ -17,6 +17,7 @@ const logoFontTheme = createMuiTheme({
     },
 });
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         height: screen.availHeight,

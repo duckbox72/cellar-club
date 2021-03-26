@@ -7,6 +7,7 @@ import App from "./components/App";
 const history = createBrowserHistory();
 const appDiv = document.getElementById("app");
 
+
 function getIsAuthenticatedAndRenderApp() {
     fetch("/api/is_authenticated")
     .then(response => response.json())

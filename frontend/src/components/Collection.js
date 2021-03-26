@@ -11,21 +11,18 @@ import Searchbar from "./common/Searchbar";
 
 import { getUserProfile } from "./utils/getUserProfile";
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        //minHeight: screen.availHeight,
+    },   
+}));
+
 
 export default function Collection(props) {
-
+  
     const userProfile = (getUserProfile());
     const [bottleName, setBottleName] = useState(null);
     const [bottleData, setBottleData] = useState(null);
-
-
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            //minHeight: screen.availHeight,
-        },
-        
-    }));
-
     
     const classes = useStyles();
 

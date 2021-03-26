@@ -24,9 +24,9 @@ const useStyles = makeStyles({
 });
 
 
-export default function App(props) {
-    
+export default function App(props) {  
     const classes = useStyles();
+    
     const [darkMode, setDarkMode] = useState(false);
     
     const [isAuthenticated, updateIsAuthenticated] = useState(props.isAuthenticated);

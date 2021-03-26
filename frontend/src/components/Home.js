@@ -9,14 +9,14 @@ import NavbarTransparent from "./common/NavbarTransparent";
 import { getUserProfile } from "./utils/getUserProfile";
 
 
+const useStyles = makeStyles({
+    root: {
+        //height: screen.availHeight,
+    },
+});
+
 // THIS IS USER'S HOME DEFAULT LANDING PAGE FOR THE APP
 export default function Home(props) {
-    const useStyles = makeStyles({
-        root: {
-            //height: screen.availHeight,
-        },
-    });
-
     const classes = useStyles();
 
     const userProfile = (getUserProfile());

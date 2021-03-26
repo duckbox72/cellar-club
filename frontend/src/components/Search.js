@@ -15,7 +15,34 @@ import Searchbar from "./common/Searchbar";
 import { getUserProfile } from "./utils/getUserProfile";
 
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        //minHeight: screen.availHeight,
+    },
+    lwin_profile_card: {
+        visibility: 'hidden',
+        opacity: 0,
+        transition: theme.transitions.create('opacity', 'visibility', {
+            duration: theme.transitions.long,
+        }),
+    },
+    lwin_profile_card_open: {   
+        visibility: 'visible',
+        opacity: 1,
+    },
+    cc_logo: {
+        display: LwinData !== null  ? 'none' : 'block', 
+    },
+    // Fills gap behind fixed navbar
+    navbar_filler: {
+        height: theme.spacing(8),
+        [theme.breakpoints.down("sm")]: {
+            height: theme.spacing(7)},
+    },
+}));
+
 export default function Search(props) {
+    const classes = useStyles();
 
     const userProfile = (getUserProfile());
     const [LwinData, setLwinData] = useState(null);
@@ -29,36 +56,7 @@ export default function Search(props) {
     
     const [lwinProfileCardOpened, setLwinProfileCardOpened] = useState(false);
     const [formExpanded, setFormExpanded] = useState(false);
-
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            //minHeight: screen.availHeight,
-        },
-        lwin_profile_card: {
-            visibility: 'hidden',
-            opacity: 0,
-            transition: theme.transitions.create('opacity', 'visibility', {
-                duration: theme.transitions.long,
-            }),
-        },
-        lwin_profile_card_open: {   
-            visibility: 'visible',
-            opacity: 1,
-        },
-        cc_logo: {
-            display: LwinData !== null  ? 'none' : 'block', 
-        },
-        // Fills gap behind fixed navbar
-        navbar_filler: {
-            height: theme.spacing(8),
-            [theme.breakpoints.down("sm")]: {
-                height: theme.spacing(7)},
-        },
-    }));
-
     
-    const classes = useStyles();
-
 
     // Navbar callbacks
     const darkModeCallback = () => {
