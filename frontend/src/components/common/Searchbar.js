@@ -48,11 +48,11 @@ export default function Searchbar(props) {
     const [searchResult, setSearchResult] = useState([]);
     
     
-    const getBottleData = (value) => {
-        fetch(`api/get_bottle/${value}`)
+    const getBottleName = (value) => {
+        fetch(`api/get_bottle_name/${value}`)
         .then((response) => response.json())
         .then(bottle_data => {
-            props.parentBottleDataCallback(bottle_data);
+            props.parentBottleDataCallback(bottle_data); // TO DO 
         });  
     }
 
@@ -91,7 +91,7 @@ export default function Searchbar(props) {
         // Collection.js calls
         if (searchLocation == 'Search My Collection') {
             if (value !== null) {
-                getBottleData(value);
+                getBottleName(value);
             } else {
                 props.parentBottleDataCallback(value); // value = false
             }

@@ -219,7 +219,7 @@ def add_bottle_to_collection(request):
 
 
 @login_required
-def get_bottle(request, display_name):
+def get_bottle_name(request, display_name):
     try:
         result = Bottle.objects.filter(display_name=display_name)
     except:
