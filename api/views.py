@@ -14,7 +14,8 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 # generics classes from a generic view, access to HTTP status codes
-from rest_framework import generics, serializers, status 
+from rest_framework import generics, serializers, status
+from rest_framework import response 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -230,7 +231,15 @@ def get_bottle(request, display_name):
 @login_required
 def search_bottle(request, display_name):
     results = Bottle.objects.filter(display_name__contains=display_name)
-    results = results[:15]
-    
+    all_results = []
+    for result in results:
+        all_results.append({'display_name': result.display_name})
+
+    response = []
+    for result in all_results:
+        if result not in response:
+            response.append(result)
+
     #mini_serializer returns display_name data only
-    return JsonResponse([result.mini_serializer() for result in results], safe=False, status=status.HTTP_200_OK)
+    #return JsonResponse([result.mini_serializer() for result in results], safe=False, status=status.HTTP_200_OK)
+    return JsonResponse(response, safe=False, status=status.HTTP_200_OK)
