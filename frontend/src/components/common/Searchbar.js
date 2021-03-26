@@ -85,6 +85,7 @@ export default function Searchbar(props) {
                 getLwinData(value);
             } else {
                 props.parentLwinDataCallback(value); // value = false
+                setSearchResult([]);
             }
         }
 
@@ -94,6 +95,7 @@ export default function Searchbar(props) {
                 getBottleName(value);
             } else {
                 props.parentBottleDataCallback(value); // value = false
+                setSearchResult([]);
             }
         }        
     }
@@ -171,7 +173,7 @@ export default function Searchbar(props) {
                 className={classes.autocomplete}
                 id="searchbar"
                 fullWidth
-                freeSolo
+                //freeSolo
                 onChange={(event,value) => handleAutocompleteChange(value)} 
                 clearOnEscape
                 handleHomeEndKeys

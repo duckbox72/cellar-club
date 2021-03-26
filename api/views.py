@@ -227,6 +227,7 @@ def get_bottle_name(request, display_name):
     
     # Return first occurence of display_name // mini_serializer returns display_name data only
     return JsonResponse(result[0].mini_serializer(),  safe=False, status=status.HTTP_200_OK)
+    # TO DO issue - handle no result-     
 
 
 @login_required
