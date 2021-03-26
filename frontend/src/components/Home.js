@@ -5,6 +5,7 @@ import Grid  from "@material-ui/core/Grid";
 
 import Dashboard from "./common/Dashboard";
 import Navbar from "./common/Navbar";
+import NavbarTransparent from "./common/NavbarTransparent";
 import { getUserProfile } from "./utils/getUserProfile";
 
 
@@ -26,23 +27,26 @@ export default function Home(props) {
     const darkModeCallback = () => {
         props.parentCallback();
     }
-    const sigOutCallback = () => {
+    const signOutCallback = () => {
         props.parentSignOutCallback(false);
     }
     
 
     return (
         <div className={classes.root}>
-            <Navbar 
+            <Grid container  spacing={2} justify="center"> 
+                <Grid item xs={12}>
+                    <Navbar 
                     {...props}
                     darkMode={props.darkMode} 
                     parentCallback={darkModeCallback}
-                    parentSignOutCallback={sigOutCallback}
+                    parentSignOutCallback={signOutCallback}
                     userProfile={userProfile}
                     />
-            <Grid container  spacing={2} justify="center"> 
+                </Grid>
+                
                 <Grid item xs={12}>
-                    
+                    <NavbarTransparent />
                 </Grid>
                 <Grid item xs={12} sm={10} md={8}>
                     <Dashboard

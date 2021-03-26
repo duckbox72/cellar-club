@@ -46,8 +46,14 @@ export default function Search(props) {
             opacity: 1,
         },
         cc_logo: {
-            display: formExpanded ? 'none' : 'block', 
-        }
+            display: LwinData !== null  ? 'none' : 'block', 
+        },
+        // Fills gap behind fixed navbar
+        navbar_filler: {
+            height: theme.spacing(8),
+            [theme.breakpoints.down("sm")]: {
+                height: theme.spacing(7)},
+        },
     }));
 
     
@@ -96,7 +102,10 @@ export default function Search(props) {
                     parentSignOutCallback={signOutCallback}
                     userProfile={userProfile}
                     />
-                </Grid>         
+                </Grid> 
+                <Grid item xs={12}>
+                    <NavbarTransparent />
+                </Grid>
                 <Grid item xs={12} sm={10} md={8}>
                     <Searchbar 
                     {...props} 

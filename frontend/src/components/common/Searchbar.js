@@ -2,7 +2,7 @@
 import React, { useEffect ,useState } from "react";
 import { makeStyles } from '@material-ui/core/styles'
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { Divider ,IconButton , Menu, MenuItem, Paper, TextField } from '@material-ui/core';
+import { Divider ,IconButton , Menu, MenuItem, Paper, TextField, Tooltip } from '@material-ui/core';
 
 import FindReplaceIcon from '@material-ui/icons/FindReplace';
 
@@ -149,13 +149,15 @@ export default function Searchbar(props) {
 
     return ( 
         <Paper className={classes.root} elevation={1}>
-            <IconButton 
-            aria-controls="source-menu" 
-            aria-haspopup="true"
-            onClick={handleSourceMenuClick}
-            >
-                <FindReplaceIcon />
-            </IconButton>
+            <Tooltip title={'Search Menu'}>
+                <IconButton 
+                aria-controls="source-menu" 
+                aria-haspopup="true"
+                onClick={handleSourceMenuClick}
+                >
+                    <FindReplaceIcon />
+                </IconButton>
+            </Tooltip>
             <Menu
             id="source-menu"
             anchorEl={sourceMenuAnchor}
@@ -163,8 +165,8 @@ export default function Searchbar(props) {
             open={Boolean(sourceMenuAnchor)}
             onClose={handleSourceMenuClose}
             >
-                <MenuItem onClick={handleSourceMenuClose}>Search CellarClub</MenuItem>
-                <MenuItem onClick={handleSourceMenuClose}>Search My Collection</MenuItem>
+                <MenuItem onClick={() => props.history.push('/search')}>Search CellarClub</MenuItem>
+                <MenuItem onClick={() => props.history.push('/collection')}>Search My Collection</MenuItem>
                 <MenuItem onClick={handleSourceMenuClose}>Search My Reviews</MenuItem>
             </Menu>
                 <Divider className={classes.divider} orientation="vertical" />

@@ -56,7 +56,10 @@ export default function Collection(props) {
                     parentSignOutCallback={signOutCallback}
                     userProfile={userProfile}
                     />
-                </Grid>         
+                </Grid>
+                <Grid item xs={12}>
+                    <NavbarTransparent />
+                </Grid>           
                 <Grid item xs={12} sm={10} md={8}>
                     <Searchbar 
                     {...props} 

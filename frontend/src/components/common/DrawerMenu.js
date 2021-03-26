@@ -114,18 +114,18 @@ export default function DrawerMenu(props) {
           <ListItemText primary={"Home"} />
         </ListItem>
 
-        <ListItem button key="My Collection" to="/collection" component={Link}>
-          <ListItemIcon>
-            <ViewListOutlinedIcon className={classes.iconButton} />
-          </ListItemIcon>
-          <ListItemText primary={"My Cellar"} />
-        </ListItem>
-
         <ListItem button key="search" to="/search" component={Link}>
           <ListItemIcon>
             <SearchIcon className={classes.iconButton} />
           </ListItemIcon>
           <ListItemText primary={"Search"} />
+        </ListItem>
+
+        <ListItem button key="collection" to="/collection" component={Link}>
+          <ListItemIcon>
+            <ViewListOutlinedIcon className={classes.iconButton} />
+          </ListItemIcon>
+          <ListItemText primary={"My Collection"} />
         </ListItem>
 
         <ListItem button key="signout" onClick={handleSignOutButton}>
