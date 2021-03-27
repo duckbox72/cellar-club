@@ -32,19 +32,20 @@ const useStyles = makeStyles((theme) => ({
     //height: '100vh',
     backgroundColor: "#fafafa",
     height: screen.availHeight,
-    padding: theme.spacing(6,4),
+    padding: theme.spacing(8,4),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    alignContent: 'center'
   },
   icon_logo: {
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.main,
     width: theme.spacing(6),
     height: theme.spacing(6),
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
     width: theme.spacing(7),
     height: theme.spacing(7),
   },
@@ -163,7 +164,7 @@ export default function SignIn(props) {
               </Grid>
             </Grid>
           </form>
-          <Box mt={6}>
+          <Box mt={4}>
             <Copyright />
           </Box>
         </div>

@@ -37,13 +37,13 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   icon_logo: {
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.main,
     width: theme.spacing(6),
     height: theme.spacing(6),
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
     width: theme.spacing(7),
     height: theme.spacing(7),
   },
@@ -194,7 +194,7 @@ export default function SignUp(props) {
                             </Grid>
                         </Grid>
                     </form>
-                    <Box mt={5}>
+                    <Box mt={3}>
                         <Copyright />
                     </Box>
                 </div>
