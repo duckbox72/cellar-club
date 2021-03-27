@@ -8,7 +8,8 @@ import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import { Avatar, Button, Card, CardHeader, Collapse, Divider, Grid, IconButton, TextField, Tooltip, Typography } from '@material-ui/core';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+
 import AddIcon from '@material-ui/icons/Add';
 import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
@@ -34,17 +35,12 @@ import { getBottleSizesOptions } from "../utils/getBottleSizesOptions";
 import { getVintageOptions } from "../utils/getVintageOptions";
 
 
-const useStyles = makeStyles((theme, darkMode) => ({
-    avatar: {
-        backgroundColor: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-        width: theme.spacing(3),
-        height: theme.spacing(3),
-    },
+const useStyles = makeStyles((theme) => ({
     card: {
         margin: theme.spacing(0, 2),
         paddingBottom: theme.spacing(1), 
         borderRadius: 10,
-        backgroundColor: darkMode ? brown[600] : theme.palette.common.white,
+        backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
     },
     container_actions: {
         padding: theme.spacing(1, 1.25, 1, 1),
@@ -83,18 +79,18 @@ const useStyles = makeStyles((theme, darkMode) => ({
         backgroundImage: "url(/static/images/ws-logo-nobg.png)",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundColor: darkMode ? theme.palette.secondary.main : theme.palette.text.secondary,
+        
     },
     icon: { 
         height: theme.spacing(2.5),
         width: theme.spacing(2.5), 
-        color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+        color: mystyleprops => mystyleprops.colorSchemaA,
     },
     svg_icon: { 
         height: theme.spacing(2.5),
         width: theme.spacing(2.5),
         paddingTop: theme.spacing(1.5),
-        color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+        color: mystyleprops => mystyleprops.colorSchemaA,
     },
     autocomplete:{ 
         paddingBottom: theme.spacing(2),
@@ -124,7 +120,14 @@ export default function LwinProfileCard(props) {
     const gwsScores = props.gwsScores;
     
 
-    const classes = useStyles(darkMode);
+    const theme = useTheme(); 
+    const mystyleprops = {
+        colorSchemaA: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+        backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
+    }
+    const classes = useStyles(mystyleprops);
+    
+    
     const [expanded, setExpanded] = useState(false);
     
     const handleExpandClick = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
@@ -21,11 +21,11 @@ import SearchIcon from '@material-ui/icons/Search';
 import ViewListOutlinedIcon from '@material-ui/icons/ViewListOutlined';
 
 
-const useStyles = makeStyles((theme, darkMode) => ({
+const useStyles = makeStyles((theme) => ({
   avatar: {
     width: theme.spacing(4),
     height: theme.spacing(4),
-    backgroundColor: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+    backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaB,
   },
   list: {
     width: 250,
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme, darkMode) => ({
     width: 'auto',
   },
   iconButton: {
-    color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+    color: mystyleprops => mystyleprops.colorSchemaA
   },
 }));
 
@@ -43,7 +43,12 @@ export default function DrawerMenu(props) {
   const darkMode = props.darkMode;
   const userProfile = props.userProfile;
 
-  const classes = useStyles(darkMode);
+  const theme = useTheme(); 
+  const mystyleprops = {
+      colorSchemaA: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+      backgroundColorSchemaB: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+  }
+  const classes = useStyles(mystyleprops);
 
 
   const handleSignOutButton = () => {

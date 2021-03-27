@@ -1,6 +1,6 @@
 // THIS FILE WAS REFACTORED FROM A CLASS COMPOMNENT TO A FUNCTIONAL COMPONENT WITH HOOKS
 import React, { useEffect ,useState } from "react";
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles , useTheme } from '@material-ui/core/styles'
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { Divider ,IconButton , Menu, MenuItem, Paper, TextField, Tooltip } from '@material-ui/core';
 
@@ -9,7 +9,7 @@ import FindReplaceIcon from '@material-ui/icons/FindReplace';
 import brown from '@material-ui/core/colors/brown';
 
 
-const useStyles = makeStyles((theme, darkMode) => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         paddingLeft: theme.spacing(0.5),
         display: 'flex',
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme, darkMode) => ({
         alignItems: 'center',
         margin: theme.spacing(0, 2),
         borderRadius: 10,    
-        backgroundColor: darkMode ? brown[600] : theme.palette.common.white 
+        backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA 
     },
     autocomplete: {
         marginLeft: theme.spacing(1),
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme, darkMode) => ({
 
 export default function Searchbar(props) {
 
-    const classes = useStyles(props.darkMode);
+    const darkMode = props.darkMode;
 
     const searchLocation = props.searchLocation;
     const [sourceMenuAnchor, setSourceMenuAnchor] = useState(null);
@@ -48,6 +48,13 @@ export default function Searchbar(props) {
     const [searchResult, setSearchResult] = useState([]);
 
     
+    const theme = useTheme(); 
+    const mystyleprops = {
+        backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
+    }
+    const classes = useStyles(mystyleprops);
+
+
     const getSearchResults = (location, value) => {
         fetch(`/api/search_${location}/${value}`)
         .then((response) => response.json())

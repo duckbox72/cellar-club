@@ -15,7 +15,7 @@ import Searchbar from "./common/Searchbar";
 import { getUserProfile } from "./utils/getUserProfile";
 
 
-const useStyles = makeStyles((theme, LwinData) => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         //minHeight: screen.availHeight,
     },
@@ -31,15 +31,10 @@ const useStyles = makeStyles((theme, LwinData) => ({
         opacity: 1,
     },
     cc_logo: {
-        display: LwinData !== null  ? 'none' : 'block', 
-    },
-    // Fills gap behind fixed navbar
-    navbar_filler: {
-        height: theme.spacing(8),
-        [theme.breakpoints.down("sm")]: {
-            height: theme.spacing(7)},
+        display: mystyleprops => mystyleprops.displaySchema,
     },
 }));
+
 
 export default function Search(props) {
 
@@ -47,7 +42,13 @@ export default function Search(props) {
     const [LwinData, setLwinData] = useState(null);
     const [gwsScores, setGwsScores] = useState(null);
 
-    const classes = useStyles(LwinData);
+    const [lwinProfileCardOpened, setLwinProfileCardOpened] = useState(false);
+    const [formExpanded, setFormExpanded] = useState(false);
+    
+    const mystyleprops = {
+        displaySchema: lwinProfileCardOpened ? 'none' : 'block', 
+    }
+    const classes = useStyles(mystyleprops);
 
 
     const getGwsScores = async (lwin=lwin) => {
@@ -56,8 +57,7 @@ export default function Search(props) {
         setGwsScores(json);
     }
     
-    const [lwinProfileCardOpened, setLwinProfileCardOpened] = useState(false);
-    const [formExpanded, setFormExpanded] = useState(false);
+    
     
 
     // Navbar callbacks

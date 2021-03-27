@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles, useTheme, createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -16,16 +16,16 @@ const logoFontTheme = createMuiTheme({
 });
 
 
-const useStyles = makeStyles((theme, darkMode) => ({
+const useStyles = makeStyles((theme) => ({
     logo_icon: {
         height: theme.spacing(15),
         width: theme.spacing(15),
         marginTop: -theme.spacing(2),
-        color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+        color: mystyleprops => mystyleprops.color,
     },
     logo_typo: {
         marginTop: -theme.spacing(4),
-        color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+        color: mystyleprops => mystyleprops.color,
     }
 }));
 
@@ -33,7 +33,11 @@ const useStyles = makeStyles((theme, darkMode) => ({
 export default function CClogo(props) {
     const darkMode = props.darkMode;
 
-    const classes = useStyles(darkMode);
+    const theme = useTheme(); 
+    const mystyleprops = {
+        color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+    }
+    const classes = useStyles(mystyleprops);
 
     return (
 

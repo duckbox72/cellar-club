@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import AppBar from '@material-ui/core/AppBar'
 import Avatar from '@material-ui/core/Avatar'
@@ -13,35 +13,33 @@ import brown from '@material-ui/core/colors/brown';
 
 
 
-const useStyles = makeStyles((theme, darkMode) => ({
+const useStyles = makeStyles((theme) => ({
     root_paper: {
-        //height: 150,
         margin: theme.spacing(0, 3),
         borderRadius: 10,
-        backgroundColor: darkMode ? brown[600] : theme.palette.common.white ,//brown[600]//amber[50],
+        backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
         
     },
     appbar: {
         borderRadius: '15px 15px 0px 0px',
-        //height: 42,
-        //backgroundColor: darkMode ? theme.palette.secondary.dark : theme.palette.primary.main,
-        backgroundColor: darkMode ? brown[600] : theme.palette.common.white ,//brown[600]//amber[50],
+        backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
     },
     toolbar: {
-        //height: 40,
+        
     },
     toolbar_avatar: {
         marginRight: theme.spacing(1),
         width: theme.spacing(3),
         height: theme.spacing(3),
-        backgroundColor: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-        color: darkMode ? theme.palette.secondary.main : theme.palette.primary.main,
+        backgroundColor: mystyleprops => mystyleprops.colorSchemaA,
+        color:  mystyleprops => mystyleprops.colorSchemaB,
     },
     toolbar_typography_title: {
-        color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+        color:  mystyleprops => mystyleprops.colorSchemaA
+        ,
     },
     toolbar_typography_username: {
-        color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+        color: mystyleprops => mystyleprops.colorSchemaA,
         fontWeight: 500,
         flex: 1,
     },
@@ -56,7 +54,13 @@ export default function Dashboard(props) {
     const darkMode = props.darkMode
     const userProfile = props.userProfile;
 
-    const classes = useStyles(darkMode);
+    const theme = useTheme(); 
+    const mystyleprops = {
+        colorSchemaA: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+        colorSchemaB: darkMode ? theme.palette.secondary.main : theme.palette.primary.main,
+        backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
+    }
+    const classes = useStyles(mystyleprops);
     
 
     return (
