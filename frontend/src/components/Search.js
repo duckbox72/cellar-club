@@ -136,7 +136,7 @@ export default function Search(props) {
                     darkMode={props.darkMode}
                     />
                 </Grid>
-                <Grid item xs={12} sm={10} md={8} style={{margin: 24}}>
+                <Grid item xs={12} sm={10} md={8} style={{margin: 16}}>
                     <Copyright />
                 </Grid>
             </Grid>

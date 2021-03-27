@@ -81,7 +81,7 @@ export default function Collection(props) {
                     bottleName={bottleName}
                     />
                 </Grid>
-                <Grid item xs={12} sm={10} md={8} style={{margin: 24}}>
+                <Grid item xs={12} sm={10} md={8} style={{margin: 8}}>
                     <Copyright />
                 </Grid>
             </Grid>
