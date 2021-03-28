@@ -18,23 +18,32 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
         width: window.width,
     },
+    lit: {
+        color: 'red',
+        fontSize: 48,
+    },
 }));
+
+const primaryTypographyProps = { style: {color: 'red', fontSize: 14}}
 
 
 function renderRow(props) {
+    const classes = useStyles();
     const { index, style } = props;
   
     return (
       <ListItem button style={style} key={index}>
-        <ListItemText primary={`Item ${index + 1}`} />
+        <ListItemText primaryTypographyProps={primaryTypographyProps} primary={`Item ${index + 1}`} />
+        <ListItemText secondary={`Item ${index + 1}`} />
+        <Typography>TEST</Typography><Typography>TEST</Typography><Typography>TEST</Typography><Typography>TEST</Typography><Typography>TEST</Typography>
       </ListItem>
     );
-  }
+}
   
-  renderRow.propTypes = {
-    index: PropTypes.number.isRequired,
-    style: PropTypes.object.isRequired,
-  };
+renderRow.propTypes = {
+index: PropTypes.number.isRequired,
+style: PropTypes.object.isRequired,
+};
   
 
 
@@ -50,11 +59,22 @@ export default function BottleList(props) {
     }
     const classes = useStyles(mystyleprops);
 
+    const [bottleList,setBottleList] = useState(null);
+ 
     const height = 0.5 * screen.availHeight;
+
+
+    useEffect(() => {
+        bottleName == null ? console.log('getBottleList - default') :  console.log(`getBottleList - BOTTLE`);
+       
+    });
+
 
     return (
         <div className={classes.list}>
-            <ListItem>{height}</ListItem>
+            <ListItem>
+                <Typography button variant={'button'}>{height}</Typography> 
+            </ListItem>
             <FixedSizeList   height={height} itemSize={46} itemCount={200}>
                 {renderRow}
             </FixedSizeList>

@@ -231,7 +231,7 @@ def get_bottle(request, bottle_id):
 
 @login_required
 def get_bottle_list(request, bottle_name):
-    return 'to do'
+    return JsonResponse({'SUCESS': 'LIST RETURNED'})
 
 
 
