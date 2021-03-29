@@ -44,6 +44,20 @@ renderRow.propTypes = {
 index: PropTypes.number.isRequired,
 style: PropTypes.object.isRequired,
 };
+
+
+function getBottleList(bottleName) {
+    const bottleList = []
+    fetch(`/api/get_bottle_list/${bottleName}`)
+    .then(response => response.json())
+    .then(bottle_list => {
+        bottle_list.forEach(bottle => {
+            bottleList.push(bottle);
+        });
+    });
+    console.log(bottleList)
+    return bottleList;
+};
   
 
 
@@ -63,6 +77,13 @@ export default function BottleList(props) {
 
     // Used for FixedSizeList layout
     const height = 0.5 * screen.availHeight;
+
+
+    useEffect(() => {
+        getBottleList(bottleName);
+    });
+
+
 
     return (
         <div className={classes.list}>

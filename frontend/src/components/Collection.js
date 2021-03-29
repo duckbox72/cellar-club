@@ -44,15 +44,13 @@ export default function Collection(props) {
         setBottleName(bottle_name);
         console.log(bottle_name);
     }
+    // TO BE DETERMINED callbacks (actually in Searchbar)
     const BottleListCallback = (bottle_list) => {
         setBottleList(bottle_list);
-        //setBottleListLength(Object.keys(bottle_list).length);
+        setBottleListLength(Object.keys(bottle_list).length);
         console.log(bottle_list);
         console.log(Object.keys(bottle_list).length)
     }
-    
-    
-    
     // TO BE DETERMINED callbacks (actually in Searchbar)
     const BottleDataCallback = (bottle_data) => {
         setBottleData(bottle_data);
@@ -80,7 +78,7 @@ export default function Collection(props) {
                     {...props} 
                     darkMode={props.darkMode}
                     parentBottleNameCallback={BottleNameCallback}
-                    parentBottleListCallback={BottleListCallback}
+                    //parentBottleListCallback={BottleListCallback}
                     //parentBottleDataCallback={BottleDataCallback}
                     searchLocation={'Search My Collection'}
                     />

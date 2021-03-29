@@ -81,7 +81,7 @@ export default function Searchbar(props) {
         });  
     }
 
-
+    /*
     const getBottleList  = (value) => {
         fetch(`/api/get_bottle_list/${value}`)
         .then(response => response.json())
@@ -89,6 +89,7 @@ export default function Searchbar(props) {
             props.parentBottleListCallback(bottle_list);
         });
     };
+    */
 
 
     // TO BE MOVED
@@ -117,7 +118,7 @@ export default function Searchbar(props) {
 
         // Collection.js calls
         if (searchLocation == 'Search My Collection') {
-            getBottleList(value); // called in all cases
+            //getBottleList(value); //called in all cases
             if (value !== null) {
                 getBottleName(value);
             } else {
