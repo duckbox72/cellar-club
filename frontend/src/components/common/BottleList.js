@@ -60,14 +60,15 @@ function getBottleList(bottleName) {
 };
   
 
-
 export default function BottleList(props) {
 
     const darkMode = props.darkMode;
     const userProfile = props.userProfile;
     const bottleName = props.bottleName;
-    const bottleList = props.bottleList;
-    const bottleListLength = props.bottleListLength;
+    
+    const bottleList = getBottleList(bottleName);
+
+    const bottleListLength = bottleList.lenght;
 
     const theme = useTheme(); 
     const mystyleprops = {
@@ -79,16 +80,10 @@ export default function BottleList(props) {
     const height = 0.5 * screen.availHeight;
 
 
-    useEffect(() => {
-        getBottleList(bottleName);
-    });
-
-
-
     return (
         <div className={classes.list}>
             <ListItem>
-                <Typography button variant={'button'}>{height}</Typography> 
+                <Typography button variant={'button'}>{bottleList[0]}</Typography> 
             </ListItem>
             <FixedSizeList   height={height} itemSize={46} itemCount={200}>
                 {renderRow}
