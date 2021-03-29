@@ -52,6 +52,8 @@ export default function BottleList(props) {
     const darkMode = props.darkMode;
     const userProfile = props.userProfile;
     const bottleName = props.bottleName;
+    const bottleList = props.bottleList;
+    const bottleListLength = props.bottleListLength;
 
     const theme = useTheme(); 
     const mystyleprops = {
@@ -59,16 +61,8 @@ export default function BottleList(props) {
     }
     const classes = useStyles(mystyleprops);
 
-    const [bottleList,setBottleList] = useState(null);
- 
+    // Used for FixedSizeList layout
     const height = 0.5 * screen.availHeight;
-
-
-    useEffect(() => {
-        bottleName == null ? console.log('getBottleList - default') :  console.log(`getBottleList - BOTTLE`);
-       
-    });
-
 
     return (
         <div className={classes.list}>

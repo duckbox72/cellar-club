@@ -22,7 +22,8 @@ urlpatterns = [
     path('get_gws_data/<str:lwin>', views.get_gws_data, name="get_gws_data"),
 
     # BOTTLE related ROUTES
-    path('get_bottle/<str:bottle_id>', views.get_bottle, name="get_bottle"),  
+    path('get_bottle/<str:bottle_id>', views.get_bottle, name="get_bottle"), 
+    path('get_bottle_list/<str:bottle_name>', views.get_bottle_list, name="get_bottle_list"),   
     path('get_bottle_name/<str:display_name>', views.get_bottle_name, name="get_bottle_name"),  
     path('search_bottle/<str:display_name>', views.search_bottle, name="search_bottle"),
 

@@ -7,7 +7,7 @@ from re import L
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
-from django.db.models.fields import BooleanField
+from django.db.models.fields import BooleanField, NullBooleanField
 from django.http import JsonResponse
 from django.shortcuts import render
 #from django.urls import reverse
@@ -231,9 +231,22 @@ def get_bottle(request, bottle_id):
 
 @login_required
 def get_bottle_list(request, bottle_name):
-    return JsonResponse({'SUCESS': 'LIST RETURNED'})
+    print(f'parameter received {bottle_name}')
+    
+    if bottle_name == 'null':
+        bottle_list = Bottle.objects.all().order_by('-created')
+        for bottle in bottle_list:
+            print(bottle.display_name)
+    else:
+        try:    
+            bottle_list = Bottle.objects.filter(display_name=bottle_name)
+            for bottle in bottle_list:
+                print(bottle.display_name)
+        except:
+            return JsonResponse({"error": "Sorry, no results found."})
+        
 
-
+    return JsonResponse([bottle.serializer() for bottle in bottle_list], safe=False, status=status.HTTP_200_OK)
 
 
 @login_required

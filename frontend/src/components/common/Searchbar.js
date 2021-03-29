@@ -76,10 +76,20 @@ export default function Searchbar(props) {
     const getBottleName = (value) => {
         fetch(`api/get_bottle_name/${value}`)
         .then((response) => response.json())
-        .then(bottle_name => {
-            props.parentBottleNameCallback(bottle_name);
+        .then(bottle => {
+            props.parentBottleNameCallback(bottle.display_name);
         });  
     }
+
+
+    const getBottleList  = (value) => {
+        fetch(`/api/get_bottle_list/${value}`)
+        .then(response => response.json())
+        .then(bottle_list => {
+            props.parentBottleListCallback(bottle_list);
+        });
+    };
+
 
     // TO BE MOVED
     const getBottleData = (bottle_id) => {
@@ -107,6 +117,7 @@ export default function Searchbar(props) {
 
         // Collection.js calls
         if (searchLocation == 'Search My Collection') {
+            getBottleList(value); // called in all cases
             if (value !== null) {
                 getBottleName(value);
             } else {
