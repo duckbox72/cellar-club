@@ -175,15 +175,16 @@ export default function Searchbar(props) {
     }
     
 
-    // couter set to avoid infinite loop
-    const [counter, setCounter] = useState(true);
+    // toggler set to avoid infinite loop
+    const [toggler, setToggler] = useState(true);
     useEffect(() => {
-        if (searchLocation == 'Search My Collection' && counter) {
+        if (searchLocation == 'Search My Collection' && toggler) {
                 getBottleList(null); 
-                setCounter(false);
+                setToggler(false);
         }          
     })
 
+    
     return ( 
         <Paper className={classes.root} elevation={1}>
             <Tooltip title={'Search Menu'}>
