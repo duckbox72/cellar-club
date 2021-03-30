@@ -45,15 +45,15 @@ renderRow.propTypes = {
 index: PropTypes.number.isRequired,
 style: PropTypes.object.isRequired,
 };
-  
+
 
 export default function BottleList(props) {
 
     const darkMode = props.darkMode;
     const userProfile = props.userProfile;
     const bottleName = props.bottleName;
-    
-    //const bottleList = props.bottleList;
+    const bottleList = props.bottleList;
+    const bottleListLength = props.bottleListLength;
 
     const theme = useTheme(); 
     const mystyleprops = {
@@ -63,7 +63,16 @@ export default function BottleList(props) {
 
     // Used for FixedSizeList layout
     const height = 0.5 * screen.availHeight;
+    const itemCount = bottleListLength != null ? bottleListLength : 0; 
 
+    useEffect(() => {
+        //console.log(Object.keys(bottleList).length)
+    //    bottleList != null ? console.log(bottleList) : console.log('NNUULLLL');
+        
+
+    })
+
+    
     return (
         <div className={classes.list}>
             <ListItem>
@@ -73,7 +82,7 @@ export default function BottleList(props) {
                     </Grid>
                 </Grid>
             </ListItem>
-            <FixedSizeList   height={height} itemSize={46} itemCount={200}>
+            <FixedSizeList   height={height} itemSize={46} itemCount={itemCount}>
                 {renderRow}
             </FixedSizeList>
         </div>
