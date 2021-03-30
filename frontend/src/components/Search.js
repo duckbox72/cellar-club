@@ -57,8 +57,6 @@ export default function Search(props) {
         setGwsScores(json);
     }
     
-    
-    
 
     // Navbar callbacks
     const darkModeCallback = () => {

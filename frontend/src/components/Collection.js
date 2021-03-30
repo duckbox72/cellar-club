@@ -18,12 +18,30 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+const getBottleList  = (value) => { 
+    fetch(`/api/get_bottle_list/${value}`)
+    .then(response => response.json())
+    .then(bottle_list => {
+        return bottle_list;
+    });
+};
+
+const getBottleListttt = (value=value) => {
+    const response = fetch(`/api/get_bottle_list/${value}`)
+    const bottle_list = response.json();
+    return bottle_list;
+};
+
+
 export default function Collection(props) {
   
     const userProfile = (getUserProfile());
     const [bottleName, setBottleName] = useState(null);
     const [bottleData, setBottleData] = useState(null);
-    
+
+    const [bottleList, setBottleList] = useState(null);
+    const [bottleListLength, setBottleListLength] = useState(null);
+
     const classes = useStyles();
 
 
@@ -54,6 +72,10 @@ export default function Collection(props) {
         console.log(bottle_data);
     }
 
+    useEffect(() => {
+        console.log(bottleList, bottleListLength)
+    });
+
     
     return (
         <div className={classes.root}>
@@ -75,7 +97,7 @@ export default function Collection(props) {
                     {...props} 
                     darkMode={props.darkMode}
                     parentBottleNameCallback={BottleNameCallback}
-                    //parentBottleListCallback={BottleListCallback}
+                    parentBottleListCallback={BottleListCallback}
                     //parentBottleDataCallback={BottleDataCallback}
                     searchLocation={'Search My Collection'}
                     />
@@ -85,6 +107,7 @@ export default function Collection(props) {
                     {...props} 
                     darkMode={props.darkMode}
                     bottleName={bottleName}
+                    bottleList={bottleList}
                     />
                 </Grid>
                 <Grid item xs={12} sm={10} md={8} style={{margin: 8}}>

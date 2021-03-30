@@ -48,6 +48,7 @@ export default function Searchbar(props) {
     const [searchResult, setSearchResult] = useState([]);
 
     
+    
     const theme = useTheme(); 
     const mystyleprops = {
         backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
@@ -81,7 +82,7 @@ export default function Searchbar(props) {
         });  
     }
 
-    /*
+    
     const getBottleList  = (value) => {
         fetch(`/api/get_bottle_list/${value}`)
         .then(response => response.json())
@@ -89,9 +90,8 @@ export default function Searchbar(props) {
             props.parentBottleListCallback(bottle_list);
         });
     };
-    */
-
-
+    
+    
     // TO BE MOVED
     const getBottleData = (bottle_id) => {
         fetch(`api/get_bottle/${bottle_id}`)
@@ -118,7 +118,7 @@ export default function Searchbar(props) {
 
         // Collection.js calls
         if (searchLocation == 'Search My Collection') {
-            //getBottleList(value); //called in all cases
+            getBottleList(value); //called in all change cases
             if (value !== null) {
                 getBottleName(value);
             } else {
@@ -173,7 +173,16 @@ export default function Searchbar(props) {
     const handleSourceMenuClose = (event) => {
         setSourceMenuAnchor(null);
     }
+    
 
+    // couter set to avoid infinite loop
+    const [counter, setCounter] = useState(true);
+    useEffect(() => {
+        if (searchLocation == 'Search My Collection' && counter) {
+                getBottleList(null); 
+                setCounter(false);
+        }          
+    })
 
     return ( 
         <Paper className={classes.root} elevation={1}>
