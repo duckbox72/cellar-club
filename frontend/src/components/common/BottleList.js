@@ -60,37 +60,6 @@ export default function BottleList(props) {
             ));
         }     
     };
-
-
-    useEffect(() => {
-        //bottleList.map(bottle => {
-        //    console.log(bottle)
-        //})
-        console.log(bottleList, bottleListLength)
-
-    })
-
-
-    function renderRow(props) {
-        //const classes = useStyles();
-        const { index, style } = props;
-
-        const bottle = bottleList[index];
-        console.log(bottle)
-      
-        return (
-          <ListItem button style={{'style': 'props'}} key={index}>
-            <ListItemText primaryTypographyProps={primaryTypographyProps} primary={`Item ${index + 1}`} />
-            <ListItemText secondary={'secondary'} />
-            <Typography></Typography>
-          </ListItem>
-        );
-    }
-      
-    renderRow.propTypes = {
-    index: PropTypes.number.isRequired,
-    style: PropTypes.object.isRequired,
-    };
     
     return (
         <div className={classes.list}>
@@ -101,7 +70,7 @@ export default function BottleList(props) {
                     </Grid>
                 </Grid>
             </ListItem>
-            <List  style={{height: height, overflow: 'scroll'}}>
+            <List  style={{maxHeight: height, overflow: 'scroll', }}>
                 {bottleListItems(bottleList)}
             </List>
         </div>
