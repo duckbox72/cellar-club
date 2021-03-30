@@ -52,8 +52,8 @@ export default function BottleList(props) {
     const darkMode = props.darkMode;
     const userProfile = props.userProfile;
     const bottleName = props.bottleName;
-    const bottleList = props.bottleList;
-    const bottleListLength = props.bottleListLength;
+    const bottleList = props.bottleList != null ? props.bottleList : [];
+    const bottleListLength = props.bottleListLength != null ? props.bottleListLength : 0;
 
     const theme = useTheme(); 
     const mystyleprops = {
@@ -63,13 +63,10 @@ export default function BottleList(props) {
 
     // Used for FixedSizeList layout
     const height = 0.5 * screen.availHeight;
-    const itemCount = bottleListLength != null ? bottleListLength : 0; 
+
 
     useEffect(() => {
-        //console.log(Object.keys(bottleList).length)
-    //    bottleList != null ? console.log(bottleList) : console.log('NNUULLLL');
-        
-
+        console.log(bottleList, bottleListLength)
     })
 
     
@@ -82,7 +79,7 @@ export default function BottleList(props) {
                     </Grid>
                 </Grid>
             </ListItem>
-            <FixedSizeList   height={height} itemSize={46} itemCount={itemCount}>
+            <FixedSizeList   height={height} itemSize={46} itemCount={bottleListLength}>
                 {renderRow}
             </FixedSizeList>
         </div>
