@@ -6,6 +6,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import brown from '@material-ui/core/colors/brown';
 
 import { FixedSizeList } from 'react-window';
+import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
@@ -28,23 +29,7 @@ const useStyles = makeStyles((theme) => ({
 const primaryTypographyProps = { style: {color: 'red', fontSize: 14}}
 
 
-function renderRow(props) {
-    const classes = useStyles();
-    const { index, style } = props;
-  
-    return (
-      <ListItem button style={style} key={index}>
-        <ListItemText primaryTypographyProps={primaryTypographyProps} primary={`Item ${index + 1}`} />
-        <ListItemText secondary={`Item ${index + 1}`} />
-        <Typography>TEST</Typography><Typography>TEST</Typography><Typography>TEST</Typography><Typography>TEST</Typography><Typography>TEST</Typography>
-      </ListItem>
-    );
-}
-  
-renderRow.propTypes = {
-index: PropTypes.number.isRequired,
-style: PropTypes.object.isRequired,
-};
+
 
 
 export default function BottleList(props) {
@@ -62,13 +47,50 @@ export default function BottleList(props) {
     const classes = useStyles(mystyleprops);
 
     // Used for FixedSizeList layout
+    //const height = 0.5 * screen.availHeight;
     const height = 0.5 * screen.availHeight;
+
+    const bottleListItems = (bottles) => {
+        if (bottles) {
+            return bottles.map(bottle => (
+                <ListItem button key={bottle.id}>
+                    <ListItemText primary={bottle.vintage} primaryTypographyProps={primaryTypographyProps} />
+                    <ListItemText secondary={bottle.display_name} />
+                </ListItem>
+            ));
+        }     
+    };
 
 
     useEffect(() => {
+        //bottleList.map(bottle => {
+        //    console.log(bottle)
+        //})
         console.log(bottleList, bottleListLength)
+
     })
 
+
+    function renderRow(props) {
+        //const classes = useStyles();
+        const { index, style } = props;
+
+        const bottle = bottleList[index];
+        console.log(bottle)
+      
+        return (
+          <ListItem button style={{'style': 'props'}} key={index}>
+            <ListItemText primaryTypographyProps={primaryTypographyProps} primary={`Item ${index + 1}`} />
+            <ListItemText secondary={'secondary'} />
+            <Typography></Typography>
+          </ListItem>
+        );
+    }
+      
+    renderRow.propTypes = {
+    index: PropTypes.number.isRequired,
+    style: PropTypes.object.isRequired,
+    };
     
     return (
         <div className={classes.list}>
@@ -79,9 +101,9 @@ export default function BottleList(props) {
                     </Grid>
                 </Grid>
             </ListItem>
-            <FixedSizeList   height={height} itemSize={46} itemCount={bottleListLength}>
-                {renderRow}
-            </FixedSizeList>
+            <List  style={{height: height, overflow: 'scroll'}}>
+                {bottleListItems(bottleList)}
+            </List>
         </div>
     );
 }
