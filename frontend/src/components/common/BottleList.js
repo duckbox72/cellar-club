@@ -11,6 +11,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid'
+import Avatar from '@material-ui/core/Avatar'
+import CardHeader from '@material-ui/core/CardHeader'
+import IconButton from '@material-ui/core/IconButton'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -53,10 +57,27 @@ export default function BottleList(props) {
     const bottleListItems = (bottles) => {
         if (bottles) {
             return bottles.map(bottle => (
-                <ListItem button key={bottle.id}>
-                    <ListItemText primary={bottle.vintage} primaryTypographyProps={primaryTypographyProps} />
-                    <ListItemText secondary={bottle.display_name} />
-                </ListItem>
+                <CardHeader 
+                key={bottle.id}
+                avatar={
+                    <div style={{textAlign: 'center'}}>
+                        <Typography variant="body2">
+                            {bottle.vintage}
+                        </Typography>
+                        <Typography variant="caption" style={{textAlign: 'center'}}>
+                            {bottle.colour}
+                        </Typography>
+                        </div>
+                }
+                action={
+                    <IconButton key={bottle.id} aria-label="">
+                    <MoreVertIcon />
+                    </IconButton>
+                }
+                title={bottle.display_name}
+                subheader={`${bottle.colour} ${bottle.region}, ${bottle.country}`}
+                
+                />
             ));
         }     
     };
