@@ -13,7 +13,7 @@ import { getUserProfile } from "./utils/getUserProfile";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        //minHeight: screen.availHeight,
+        minHeight: screen.availHeight,
     },   
 }));
 
@@ -71,10 +71,6 @@ export default function Collection(props) {
         setBottleData(bottle_data);
         console.log(bottle_data);
     }
-
-    useEffect(() => {
-        console.log(bottleList, bottleListLength)
-    });
 
     
     return (
