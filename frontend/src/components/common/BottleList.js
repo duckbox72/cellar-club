@@ -5,10 +5,8 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import brown from '@material-ui/core/colors/brown';
 
-import { FixedSizeList } from 'react-window';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid'
 import Avatar from '@material-ui/core/Avatar'
@@ -24,16 +22,11 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
         width: window.width,
     },
-    lit: {
-        color: 'red',
-        fontSize: 48,
+    list_body: {
+        maxHeight: screen.availHeight * 0.5,
+        overflowY: 'scroll',
     },
 }));
-
-const primaryTypographyProps = { style: {color: 'red', fontSize: 14}}
-
-
-
 
 
 export default function BottleList(props) {
@@ -44,15 +37,13 @@ export default function BottleList(props) {
     const bottleList = props.bottleList != null ? props.bottleList : [];
     const bottleListLength = props.bottleListLength != null ? props.bottleListLength : 0;
 
+
     const theme = useTheme(); 
     const mystyleprops = {
         backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
     }
     const classes = useStyles(mystyleprops);
 
-    // Used for FixedSizeList layout
-    //const height = 0.5 * screen.availHeight;
-    const height = 0.5 * screen.availHeight;
 
     const bottleListItems = (bottles) => {
         if (bottles) {
@@ -82,6 +73,7 @@ export default function BottleList(props) {
         }     
     };
     
+    
     return (
         <div className={classes.list}>
             <ListItem>
@@ -91,7 +83,7 @@ export default function BottleList(props) {
                     </Grid>
                 </Grid>
             </ListItem>
-            <List  style={{maxHeight: height, overflow: 'scroll', }}>
+            <List className={classes.list_body}>
                 {bottleListItems(bottleList)}
             </List>
         </div>
