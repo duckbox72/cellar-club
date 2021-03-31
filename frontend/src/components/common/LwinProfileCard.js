@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 
+import Alert from '@material-ui/lab/Alert'
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import DateFnsUtils from '@date-io/date-fns'; //choose lib in future
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
-import { Avatar, Button, Card, CardHeader, Collapse, Divider, Grid, IconButton, TextField, Tooltip, Typography } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import Collapse from '@material-ui/core/Collapse';
+import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
+import TextField from '@material-ui/core/TextField';
+import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
+import Snackbar from '@material-ui/core/Snackbar';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
@@ -33,6 +45,7 @@ import brown from '@material-ui/core/colors/brown';
 import { currencyNumberFormat} from "../utils/currencyNumberFormat";
 import { getBottleSizesOptions } from "../utils/getBottleSizesOptions";
 import { getVintageOptions } from "../utils/getVintageOptions";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -107,7 +120,22 @@ const useStyles = makeStyles((theme) => ({
     button: { 
         margin: theme.spacing(1),
         borderRadius: 20,
-    }
+    },
+    
+    snackbar: {
+        width: '100%',
+    },
+    alert_container: {
+        margin: theme.spacing(2, 6, 2, 2),
+        [theme.breakpoints.down('xs')]: {
+            margin: theme.spacing(2, 6, 2, 0),
+        },
+    },
+    alert: {
+        width: '100%',
+        borderRadius: 10,
+        //margin: theme.spacing(4, 2),
+    },
 }));
 
 
@@ -163,7 +191,9 @@ export default function LwinProfileCard(props) {
     const [score, setScore] = useState(null);
     const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
 
-    
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+
     const clearFormState = () => {
         setCost(null);
         setNote(null);
@@ -289,7 +319,7 @@ export default function LwinProfileCard(props) {
         .then(result => {
             console.log(result);
             if (result.success) {
-                console.log(result);
+                handleSnackbarCall();
               } else {
                 alert(result.error)
               }
@@ -320,6 +350,21 @@ export default function LwinProfileCard(props) {
             :
             setScore(null);
     };
+
+
+    const handleSnackbarCall = () => {
+        setSnackbarOpen(true);
+    }
+
+
+    const handleSnackbarClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setSnackbarOpen(false);
+        window.scrollTo(0, 0);
+        props.history.push('/collection');
+    }
 
 
     useEffect(() => {
@@ -689,7 +734,7 @@ export default function LwinProfileCard(props) {
                                     />
                                 </Grid>
                             </Grid> 
-                        </Grid>  
+                        </Grid> 
 
                         <Grid item xs={12} container spacing={0} alignItems="center" justify="space-around">
                             <Grid item xs={4}>
@@ -717,6 +762,28 @@ export default function LwinProfileCard(props) {
                                     Submit
                                 </Button>
                             </Grid>
+
+                            <Snackbar 
+                                className={classes.snackbar}
+                                open={snackbarOpen}
+                                autoHideDuration={1000}
+                                onClose={handleSnackbarClose}
+                                >
+                                <Grid className={classes.alert_container} container spacing={1} justify="center"> 
+                                    <Grid item xs={12} sm={10} md={8}>
+                                    <Alert
+                                    className={classes.alert}
+                                    elevation={6} 
+                                    variant="filled" 
+                                    onClose={handleSnackbarClose} 
+                                    severity="success"
+                                    >
+                                        SuCCESS
+                                    </Alert>
+                                    </Grid>
+                                </Grid>
+                            </Snackbar>
+
                         </Grid>
 
                     </Grid>
