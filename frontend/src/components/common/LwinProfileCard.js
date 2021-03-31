@@ -486,7 +486,7 @@ export default function LwinProfileCard(props) {
                             size="small"
                             id="vintage"
                             fullWidth
-                            freeSolo
+                            //freeSolo
                             //value={selectedVintage}
                             onChange={(event,value) => handleSelectedVintageAutocompleteChange(value)} 
                             clearOnEscape
@@ -520,7 +520,7 @@ export default function LwinProfileCard(props) {
                             size="small"
                             id="size"
                             fullWidth
-                            freeSolo
+                            //freeSolo
                             onChange={(event,value) => handleSelectedSizeAutocompleteChange(value)}
                             clearOnEscape
                             options={bottleSizes}
@@ -534,6 +534,7 @@ export default function LwinProfileCard(props) {
                                         <TextField
                                         required
                                         id="size"
+                                        type="text"
                                         {...params}
                                         onChange={handleSelectedSizeTextFieldChange} 
                                         label="Size" 
@@ -766,7 +767,7 @@ export default function LwinProfileCard(props) {
                             <Snackbar 
                                 className={classes.snackbar}
                                 open={snackbarOpen}
-                                autoHideDuration={1000}
+                                autoHideDuration={2000}
                                 onClose={handleSnackbarClose}
                                 >
                                 <Grid className={classes.alert_container} container spacing={1} justify="center"> 
