@@ -69,15 +69,6 @@ class Location(models.Model):
         }
 
 
-class BottleSize(models.Model):
-    size = models.CharField(max_length=8)
-
-    def serializer(self):    
-        return {
-            "size": self.size,
-        }
-
-
 class Vintage(models.Model):
     vintage = models.CharField(max_length=4) 
 

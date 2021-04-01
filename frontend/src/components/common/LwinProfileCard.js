@@ -181,7 +181,7 @@ export default function LwinProfileCard(props) {
         bottleColor != 'Red' && bottleColor != 'White' ? 
         darkMode ? theme.palette.primary.main : theme.palette.secondary.main 
         :
-        bottleColor == 'Red' ? red[400] : lime[500],
+        bottleColor == 'Red' ? red[400] : lime[400],
     }
     const classes = useStyles(mystyleprops);
     
@@ -198,6 +198,7 @@ export default function LwinProfileCard(props) {
     // Form options
     const bottleSizes = getBottleSizesOptions();
     const vintages = getVintageOptions();
+
     const infodata = [
         {mock: 'some string', store: 'ABC Wine and Spirits'},
         {mock: 'some string', store: 'Total Wine & More'},

@@ -19,7 +19,7 @@ from rest_framework import response
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import Bottle, BottleSize, Lwin, User, Vintage
+from .models import Bottle, Lwin, User, Vintage
 from .serializers import *
 
 import pandas as pd 
@@ -158,13 +158,6 @@ def search_lwin(request, display_name):
     
 
 # ------------------------- BOTTLE model RELATED ROUTES -------------------------
-
-@login_required
-def get_bottle_sizes(request):
-    sizes = BottleSize.objects.all()
-    return JsonResponse([size.serializer() for size in sizes], safe=False, status=status.HTTP_200_OK)
-
-
 @csrf_exempt
 @login_required
 def add_bottle_to_collection(request):
