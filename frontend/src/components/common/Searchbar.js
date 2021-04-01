@@ -203,9 +203,9 @@ export default function Searchbar(props) {
             open={Boolean(sourceMenuAnchor)}
             onClose={handleSourceMenuClose}
             >
-                <MenuItem onClick={() => props.history.push('/search')}>Search CellarClub</MenuItem>
-                <MenuItem onClick={() => props.history.push('/collection')}>Search My Collection</MenuItem>
-                <MenuItem onClick={handleSourceMenuClose}>Search My Reviews</MenuItem>
+                <MenuItem dense onClick={() => props.history.push('/search')}>Search CellarClub</MenuItem>
+                <MenuItem dense onClick={() => props.history.push('/collection')}>Search My Collection</MenuItem>
+                <MenuItem dense onClick={handleSourceMenuClose}>Search My Reviews</MenuItem>
             </Menu>
                 <Divider className={classes.divider} orientation="vertical" />
             <Autocomplete  

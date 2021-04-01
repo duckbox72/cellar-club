@@ -77,13 +77,13 @@ const useStyles = makeStyles((theme) => ({
         
     },
     header_title: {
-        fontWeight: 600,
+        fontWeight: 500,
         fontSize: theme.spacing(2),                
     },
     header_subheader: {
         fontWeight: 500,
     },
-    iconbutton_wslogo: {
+    iconbutton_external_link_logo: {
         height: theme.spacing(6.5),
         width: theme.spacing(6.5),
         marginLeft: 'auto',   
@@ -91,8 +91,12 @@ const useStyles = makeStyles((theme) => ({
     avatar_wslogo: {
         backgroundImage: "url(/static/images/ws-logo-nobg.png)",
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        
+        backgroundPosition: 'center',   
+    },
+    avatar_vivinologo: {
+        backgroundImage: "url(/static/images/vivino-logo.png)",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',   
     },
     icon: { 
         height: theme.spacing(2.5),
@@ -367,9 +371,13 @@ export default function LwinProfileCard(props) {
     }
 
 
+    const handleVivinoButton = () => {
+        window.location.href = `https://vivino.com/search/wines?q=${LwinData.display_name}`;
+    };
+
+
     const handleWineSearcherButton = () => {
         window.location.href = `https://wine-searcher.com/find/${LwinData.display_name}`;
-        //window.location.href = `https://vivino.com/search/wines?q=${LwinData.display_name}`;
     };
 
 
@@ -401,9 +409,20 @@ export default function LwinProfileCard(props) {
                     <IconButton>
                         <SpeakerNotesOutlinedIcon />
                     </IconButton>
+                    <Tooltip title="Find in Vivino">              
+                        <IconButton
+                        className={classes.iconbutton_external_link_logo}
+                        onClick={handleVivinoButton}
+                        aria-label="find in vivino"
+                        >
+                            <Avatar className={classes.avatar_vivino}>
+                                <Typography></Typography>
+                            </Avatar>
+                        </IconButton>
+                    </Tooltip>
                     <Tooltip title="Find in Wine-Searcher">              
                         <IconButton
-                        className={classes.iconbutton_wslogo}
+                        className={classes.iconbutton_external_link_logo}
                         onClick={handleWineSearcherButton}
                         aria-label="find in wine-searcher"
                         >

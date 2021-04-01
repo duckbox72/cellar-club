@@ -5,14 +5,16 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import brown from '@material-ui/core/colors/brown';
 
+import CardHeader from '@material-ui/core/CardHeader';
+import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid'
-import Avatar from '@material-ui/core/Avatar'
-import CardHeader from '@material-ui/core/CardHeader'
-import IconButton from '@material-ui/core/IconButton'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
+
+import FilterListIcon from '@material-ui/icons/FilterList';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -48,7 +50,8 @@ export default function BottleList(props) {
     const bottleListItems = (bottles) => {
         if (bottles) {
             return bottles.map(bottle => (
-                <CardHeader 
+                <CardHeader
+                id={bottle.id} 
                 key={bottle.id}
                 avatar={
                     <div style={{textAlign: 'center'}}>
@@ -62,12 +65,11 @@ export default function BottleList(props) {
                 }
                 action={
                     <IconButton key={bottle.id} aria-label="">
-                    <MoreVertIcon />
+                        <MoreVertIcon />
                     </IconButton>
                 }
                 title={bottle.display_name}
                 subheader={`${bottle.colour} ${bottle.region}, ${bottle.country}`}
-                
                 />
             ));
         }     
@@ -77,10 +79,13 @@ export default function BottleList(props) {
     return (
         <div className={classes.list}>
             <ListItem>
-                <Grid container spacing={1}>
-                    <Grid item>
-                        <Typography variant={'button'}>THIS IS MY HEADER</Typography> 
-                    </Grid>
+                <Grid container spacing={2} alignItems="center">     
+                    <Tooltip title="Filter List">
+                        <IconButton>
+                            <FilterListIcon />
+                        </IconButton>
+                    </Tooltip>
+                    <Typography variant={'button'}>Recently Added</Typography> 
                 </Grid>
             </ListItem>
             <List className={classes.list_body}>
