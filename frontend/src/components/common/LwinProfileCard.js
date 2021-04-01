@@ -41,6 +41,8 @@ import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
 import { CompassIcon, GlassCheersIcon, StoreIcon, WineBottleIcon } from './SvgIcons';
 
 import brown from '@material-ui/core/colors/brown';
+import red from '@material-ui/core/colors/red';
+import lime from '@material-ui/core/colors/lime';
 
 import { currencyNumberFormat} from "../utils/currencyNumberFormat";
 import { getBottleSizesOptions } from "../utils/getBottleSizesOptions";
@@ -78,12 +80,13 @@ const useStyles = makeStyles((theme) => ({
     },
     header_title: {
         fontWeight: 500,
-        fontSize: theme.spacing(2),                
+        fontSize: theme.spacing(2),    
+        //color: mystyleprops => mystyleprops.colorSchemaA,       
     },
     header_subheader: {
         fontWeight: 500,
     },
-    iconbutton_external_link_logo: {
+    iconbutton_external_link_ws: {
         height: theme.spacing(6.5),
         width: theme.spacing(6.5),
         marginLeft: 'auto',   
@@ -91,23 +94,40 @@ const useStyles = makeStyles((theme) => ({
     avatar_wslogo: {
         backgroundImage: "url(/static/images/ws-logo-nobg.png)",
         backgroundSize: 'cover',
-        backgroundPosition: 'center',   
+        backgroundPosition: 'center',  
+        backgroundColor: theme.palette.grey[500],
+        height: theme.spacing(3.5),
+        width: theme.spacing(3.5),  
+    },
+    iconbutton_external_link_vivino: {
+        height: theme.spacing(6.5),
+        width: theme.spacing(6.5),
+        //marginLeft: 'auto',   
     },
     avatar_vivinologo: {
         backgroundImage: "url(/static/images/vivino-logo.png)",
         backgroundSize: 'cover',
-        backgroundPosition: 'center',   
+        backgroundPosition: 'center',
+        height: theme.spacing(3.5),
+        width: theme.spacing(3.5),    
     },
     icon: { 
         height: theme.spacing(2.5),
         width: theme.spacing(2.5), 
-        color: mystyleprops => mystyleprops.colorSchemaA,
+        //color: mystyleprops => mystyleprops.colorSchemaA,
     },
     svg_icon: { 
         height: theme.spacing(2.5),
         width: theme.spacing(2.5),
         paddingTop: theme.spacing(1.5),
-        color: mystyleprops => mystyleprops.colorSchemaA,
+        //color: mystyleprops => mystyleprops.colorSchemaA,
+    },
+    svg_icon_header: { 
+        height: theme.spacing(2.5),
+        width: theme.spacing(2.5),
+        paddingTop: theme.spacing(1.5),
+        color: mystyleprops => mystyleprops.SvgIconHeaderColor,
+        transform: 'rotate(315deg)', 
     },
     autocomplete:{ 
         paddingBottom: theme.spacing(2),
@@ -149,6 +169,7 @@ export default function LwinProfileCard(props) {
     const darkMode = props.darkMode;
     const userProfile = props.userProfile;
     const LwinData = props.LwinData;
+    const bottleColor = LwinData == null ? "" : props.LwinData.colour;
     const gwsScores = props.gwsScores;
     
 
@@ -156,6 +177,11 @@ export default function LwinProfileCard(props) {
     const mystyleprops = {
         colorSchemaA: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
+        SvgIconHeaderColor: 
+        bottleColor != 'Red' && bottleColor != 'White' ? 
+        darkMode ? theme.palette.primary.main : theme.palette.secondary.main 
+        :
+        bottleColor == 'Red' ? red[400] : lime[500],
     }
     const classes = useStyles(mystyleprops);
     
@@ -409,24 +435,24 @@ export default function LwinProfileCard(props) {
                     <IconButton>
                         <SpeakerNotesOutlinedIcon />
                     </IconButton>
-                    <Tooltip title="Find in Vivino">              
-                        <IconButton
-                        className={classes.iconbutton_external_link_logo}
-                        onClick={handleVivinoButton}
-                        aria-label="find in vivino"
-                        >
-                            <Avatar className={classes.avatar_vivino}>
-                                <Typography></Typography>
-                            </Avatar>
-                        </IconButton>
-                    </Tooltip>
                     <Tooltip title="Find in Wine-Searcher">              
                         <IconButton
-                        className={classes.iconbutton_external_link_logo}
+                        className={classes.iconbutton_external_link_ws}
                         onClick={handleWineSearcherButton}
                         aria-label="find in wine-searcher"
                         >
                             <Avatar className={classes.avatar_wslogo}>
+                                <Typography></Typography>
+                            </Avatar>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Find in Vivino">              
+                        <IconButton
+                        className={classes.iconbutton_external_link_vivino}
+                        onClick={handleVivinoButton}
+                        aria-label="find in vivino"
+                        >
+                            <Avatar className={classes.avatar_vivinologo}>
                                 <Typography></Typography>
                             </Avatar>
                         </IconButton>
@@ -438,7 +464,7 @@ export default function LwinProfileCard(props) {
             disableTypography={true}
             className={classes.header}
             avatar={
-                <WineBottleIcon className={classes.svg_icon} />
+                <WineBottleIcon className={classes.svg_icon_header} />
             }
             action={
                 <Tooltip title="Add to my cellar">
