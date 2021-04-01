@@ -367,6 +367,12 @@ export default function LwinProfileCard(props) {
     }
 
 
+    const handleWineSearcherButton = () => {
+        window.location.href = `https://wine-searcher.com/find/${LwinData.display_name}`;
+        //window.location.href = `https://vivino.com/search/wines?q=${LwinData.display_name}`;
+    };
+
+
     useEffect(() => {
         handleSubmitButtonDisabledStatus()
 
@@ -398,7 +404,7 @@ export default function LwinProfileCard(props) {
                     <Tooltip title="Find in Wine-Searcher">              
                         <IconButton
                         className={classes.iconbutton_wslogo}
-                        onClick={() => {console.log('CLICK!')}}
+                        onClick={handleWineSearcherButton}
                         aria-label="find in wine-searcher"
                         >
                             <Avatar className={classes.avatar_wslogo}>
