@@ -92,12 +92,13 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 'auto',   
     },
     avatar_wslogo: {
-        backgroundImage: "url(/static/images/ws-logo-nobg.png)",
+        backgroundImage: "url(/static/images/ws-logo.png)",
         backgroundSize: 'cover',
         backgroundPosition: 'center',  
         backgroundColor: theme.palette.grey[500],
         height: theme.spacing(3.5),
         width: theme.spacing(3.5),  
+        boxShadow: '1px 1px 1px grey'
     },
     iconbutton_external_link_vivino: {
         height: theme.spacing(6.5),
@@ -109,7 +110,16 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: theme.spacing(3.5),
-        width: theme.spacing(3.5),    
+        width: theme.spacing(3.5),   
+        boxShadow: '1px 1px 1px grey' 
+    },
+    avatar_flags: {
+        backgroundImage: "url(/static/images/country-flags/077-france.png)",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: theme.spacing(4),
+        width: theme.spacing(4),
+        boxShadow: '1px 1px 1px grey'  
     },
     icon: { 
         height: theme.spacing(2.5),
@@ -465,7 +475,10 @@ export default function LwinProfileCard(props) {
             disableTypography={true}
             className={classes.header}
             avatar={
-                <WineBottleIcon className={classes.svg_icon_header} />
+                //<WineBottleIcon className={classes.svg_icon_header} />
+                <Avatar className={classes.avatar_flags}>
+                    <Typography></Typography>
+                </Avatar>
             }
             action={
                 <Tooltip title="Add to my cellar">
