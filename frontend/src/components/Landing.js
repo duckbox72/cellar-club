@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: 0,
         fontWeight: theme.typography.fontWeightMedium,
         padding: theme.spacing(2, 8),
-        margin: theme.spacing(2),
+        margin: theme.spacing(10),
         boxShadow: 'none',
     },
 }));
@@ -102,13 +102,13 @@ export default function Landing(props) {
                         
                         >
                         <Grid item>
-                            <Typography variant="h4" className={classes.body_typography}>
+                            <Typography variant="h4" className={classes.body_typography} style={{marginTop: 60}}>
                                 UPGRADE YOUR EXPERIENCE 
                             </Typography>
                         </Grid>
                         <Grid item>
                             <Typography variant="h6" className={classes.body_typography}>
-                                easily setup, manage and review your collection.  
+                                easily setup, manage and review your bottle collection.  
                             </Typography>
                         </Grid>
                         <Grid item>
@@ -116,7 +116,7 @@ export default function Landing(props) {
                                 Register
                             </Button>
                         </Grid>
-                        <Box mt={6}>
+                        <Box mt={0}>
                             <Copyright />
                         </Box>
                     </Grid>

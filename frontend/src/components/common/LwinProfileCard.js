@@ -98,7 +98,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.grey[500],
         height: theme.spacing(3.5),
         width: theme.spacing(3.5),  
-        boxShadow: '1px 1px 1px grey'
     },
     iconbutton_external_link_vivino: {
         height: theme.spacing(6.5),
@@ -110,16 +109,14 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: theme.spacing(3.5),
-        width: theme.spacing(3.5),   
-        boxShadow: '1px 1px 1px grey' 
+        width: theme.spacing(3.5),    
     },
     avatar_flags: {
-        backgroundImage: "url(/static/images/country-flags/077-france.png)",
+        backgroundImage: mystyleprops => mystyleprops.countryFlag,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: theme.spacing(4),
         width: theme.spacing(4),
-        boxShadow: '1px 1px 1px grey'  
     },
     icon: { 
         height: theme.spacing(2.5),
@@ -179,10 +176,10 @@ export default function LwinProfileCard(props) {
     const darkMode = props.darkMode;
     const userProfile = props.userProfile;
     const LwinData = props.LwinData;
-    const bottleColor = LwinData == null ? "" : props.LwinData.colour;
+    const bottleColor = LwinData == null ? "" : props.LwinData.colour;    
+    const countryFlag = LwinData == null ? "" : LwinData.country.split(" ").join("-").toLowerCase();
     const gwsScores = props.gwsScores;
     
-
     const theme = useTheme(); 
     const mystyleprops = {
         colorSchemaA: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
@@ -192,6 +189,7 @@ export default function LwinProfileCard(props) {
         darkMode ? theme.palette.primary.main : theme.palette.secondary.main 
         :
         bottleColor == 'Red' ? red[400] : lime[400],
+        countryFlag: `url(/static/images/country-flags/${countryFlag}.png)`,
     }
     const classes = useStyles(mystyleprops);
     
@@ -470,6 +468,8 @@ export default function LwinProfileCard(props) {
                     </Tooltip>
                 </Grid>
             </div>
+
+            <Divider className={classes.divider} />
 
             <CardHeader
             disableTypography={true}
