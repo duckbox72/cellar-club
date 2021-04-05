@@ -76,7 +76,7 @@ export default function App(props) {
     return (
         <ThemeProvider theme={mytheme}>
             <Paper  className={classes.appStyles}>
-                <div classeName>
+                <div>
                     <Switch>
                         {isAuthenticated ? 
                         (<>
