@@ -179,6 +179,7 @@ export default function Searchbar(props) {
     const [toggler, setToggler] = useState(true);
     useEffect(() => {
         if (searchLocation == 'Search My Collection' && toggler) {
+                // default bottle list
                 getBottleList(null); 
                 setToggler(false);
         }          

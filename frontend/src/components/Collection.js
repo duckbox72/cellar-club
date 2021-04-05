@@ -18,21 +18,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const getBottleList  = (value) => { 
-    fetch(`/api/get_bottle_list/${value}`)
-    .then(response => response.json())
-    .then(bottle_list => {
-        return bottle_list;
-    });
-};
-
-const getBottleListttt = (value=value) => {
-    const response = fetch(`/api/get_bottle_list/${value}`)
-    const bottle_list = response.json();
-    return bottle_list;
-};
-
-
 export default function Collection(props) {
   
     const userProfile = (getUserProfile());
