@@ -2,7 +2,14 @@
 import React, { useEffect ,useState } from "react";
 import { makeStyles , useTheme } from '@material-ui/core/styles'
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { Divider ,IconButton , Menu, MenuItem, Paper, TextField, Tooltip } from '@material-ui/core';
+
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import FindReplaceIcon from '@material-ui/icons/FindReplace';
 

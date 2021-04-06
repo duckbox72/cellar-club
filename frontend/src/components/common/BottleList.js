@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider, useTheme } from '@material-ui/core/styles';
 
 import brown from '@material-ui/core/colors/brown';
 
+import Badge from '@material-ui/core/Badge';
 import CardHeader from '@material-ui/core/CardHeader';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
@@ -17,6 +18,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
+import KitchenIcon from '@material-ui/icons/Kitchen';
 import SortIcon from '@material-ui/icons/Sort';
 
 
@@ -36,10 +38,24 @@ const useStyles = makeStyles((theme) => ({
     },
     sort_by_label: {
         margin: theme.spacing(1,1,0,0),
+        color: mystyleprops => mystyleprops.colorSchemaA,
+    },
+    feed_name_label: {
+        margin: theme.spacing(1,1.5,0,0),
+        color: mystyleprops => mystyleprops.colorSchemaA,
+        marginLeft: 'auto',
+    },
+    icon_numof_bottles: { 
+        margin: theme.spacing(1,1.5,0,0),
+        //height: theme.spacing(2.5),
+        //width: theme.spacing(2.5),
+        //paddingTop: theme.spacing(1.5),
+        //color: mystyleprops => mystyleprops.SvgIconHeaderColor,
+        //transform: 'rotate(315deg)', 
     },
     divider: {
         margin: theme.spacing(0, 2),
-    },
+    },   
 }));
 
 
@@ -58,6 +74,7 @@ export default function BottleList(props) {
     const theme = useTheme(); 
     const mystyleprops = {
         backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
+        colorSchemaA: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
     }
     const classes = useStyles(mystyleprops);
 
@@ -177,6 +194,19 @@ export default function BottleList(props) {
                     </Menu>
 
                     <Typography variant={'button'} className={classes.sort_by_label}>{sortByLabel}</Typography> 
+                    <Typography small variant={'button'} className={classes.feed_name_label}>Items</Typography>
+                
+                    <Badge 
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    color={darkMode ? 'primary' : 'secondary'}
+                    badgeContent={bottleListLength} 
+                    >
+                        <KitchenIcon className={classes.icon_numof_bottles} />
+                    </Badge>
+                    
                 </Grid>
             </ListItem>
             <List onChange={handleListChange} className={classes.list_body}>

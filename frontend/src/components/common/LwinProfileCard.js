@@ -118,6 +118,9 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(4),
         width: theme.spacing(4),
     },
+    form_title: {
+        color: mystyleprops => mystyleprops.colorSchemaA,
+    },
     icon: { 
         height: theme.spacing(2.5),
         width: theme.spacing(2.5), 
@@ -176,8 +179,8 @@ export default function LwinProfileCard(props) {
     const darkMode = props.darkMode;
     const userProfile = props.userProfile;
     const LwinData = props.LwinData;
-    const bottleColor = LwinData == null ? "" : props.LwinData.colour;    
-    const countryFlag = LwinData == null ? "" : LwinData.country.split(" ").join("-").toLowerCase();
+    const bottleColor = LwinData === null ? "" : props.LwinData.colour;    
+    const countryFlag = LwinData === null ? "" : LwinData.country.split(" ").join("-").toLowerCase();
     const gwsScores = props.gwsScores;
     
     const theme = useTheme(); 
@@ -189,7 +192,7 @@ export default function LwinProfileCard(props) {
         darkMode ? theme.palette.primary.main : theme.palette.secondary.main 
         :
         bottleColor == 'Red' ? red[400] : lime[400],
-        countryFlag: `url(/static/images/country-flags/${countryFlag}.png)`,
+        countryFlag: LwinData === null ? '' : `url(/static/images/country-flags/${countryFlag}.png)`,
     }
     const classes = useStyles(mystyleprops);
     
@@ -519,7 +522,7 @@ export default function LwinProfileCard(props) {
                 
                                 </Grid>
                                 <Grid item>   
-                                    <Typography size="small" variant="button">
+                                    <Typography className={classes.form_title} size="small" variant="button">
                                         Add to my cellar
                                     </Typography>
                                 </Grid>
