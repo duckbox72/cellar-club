@@ -5,6 +5,7 @@ import { makeStyles, ThemeProvider, useTheme } from '@material-ui/core/styles';
 
 import brown from '@material-ui/core/colors/brown';
 
+
 import Badge from '@material-ui/core/Badge';
 import CardHeader from '@material-ui/core/CardHeader';
 import Divider from '@material-ui/core/Divider';
@@ -55,7 +56,20 @@ const useStyles = makeStyles((theme) => ({
     },
     divider: {
         margin: theme.spacing(0, 2),
-    },   
+    },
+    list_item_avatar: {
+        fontWeight: 500,
+        fontSize: theme.spacing(2),   
+        //color: mystyleprops => mystyleprops.colorSchemaA,       
+    },
+    list_item_title: {
+        fontWeight: 400,
+        fontSize: theme.spacing(2),    
+        //color: mystyleprops => mystyleprops.colorSchemaA,       
+    },
+    list_item_subheader: {
+        fontWeight: 500,
+    },
 }));
 
 
@@ -89,21 +103,35 @@ export default function BottleList(props) {
                 key={bottle.id}
                 avatar={
                     <div style={{textAlign: 'center'}}>
-                        <Typography variant="body2">
+                        <Typography variant="body2" classeName={classes.list_item_avatar}>
                             {bottle.vintage}
-                        </Typography>
-                        <Typography variant="caption" style={{textAlign: 'center'}}>
-                            {bottle.colour}
                         </Typography>
                     </div>
                 }
                 action={
-                    <IconButton key={bottle.id} aria-label="TODO">
+                    <IconButton key={bottle.id}>
                         <MoreVertIcon />
                     </IconButton>
                 }
-                title={bottle.display_name}
-                subheader={`${bottle.colour} ${bottle.region}, ${bottle.country}`}
+                title={
+                    <Typography variant="body2" className={classes.list_item_title}>
+                       {bottle.display_name}
+                    </Typography>
+                }
+                subheader={
+                    <Badge
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    color={bottle.colour === 'Red' ? 'error' : 'primary'} 
+                    variant="dot"
+                    >
+                    <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
+                       {`${bottle.colour} ${bottle.region}, ${bottle.country}`}
+                    </Typography>
+                    </Badge>
+                }
                 />
                 </>
             ));

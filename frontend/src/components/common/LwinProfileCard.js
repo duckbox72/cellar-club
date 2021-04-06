@@ -478,7 +478,6 @@ export default function LwinProfileCard(props) {
             disableTypography={true}
             className={classes.header}
             avatar={
-                //<WineBottleIcon className={classes.svg_icon_header} />
                 <Avatar className={classes.avatar_flags}>
                     <Typography></Typography>
                 </Avatar>
