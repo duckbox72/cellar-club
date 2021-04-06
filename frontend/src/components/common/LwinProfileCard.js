@@ -444,22 +444,22 @@ export default function LwinProfileCard(props) {
                     <IconButton>
                         <SpeakerNotesOutlinedIcon />
                     </IconButton>
-                    <Tooltip title="Find in Wine-Searcher">              
+                    <Tooltip title="Find on Wine-Searcher">              
                         <IconButton
                         className={classes.iconbutton_external_link_ws}
                         onClick={handleWineSearcherButton}
-                        aria-label="find in wine-searcher"
+                        aria-label="find on wine-searcher"
                         >
                             <Avatar className={classes.avatar_wslogo}>
                                 <Typography></Typography>
                             </Avatar>
                         </IconButton>
                     </Tooltip>
-                    <Tooltip title="Find in Vivino">              
+                    <Tooltip title="Find on Vivino">              
                         <IconButton
                         className={classes.iconbutton_external_link_vivino}
                         onClick={handleVivinoButton}
-                        aria-label="find in vivino"
+                        aria-label="find on vivino"
                         >
                             <Avatar className={classes.avatar_vivinologo}>
                                 <Typography></Typography>

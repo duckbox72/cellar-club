@@ -51,7 +51,7 @@ export default function BottleList(props) {
     const bottleList = props.bottleList != null ? props.bottleList : [];
     const bottleListLength = props.bottleListLength != null ? props.bottleListLength : 0;
     
-    const [sortedBottleList,setSortedBottleList] = useState([]);
+    const [sortedBottleList,setSortedBottleList] = useState(bottleList);
     
     const [sortByMenuAnchor, setSortByMenuAnchor] = useState(null);
     const [sortByLabel, setSortByLabel] = useState('Recently Added')
@@ -113,28 +113,28 @@ export default function BottleList(props) {
         handleSortByMenuClose();
     }
     
-    
+    // sort  increase display_name  increase date order
     const handleSortNameAZClick = (event) => {
-        const sortNameAZ = bottleList.sort((a,b) => (a.display_name > b.display_name) ? 1 : -1);
+        const sortNameAZ = bottleList.sort((a,b) => (a.display_name > b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage > b.vintage) ? 1 : -1) : -1);
         setSortedBottleList(sortNameAZ);
         setSortByLabel('Name A-Z');
         handleSortByMenuClose();
     }
 
-
+    // sort  decrease display_name decrease date order
     const handleSortNameZAClick = (event) => {
-        const sortNameZA = bottleList.sort((a,b) => (a.display_name < b.display_name) ? 1 : -1);
+        const sortNameZA = bottleList.sort((a,b) => (a.display_name < b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage > b.vintage) ? 1 : -1) : -1);
         setSortedBottleList(sortNameZA);
         setSortByLabel('Name Z-A');
         handleSortByMenuClose();
     }
 
 
-    useEffect(() => {
-        const sortRecentlyAdded = bottleList.sort((a,b) => (a.created < b.created) ? 1 : -1);
-        setSortedBottleList(sortRecentlyAdded);
+    useEffect(() => { 
+        //const sortRecentlyAdded = bottleList.sort((a,b) => (a.created < b.created) ? 1 : -1);
+        //setSortedBottleList(sortRecentlyAdded);
     });
-
+    
     
     return (
         <div className={classes.list}>
