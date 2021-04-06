@@ -51,8 +51,6 @@ export default function BottleList(props) {
     const bottleList = props.bottleList != null ? props.bottleList : [];
     const bottleListLength = props.bottleListLength != null ? props.bottleListLength : 0;
     
-    const [sortedBottleList,setSortedBottleList] = useState(bottleList);
-    
     const [sortByMenuAnchor, setSortByMenuAnchor] = useState(null);
     const [sortByLabel, setSortByLabel] = useState('Recently Added')
 
@@ -107,34 +105,50 @@ export default function BottleList(props) {
 
 
     const handleSortRecentlyAddedClick = (event) => {
-        const sortRecentlyAdded = bottleList.sort((a,b) => (a.created < b.created) ? 1 : -1);
-        setSortedBottleList(sortRecentlyAdded);
+        bottleList.sort((a,b) => (a.created < b.created) ? 1 : -1);
         setSortByLabel('Recently Added');
         handleSortByMenuClose();
     }
     
     // sort  increase display_name  increase date order
     const handleSortNameAZClick = (event) => {
-        const sortNameAZ = bottleList.sort((a,b) => (a.display_name > b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage > b.vintage) ? 1 : -1) : -1);
-        setSortedBottleList(sortNameAZ);
-        setSortByLabel('Name A-Z');
+        bottleList.sort((a,b) => (a.display_name > b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage > b.vintage) ? 1 : -1) : -1);
+        
+        if (bottleName === null) {
+            setSortByLabel('Name A-Z');
+            
+        } else {
+            setSortByLabel('Vintage Up')
+
+        }
+
         handleSortByMenuClose();
     }
 
     // sort  decrease display_name decrease date order
-    const handleSortNameZAClick = (event) => {
-        const sortNameZA = bottleList.sort((a,b) => (a.display_name < b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage > b.vintage) ? 1 : -1) : -1);
-        setSortedBottleList(sortNameZA);
+    const handleSortNameZAClick = (event) => {   
+        
+        if (bottleName === null) {
+        bottleList.sort((a,b) => (a.display_name < b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage > b.vintage) ? 1 : -1) : -1)
         setSortByLabel('Name Z-A');
+        
+        } else {
+            bottleList.sort((a,b) => (a.display_name < b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage < b.vintage) ? 1 : -1) : -1)
+            setSortByLabel('Vintage Down');
+        }
+
         handleSortByMenuClose();
     }
 
 
-    useEffect(() => { 
-        //const sortRecentlyAdded = bottleList.sort((a,b) => (a.created < b.created) ? 1 : -1);
-        //setSortedBottleList(sortRecentlyAdded);
-    });
+    const handleListChange = () => {
+        console.log('THE LIST HAS CHANGED')
+    }
     
+
+    useEffect(() => {
+        setSortByLabel('Recently Added')
+    }, [bottleName],);
     
     return (
         <div className={classes.list}>
@@ -158,15 +172,15 @@ export default function BottleList(props) {
                     onClose={handleSortByMenuClose}
                     >
                         <MenuItem dense onClick={handleSortRecentlyAddedClick}>Recently Added</MenuItem>
-                        <MenuItem dense onClick={handleSortNameAZClick}>Name A-Z</MenuItem>
-                        <MenuItem dense onClick={handleSortNameZAClick}>Name Z-A</MenuItem>
+                        <MenuItem dense onClick={handleSortNameAZClick}>{bottleName === null ? 'Name A-Z' : 'Vintage Up'}</MenuItem>
+                        <MenuItem dense onClick={handleSortNameZAClick}>{bottleName === null ? 'Name Z-A' : 'Vintage Down'}</MenuItem>
                     </Menu>
 
                     <Typography variant={'button'} className={classes.sort_by_label}>{sortByLabel}</Typography> 
                 </Grid>
             </ListItem>
-            <List className={classes.list_body}>
-                {bottleListItems(sortedBottleList)}
+            <List onChange={handleListChange} className={classes.list_body}>
+                {bottleListItems(bottleList)}
             </List>
         </div>
     );
