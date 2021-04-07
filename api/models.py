@@ -81,29 +81,29 @@ class Vintage(models.Model):
 class Bottle(models.Model):
     # retrieved data
     user = models.ForeignKey("User", on_delete=models.CASCADE, null=False, blank=False)
-    cellar = models.CharField(max_length=64, null=True)
-    bin = models.CharField(max_length=64, null=True)
-    score = models.CharField(max_length=6, null=True)
+    cellar = models.CharField(max_length=64, null=True, blank=True)
+    bin = models.CharField(max_length=64, null=True, blank=True)
+    score = models.CharField(max_length=6, null=True, blank=True)
     
     lwin = models.CharField(max_length=7, null=True, blank=True)
     display_name = models.CharField(max_length=256, null=False, blank=False)
-    producer_title = models.CharField(max_length=64, null=True)
-    producer_name = models.CharField(max_length=64,null=True)
-    country = models.CharField(max_length=64, null=True)
-    region = models.CharField(max_length=64, null=True)
-    colour = models.CharField(max_length=16, null=True)
+    producer_title = models.CharField(max_length=64, null=True, blank=True)
+    producer_name = models.CharField(max_length=64,null=True, blank=True)
+    country = models.CharField(max_length=64, null=True, blank=True)
+    region = models.CharField(max_length=64, null=True, blank=True)
+    colour = models.CharField(max_length=16, null=True, blank=True)
 
     # data entered by user
     vintage = models.CharField(max_length=4)
     size = models.CharField(max_length=8)
-    store = models.CharField(max_length=64, null=True)
-    cost = models.IntegerField(default=0, null=True)
-    note = models.CharField(max_length=128, null=True)
+    store = models.CharField(max_length=64, null=True, blank=True)
+    cost = models.IntegerField(default=0, null=True, blank=True)
+    note = models.CharField(max_length=128, null=True, blank=True)
     consumed = models.BooleanField(default=False)
 
     # auto entered data
-    lwin11 = models.CharField(max_length=11,null=True)
-    date_added = models.DateField(default=timezone.now, null=True)
+    lwin11 = models.CharField(max_length=11,null=True, blank=True)
+    date_added = models.DateField(default=timezone.now, null=True, blank=True)
     created = models.DateTimeField(default=timezone.now)
 
     def mini_serializer(self):
