@@ -2,6 +2,9 @@ import React, { useState }from "react";
 import { Redirect, Route, Switch, } from "react-router-dom";
 import { createMuiTheme, makeStyles, ThemeProvider } from "@material-ui/core/styles"
 import { Paper } from "@material-ui/core";
+
+import Bottle from "./Bottle";
+import Collection from "./Collection";
 import Home from "./Home";
 import Landing from "./Landing";
 import Search from "./Search";
@@ -9,7 +12,7 @@ import SignIn from "./Signin";
 import SignUp from "./Signup";
 
 import { brown } from "@material-ui/core/colors";
-import Collection from "./Collection";
+
 
 
 const useStyles = makeStyles({
@@ -81,6 +84,12 @@ export default function App(props) {
                         {isAuthenticated ? 
                         (<>
                             <Route exact path="/" render={props => <Home {...props} 
+                            darkMode={darkMode}
+                            parentDarkModeCallback={darkModeCallback}
+                            parentSignOutCallback={signOutCallback}
+                            isAuthenticated={isAuthenticated}
+                            />} />
+                            <Route path='/bottle' render= {props => <Bottle {...props} 
                             darkMode={darkMode}
                             parentDarkModeCallback={darkModeCallback}
                             parentSignOutCallback={signOutCallback}
