@@ -17,6 +17,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
@@ -27,7 +28,7 @@ import { WineGlassIcon } from './SvgIcons';
 
 
 const useStyles = makeStyles((theme) => ({
-    list: {
+    list_paper: {
         margin: theme.spacing(0, 2),
         borderRadius: 10,
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
@@ -198,7 +199,7 @@ export default function BottleList(props) {
     }, [bottleName],);
     
     return (
-        <div className={classes.list}>
+        <Paper className={classes.list_paper} elevation={3}>
             <ListItem>
                 <Grid container spacing={2} alignItems="center">     
                     <Tooltip title="Sort By">
@@ -246,6 +247,6 @@ export default function BottleList(props) {
                 {bottleListItems(bottleList)}
             </List>
             }
-        </div>
+        </Paper>
     );
 } 

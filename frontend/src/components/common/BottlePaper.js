@@ -15,6 +15,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
@@ -25,19 +26,21 @@ import { WineGlassIcon } from './SvgIcons';
 
 
 const useStyles = makeStyles((theme) => ({
-    bottle: {
-
+    bottle_paper: {
+        height: screen.availHeight * 0.68,
+        //overflowY: 'scroll',
+        margin: theme.spacing(0, 2),
+        borderRadius: 10,
+        backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
     }
 }));
 
 
-export default function BottleList(props) {
+export default function BottlePaper(props) {
 
     const darkMode = props.darkMode;
     const userProfile = props.userProfile;
-    const bottleName = props.bottleName;
-    //const bottleList = props.bottleList != null ? props.bottleList : [];
-    const bottleListLength = props.bottleListLength != null ? props.bottleListLength : 0;
+    
     
 
     const theme = useTheme(); 
@@ -51,8 +54,10 @@ export default function BottleList(props) {
     
     
     return (
-        <div className={classes.bottle}>
-            
-        </div>
+        <Paper className={classes.bottle_paper} elevation={3}>
+            <Typography variant="h3">
+                BOTTLE CARD
+            </Typography>
+        </Paper>
     );
 } 

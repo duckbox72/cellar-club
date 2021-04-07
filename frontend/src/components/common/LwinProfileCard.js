@@ -41,8 +41,6 @@ import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
 import { CompassIcon, GlassCheersIcon, StoreIcon, WineBottleIcon } from './SvgIcons';
 
 import brown from '@material-ui/core/colors/brown';
-import red from '@material-ui/core/colors/red';
-import lime from '@material-ui/core/colors/lime';
 
 import { currencyNumberFormat} from "../utils/currencyNumberFormat";
 import { getBottleSizesOptions } from "../utils/getBottleSizesOptions";
@@ -132,13 +130,6 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: theme.spacing(1.5),
         //color: mystyleprops => mystyleprops.colorSchemaA,
     },
-    svg_icon_header: { 
-        height: theme.spacing(2.5),
-        width: theme.spacing(2.5),
-        paddingTop: theme.spacing(1.5),
-        color: mystyleprops => mystyleprops.SvgIconHeaderColor,
-        transform: 'rotate(315deg)', 
-    },
     autocomplete:{ 
         paddingBottom: theme.spacing(2),
     },
@@ -187,11 +178,6 @@ export default function LwinProfileCard(props) {
     const mystyleprops = {
         colorSchemaA: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
-        SvgIconHeaderColor: 
-        bottleColor != 'Red' && bottleColor != 'White' ? 
-        darkMode ? theme.palette.primary.main : theme.palette.secondary.main 
-        :
-        bottleColor == 'Red' ? red[400] : lime[400],
         countryFlag: LwinData === null ? '' : `url(/static/images/country-flags/${countryFlag}.png)`,
     }
     const classes = useStyles(mystyleprops);
@@ -434,7 +420,7 @@ export default function LwinProfileCard(props) {
 
 
     return (
-        <Card className={classes.card}>
+        <Card elevation={3} className={classes.card}>
 
             <div id="actions">
                 <Grid container spacing={1} className={classes.container_actions} alignItems="center">

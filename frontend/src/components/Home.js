@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles"
 
 import Grid  from "@material-ui/core/Grid";
 
+import Copyright from './common/Copyright';
 import Dashboard from "./common/Dashboard";
 import Navbar from "./common/Navbar";
 import NavbarTransparent from "./common/NavbarTransparent";
@@ -44,7 +45,6 @@ export default function Home(props) {
                     userProfile={userProfile}
                     />
                 </Grid>
-                
                 <Grid item xs={12}>
                     <NavbarTransparent />
                 </Grid>
@@ -55,15 +55,9 @@ export default function Home(props) {
                     userProfile={userProfile}
                     />
                 </Grid>
-                <Grid item xs={12} sm={10} md={8}>
-                    <Dashboard
-                    {...props} 
-                    darkMode={props.darkMode}
-                    userProfile={userProfile}
-                    />
+                <Grid item xs={12} sm={10} md={8} style={{margin: 8}}>
+                    <Copyright />
                 </Grid>
-                
-
             </Grid>
         </div>
     );

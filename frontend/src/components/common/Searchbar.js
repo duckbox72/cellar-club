@@ -194,7 +194,7 @@ export default function Searchbar(props) {
 
     
     return ( 
-        <Paper className={classes.root} elevation={1}>
+        <Paper className={classes.root} elevation={3}>
             <Tooltip title={'Search Menu'}>
                 <IconButton 
                 aria-controls="source-menu" 

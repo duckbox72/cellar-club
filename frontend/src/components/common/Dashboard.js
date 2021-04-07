@@ -15,7 +15,9 @@ import brown from '@material-ui/core/colors/brown';
 
 const useStyles = makeStyles((theme) => ({
     root_paper: {
-        margin: theme.spacing(0, 3),
+        height: screen.availHeight * 0.68,
+        //overflowY: 'scroll',
+        margin: theme.spacing(0, 2),
         borderRadius: 10,
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
         
@@ -64,7 +66,7 @@ export default function Dashboard(props) {
     
 
     return (
-        <Paper className={classes.root_paper}>
+        <Paper className={classes.root_paper} elevation={3}>
             <AppBar className={classes.appbar} position="relative" elevation={1}>
                 <Toolbar classeName={classes.toolbar} variant="dense" >
                     <Avatar className={classes.toolbar_avatar}>{userProfile.username[0]}</Avatar>
