@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 
-import { makeStyles, ThemeProvider, useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import brown from '@material-ui/core/colors/brown';
 
@@ -52,18 +51,19 @@ const useStyles = makeStyles((theme) => ({
     },
     icon_numof_bottles: { 
         margin: theme.spacing(1,1.5,0,0),
+        color: mystyleprops => mystyleprops.colorSchemaA,
     },
     divider: {
         margin: theme.spacing(0, 2),
     },
     list_item_avatar: {
-        //fontWeight: 500,
+        fontWeight: 500,
         //fontSize: theme.spacing(2),   
         //color: mystyleprops => mystyleprops.colorSchemaA,       
     },
     list_item_title: {
-        fontWeight: 400,
-        fontSize: theme.spacing(2),    
+        fontWeight: 500,
+        //fontSize: theme.spacing(2),    
         //color: mystyleprops => mystyleprops.colorSchemaA,       
     },
     list_item_subheader: {
@@ -107,15 +107,15 @@ export default function BottleList(props) {
                 key={bottle.id}
                 avatar={
                     <div style={{textAlign: 'center'}}>
-                        <Typography variant="body2" classeName={classes.list_item_avatar}>
+                        <Typography variant="subtitle2" classeName={classes.list_item_avatar}>
                             {bottle.vintage}
                         </Typography>
                         <Typography variant="caption">
-                        <WineGlassIcon 
-                        className={classes.list_item_color_icon}
-                        // bottle icon color  
-                        style={bottle.colour === 'Red' ? {color: 'maroon'} : bottle.colour === 'White' ? {color: 'tan'} : bottle.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
-                        />{bottle.size}
+                            <WineGlassIcon 
+                            className={classes.list_item_color_icon}
+                            // bottle icon color  
+                            style={bottle.colour === 'Red' ? {color: 'maroon'} : bottle.colour === 'White' ? {color: 'tan'} : bottle.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
+                            /> {bottle.size}
                         </Typography>
                     </div>
                 }
