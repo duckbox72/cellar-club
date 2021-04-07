@@ -8,6 +8,8 @@ import brown from '@material-ui/core/colors/brown';
 
 import Badge from '@material-ui/core/Badge';
 import CardHeader from '@material-ui/core/CardHeader';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
@@ -21,6 +23,8 @@ import Typography from '@material-ui/core/Typography';
 
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import SortIcon from '@material-ui/icons/Sort';
+
+import { WineGlassIcon } from './SvgIcons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -48,18 +52,13 @@ const useStyles = makeStyles((theme) => ({
     },
     icon_numof_bottles: { 
         margin: theme.spacing(1,1.5,0,0),
-        //height: theme.spacing(2.5),
-        //width: theme.spacing(2.5),
-        //paddingTop: theme.spacing(1.5),
-        //color: mystyleprops => mystyleprops.SvgIconHeaderColor,
-        //transform: 'rotate(315deg)', 
     },
     divider: {
         margin: theme.spacing(0, 2),
     },
     list_item_avatar: {
-        fontWeight: 500,
-        fontSize: theme.spacing(2),   
+        //fontWeight: 500,
+        //fontSize: theme.spacing(2),   
         //color: mystyleprops => mystyleprops.colorSchemaA,       
     },
     list_item_title: {
@@ -68,7 +67,12 @@ const useStyles = makeStyles((theme) => ({
         //color: mystyleprops => mystyleprops.colorSchemaA,       
     },
     list_item_subheader: {
-        fontWeight: 500,
+        fontWeight: 400,
+    },
+    list_item_color_icon: { 
+        //margin: theme.spacing(1,1.5,0,0),
+        height: theme.spacing(1.25),
+        width: theme.spacing(1.25),
     },
 }));
 
@@ -106,6 +110,13 @@ export default function BottleList(props) {
                         <Typography variant="body2" classeName={classes.list_item_avatar}>
                             {bottle.vintage}
                         </Typography>
+                        <Typography variant="caption">
+                        <WineGlassIcon 
+                        className={classes.list_item_color_icon}
+                        // bottle icon color  
+                        style={bottle.colour === 'Red' ? {color: 'maroon'} : bottle.colour === 'White' ? {color: 'tan'} : bottle.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
+                        />{bottle.size}
+                        </Typography>
                     </div>
                 }
                 action={
@@ -119,18 +130,9 @@ export default function BottleList(props) {
                     </Typography>
                 }
                 subheader={
-                    <Badge
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    color={bottle.colour === 'Red' ? 'error' : 'primary'} 
-                    variant="dot"
-                    >
                     <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
-                       {`${bottle.colour} ${bottle.region}, ${bottle.country}`}
+                       {`${bottle.colour} ${bottle.region}, ${bottle.country}`} 
                     </Typography>
-                    </Badge>
                 }
                 />
                 </>
@@ -237,9 +239,13 @@ export default function BottleList(props) {
                     
                 </Grid>
             </ListItem>
+            { bottleListLength === 0 ?
+            <LinearProgress color={darkMode ? 'primary' : 'secondary'}/>
+                :
             <List onChange={handleListChange} className={classes.list_body}>
                 {bottleListItems(bottleList)}
             </List>
+            }
         </div>
     );
-}
+} 
