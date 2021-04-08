@@ -40,6 +40,7 @@ export default function BottlePaper(props) {
 
     const darkMode = props.darkMode;
     const userProfile = props.userProfile;
+    const bottle = props.bottle;
     
     
 
@@ -56,7 +57,8 @@ export default function BottlePaper(props) {
     return (
         <Paper className={classes.bottle_paper} elevation={3}>
             <Typography variant="h3">
-                BOTTLE CARD
+                BOTTLE PAPER
+                {bottle.display_name}
             </Typography>
         </Paper>
     );

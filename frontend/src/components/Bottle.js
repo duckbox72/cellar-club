@@ -1,4 +1,7 @@
 import React, { useEffect, useState, } from "react";
+
+import { useLocation } from "react-router-dom";
+
 import { makeStyles } from "@material-ui/core/styles";
 
 import Grid  from "@material-ui/core/Grid";
@@ -20,7 +23,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Collection(props) {
   
     const userProfile = (getUserProfile());
-    
+
+    const location = useLocation();
+    const bottle = location.state.bottle;
 
     const classes = useStyles();
 
@@ -55,6 +60,7 @@ export default function Collection(props) {
                     {...props}
                     userProfile={userProfile} 
                     darkMode={props.darkMode}
+                    bottle={bottle}
                     // TODO BOTTLE INFO 
                     />
                 </Grid>

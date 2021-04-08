@@ -52,13 +52,6 @@ export default function Collection(props) {
     }
     
     
-    // TO BE DETERMINED callbacks (actually in Searchbar)
-    const BottleDataCallback = (bottle_data) => {
-        setBottleData(bottle_data);
-        console.log(bottle_data);
-    }
-
-    
     return (
         <div className={classes.root}>
             <Grid container  spacing={2} justify="center"> 
@@ -80,7 +73,6 @@ export default function Collection(props) {
                     darkMode={props.darkMode}
                     parentBottleNameCallback={BottleNameCallback}
                     parentBottleListCallback={BottleListCallback}
-                    //parentBottleDataCallback={BottleDataCallback}
                     searchLocation={'Search My Collection'}
                     />
                 </Grid>

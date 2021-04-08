@@ -97,6 +97,16 @@ export default function BottleList(props) {
     }
     const classes = useStyles(mystyleprops);
 
+    
+    const handleItemActionClick = (bottle) => {
+        props.history.push({
+            pathname: '/bottle',
+            //search: '?query=abc',
+            state: { bottle: bottle }
+        });
+
+    }
+
 
     const bottleListItems = (bottles) => {
         if (bottles) {
@@ -121,7 +131,10 @@ export default function BottleList(props) {
                     </div>
                 }
                 action={
-                    <IconButton key={bottle.id}>
+                    <IconButton 
+                    key={bottle.id} 
+                    onClick={() => handleItemActionClick(bottle)}
+                    >
                         <MoreVertIcon />
                     </IconButton>
                 }
