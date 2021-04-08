@@ -4,7 +4,6 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import brown from '@material-ui/core/colors/brown';
 
-
 import Badge from '@material-ui/core/Badge';
 import CardHeader from '@material-ui/core/CardHeader';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -16,12 +15,12 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
 import KitchenIcon from '@material-ui/icons/Kitchen';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import SortIcon from '@material-ui/icons/Sort';
 
 import { WineGlassIcon } from './SvgIcons';
@@ -135,7 +134,7 @@ export default function BottleList(props) {
                     key={bottle.id} 
                     onClick={() => handleItemActionClick(bottle)}
                     >
-                        <MoreVertIcon />
+                        <MoreHorizIcon />
                     </IconButton>
                 }
                 title={

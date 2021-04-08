@@ -820,7 +820,7 @@ export default function LwinProfileCard(props) {
                             <Snackbar 
                                 className={classes.snackbar}
                                 open={snackbarOpen}
-                                autoHideDuration={2000}
+                                autoHideDuration={1000}
                                 onClose={handleSnackbarClose}
                                 >
                                 <Grid className={classes.alert_container} container spacing={1} justify="center"> 
@@ -832,7 +832,7 @@ export default function LwinProfileCard(props) {
                                     onClose={handleSnackbarClose} 
                                     severity="success"
                                     >
-                                        SuCCESS
+                                        SUCCESS - Added to Collection
                                     </Alert>
                                     </Grid>
                                 </Grid>

@@ -1,52 +1,60 @@
 import React, { useState } from 'react';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import AppBar from '@material-ui/core/AppBar'
 import Avatar from '@material-ui/core/Avatar'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 
-import amber from '@material-ui/core/colors/amber';
 import brown from '@material-ui/core/colors/brown';
 
 
 
 const useStyles = makeStyles((theme) => ({
-    root_paper: {
+    root: {
         height: screen.availHeight * 0.68,
-        //overflowY: 'scroll',
-        margin: theme.spacing(0, 2),
+        marginTop: theme.spacing(1),
+        //backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
+        
+    },
+    dashboard_paper: {
+        height: screen.availHeight * 0.33,
+        width: '100%',
+        margin: theme.spacing(0, 3),
         borderRadius: 10,
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
+    },
+    dashboard_avatar: {
         
-    },
-    appbar: {
-        borderRadius: '15px 15px 0px 0px',
-        backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
-    },
-    toolbar: {
-        
-    },
-    toolbar_avatar: {
-        marginRight: theme.spacing(1),
-        width: theme.spacing(3),
-        height: theme.spacing(3),
+        //width: theme.spacing(3),
+        //height: theme.spacing(3),
         backgroundColor: mystyleprops => mystyleprops.colorSchemaA,
         color:  mystyleprops => mystyleprops.colorSchemaB,
     },
-    toolbar_typography_title: {
-        color:  mystyleprops => mystyleprops.colorSchemaA
-        ,
+    dashboard_title: {
+        //margin: theme.spacing(1),
+        color:  mystyleprops => mystyleprops.colorSchemaA,
     },
-    toolbar_typography_username: {
+    dashboard_username: {
         color: mystyleprops => mystyleprops.colorSchemaA,
         fontWeight: 500,
         flex: 1,
     },
-    main_container: {
-        marginTop: theme.spacing(2),
+
+    action_paper: {
+        //height: screen.availHeight * 0.31,
+        //[theme.breakpoints.down("sm")]: {
+            height: screen.availHeight * 0.14,
+        //},
+        borderRadius: 10,
+        backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
+    },
+    action_root: {
+        margin: theme.spacing(2,2,0,2),
+
+    },
+    action_container: {
+        //marginRight: theme.spacing(2)
     },
 }));
 
@@ -66,42 +74,85 @@ export default function Dashboard(props) {
     
 
     return (
-        <Paper className={classes.root_paper} elevation={3}>
-            <AppBar className={classes.appbar} position="relative" elevation={1}>
-                <Toolbar classeName={classes.toolbar} variant="dense" >
-                    <Avatar className={classes.toolbar_avatar}>{userProfile.username[0]}</Avatar>
-                    <Typography  className={classes.toolbar_typography_username} variant="body1">
-                        {userProfile.username}
-                    </Typography>
-                    <Typography className={classes.toolbar_typography_title} variant="button">
-                        DASHBOARD
-                    </Typography>
-                    
-                </Toolbar>
-            </AppBar>
-            <Grid className={classes.main_container} container spacing={2} direction="row" justify="center" >
-                <Grid item>
-                    <Typography variant="body2">
-                        Dashboard Item
-                    </Typography>
+            <div className={classes.root} >
+                <Grid container spacing={2} justify="center">
+                    <Paper elevation={3} className={classes.dashboard_paper} >
+                        <Grid item xs={12} container spacing={0} alignItems="center">
+                            <Avatar className={classes.dashboard_avatar}>{userProfile.username[0]}</Avatar>
+                            <Typography  className={classes.dashboard_username} variant="body1">
+                                {userProfile.username}
+                            </Typography>
+                            <Typography className={classes.dashboard_title} variant="button">
+                                DASHBOARD
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12} container spacing={2}>
+                        
+                            <Grid item xs={6} sm={3}>
+                                <Typography variant="body2">
+                                    Dashboard Item
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={6} sm={3}>
+                                <Typography variant="body2">
+                                    Dashboard Item
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={6} sm={3}>
+                                <Typography variant="body2">
+                                    Dashboard Item
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={6} sm={3}>
+                                <Typography variant="body2">
+                                    Dashboard Item
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                    </Paper>
                 </Grid>
-                <Grid item>
-                    <Typography variant="body2">
-                        Dashboard Item
-                    </Typography>
-                </Grid>
-                <Grid item>
-                    <Typography variant="body2">
-                        Dashboard Item
-                    </Typography>
-                </Grid>
-                <Grid item>
-                    <Typography variant="body2">
-                        Dashboard Item
-                    </Typography>
-                </Grid>
-            </Grid>
-        </Paper>
+                
+                <div className={classes.action_root}>
+                    <Grid className={classes.action_container} container spacing={2} justify="center">     
+                        <Grid item xs={6}>
+                            <Paper elevation={3} className={classes.action_paper}>
+                                <Typography variant="body2">
+                                    CellarClub
+                                </Typography>
+                            </Paper> 
+                        </Grid>
+
+                        <Grid item xs={6}>
+                            <Paper elevation={3} className={classes.action_paper}>
+                                <Typography variant="body2">
+                                    Collection
+                                </Typography>
+                            </Paper> 
+                        </Grid>
+
+                        <Grid item xs={6}>
+                            <Paper elevation={3} className={classes.action_paper}>
+                                <Typography variant="body2">
+                                    Memories
+                                </Typography>
+                            </Paper> 
+                        </Grid>
+
+                        <Grid item xs={6}>
+                            <Paper elevation={3} className={classes.action_paper}>
+                                <Typography variant="body2">
+                                    Storage
+                                </Typography>
+                            </Paper> 
+                        </Grid>
+                    </Grid>
+                </div>
+            </div>
+            
+
+
+
+        
     );
 
 

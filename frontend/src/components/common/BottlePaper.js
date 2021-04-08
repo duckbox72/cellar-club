@@ -57,7 +57,6 @@ export default function BottlePaper(props) {
     return (
         <Paper className={classes.bottle_paper} elevation={3}>
             <Typography variant="h3">
-                BOTTLE PAPER
                 {bottle.display_name}
             </Typography>
         </Paper>
