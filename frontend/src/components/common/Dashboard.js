@@ -62,8 +62,8 @@ const useStyles = makeStyles((theme) => ({
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     action_icon: {
-        height: theme.spacing(5),
-        width: theme.spacing(5),
+        height: theme.spacing(4),
+        width: theme.spacing(4),
         //marginTop: theme.spacing(2),
     },
 }));
@@ -193,7 +193,7 @@ export default function Dashboard(props) {
                         </Grid>
 
                         <Grid item xs={6}>
-                            <Paper elevation={3} className={classes.action_paper}>
+                            <Paper elevation={3} className={classes.action_paper} role="button" onClick={() => console.log('CLICK')}>
                                 <Grid container spacing={0} direction="column" alignItems="center">
                                     <Grid item className={classes.action_title_grid}>
                                         <Typography variant="button" className={classes.action_title}>
