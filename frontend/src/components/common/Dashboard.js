@@ -6,7 +6,13 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography'
 
+import EventIcon from '@material-ui/icons/Event';
+import KitchenIcon from '@material-ui/icons/Kitchen';
+import ListIcon from '@material-ui/icons/List';
+import SearchIcon from '@material-ui/icons/Search';
+
 import brown from '@material-ui/core/colors/brown';
+import { IconButton } from '@material-ui/core';
 
 
 
@@ -42,19 +48,23 @@ const useStyles = makeStyles((theme) => ({
     },
 
     action_paper: {
-        //height: screen.availHeight * 0.31,
-        //[theme.breakpoints.down("sm")]: {
-            height: screen.availHeight * 0.14,
-        //},
+        height: screen.availHeight * 0.15,
         borderRadius: 10,
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
     },
     action_root: {
         margin: theme.spacing(2,2,0,2),
-
     },
-    action_container: {
-        //marginRight: theme.spacing(2)
+    action_title_grid: {
+        marginTop: theme.spacing(1)
+    },
+    action_title: {
+        color: mystyleprops => mystyleprops.colorSchemaA,
+    },
+    action_icon: {
+        height: theme.spacing(5),
+        width: theme.spacing(5),
+        //marginTop: theme.spacing(2),
     },
 }));
 
@@ -112,39 +122,98 @@ export default function Dashboard(props) {
                     </Paper>
                 </Grid>
                 
+
                 <div className={classes.action_root}>
-                    <Grid className={classes.action_container} container spacing={2} justify="center">     
+                    <Grid container spacing={2} justify="center">     
+                        
                         <Grid item xs={6}>
                             <Paper elevation={3} className={classes.action_paper}>
-                                <Typography variant="body2">
-                                    CellarClub
-                                </Typography>
+                                <Grid container spacing={0} direction="column" alignItems="center">
+                                    <Grid item className={classes.action_title_grid}>
+                                        <Typography variant="button" className={classes.action_title}>
+                                            Cellar Club
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item>
+                                        <IconButton>
+                                            <SearchIcon className={classes.action_icon} />
+                                        </IconButton>
+                                    </Grid>
+                                    <Grid item>
+                                        <Typography variant="caption">
+                                            Search Bottles
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
                             </Paper> 
                         </Grid>
 
                         <Grid item xs={6}>
                             <Paper elevation={3} className={classes.action_paper}>
-                                <Typography variant="body2">
-                                    Collection
-                                </Typography>
+                                <Grid container spacing={0} direction="column" alignItems="center">
+                                    <Grid item className={classes.action_title_grid}>
+                                        <Typography variant="button" className={classes.action_title}>
+                                            Collection
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item>
+                                        <IconButton>
+                                            <ListIcon className={classes.action_icon}/>
+                                        </IconButton> 
+                                    </Grid>
+                                    <Grid item>
+                                        <Typography variant="caption">
+                                            Browse my Cellar
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
                             </Paper> 
                         </Grid>
 
                         <Grid item xs={6}>
                             <Paper elevation={3} className={classes.action_paper}>
-                                <Typography variant="body2">
-                                    Memories
-                                </Typography>
+                                <Grid container spacing={0} direction="column" alignItems="center">
+                                    <Grid item className={classes.action_title_grid}>
+                                        <Typography variant="button" className={classes.action_title}>
+                                            Memories
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item>
+                                        <IconButton>
+                                            <EventIcon className={classes.action_icon}/>
+                                        </IconButton>
+                                    </Grid>
+                                    <Grid item>
+                                        <Typography variant="caption">
+                                            Notes and Reviews
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
                             </Paper> 
                         </Grid>
 
                         <Grid item xs={6}>
                             <Paper elevation={3} className={classes.action_paper}>
-                                <Typography variant="body2">
-                                    Storage
-                                </Typography>
+                                <Grid container spacing={0} direction="column" alignItems="center">
+                                    <Grid item className={classes.action_title_grid}>
+                                        <Typography variant="button" className={classes.action_title}>
+                                            Storage
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item>
+                                        <IconButton>
+                                            <KitchenIcon className={classes.action_icon}/>
+                                        </IconButton>
+                                    </Grid>
+                                    <Grid item>
+                                        <Typography variant="caption">
+                                            Manage Locations
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
                             </Paper> 
                         </Grid>
+                    
                     </Grid>
                 </div>
             </div>
