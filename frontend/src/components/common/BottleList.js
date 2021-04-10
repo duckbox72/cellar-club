@@ -110,7 +110,7 @@ export default function BottleList(props) {
     const bottleListItems = (bottles) => {
         if (bottles) {
             return bottles.map(bottle => (
-                <>
+                <> 
                 <Divider className={classes.divider} />
                 <CardHeader
                 id={bottle.id} 
@@ -153,6 +153,56 @@ export default function BottleList(props) {
         }     
     };
     
+
+    const bottleListItemsXXX = (bottles) => {
+        if (bottles) {
+            return bottles.map(bottle => (
+                <ListItem button key={bottle.id}>
+                    <Grid container spacing={1}>
+                    <Grid item xs={2}>
+                    <div style={{textAlign: 'center'}}>
+                        <Typography variant="subtitle2" classeName={classes.list_item_avatar}>
+                            {bottle.vintage}
+                        </Typography>
+                        <Typography variant="caption">
+                            <WineGlassIcon 
+                            className={classes.list_item_color_icon}
+                            // bottle icon color  
+                            style={bottle.colour === 'Red' ? {color: 'maroon'} : bottle.colour === 'White' ? {color: 'tan'} : bottle.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
+                            />{bottle.size}
+                        </Typography>
+                    </div>
+                    </Grid>
+
+                
+                    <Grid item xs={8}>
+                    <div>
+                    <Typography variant="body2" className={classes.list_item_title}>
+                       {bottle.display_name}
+                    </Typography>
+                
+                    <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
+                       {`${bottle.colour} ${bottle.region}, ${bottle.country}`} 
+                    </Typography>
+                    </div>
+                    </Grid>
+
+                    <Grid item xs={2}>
+                    <IconButton 
+                    key={bottle.id} 
+                    onClick={() => handleItemActionClick(bottle)}
+                    >
+                        <MoreHorizIcon />
+                    </IconButton>
+                    </Grid>
+
+                    </Grid>
+                </ListItem>
+            ));
+        }     
+    };
+
+
 
     const handleSortByMenuClick = (event) => {
         setSortByMenuAnchor(event.currentTarget);
@@ -255,7 +305,7 @@ export default function BottleList(props) {
             { bottleListLength === 0 ?
             <LinearProgress color={darkMode ? 'primary' : 'secondary'}/>
                 :
-            <List onChange={handleListChange} className={classes.list_body}>
+            <List onChange={handleListChange} className={classes.list_body}>                    
                 {bottleListItems(bottleList)}
             </List>
             }
