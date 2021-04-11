@@ -42,23 +42,20 @@ const useStyles = makeStyles((theme) => ({
         overflowY: 'scroll',
     },
     sort_by_icon: {
-        margin: theme.spacing(1,1,0,0),
+        margin: theme.spacing(1,1,1,0),
     },
     sort_by_label: {
-        margin: theme.spacing(1,1,0,0),
+        margin: theme.spacing(1,1,1,0),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     feed_name_label: {
-        margin: theme.spacing(1,1.5,0,0),
+        margin: theme.spacing(1,1.5,1,0),
         color: mystyleprops => mystyleprops.colorSchemaA,
         marginLeft: 'auto',
     },
     icon_numof_bottles: { 
         margin: theme.spacing(1,1.5,0,0),
         color: mystyleprops => mystyleprops.colorSchemaA,
-    },
-    divider: {
-        margin: theme.spacing(0, 2),
     },
     list_item_avatar_container: {
         textAlign: 'center', 
@@ -130,6 +127,7 @@ export default function BottleList(props) {
                 button 
                 key={bottle.id} 
                 onClick={() => handleItemClick(bottle)}
+                divider
                 >
                     <ListItemAvatar>
                         <div className={classes.list_item_avatar_container}>
@@ -231,7 +229,7 @@ export default function BottleList(props) {
     
     return (
         <Paper className={classes.list_paper} elevation={3}>
-            <ListItem>
+            <ListItem divider>
                 <Grid container spacing={2} alignItems="center">     
                     <Tooltip title="Sort By">
                         <IconButton className={classes.sort_by_icon}

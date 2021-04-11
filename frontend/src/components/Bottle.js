@@ -61,7 +61,6 @@ export default function Collection(props) {
                     userProfile={userProfile} 
                     darkMode={props.darkMode}
                     bottle={bottle}
-                    // TODO BOTTLE INFO 
                     />
                 </Grid>
                 <Grid item xs={12} sm={10} md={8} style={{margin: 8}}>
