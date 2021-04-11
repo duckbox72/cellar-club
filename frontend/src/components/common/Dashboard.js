@@ -82,7 +82,7 @@ export default function Dashboard(props) {
         colorSchemaA: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         colorSchemaB: darkMode ? theme.palette.secondary.main : theme.palette.primary.main,
         backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
-        backgroundColorSchemaAHover: darkMode ? theme.palette.secondary.main : theme.palette.primary.main,
+        backgroundColorSchemaAHover: darkMode ? theme.palette.secondary.main : brown[200],
     }
     const classes = useStyles(mystyleprops);
 
