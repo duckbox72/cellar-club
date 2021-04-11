@@ -13,6 +13,10 @@ import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
@@ -107,7 +111,7 @@ export default function BottleList(props) {
     }
 
 
-    const bottleListItems = (bottles) => {
+    const bottleListItemsXX = (bottles) => {
         if (bottles) {
             return bottles.map(bottle => (
                 <> 
@@ -154,50 +158,46 @@ export default function BottleList(props) {
     };
     
 
-    const bottleListItemsXXX = (bottles) => {
+    const bottleListItems = (bottles) => {
         if (bottles) {
             return bottles.map(bottle => (
                 <ListItem button key={bottle.id}>
-                    <Grid container spacing={1}>
-                    <Grid item xs={2}>
-                    <div style={{textAlign: 'center'}}>
-                        <Typography variant="subtitle2" classeName={classes.list_item_avatar}>
-                            {bottle.vintage}
+                    <ListItemAvatar>
+                        <div style={{textAlign: 'center', marginLeft: -theme.spacing(2)}}>
+                            <Typography variant="subtitle2" classeName={classes.list_item_avatar}>
+                                {bottle.vintage}
+                            </Typography>
+                            <Typography variant="caption">
+                                <WineGlassIcon 
+                                className={classes.list_item_color_icon}
+                                // bottle icon color  
+                                style={bottle.colour === 'Red' ? {color: 'maroon'} : bottle.colour === 'White' ? {color: 'tan'} : bottle.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
+                                /> {bottle.size}
+                            </Typography>
+                        </div>
+                    </ListItemAvatar>     
+                    <ListItemText
+                    
+                    primary={
+                        <Typography variant="body2" className={classes.list_item_title}>
+                            {bottle.display_name}
+                        </Typography>    
+                    }
+                    secondary={
+                        <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
+                            {`${bottle.colour} ${bottle.region}, ${bottle.country}`} 
                         </Typography>
-                        <Typography variant="caption">
-                            <WineGlassIcon 
-                            className={classes.list_item_color_icon}
-                            // bottle icon color  
-                            style={bottle.colour === 'Red' ? {color: 'maroon'} : bottle.colour === 'White' ? {color: 'tan'} : bottle.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
-                            />{bottle.size}
-                        </Typography>
-                    </div>
-                    </Grid>
-
-                
-                    <Grid item xs={8}>
-                    <div>
-                    <Typography variant="body2" className={classes.list_item_title}>
-                       {bottle.display_name}
-                    </Typography>
-                
-                    <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
-                       {`${bottle.colour} ${bottle.region}, ${bottle.country}`} 
-                    </Typography>
-                    </div>
-                    </Grid>
-
-                    <Grid item xs={2}>
-                    <IconButton 
-                    key={bottle.id} 
-                    onClick={() => handleItemActionClick(bottle)}
-                    >
-                        <MoreHorizIcon />
-                    </IconButton>
-                    </Grid>
-
-                    </Grid>
-                </ListItem>
+                    } 
+                    />    
+                    <ListItemSecondaryAction>
+                        <IconButton 
+                        key={bottle.id} 
+                        onClick={() => handleItemActionClick(bottle)}
+                        >
+                            <MoreHorizIcon />
+                        </IconButton>
+                    </ListItemSecondaryAction>
+                </ListItem>        
             ));
         }     
     };
