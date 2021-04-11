@@ -56,8 +56,29 @@ export default function BottlePaper(props) {
     
     return (
         <Paper className={classes.bottle_paper} elevation={3}>
-            <Typography variant="h3">
-                {bottle.display_name}
+            <Typography>
+                {bottle.vintage}, {bottle.display_name}
+            </Typography>
+            <Typography>
+                {bottle.region}, {bottle.country}
+            </Typography>
+            <Typography>
+                {bottle.producer_title}, {bottle.producer_name}
+            </Typography>
+            <Typography>
+                {bottle.colour}, {bottle.size}, {bottle.score}
+            </Typography>
+            <Typography>
+                {bottle.cellar}, {bottle.bin}
+            </Typography>
+            <Typography>
+                {bottle.date_added}, {bottle.created}
+            </Typography>
+            <Typography>
+                {bottle.store}, {bottle.cost}, {bottle.note}
+            </Typography>
+            <Typography>
+                {bottle.lwin}, {bottle.lwin11}
             </Typography>
         </Paper>
     );

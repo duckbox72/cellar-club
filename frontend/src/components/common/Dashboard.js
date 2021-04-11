@@ -51,6 +51,9 @@ const useStyles = makeStyles((theme) => ({
         height: screen.availHeight * 0.15,
         borderRadius: 10,
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
+        '&:hover': {
+            backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaAHover,
+        },
     },
     action_root: {
         margin: theme.spacing(2,2,0,2),
@@ -79,8 +82,35 @@ export default function Dashboard(props) {
         colorSchemaA: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         colorSchemaB: darkMode ? theme.palette.secondary.main : theme.palette.primary.main,
         backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
+        backgroundColorSchemaAHover: darkMode ? theme.palette.secondary.main : theme.palette.primary.main,
     }
     const classes = useStyles(mystyleprops);
+
+
+    const handleCellarClubActionClick = e => {
+        window.scrollTo(0, 0);
+        props.history.push('/search');
+    }
+
+
+    const handleCollectionActionClick = e => {
+        window.scrollTo(0, 0);
+        props.history.push('/collection');
+    }
+
+
+    const handleMemoriesActionClick = e => {
+        //window.scrollTo(0, 0);
+        //props.history.push('/memories');
+        console.log('CLICK MEMORIES')
+    }
+
+
+    const handleStorageActionClick = e => {
+        //window.scrollTo(0, 0);
+        //props.history.push('/storage');
+        console.log('CLICK STORAGE')
+    }
     
 
     return (
@@ -127,7 +157,12 @@ export default function Dashboard(props) {
                     <Grid container spacing={2} justify="center">     
                         
                         <Grid item xs={6}>
-                            <Paper elevation={3} className={classes.action_paper}>
+                            <Paper 
+                            elevation={3} 
+                            className={classes.action_paper} 
+                            role="button"
+                            onClick={handleCellarClubActionClick}
+                            >
                                 <Grid container spacing={0} direction="column" alignItems="center">
                                     <Grid item className={classes.action_title_grid}>
                                         <Typography variant="button" className={classes.action_title}>
@@ -149,7 +184,12 @@ export default function Dashboard(props) {
                         </Grid>
 
                         <Grid item xs={6}>
-                            <Paper elevation={3} className={classes.action_paper}>
+                            <Paper 
+                            elevation={3} 
+                            className={classes.action_paper} 
+                            role="button"
+                            onClick={handleCollectionActionClick}
+                            >
                                 <Grid container spacing={0} direction="column" alignItems="center">
                                     <Grid item className={classes.action_title_grid}>
                                         <Typography variant="button" className={classes.action_title}>
@@ -171,7 +211,12 @@ export default function Dashboard(props) {
                         </Grid>
 
                         <Grid item xs={6}>
-                            <Paper elevation={3} className={classes.action_paper}>
+                            <Paper 
+                            elevation={3} 
+                            className={classes.action_paper} 
+                            role="button"
+                            onClick={handleMemoriesActionClick}
+                            >
                                 <Grid container spacing={0} direction="column" alignItems="center">
                                     <Grid item className={classes.action_title_grid}>
                                         <Typography variant="button" className={classes.action_title}>
@@ -193,7 +238,12 @@ export default function Dashboard(props) {
                         </Grid>
 
                         <Grid item xs={6}>
-                            <Paper elevation={3} className={classes.action_paper} role="button" onClick={() => console.log('CLICK')}>
+                            <Paper 
+                            elevation={3} 
+                            className={classes.action_paper} 
+                            role="button"
+                            onClick={handleStorageActionClick}
+                            >
                                 <Grid container spacing={0} direction="column" alignItems="center">
                                     <Grid item className={classes.action_title_grid}>
                                         <Typography variant="button" className={classes.action_title}>

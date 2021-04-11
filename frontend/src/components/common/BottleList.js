@@ -103,6 +103,7 @@ export default function BottleList(props) {
 
     
     const handleItemClick = (bottle) => {
+        window.scrollTo(0, 0);
         props.history.push({
             pathname: '/bottle',
             //search: '?query=abc',
@@ -112,6 +113,7 @@ export default function BottleList(props) {
 
 
     const handleItemActionClick = (bottle) => {
+        window.scrollTo(0, 0);
         props.history.push({
             pathname: '/bottle',
             //search: '?query=abc',
