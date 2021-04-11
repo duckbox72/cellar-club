@@ -60,6 +60,10 @@ const useStyles = makeStyles((theme) => ({
     divider: {
         margin: theme.spacing(0, 2),
     },
+    list_item_avatar_container: {
+        textAlign: 'center', 
+        marginLeft: -theme.spacing(2)
+    },
     list_item_avatar: {
         fontWeight: 500,
         //fontSize: theme.spacing(2),   
@@ -101,69 +105,34 @@ export default function BottleList(props) {
     const classes = useStyles(mystyleprops);
 
     
+    const handleItemClick = (bottle) => {
+        props.history.push({
+            pathname: '/bottle',
+            //search: '?query=abc',
+            state: { bottle: bottle }
+        });
+    }
+
+
     const handleItemActionClick = (bottle) => {
         props.history.push({
             pathname: '/bottle',
             //search: '?query=abc',
             state: { bottle: bottle }
         });
-
     }
-
-
-    const bottleListItemsXX = (bottles) => {
-        if (bottles) {
-            return bottles.map(bottle => (
-                <> 
-                <Divider className={classes.divider} />
-                <CardHeader
-                id={bottle.id} 
-                key={bottle.id}
-                avatar={
-                    <div style={{textAlign: 'center'}}>
-                        <Typography variant="subtitle2" classeName={classes.list_item_avatar}>
-                            {bottle.vintage}
-                        </Typography>
-                        <Typography variant="caption">
-                            <WineGlassIcon 
-                            className={classes.list_item_color_icon}
-                            // bottle icon color  
-                            style={bottle.colour === 'Red' ? {color: 'maroon'} : bottle.colour === 'White' ? {color: 'tan'} : bottle.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
-                            /> {bottle.size}
-                        </Typography>
-                    </div>
-                }
-                action={
-                    <IconButton 
-                    key={bottle.id} 
-                    onClick={() => handleItemActionClick(bottle)}
-                    >
-                        <MoreHorizIcon />
-                    </IconButton>
-                }
-                title={
-                    <Typography variant="body2" className={classes.list_item_title}>
-                       {bottle.display_name}
-                    </Typography>
-                }
-                subheader={
-                    <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
-                       {`${bottle.colour} ${bottle.region}, ${bottle.country}`} 
-                    </Typography>
-                }
-                />
-                </>
-            ));
-        }     
-    };
     
 
     const bottleListItems = (bottles) => {
         if (bottles) {
             return bottles.map(bottle => (
-                <ListItem button key={bottle.id}>
+                <ListItem 
+                button 
+                key={bottle.id} 
+                onClick={() => handleItemClick(bottle)}
+                >
                     <ListItemAvatar>
-                        <div style={{textAlign: 'center', marginLeft: -theme.spacing(2)}}>
+                        <div className={classes.list_item_avatar_container}>
                             <Typography variant="subtitle2" classeName={classes.list_item_avatar}>
                                 {bottle.vintage}
                             </Typography>
