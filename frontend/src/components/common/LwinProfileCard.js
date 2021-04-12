@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
         //color: mystyleprops => mystyleprops.colorSchemaA,       
     },
     header_subheader: {
-        fontWeight: 500,
+        fontWeight: 400,
     },
     iconbutton_external_link_ws: {
         height: theme.spacing(6.5),

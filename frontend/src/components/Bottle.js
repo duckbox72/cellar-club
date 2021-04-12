@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Grid  from "@material-ui/core/Grid";
 
-import BottlePaper from './common/BottlePaper';
+import BottleCard from './common/BottleCard';
 import Copyright from './common/Copyright';
 import Navbar from "./common/Navbar";
 import NavbarTransparent from "./common/NavbarTransparent";
@@ -56,7 +56,7 @@ export default function Collection(props) {
                 </Grid>           
             
                 <Grid item xs={12} sm={10} md={8}>
-                    <BottlePaper
+                    <BottleCard
                     {...props}
                     userProfile={userProfile} 
                     darkMode={props.darkMode}
