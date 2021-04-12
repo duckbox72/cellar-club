@@ -274,7 +274,7 @@ export default function BottleList(props) {
             { bottleListLength === 0 ?
             <LinearProgress color={darkMode ? 'primary' : 'secondary'}/>
                 :
-            <List onChange={handleListChange} className={classes.list_body}>                    
+            <List onChange={handleListChange} className={classes.list_body} dense>                    
                 {bottleListItems(bottleList)}
             </List>
             }

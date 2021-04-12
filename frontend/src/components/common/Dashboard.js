@@ -51,8 +51,10 @@ const useStyles = makeStyles((theme) => ({
         height: screen.availHeight * 0.15,
         borderRadius: 10,
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
+        elevation: 3,
         '&:hover': {
             backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaAHover,
+            elevation: 6,
         },
     },
     action_root: {
@@ -116,7 +118,7 @@ export default function Dashboard(props) {
     return (
             <div className={classes.root} >
                 <Grid container spacing={2} justify="center">
-                    <Paper elevation={3} className={classes.dashboard_paper} >
+                    <Paper  className={classes.dashboard_paper} >
                         <Grid item xs={12} container spacing={0} alignItems="center">
                             <Avatar className={classes.dashboard_avatar}>{userProfile.username[0]}</Avatar>
                             <Typography  className={classes.dashboard_username} variant="body1">
