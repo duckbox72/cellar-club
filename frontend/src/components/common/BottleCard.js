@@ -21,7 +21,9 @@ import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
+import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import KitchenIcon from '@material-ui/icons/Kitchen';
+import LanguageIcon from '@material-ui/icons/Language';
 import SortIcon from '@material-ui/icons/Sort';
 
 import { PlaceOfWorshipIcon ,WineGlassIcon } from './SvgIcons';
@@ -57,22 +59,29 @@ const useStyles = makeStyles((theme) => ({
     header_subheader: {
         //fontWeight: 400,
     },
+    divider: {
+        margin: theme.spacing(0, 2),
+    },
     info_container: {
-        height:  window.availHeight,
-        border: '1px solid blue'
+        //height:  'inherit',
+        //border: '1px solid blue'
+    },
+    info_header:{
+        color: mystyleprops => mystyleprops.colorSchemaA,
     },
     info_icon: { 
         height: theme.spacing(2.5),
         width: theme.spacing(2.5),
-        //paddingTop: theme.spacing(1.5),
-        //color: mystyleprops => mystyleprops.colorSchemaA,
+        margin: theme.spacing(0,1),
+        color: mystyleprops => mystyleprops.colorSchemaA,
     },
-    info_svg_icon: { 
-        height: theme.spacing(2.5),
-        width: theme.spacing(2.5),
-        //paddingTop: theme.spacing(1.5),
-        //color: mystyleprops => mystyleprops.colorSchemaA,
+    info_label: {
+        color: mystyleprops => mystyleprops.colorSchemaA,
     },
+    info_text: {
+        margin: theme.spacing(0,1), 
+    },
+
 }));
 
 
@@ -115,24 +124,81 @@ export default function BottleCard(props) {
                 </Typography>
             }  
             />
+
+            <Divider className={classes.divider} />
             
-            <Grid container className={classes.info_container}>
-               
+            <Grid container className={classes.info_container} justify="space-evenly">
+                
                 <Grid item xs={6}>
-                    <Typography>
-                        <PlaceOfWorshipIcon className={classes.info_svg_icon}/>
-                        Producer:
-                    </Typography>
-                    <Typography>
-                        {bottle.producer_title} {bottle.producer_name}
-                    </Typography>
+                    <Grid container style={{margin: 8}}>
+                        <Grid item xs={1}>
+        
+                        </Grid>
+                        <Grid item>   
+                            <Typography className={classes.info_header} size="small" variant="button">
+                                Profile
+                            </Typography>
+                        </Grid>
+                    </Grid>
                 </Grid>
 
+                { bottle.score !== null ?
                 <Grid item xs={6}> 
-                    <Typography>
-                        Origin: {bottle.region}, {bottle.country}
-                    </Typography>
+                    <Grid container spacing={1} justify="center" alignItems="center">       
+                        <Grid item>
+                            <AllInclusiveIcon className={classes.info_icon} />
+                        </Grid>
+                        <Grid item xs={8}>
+                            <Typography size="small" variant="body2" >
+                                Score {bottle.score} pts
+                            </Typography>  
+                        </Grid>
+                    </Grid> 
                 </Grid>
+                :
+                <Grid itmem xs={6} style={{marginBottom: 8}}>
+                
+                </Grid>
+                }
+               
+                <Grid item xs={6}>
+                    <Grid container spacing={0} justify="center">
+                        <Grid item>
+                            <PlaceOfWorshipIcon className={classes.info_icon}/>
+                        </Grid>
+                        <Grid item xs={8}>
+                            <Typography variant="body2" className={classes.info_label}>    
+                                Producer
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={10}>
+                            <Typography variant="body1" className={classes.info_text}>
+                                {bottle.producer_title} {bottle.producer_name}
+                            </Typography>
+                        </Grid>  
+                    </Grid>
+                </Grid>
+
+                <Grid item xs={6}>
+                    <Grid container spacing={0} justify="center">
+                        <Grid item>
+                            <LanguageIcon className={classes.info_icon}/>
+                        </Grid>
+                        <Grid item xs={8}>
+                            <Typography variant="body2" className={classes.info_label}>    
+                                Origin
+                            </Typography>
+                        </Grid>
+                        <Grid  item xs={10}>
+                            <Typography variant="body1" className={classes.info_text}>
+                                {bottle.region}, {bottle.country}
+                            </Typography>
+                        </Grid>  
+                    </Grid>
+                </Grid>
+
+
+
 
                 <Grid item xs={6}>
                     <Typography>
@@ -162,6 +228,8 @@ export default function BottleCard(props) {
                     </Typography>
                     
                 </Grid>
+                
+                
 
             </Grid>
             
