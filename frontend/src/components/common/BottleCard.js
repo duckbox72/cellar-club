@@ -4,16 +4,17 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import brown from '@material-ui/core/colors/brown';
 
-
+import Avatar from '@material-ui/core/Avatar'
 import Badge from '@material-ui/core/Badge';
 import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
-import LinearProgress from '@material-ui/core/LinearProgress';
-
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItem';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -27,8 +28,8 @@ import LanguageIcon from '@material-ui/icons/Language';
 import SortIcon from '@material-ui/icons/Sort';
 
 import { PlaceOfWorshipIcon ,WineGlassIcon } from './SvgIcons';
-import Avatar from '@material-ui/core/Avatar'
-import { CardActions } from '@material-ui/core';
+
+
 
 
 
@@ -72,14 +73,17 @@ const useStyles = makeStyles((theme) => ({
     info_icon: { 
         height: theme.spacing(2.5),
         width: theme.spacing(2.5),
-        margin: theme.spacing(0,1),
+        //margin: theme.spacing(0,1),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     info_label: {
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     info_text: {
-        margin: theme.spacing(0,1), 
+        marginLeft: theme.spacing(2),
+        [theme.breakpoints.down('xs')]: {
+            marginLeft: theme.spacing(1),
+        }, 
     },
 
 }));
@@ -161,9 +165,18 @@ export default function BottleCard(props) {
                 </Grid>
                 }
                
+
+
+
+
+
+
+
+
+               
                 <Grid item xs={6}>
                     <Grid container spacing={0} justify="center">
-                        <Grid item>
+                        <Grid item >
                             <PlaceOfWorshipIcon className={classes.info_icon}/>
                         </Grid>
                         <Grid item xs={8}>
@@ -171,7 +184,7 @@ export default function BottleCard(props) {
                                 Producer
                             </Typography>
                         </Grid>
-                        <Grid item xs={10}>
+                        <Grid item xs={11}>
                             <Typography variant="body1" className={classes.info_text}>
                                 {bottle.producer_title} {bottle.producer_name}
                             </Typography>
@@ -189,13 +202,36 @@ export default function BottleCard(props) {
                                 Origin
                             </Typography>
                         </Grid>
-                        <Grid  item xs={10}>
+                        <Grid  item xs={11}>
                             <Typography variant="body1" className={classes.info_text}>
                                 {bottle.region}, {bottle.country}
                             </Typography>
                         </Grid>  
                     </Grid>
                 </Grid>
+
+
+
+
+
+
+
+
+
+
+
+                <Grid item xs={6}>
+                    <ListItem>
+                        <ListItemText>
+
+                        </ListItemText>
+                    </ListItem>
+                </Grid>
+
+
+
+
+
 
 
 
