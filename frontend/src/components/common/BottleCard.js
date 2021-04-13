@@ -23,13 +23,15 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
 import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import LanguageIcon from '@material-ui/icons/Language';
 import PublicIcon from '@material-ui/icons/Public';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 
-import { CompassIcon, PlaceOfWorshipIcon, WineGlassIcon } from './SvgIcons';
+import { CompassIcon, PlaceOfWorshipIcon, StoreIcon, WineGlassIcon } from './SvgIcons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -298,30 +300,56 @@ export default function BottleCard(props) {
                     </ListItem>
                 </Grid>
 
-
-                
-
-
-
-
-
-
-
-
-
+                <Grid item xs={6}>
+                    <ListItem dense>
+                        <ListItemText
+                        primary={
+                            <Typography variant="body2" className={classes.info_label}> 
+                                <StoreIcon className={classes.info_icon}/> Purchased From
+                            </Typography>
+                        }
+                        secondary={
+                            <Typography variant="body1" className={classes.info_text}>
+                                {bottle.store ? bottle.store : 'n/a'}
+                            </Typography>
+                        }
+                        />
+                    </ListItem>
+                </Grid>
 
                 <Grid item xs={6}>
-                    <Typography>
-                        <KitchenIcon className={classes.info_icon} />
-                        Purchase Info: 
-                    </Typography>
-                    <Typography>
-                        {bottle.store}, {bottle.cost}, {bottle.note}
-                    </Typography>
-                    
+                    <ListItem dense>
+                        <ListItemText
+                        primary={
+                            <Typography variant="body2" className={classes.info_label}> 
+                                <AttachMoneyIcon className={classes.info_icon}/>Price/Cost
+                            </Typography>
+                        }
+                        secondary={
+                            <Typography variant="body1" className={classes.info_text}>
+                                {bottle.cost ? `$ ${bottle.cost}` : 'n/a'}
+                            </Typography>
+                        }
+                        />
+                    </ListItem>
                 </Grid>
-                
-                
+
+                <Grid item xs={6}>
+                    <ListItem dense>
+                        <ListItemText
+                        primary={
+                            <Typography variant="body2" className={classes.info_label}> 
+                                <CommentOutlinedIcon className={classes.info_icon}/>Note
+                            </Typography>
+                        }
+                        secondary={
+                            <Typography variant="body1" className={classes.info_text}>
+                                {bottle.note ? bottle.note : 'n/a'}
+                            </Typography>
+                        }
+                        />
+                    </ListItem>
+                </Grid>
 
             </Grid>
             
