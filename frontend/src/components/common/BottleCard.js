@@ -14,7 +14,7 @@ import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -23,20 +23,19 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
 import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import LanguageIcon from '@material-ui/icons/Language';
-import SortIcon from '@material-ui/icons/Sort';
+import PublicIcon from '@material-ui/icons/Public';
+import ShowChartIcon from '@material-ui/icons/ShowChart';
 
-import { PlaceOfWorshipIcon ,WineGlassIcon } from './SvgIcons';
-
-
-
+import { CompassIcon, PlaceOfWorshipIcon, WineGlassIcon } from './SvgIcons';
 
 
 const useStyles = makeStyles((theme) => ({
     bottle_card: {
-        height: screen.availHeight * 0.68,
-        //overflowY: 'scroll',
+        maxHeight: screen.availHeight * 0.68,
+        overflowY: 'scroll',
         margin: theme.spacing(0, 2),
         borderRadius: 10,
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
@@ -71,8 +70,8 @@ const useStyles = makeStyles((theme) => ({
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     info_icon: { 
-        height: theme.spacing(2.5),
-        width: theme.spacing(2.5),
+        height: theme.spacing(2.0),
+        width: theme.spacing(2.0),
         //margin: theme.spacing(0,1),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
@@ -80,10 +79,7 @@ const useStyles = makeStyles((theme) => ({
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     info_text: {
-        marginLeft: theme.spacing(2),
-        [theme.breakpoints.down('xs')]: {
-            marginLeft: theme.spacing(1),
-        }, 
+      
     },
 
 }));
@@ -131,7 +127,7 @@ export default function BottleCard(props) {
 
             <Divider className={classes.divider} />
             
-            <Grid container className={classes.info_container} justify="space-evenly">
+            <Grid container className={classes.info_container}>
                 
                 <Grid item xs={6}>
                     <Grid container style={{margin: 8}}>
@@ -166,69 +162,144 @@ export default function BottleCard(props) {
                 }
                
 
-
-
-
-
-
-
-
-               
                 <Grid item xs={6}>
-                    <Grid container spacing={0} justify="center">
-                        <Grid item >
-                            <PlaceOfWorshipIcon className={classes.info_icon}/>
-                        </Grid>
-                        <Grid item xs={8}>
-                            <Typography variant="body2" className={classes.info_label}>    
-                                Producer
+                    <ListItem dense>
+                        <ListItemText
+                        primary={
+                            <Typography variant="body2" className={classes.info_label}> 
+                                <PlaceOfWorshipIcon className={classes.info_icon}/> Producer
                             </Typography>
-                        </Grid>
-                        <Grid item xs={11}>
+                        }
+                        secondary={
                             <Typography variant="body1" className={classes.info_text}>
                                 {bottle.producer_title} {bottle.producer_name}
                             </Typography>
-                        </Grid>  
-                    </Grid>
+                        }
+                        />
+                    </ListItem>
                 </Grid>
 
                 <Grid item xs={6}>
-                    <Grid container spacing={0} justify="center">
-                        <Grid item>
-                            <LanguageIcon className={classes.info_icon}/>
-                        </Grid>
-                        <Grid item xs={8}>
-                            <Typography variant="body2" className={classes.info_label}>    
-                                Origin
+                    <ListItem dense>
+                        <ListItemText
+                        primary={
+                            <Typography variant="body2" className={classes.info_label}> 
+                                <LanguageIcon className={classes.info_icon}/> Origin
                             </Typography>
-                        </Grid>
-                        <Grid  item xs={11}>
+                        }
+                        secondary={
                             <Typography variant="body1" className={classes.info_text}>
                                 {bottle.region}, {bottle.country}
                             </Typography>
-                        </Grid>  
-                    </Grid>
+                        }
+                        />
+                    </ListItem>
                 </Grid>
 
-
-
-
-
-
-
-
-
-
+                <Grid item xs={6}>
+                    <ListItem dense>
+                        <ListItemText
+                        primary={
+                            <Typography variant="body2" className={classes.info_label}> 
+                                <WineGlassIcon className={classes.info_icon}/> Color
+                            </Typography>
+                        }
+                        secondary={
+                            <Typography variant="body1" className={classes.info_text}>
+                                {bottle.colour}
+                            </Typography>
+                        }
+                        />
+                    </ListItem>
+                </Grid>
 
                 <Grid item xs={6}>
-                    <ListItem>
-                        <ListItemText>
+                    <ListItem dense>
+                        <ListItemText
+                        primary={
+                            <Typography variant="body2" className={classes.info_label}> 
+                                <PublicIcon className={classes.info_icon}/> Size
+                            </Typography>
+                        }
+                        secondary={
+                            <Typography variant="body1" className={classes.info_text}>
+                                {bottle.size}
+                            </Typography>
+                        }
+                        />
+                    </ListItem>
+                </Grid>
 
-                        </ListItemText>
+                <Grid item xs={6}>
+                    <ListItem dense>
+                        <ListItemText
+                        primary={
+                            <Typography variant="body2" className={classes.info_label}> 
+                                <ShowChartIcon className={classes.info_icon}/> Critics Score
+                            </Typography>
+                        }
+                        secondary={
+                            <Typography variant="body1" className={classes.info_text}>
+                                {bottle.score ? bottle.score : 'n/a'}
+                            </Typography>
+                        }
+                        />
+                    </ListItem>
+                </Grid>
+
+                <Grid item xs={6}>
+                    <ListItem dense>
+                        <ListItemText
+                        primary={
+                            <Typography variant="body2" className={classes.info_label}> 
+                                <EventAvailableIcon className={classes.info_icon}/> Date Added
+                            </Typography>
+                        }
+                        secondary={
+                            <Typography variant="body1" className={classes.info_text}>
+                                {bottle.date_added ? bottle.date_added : bottle.created}
+                            </Typography>
+                        }
+                        />
+                    </ListItem>
+                </Grid>
+
+                <Grid item xs={6}>
+                    <ListItem dense>
+                        <ListItemText
+                        primary={
+                            <Typography variant="body2" className={classes.info_label}> 
+                                <KitchenIcon className={classes.info_icon}/> Location/Cellar
+                            </Typography>
+                        }
+                        secondary={
+                            <Typography variant="body1" className={classes.info_text}>
+                                {bottle.cellar ? bottle.cellar : 'n/a'}
+                            </Typography>
+                        }
+                        />
+                    </ListItem>
+                </Grid>
+
+                <Grid item xs={6}>
+                    <ListItem dense>
+                        <ListItemText
+                        primary={
+                            <Typography variant="body2" className={classes.info_label}> 
+                                <CompassIcon className={classes.info_icon}/> Location/Bin
+                            </Typography>
+                        }
+                        secondary={
+                            <Typography variant="body1" className={classes.info_text}>
+                                {bottle.cellar ? bottle.cellar : 'n/a'}
+                            </Typography>
+                        }
+                        />
                     </ListItem>
                 </Grid>
 
 
+                
 
 
 
@@ -236,23 +307,8 @@ export default function BottleCard(props) {
 
 
 
-                <Grid item xs={6}>
-                    <Typography>
-                        Facts: {bottle.colour}, {bottle.size}, {bottle.score}
-                    </Typography>
-                </Grid>
 
-                <Grid item xs={6}>
-                    <Typography>
-                        Location: {bottle.cellar}, {bottle.bin}
-                    </Typography>
-                </Grid>
 
-                <Grid item xs={6}>
-                    <Typography>
-                        Date Added: {bottle.date_added}, {bottle.created}
-                    </Typography>
-                </Grid>
 
                 <Grid item xs={6}>
                     <Typography>
