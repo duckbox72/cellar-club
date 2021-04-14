@@ -7,7 +7,6 @@ import brown from '@material-ui/core/colors/brown';
 import Avatar from '@material-ui/core/Avatar'
 import Badge from '@material-ui/core/Badge';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
@@ -26,12 +25,15 @@ import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import LanguageIcon from '@material-ui/icons/Language';
 import PublicIcon from '@material-ui/icons/Public';
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 
-import { CompassIcon, PlaceOfWorshipIcon, StoreIcon, WineGlassIcon } from './SvgIcons';
+import { GlassCheersIcon ,CompassIcon, PlaceOfWorshipIcon, StoreIcon, WineGlassIcon } from './SvgIcons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -41,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(0, 2),
         borderRadius: '10px 10px 0px 0px',
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
+    },
+    actions_container: {
+        margin: theme.spacing(1,1)
     },
     iconbutton_external_link_ws: {
         height: theme.spacing(6.5),
@@ -93,11 +98,11 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
     },
     info_container: {
-        
         //height: screen.availHeight * 0.48,
         //overflowY: 'scroll',
     },
     info_header:{
+        margin: theme.spacing(1,2,0,2.5),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     info_icon: { 
@@ -132,7 +137,6 @@ export default function BottleCard(props) {
     const userProfile = props.userProfile;
     const bottle = props.bottle;
     
-    
 
     const theme = useTheme(); 
     const mystyleprops = {
@@ -144,29 +148,41 @@ export default function BottleCard(props) {
 
 
     const handleVivinoButton = () => {
-        window.location.href = `https://vivino.com/search/wines?q=${LwinData.display_name}`;
+        window.location.href = `https://vivino.com/search/wines?q=${bottle.display_name}`;
     };
 
 
     const handleWineSearcherButton = () => {
-        window.location.href = `https://wine-searcher.com/find/${LwinData.display_name}`;
+        window.location.href = `https://wine-searcher.com/find/${bottle.display_name}`;
     };
-    
+
     
     return (
         <>
         <Card className={classes.header_card} elevation={3}> 
-        <div id="actions">
+            <div id="actions" className={classes.actions_container}>
                 <Grid container spacing={1} className={classes.container_actions} alignItems="center">
+                    <Tooltip title="Toggle Favorite">
+                        <IconButton>
+                            {
+                                bottle.favorite ?
+                                <FavoriteIcon />
+                                :
+                                <FavoriteBorderIcon />
+                            }
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Drink Bottle">
                     <IconButton>
-                        <LanguageIcon/>
+                        <GlassCheersIcon style={{width: theme.spacing(2.75)}}/>
                     </IconButton>
-                    <IconButton >
-                        <LanguageIcon />
-                    </IconButton>
-                    <IconButton>
-                        <LanguageIcon />
-                    </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Remove Bottle">    
+                        <IconButton >
+                            <RemoveCircleOutlineIcon />
+                        </IconButton>
+                    </Tooltip>
+                    
                     <Tooltip title="Find on Wine-Searcher">              
                         <IconButton
                         className={classes.iconbutton_external_link_ws}
@@ -214,11 +230,10 @@ export default function BottleCard(props) {
             />
                
             <Divider className={classes.divider}/>
-        
         </Card>    
         
+        
         <Card className={classes.info_card} elevation={3}> 
-
             <Grid container className={classes.info_container}>    
                 
                 <Grid item xs={6}>
@@ -424,8 +439,7 @@ export default function BottleCard(props) {
                     </ListItem>
                 </Grid>
 
-            </Grid>
-            
+            </Grid>  
         </Card>
         </>
     );

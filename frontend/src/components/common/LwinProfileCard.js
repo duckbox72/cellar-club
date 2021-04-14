@@ -33,9 +33,9 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ImportExportIcon from '@material-ui/icons/ImportExport';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
+import PostAddIcon from '@material-ui/icons/PostAdd';
 import RemoveIcon from '@material-ui/icons/Remove'
 import ShareIcon from '@material-ui/icons/Share';
-import SpeakerNotesOutlinedIcon from '@material-ui/icons/SpeakerNotesOutlined';
 import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
 
 import { CompassIcon, GlassCheersIcon, StoreIcon, WineBottleIcon } from './SvgIcons';
@@ -432,7 +432,7 @@ export default function LwinProfileCard(props) {
                         <ShareIcon />
                     </IconButton>
                     <IconButton>
-                        <SpeakerNotesOutlinedIcon />
+                        <PostAddIcon />
                     </IconButton>
                     <Tooltip title="Find on Wine-Searcher">              
                         <IconButton
