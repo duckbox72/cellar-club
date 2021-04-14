@@ -167,9 +167,6 @@ def add_bottle_to_collection(request):
     user = request.user
     data = json.loads(request.body)
 
-    print(data)
-
-
     # Parse date_added
     if data['date_added'] == None:
         date_added = None
@@ -178,7 +175,6 @@ def add_bottle_to_collection(request):
 
     # Parse lwin
     if 'lwin' not in data:
-        print("NO DATA NO DATA")
         lwin = '9999999'
     else:
         lwin = data['lwin']
@@ -194,6 +190,7 @@ def add_bottle_to_collection(request):
         producer_name = data['producer_name'],
         country = data['country'],
         region = data['region'],
+        sub_region = data['sub_region'],
         colour = data['colour'],
         vintage = data['vintage'],
         size = data['size'],
@@ -204,8 +201,6 @@ def add_bottle_to_collection(request):
         date_added = date_added,  
     )
 
-    print(data)
-    print(bottle.vintage)
     bottle.save()
 
     return JsonResponse({"success": "posted successfully"}, safe=False, status=status.HTTP_200_OK)
@@ -238,7 +233,6 @@ def get_bottle_list(request, bottle_name):
         except:
             return JsonResponse({"error": "Sorry, no results found."})
         
-
     return JsonResponse([bottle.serializer() for bottle in bottle_list], safe=False, status=status.HTTP_200_OK)
 
 

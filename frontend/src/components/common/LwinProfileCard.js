@@ -333,6 +333,7 @@ export default function LwinProfileCard(props) {
                 producer_name: LwinData.producer_name,
                 country: LwinData.country,
                 region: LwinData.region,
+                sub_region: LwinData.sub_region,
                 colour: LwinData.colour,
                 vintage: selectedVintage,
                 size: selectedSize,

@@ -131,11 +131,8 @@ export default function BottleCard(props) {
             
             <Grid container className={classes.info_container}>
                 
-                <Grid item xs={6}>
-                    <Grid container style={{margin: 8}}>
-                        <Grid item xs={1}>
-        
-                        </Grid>
+                <Grid item xs={12}>
+                    <Grid container>
                         <Grid item>   
                             <Typography className={classes.info_header} size="small" variant="button">
                                 Profile
@@ -143,25 +140,6 @@ export default function BottleCard(props) {
                         </Grid>
                     </Grid>
                 </Grid>
-
-                { bottle.score !== null ?
-                <Grid item xs={6}> 
-                    <Grid container spacing={1} justify="center" alignItems="center">       
-                        <Grid item>
-                            <AllInclusiveIcon className={classes.info_icon} />
-                        </Grid>
-                        <Grid item xs={8}>
-                            <Typography size="small" variant="body2" >
-                                Score {bottle.score} pts
-                            </Typography>  
-                        </Grid>
-                    </Grid> 
-                </Grid>
-                :
-                <Grid itmem xs={6} style={{marginBottom: 8}}>
-                
-                </Grid>
-                }
                
 
                 <Grid item xs={6}>
@@ -203,12 +181,12 @@ export default function BottleCard(props) {
                         <ListItemText
                         primary={
                             <Typography variant="body2" className={classes.info_label}> 
-                                <WineGlassIcon className={classes.info_icon}/> Color
+                                <WineGlassIcon className={classes.info_icon}/> Color/Size
                             </Typography>
                         }
                         secondary={
                             <Typography variant="body1" className={classes.info_text}>
-                                {bottle.colour}
+                                {bottle.colour ? bottle.colour : 'n/a'} {bottle.size}
                             </Typography>
                         }
                         />
@@ -220,12 +198,12 @@ export default function BottleCard(props) {
                         <ListItemText
                         primary={
                             <Typography variant="body2" className={classes.info_label}> 
-                                <PublicIcon className={classes.info_icon}/> Size
+                                <PublicIcon className={classes.info_icon}/> Appelation
                             </Typography>
                         }
                         secondary={
                             <Typography variant="body1" className={classes.info_text}>
-                                {bottle.size}
+                                {bottle.sub_region ? bottle.sub_region : 'n/a'}
                             </Typography>
                         }
                         />
@@ -242,7 +220,7 @@ export default function BottleCard(props) {
                         }
                         secondary={
                             <Typography variant="body1" className={classes.info_text}>
-                                {bottle.score ? bottle.score : 'n/a'}
+                                {bottle.score ? `${bottle.score} / 100` : 'n/a'}
                             </Typography>
                         }
                         />
@@ -259,7 +237,7 @@ export default function BottleCard(props) {
                         }
                         secondary={
                             <Typography variant="body1" className={classes.info_text}>
-                                {bottle.date_added ? bottle.date_added : bottle.created}
+                                {bottle.date_added ? bottle.date_added : bottle.created.slice(0,10)}
                             </Typography>
                         }
                         />
@@ -322,7 +300,7 @@ export default function BottleCard(props) {
                         <ListItemText
                         primary={
                             <Typography variant="body2" className={classes.info_label}> 
-                                <AttachMoneyIcon className={classes.info_icon}/>Price/Cost
+                                <AttachMoneyIcon className={classes.info_icon}/> Price/Cost
                             </Typography>
                         }
                         secondary={
@@ -334,12 +312,12 @@ export default function BottleCard(props) {
                     </ListItem>
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item xs={12}>
                     <ListItem dense>
                         <ListItemText
                         primary={
                             <Typography variant="body2" className={classes.info_label}> 
-                                <CommentOutlinedIcon className={classes.info_icon}/>Note
+                                <CommentOutlinedIcon className={classes.info_icon}/> Note
                             </Typography>
                         }
                         secondary={

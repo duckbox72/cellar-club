@@ -91,6 +91,7 @@ class Bottle(models.Model):
     producer_name = models.CharField(max_length=64,null=True, blank=True)
     country = models.CharField(max_length=64, null=True, blank=True)
     region = models.CharField(max_length=64, null=True, blank=True)
+    sub_region = models.CharField(max_length=64, null=True, blank=True)
     colour = models.CharField(max_length=16, null=True, blank=True)
 
     # data entered by user
@@ -100,6 +101,7 @@ class Bottle(models.Model):
     cost = models.IntegerField(default=0, null=True, blank=True)
     note = models.CharField(max_length=128, null=True, blank=True)
     consumed = models.BooleanField(default=False)
+    favorite = models.BooleanField(default=False)
 
     # auto entered data
     lwin11 = models.CharField(max_length=11,null=True, blank=True)
@@ -123,6 +125,7 @@ class Bottle(models.Model):
             "producer_name": self.producer_name,
             "country": self.country,
             "region": self.region,
+            "sub_region": self.sub_region,
             "colour": self.colour,
             "vintage": self.vintage,
             "size": self.size,
@@ -133,6 +136,7 @@ class Bottle(models.Model):
             "date_added": self.date_added,
             "created": self.created,
             "consumed": self.consumed,
+            "favorite": self.favorite,
         }
 
 
