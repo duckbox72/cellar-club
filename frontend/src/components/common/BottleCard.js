@@ -35,19 +35,40 @@ import { CompassIcon, PlaceOfWorshipIcon, StoreIcon, WineGlassIcon } from './Svg
 
 
 const useStyles = makeStyles((theme) => ({
-    bottle_card: {
-        maxHeight: screen.availHeight * 0.68,
-        overflowY: 'scroll',
+    header_card: {
+        //height: screen.availHeight * 0.69,
+        //overflowY: 'scroll',
         margin: theme.spacing(0, 2),
-        borderRadius: 10,
+        borderRadius: '10px 10px 0px 0px',
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
-
-        //backgroundImage: "url(https://images.homify.com/images/a_0,c_fill,f_auto,h_900,q_auto,w_1920/v1502880809/p/photo/image/2180609/DSC_0546/fotos-de-adegas-moderno-por-awds-interior.jpg)",
-        //backgroundSize: 'cover',
-        //backgroundPosition: 'center',
+    },
+    iconbutton_external_link_ws: {
+        height: theme.spacing(6.5),
+        width: theme.spacing(6.5),
+        marginLeft: 'auto',   
+    },
+    avatar_wslogo: {
+        backgroundImage: "url(/static/images/ws-logo.png)",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',  
+        backgroundColor: theme.palette.grey[500],
+        height: theme.spacing(3.5),
+        width: theme.spacing(3.5),  
+    },
+    iconbutton_external_link_vivino: {
+        height: theme.spacing(6.5),
+        width: theme.spacing(6.5),
+        //marginLeft: 'auto',   
+    },
+    avatar_vivinologo: {
+        backgroundImage: "url(/static/images/vivino-logo.png)",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: theme.spacing(3.5),
+        width: theme.spacing(3.5),    
     },
     header: {
-        
+       
     },
     header_avatar: {
         backgroundImage: mystyleprops => mystyleprops.flagImage,
@@ -64,9 +85,17 @@ const useStyles = makeStyles((theme) => ({
     divider: {
         margin: theme.spacing(0, 2),
     },
+    info_card: {
+        height: screen.availHeight * 0.48,
+        overflowY: 'scroll',
+        margin: theme.spacing(0, 2),
+        borderRadius: '0px 0px 10px 10px',
+        backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
+    },
     info_container: {
-        //height:  'inherit',
-        //border: '1px solid blue'
+        
+        //height: screen.availHeight * 0.48,
+        //overflowY: 'scroll',
     },
     info_header:{
         color: mystyleprops => mystyleprops.colorSchemaA,
@@ -75,19 +104,23 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(2),
         width: theme.spacing(2),
         //margin: theme.spacing(0,1),
-        color: mystyleprops => mystyleprops.colorSchemaA,
+        //color: mystyleprops => mystyleprops.colorSchemaA,
+        color: theme.palette.text.secondary,
     },
     info_svg_icon: { 
         height: theme.spacing(1.75),
         width: theme.spacing(1.75),
         //margin: theme.spacing(0,1),
-        color: mystyleprops => mystyleprops.colorSchemaA,
+        //color: mystyleprops => mystyleprops.colorSchemaA,
+        color: theme.palette.text.secondary,
     },
     info_label: {
-        color: mystyleprops => mystyleprops.colorSchemaA,
+        //color: mystyleprops => mystyleprops.colorSchemaA,
+        color: theme.palette.text.secondary,
     },
     info_text: {
-      
+        fontWeight: 500,
+        marginLeft: theme.spacing(2.625),
     },
 
 }));
@@ -110,10 +143,57 @@ export default function BottleCard(props) {
     const classes = useStyles(mystyleprops);
 
 
+    const handleVivinoButton = () => {
+        window.location.href = `https://vivino.com/search/wines?q=${LwinData.display_name}`;
+    };
+
+
+    const handleWineSearcherButton = () => {
+        window.location.href = `https://wine-searcher.com/find/${LwinData.display_name}`;
+    };
     
     
     return (
-        <Card className={classes.bottle_card} elevation={3}> 
+        <>
+        <Card className={classes.header_card} elevation={3}> 
+        <div id="actions">
+                <Grid container spacing={1} className={classes.container_actions} alignItems="center">
+                    <IconButton>
+                        <LanguageIcon/>
+                    </IconButton>
+                    <IconButton >
+                        <LanguageIcon />
+                    </IconButton>
+                    <IconButton>
+                        <LanguageIcon />
+                    </IconButton>
+                    <Tooltip title="Find on Wine-Searcher">              
+                        <IconButton
+                        className={classes.iconbutton_external_link_ws}
+                        onClick={handleWineSearcherButton}
+                        aria-label="find on wine-searcher"
+                        >
+                            <Avatar className={classes.avatar_wslogo}>
+                                <Typography></Typography>
+                            </Avatar>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Find on Vivino">              
+                        <IconButton
+                        className={classes.iconbutton_external_link_vivino}
+                        onClick={handleVivinoButton}
+                        aria-label="find on vivino"
+                        >
+                            <Avatar className={classes.avatar_vivinologo}>
+                                <Typography></Typography>
+                            </Avatar>
+                        </IconButton>
+                    </Tooltip>
+                </Grid>
+            </div>
+        
+            <Divider className={classes.divider} />
+
             <CardHeader 
             disableTypography={true}
             avatar={
@@ -132,21 +212,30 @@ export default function BottleCard(props) {
                 </Typography>
             }  
             />
-
-            <Divider className={classes.divider} />
-            
-            <Grid container className={classes.info_container}>
-                
-                <Grid item xs={12}>
-                    <Grid container>
-                        <Grid item>   
-                            <Typography className={classes.info_header} size="small" variant="button">
-                                Profile
-                            </Typography>
-                        </Grid>
-                    </Grid>
-                </Grid>
                
+            <Divider className={classes.divider}/>
+        
+        </Card>    
+        
+        <Card className={classes.info_card} elevation={3}> 
+
+            <Grid container className={classes.info_container}>    
+                
+                <Grid item xs={6}>
+                    <ListItem dense>
+                        <Typography className={classes.info_header} size="small" variant="button">
+                            Profile
+                        </Typography>
+                    </ListItem>
+                </Grid>
+
+                <Grid item xs={6}>
+                    <ListItem dense>
+                        <Typography className={classes.info_header} size="small" variant="button">
+                            
+                        </Typography>
+                    </ListItem>
+                </Grid> 
 
                 <Grid item xs={6}>
                     <ListItem dense>
@@ -157,7 +246,7 @@ export default function BottleCard(props) {
                             </Typography>
                         }
                         secondary={
-                            <Typography variant="body1" className={classes.info_text}>
+                            <Typography variant="body2" className={classes.info_text}>
                                 {bottle.producer_title} {bottle.producer_name}
                             </Typography>
                         }
@@ -174,7 +263,7 @@ export default function BottleCard(props) {
                             </Typography>
                         }
                         secondary={
-                            <Typography variant="body1" className={classes.info_text}>
+                            <Typography variant="body2" className={classes.info_text}>
                                 {bottle.region}, {bottle.country}
                             </Typography>
                         }
@@ -191,7 +280,7 @@ export default function BottleCard(props) {
                             </Typography>
                         }
                         secondary={
-                            <Typography variant="body1" className={classes.info_text}>
+                            <Typography variant="body2" className={classes.info_text}>
                                 {bottle.colour ? bottle.colour : 'n/a'} {bottle.size}
                             </Typography>
                         }
@@ -208,7 +297,7 @@ export default function BottleCard(props) {
                             </Typography>
                         }
                         secondary={
-                            <Typography variant="body1" className={classes.info_text}>
+                            <Typography variant="body2" className={classes.info_text}>
                                 {bottle.sub_region ? bottle.sub_region : 'n/a'}
                             </Typography>
                         }
@@ -225,7 +314,7 @@ export default function BottleCard(props) {
                             </Typography>
                         }
                         secondary={
-                            <Typography variant="body1" className={classes.info_text}>
+                            <Typography variant="body2" className={classes.info_text}>
                                 {bottle.score ? `${bottle.score} / 100` : 'n/a'}
                             </Typography>
                         }
@@ -242,7 +331,7 @@ export default function BottleCard(props) {
                             </Typography>
                         }
                         secondary={
-                            <Typography variant="body1" className={classes.info_text}>
+                            <Typography variant="body2" className={classes.info_text}>
                                 {bottle.date_added ? bottle.date_added : bottle.created.slice(0,10)}
                             </Typography>
                         }
@@ -259,7 +348,7 @@ export default function BottleCard(props) {
                             </Typography>
                         }
                         secondary={
-                            <Typography variant="body1" className={classes.info_text}>
+                            <Typography variant="body2" className={classes.info_text}>
                                 {bottle.cellar ? bottle.cellar : 'n/a'}
                             </Typography>
                         }
@@ -276,7 +365,7 @@ export default function BottleCard(props) {
                             </Typography>
                         }
                         secondary={
-                            <Typography variant="body1" className={classes.info_text}>
+                            <Typography variant="body2" className={classes.info_text}>
                                 {bottle.cellar ? bottle.cellar : 'n/a'}
                             </Typography>
                         }
@@ -293,7 +382,7 @@ export default function BottleCard(props) {
                             </Typography>
                         }
                         secondary={
-                            <Typography variant="body1" className={classes.info_text}>
+                            <Typography variant="body2" className={classes.info_text}>
                                 {bottle.store ? bottle.store : 'n/a'}
                             </Typography>
                         }
@@ -310,7 +399,7 @@ export default function BottleCard(props) {
                             </Typography>
                         }
                         secondary={
-                            <Typography variant="body1" className={classes.info_text}>
+                            <Typography variant="body2" className={classes.info_text}>
                                 {bottle.cost ? `$ ${bottle.cost}` : 'n/a'}
                             </Typography>
                         }
@@ -327,7 +416,7 @@ export default function BottleCard(props) {
                             </Typography>
                         }
                         secondary={
-                            <Typography variant="body1" className={classes.info_text}>
+                            <Typography variant="body2" className={classes.info_text}>
                                 {bottle.note ? bottle.note : 'n/a'}
                             </Typography>
                         }
@@ -338,5 +427,6 @@ export default function BottleCard(props) {
             </Grid>
             
         </Card>
+        </>
     );
 } 

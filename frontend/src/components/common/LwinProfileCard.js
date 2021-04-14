@@ -426,7 +426,7 @@ export default function LwinProfileCard(props) {
             <div id="actions">
                 <Grid container spacing={1} className={classes.container_actions} alignItems="center">
                     <IconButton>
-                        <FavoriteBorderIcon />
+                        <FavoriteBorderIcon/>
                     </IconButton>
                     <IconButton >
                         <ShareIcon />
