@@ -72,8 +72,14 @@ const useStyles = makeStyles((theme) => ({
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     info_icon: { 
-        height: theme.spacing(2.0),
-        width: theme.spacing(2.0),
+        height: theme.spacing(2),
+        width: theme.spacing(2),
+        //margin: theme.spacing(0,1),
+        color: mystyleprops => mystyleprops.colorSchemaA,
+    },
+    info_svg_icon: { 
+        height: theme.spacing(1.75),
+        width: theme.spacing(1.75),
         //margin: theme.spacing(0,1),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
@@ -147,7 +153,7 @@ export default function BottleCard(props) {
                         <ListItemText
                         primary={
                             <Typography variant="body2" className={classes.info_label}> 
-                                <PlaceOfWorshipIcon className={classes.info_icon}/> Producer
+                                <PlaceOfWorshipIcon className={classes.info_svg_icon}/> Producer
                             </Typography>
                         }
                         secondary={
@@ -181,7 +187,7 @@ export default function BottleCard(props) {
                         <ListItemText
                         primary={
                             <Typography variant="body2" className={classes.info_label}> 
-                                <WineGlassIcon className={classes.info_icon}/> Color/Size
+                                <WineGlassIcon className={classes.info_svg_icon}/> Color/Size
                             </Typography>
                         }
                         secondary={
@@ -266,7 +272,7 @@ export default function BottleCard(props) {
                         <ListItemText
                         primary={
                             <Typography variant="body2" className={classes.info_label}> 
-                                <CompassIcon className={classes.info_icon}/> Location/Bin
+                                <CompassIcon className={classes.info_svg_icon}/> Location/Bin
                             </Typography>
                         }
                         secondary={
@@ -283,7 +289,7 @@ export default function BottleCard(props) {
                         <ListItemText
                         primary={
                             <Typography variant="body2" className={classes.info_label}> 
-                                <StoreIcon className={classes.info_icon}/> Purchased From
+                                <StoreIcon className={classes.info_svg_icon}/> Purchased From
                             </Typography>
                         }
                         secondary={
