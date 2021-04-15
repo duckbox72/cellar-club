@@ -12,25 +12,25 @@ import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Link from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
-import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import LanguageIcon from '@material-ui/icons/Language';
 import PublicIcon from '@material-ui/icons/Public';
-import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+import RemoveIcon from '@material-ui/icons/Remove';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 
 import { GlassCheersIcon ,CompassIcon, PlaceOfWorshipIcon, StoreIcon, WineGlassIcon } from './SvgIcons';
@@ -98,8 +98,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
     },
     info_container: {
-        //height: screen.availHeight * 0.48,
-        //overflowY: 'scroll',
+        
     },
     info_header:{
         margin: theme.spacing(1,2,0,2.5),
@@ -108,9 +107,12 @@ const useStyles = makeStyles((theme) => ({
     info_icon: { 
         height: theme.spacing(2),
         width: theme.spacing(2),
-        //margin: theme.spacing(0,1),
-        //color: mystyleprops => mystyleprops.colorSchemaA,
         color: theme.palette.text.secondary,
+    },
+    info_color_icon: {
+        height: theme.spacing(1.5),
+        width: theme.spacing(1.5),
+        color: mystyleprops => mystyleprops.infoColor,
     },
     info_svg_icon: { 
         height: theme.spacing(1.75),
@@ -143,6 +145,8 @@ export default function BottleCard(props) {
         backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
         colorSchemaA: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         flagImage: `url(/static/images/country-flags/${bottle.country.split(" ").join("-").toLowerCase()}.png)`,
+        infoColor: bottle.colour === 'Red' ? 'maroon' : bottle.colour === 'White' ? 'tan' : bottle.colour === 'Rose' ? 'lightcoral' : 'grey',
+        
     }
     const classes = useStyles(mystyleprops);
 
@@ -162,16 +166,21 @@ export default function BottleCard(props) {
         <Card className={classes.header_card} elevation={3}> 
             <div id="actions" className={classes.actions_container}>
                 <Grid container spacing={1} className={classes.container_actions} alignItems="center">
-                    <Tooltip title="Toggle Favorite">
-                        <IconButton>
-                            {
-                                bottle.favorite ?
-                                <FavoriteIcon />
-                                :
-                                <FavoriteBorderIcon />
-                            }
-                        </IconButton>
-                    </Tooltip>
+                    {
+                        bottle.favorite ? 
+                        <Tooltip title="Remove from Favorites">
+                            <IconButton>
+                                    <FavoriteIcon color="error" />
+                            </IconButton>
+                        </Tooltip>
+                        :
+                        <Tooltip title="Add to Favorites">
+                            <IconButton>
+                                    <FavoriteBorderIcon />
+                            </IconButton>
+                        </Tooltip>
+                    }
+
                     <Tooltip title="Drink Bottle">
                     <IconButton>
                         <GlassCheersIcon style={{width: theme.spacing(2.75)}}/>
@@ -179,10 +188,10 @@ export default function BottleCard(props) {
                     </Tooltip>
                     <Tooltip title="Remove Bottle">    
                         <IconButton >
-                            <RemoveCircleOutlineIcon />
+                            <RemoveIcon />
                         </IconButton>
                     </Tooltip>
-                    
+
                     <Tooltip title="Find on Wine-Searcher">              
                         <IconButton
                         className={classes.iconbutton_external_link_ws}
@@ -217,7 +226,6 @@ export default function BottleCard(props) {
                     <Typography />
                 </Avatar>
             }
-            
             title={
                 <Typography variant="body1" className={classes.header_title}>
                     {bottle.vintage} {bottle.display_name}
@@ -229,7 +237,8 @@ export default function BottleCard(props) {
             }  
             />
                
-            <Divider className={classes.divider}/>
+            <Divider className={classes.divider} />
+            
         </Card>    
         
         
@@ -238,7 +247,7 @@ export default function BottleCard(props) {
                 
                 <Grid item xs={6}>
                     <ListItem dense>
-                        <Typography className={classes.info_header} size="small" variant="button">
+                        <Typography className={classes.info_header} variant="button">
                             Profile
                         </Typography>
                     </ListItem>
@@ -246,9 +255,7 @@ export default function BottleCard(props) {
 
                 <Grid item xs={6}>
                     <ListItem dense>
-                        <Typography className={classes.info_header} size="small" variant="button">
-                            
-                        </Typography>
+                         
                     </ListItem>
                 </Grid> 
 
@@ -295,9 +302,12 @@ export default function BottleCard(props) {
                             </Typography>
                         }
                         secondary={
+                            <>
+                            
                             <Typography variant="body2" className={classes.info_text}>
-                                {bottle.colour ? bottle.colour : 'n/a'} {bottle.size}
+                                <FiberManualRecordIcon className={classes.info_color_icon}/> {bottle.colour ? bottle.colour : 'n/a'} {bottle.size}
                             </Typography>
+                            </>
                         }
                         />
                     </ListItem>
