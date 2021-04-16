@@ -14,10 +14,7 @@ import IconButton from '@material-ui/core/IconButton';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Link from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ListItemText from '@material-ui/core/ListItemText'; 
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
@@ -32,6 +29,7 @@ import LanguageIcon from '@material-ui/icons/Language';
 import PublicIcon from '@material-ui/icons/Public';
 import RemoveIcon from '@material-ui/icons/Remove';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
+import SwapVertIcon from '@material-ui/icons/SwapVert';
 
 import { GlassCheersIcon ,CompassIcon, PlaceOfWorshipIcon, StoreIcon, WineGlassIcon } from './SvgIcons';
 
@@ -104,6 +102,12 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1,2,0,2.5),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
+    info_link:{
+        marginTop: theme.spacing(1),
+        marginLeft: 'auto',
+        marginRight: 3,
+        color: mystyleprops => mystyleprops.colorSchemaA,
+    },
     info_icon: { 
         height: theme.spacing(2),
         width: theme.spacing(2),
@@ -159,6 +163,12 @@ export default function BottleCard(props) {
     const handleWineSearcherButton = () => {
         window.location.href = `https://wine-searcher.com/find/${bottle.display_name}`;
     };
+
+
+    const handleLinkClick = () => {
+        window.scrollTo(0, 0);
+        props.history.goBack();
+    }
 
     
     return (
@@ -242,7 +252,7 @@ export default function BottleCard(props) {
         </Card>    
         
         
-        <Card className={classes.info_card} elevation={3}> 
+        <Card className={classes.info_card} elevation={0}> 
             <Grid container className={classes.info_container}>    
                 
                 <Grid item xs={6}>
@@ -255,7 +265,14 @@ export default function BottleCard(props) {
 
                 <Grid item xs={6}>
                     <ListItem dense>
-                         
+                        <Link 
+                        className={classes.info_link} 
+                        component="button"
+                        variant="body2"
+                        onClick={handleLinkClick}
+                        >
+                            Back to Collection
+                        </Link>
                     </ListItem>
                 </Grid> 
 
@@ -298,14 +315,14 @@ export default function BottleCard(props) {
                         <ListItemText
                         primary={
                             <Typography variant="body2" className={classes.info_label}> 
-                                <WineGlassIcon className={classes.info_svg_icon}/> Color/Size
+                                <SwapVertIcon className={classes.info_icon}/> Color/Size
                             </Typography>
                         }
                         secondary={
                             <>
                             
-                            <Typography variant="body2" className={classes.info_text}>
-                                <FiberManualRecordIcon className={classes.info_color_icon}/> {bottle.colour ? bottle.colour : 'n/a'} {bottle.size}
+                            <Typography variant="body2" className={classes.info_text} color="textPrimary">
+                                <WineGlassIcon className={classes.info_color_icon}/> {bottle.colour ? bottle.colour : 'n/a'} {bottle.size}
                             </Typography>
                             </>
                         }
