@@ -207,6 +207,18 @@ def add_bottle_to_collection(request):
 
 
 @login_required
+def toggle_bottle_favorite(request, bottle_id):
+    if request.method != 'POST':
+        return JsonResponse({"error": "POST request required."}, safe=False, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    
+    bottle = Bottle.objects.get(id=bottle_id)
+
+    print(bottle)
+
+    return JsonResponse({"success": "updated successfully"}, safe=False, status=status.HTTP_200_OK)
+
+
+@login_required
 def get_bottle(request, bottle_id):
     try:
         result = Bottle.objects.get(id=bottle_id)
@@ -216,20 +228,13 @@ def get_bottle(request, bottle_id):
     return JsonResponse(result.serializer(),  safe=False, status=status.HTTP_200_OK)
     
 
-
 @login_required
 def get_bottle_list(request, bottle_name):
-    print(f'parameter received {bottle_name}')
-    
     if bottle_name == 'null':
-        bottle_list = Bottle.objects.all().order_by('-created')
-        for bottle in bottle_list:
-            print(bottle.display_name)
+        bottle_list = Bottle.objects.filter(consumed=False).order_by('-created')
     else:
         try:    
-            bottle_list = Bottle.objects.filter(display_name=bottle_name)
-            for bottle in bottle_list:
-                print(bottle.display_name)
+            bottle_list = Bottle.objects.filter(display_name=bottle_name, consumed=False)
         except:
             return JsonResponse({"error": "Sorry, no results found."})
         
@@ -239,7 +244,7 @@ def get_bottle_list(request, bottle_name):
 @login_required
 def get_bottle_name(request, display_name):
     try:
-        result = Bottle.objects.filter(display_name=display_name)
+        result = Bottle.objects.filter(display_name=display_name, consumed=False)
     except:
         return JsonResponse({"error": "Sorry, no results found."})
     
@@ -250,7 +255,7 @@ def get_bottle_name(request, display_name):
 
 @login_required
 def search_bottle(request, display_name):
-    results = Bottle.objects.filter(display_name__contains=display_name)
+    results = Bottle.objects.filter(display_name__contains=display_name, consumed=False)
     
     # Lists only display_name (aka mini_serializer)
     all_results = []
@@ -264,3 +269,4 @@ def search_bottle(request, display_name):
             response.append(result)
 
     return JsonResponse(response, safe=False, status=status.HTTP_200_OK)
+
