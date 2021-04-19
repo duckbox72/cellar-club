@@ -142,6 +142,7 @@ export default function BottleCard(props) {
     const darkMode = props.darkMode;
     const userProfile = props.userProfile;
     const bottle = props.bottle;
+    const [isFavorite, setIsFavorite] = useState(bottle.favorite);
     
 
     const theme = useTheme(); 
@@ -160,12 +161,15 @@ export default function BottleCard(props) {
             method: 'POST',
             body: JSON.stringify({
                 id: bottle.id,
-                favorite: !bottle.favorite,
+                favorite: !isFavorite,
             }), 
         })
         .then(response => response.json())
         .then(data => {
             console.log(data);
+            if (data.success) {
+                setIsFavorite(!isFavorite)
+            }
         })
     };
 
@@ -192,7 +196,7 @@ export default function BottleCard(props) {
             <div id="actions" className={classes.actions_container}>
                 <Grid container spacing={1} className={classes.container_actions} alignItems="center">
                     {
-                        bottle.favorite ? 
+                        isFavorite ? 
                         <Tooltip title="Remove from Favorites">
                             <IconButton onClick={handleFavoriteButton}>
                                     <FavoriteIcon color="error" />
