@@ -155,6 +155,21 @@ export default function BottleCard(props) {
     const classes = useStyles(mystyleprops);
 
 
+    const handleFavoriteButton= (e) => {
+        fetch('/api/toggle_bottle_favorite', {
+            method: 'POST',
+            body: JSON.stringify({
+                id: bottle.id,
+                favorite: !bottle.favorite,
+            }), 
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+    };
+
+
     const handleVivinoButton = () => {
         window.location.href = `https://vivino.com/search/wines?q=${bottle.display_name}`;
     };
@@ -179,13 +194,13 @@ export default function BottleCard(props) {
                     {
                         bottle.favorite ? 
                         <Tooltip title="Remove from Favorites">
-                            <IconButton>
+                            <IconButton onClick={handleFavoriteButton}>
                                     <FavoriteIcon color="error" />
                             </IconButton>
                         </Tooltip>
                         :
                         <Tooltip title="Add to Favorites">
-                            <IconButton>
+                            <IconButton onClick={handleFavoriteButton}>
                                     <FavoriteBorderIcon />
                             </IconButton>
                         </Tooltip>
@@ -272,7 +287,7 @@ export default function BottleCard(props) {
                         onClick={handleBackLinkClick}
                         >
                             Back to Collection
-                            
+
                         </Link>
                     </ListItem>
                 </Grid> 

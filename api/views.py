@@ -206,14 +206,18 @@ def add_bottle_to_collection(request):
     return JsonResponse({"success": "posted successfully"}, safe=False, status=status.HTTP_200_OK)
 
 
+@csrf_exempt
 @login_required
-def toggle_bottle_favorite(request, bottle_id):
+def toggle_bottle_favorite(request):
     if request.method != 'POST':
         return JsonResponse({"error": "POST request required."}, safe=False, status=status.HTTP_405_METHOD_NOT_ALLOWED)
     
-    bottle = Bottle.objects.get(id=bottle_id)
+    data = json.loads(request.body)
 
-    print(bottle)
+    bottle = Bottle.objects.get(id=data['id'])
+    bottle.favorite = data['favorite']
+
+    bottle.save()
 
     return JsonResponse({"success": "updated successfully"}, safe=False, status=status.HTTP_200_OK)
 

@@ -28,6 +28,6 @@ urlpatterns = [
     path('search_bottle/<str:display_name>', views.search_bottle, name="search_bottle"),
 
     path('add_bottle_to_collection', views.add_bottle_to_collection, name="add_bottle_to_collection"),
-    path('toggle_bottle_favorite/<str:bottle_id>', views.toggle_bottle_favorite, name="togglt_bottle_favorite"),
+    path('toggle_bottle_favorite', views.toggle_bottle_favorite, name="toggle_bottle_favorite"),
 
 ]
