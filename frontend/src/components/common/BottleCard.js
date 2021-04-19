@@ -165,7 +165,7 @@ export default function BottleCard(props) {
     };
 
 
-    const handleLinkClick = () => {
+    const handleBackLinkClick = () => {
         window.scrollTo(0, 0);
         props.history.goBack();
     }
@@ -269,9 +269,10 @@ export default function BottleCard(props) {
                         className={classes.info_link} 
                         component="button"
                         variant="body2"
-                        onClick={handleLinkClick}
+                        onClick={handleBackLinkClick}
                         >
                             Back to Collection
+                            
                         </Link>
                     </ListItem>
                 </Grid> 
