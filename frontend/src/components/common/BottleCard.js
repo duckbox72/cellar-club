@@ -110,8 +110,8 @@ const useStyles = makeStyles((theme) => ({
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     info_link_svg_icon: {
-        height: theme.spacing(1.75),
-        width: theme.spacing(1.75),
+        height: theme.spacing(1.5),
+        width: theme.spacing(1.5),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     info_icon: { 

@@ -19,7 +19,7 @@ from rest_framework import response
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import Bottle, Lwin, User, Vintage
+from .models import * 
 from .serializers import *
 
 import pandas as pd 

@@ -55,26 +55,27 @@ class Lwin(models.Model):
         }
 
 
-class Location(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    cellar = models.CharField(max_length=64)
-    bin = models.CharField(max_length=64)
-    
+class Cellar(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
+    cellarname = models.CharField(max_length=64, null=False, blank=False, unique=True)
 
     def serializer(self):
         return {
             "user_id": self.user_id,
-            "cellar": self.cellarname,
-            "bin": self.bin,
+            "cellarname": self.cellarname,
         }
 
 
-class Vintage(models.Model):
-    vintage = models.CharField(max_length=4) 
+class Bin(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
+    cellar = models.ForeignKey(Cellar, on_delete=models.CASCADE, null=False, blank=False)
+    binname = models.CharField(max_length=64, null=False, blank=False, unique=True)
 
     def serializer(self):
         return {
-            "vintage": self.vintage
+            "user_id": self.user_id,
+            "cellar_id": self.cellar_id,
+            "binname": self.binname,
         }
 
 

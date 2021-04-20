@@ -5,5 +5,5 @@ from . models import *
 admin.site.register(User)
 admin.site.register(Lwin)
 admin.site.register(Bottle)
-admin.site.register(Location)
-admin.site.register(Vintage)
+admin.site.register(Cellar)
+admin.site.register(Bin)
