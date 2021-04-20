@@ -1,4 +1,3 @@
-// THIS FILE WAS REFACTORED FROM A CLASS COMPOMNENT TO A FUNCTIONAL COMPONENT WITH HOOKS
 import React, { useEffect ,useState } from "react";
 import { makeStyles , useTheme } from '@material-ui/core/styles'
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -212,8 +211,8 @@ export default function Searchbar(props) {
             onClose={handleSourceMenuClose}
             >
                 <MenuItem dense onClick={() => props.history.push('/search')}>Search CellarClub</MenuItem>
-                <MenuItem dense onClick={() => props.history.push('/collection')}>Search My Collection</MenuItem>
-                <MenuItem dense onClick={handleSourceMenuClose}>Search My Reviews</MenuItem>
+                <MenuItem dense onClick={() => props.history.push('/collection')}>Search Collection</MenuItem>
+                <MenuItem dense onClick={handleSourceMenuClose}>Search Memories</MenuItem>
             </Menu>
                 <Divider className={classes.divider} orientation="vertical" />
             <Autocomplete  
