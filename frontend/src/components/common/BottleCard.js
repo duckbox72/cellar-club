@@ -31,7 +31,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import SwapVertIcon from '@material-ui/icons/SwapVert';
 
-import { GlassCheersIcon ,CompassIcon, PlaceOfWorshipIcon, StoreIcon, WineGlassIcon } from './SvgIcons';
+import { CompassIcon, GlassCheersIcon, PlaceOfWorshipIcon, StoreIcon, UndoIcon, WineGlassIcon } from './SvgIcons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     actions_container: {
         margin: theme.spacing(1,1)
     },
+
     iconbutton_external_link_ws: {
         height: theme.spacing(6.5),
         width: theme.spacing(6.5),
@@ -102,10 +103,15 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1,2,0,2.5),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
-    info_link:{
+    info_link: {
         marginTop: theme.spacing(1),
         marginLeft: 'auto',
         marginRight: 3,
+        color: mystyleprops => mystyleprops.colorSchemaA,
+    },
+    info_link_svg_icon: {
+        height: theme.spacing(1.75),
+        width: theme.spacing(1.75),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     info_icon: { 
@@ -273,7 +279,7 @@ export default function BottleCard(props) {
         
         <Card className={classes.info_card} elevation={0}> 
             <Grid container className={classes.info_container}>    
-                
+            
                 <Grid item xs={6}>
                     <ListItem dense>
                         <Typography className={classes.info_header} variant="button">
@@ -290,8 +296,7 @@ export default function BottleCard(props) {
                         variant="body2"
                         onClick={handleBackLinkClick}
                         >
-                            Back to Collection
-
+                            <UndoIcon className={classes.info_link_svg_icon}/> Back
                         </Link>
                     </ListItem>
                 </Grid> 
