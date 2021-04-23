@@ -61,7 +61,6 @@ class Cellar(models.Model):
 
     def serializer(self):
         return {
-            "user_id": self.user_id,
             "cellarname": self.cellarname,
         }
 
@@ -73,8 +72,6 @@ class Bin(models.Model):
 
     def serializer(self):
         return {
-            "user_id": self.user_id,
-            "cellar_id": self.cellar_id,
             "binname": self.binname,
         }
 
@@ -82,10 +79,14 @@ class Bin(models.Model):
 class Bottle(models.Model):
     # retrieved data
     user = models.ForeignKey("User", on_delete=models.CASCADE, null=False, blank=False)
-    cellar = models.CharField(max_length=64, null=True, blank=True)
-    bin = models.CharField(max_length=64, null=True, blank=True)
+    # cellar = models.CharField(max_length=64, null=True, blank=True)
+    # bin = models.CharField(max_length=64, null=True, blank=True)
+    cellar = models.ForeignKey("Cellar", on_delete=models.DO_NOTHING, null=True, blank=True)
+    bin = models.ForeignKey("Bin", on_delete=models.DO_NOTHING, null=True, blank=True)
+
     score = models.CharField(max_length=6, null=True, blank=True)
     
+
     lwin = models.CharField(max_length=7, null=True, blank=True)
     display_name = models.CharField(max_length=256, null=False, blank=False)
     producer_title = models.CharField(max_length=64, null=True, blank=True)

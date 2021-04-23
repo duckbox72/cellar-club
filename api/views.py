@@ -3,7 +3,7 @@ from typing import Sized
 from django.db.models.query_utils import RegisterLookupMixin
 import requests
 import json
-from re import L
+from re import L, S
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
@@ -274,3 +274,21 @@ def search_bottle(request, display_name):
 
     return JsonResponse(response, safe=False, status=status.HTTP_200_OK)
 
+
+# ------------------------- LOCATION RELATED ROUTES models CELLAR and BIN-------------------------
+
+@login_required
+def cellar_options(request):
+    user = request.user
+    options = Cellar.objects.filter(user=user).order_by('cellarname')
+
+    return JsonResponse([cellar.serializer() for cellar in options], safe=False, status=status.HTTP_200_OK)
+
+
+@login_required
+def bin_options(request, cellarname):
+    user = request.user
+    cellar = Cellar.objects.get(cellarname=cellarname)
+    options = Bin.objects.filter(user=user, cellar=cellar).order_by('binname')
+
+    return JsonResponse([bin.serializer() for bin in options], safe=False, status=status.HTTP_200_OK)

@@ -30,4 +30,8 @@ urlpatterns = [
     path('add_bottle_to_collection', views.add_bottle_to_collection, name="add_bottle_to_collection"),
     path('toggle_bottle_favorite', views.toggle_bottle_favorite, name="toggle_bottle_favorite"),
 
+    # POSITION RELATED ROUTES
+    path('cellar_options', views.cellar_options, name="cellar_options"),
+    path('bin_options/<str:cellarname>', views.bin_options, name="bin_options"),
+
 ]

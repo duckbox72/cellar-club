@@ -45,6 +45,8 @@ import brown from '@material-ui/core/colors/brown';
 import { currencyNumberFormat} from "../utils/currencyNumberFormat";
 import { getBottleSizesOptions } from "../utils/getBottleSizesOptions";
 import { getVintageOptions } from "../utils/getVintageOptions";
+import { getCellarOptions } from "../utils/getCellarOptions";
+import { getBinOptions } from '../utils/getBinOptions';
 
 
 
@@ -184,7 +186,6 @@ export default function LwinProfileCard(props) {
     
     
     const [expanded, setExpanded] = useState(false);
-    
     const handleExpandClick = () => {
         setExpanded(!expanded);
         clearFormState();
@@ -195,7 +196,12 @@ export default function LwinProfileCard(props) {
     // Form options
     const bottleSizes = getBottleSizesOptions();
     const vintages = getVintageOptions();
+    const cellars = getCellarOptions();   
+    const [bins, setBins] = useState([]);
+    
+    
 
+    
     const infodata = [
         {mock: 'some string', store: 'ABC Wine and Spirits'},
         {mock: 'some string', store: 'Total Wine & More'},
@@ -253,8 +259,6 @@ export default function LwinProfileCard(props) {
         setQuantity(e.target.value)
         :
         setQuantity(null)
-
-        console.log(e.target.value)
     };
 
 
@@ -270,6 +274,13 @@ export default function LwinProfileCard(props) {
 
     const handleSelectedCellarAutocompleteChange = (value) => {
         setSelectedCellar(value);
+
+        const relativeBins = value 
+            ? getBinOptions(value) 
+            : setBins([]); 
+
+        setSelectedBin(null);
+        setBins(relativeBins);
     }
 
 
@@ -302,7 +313,6 @@ export default function LwinProfileCard(props) {
         if (value === null) {
             setScore(null)
         }
-        console.log(value)
     }
 
 
@@ -660,7 +670,7 @@ export default function LwinProfileCard(props) {
                             freeSolo
                             onChange={(event,value) => handleSelectedCellarAutocompleteChange(value)}
                             clearOnEscape
-                            options={infodata.map((option) => option.mock)}
+                            options={cellars}
                             renderInput={(params) => (
                                 <Grid container spacing={1} justify="center" alignItems="center">
                                     <Grid item>
@@ -684,6 +694,7 @@ export default function LwinProfileCard(props) {
 
                         <Grid item xs={6}>
                             <Autocomplete
+                            disabled={!selectedCellar ? true : false}
                             className={classes.autocomplete}  
                             size="small"
                             id="location-bin"
@@ -691,7 +702,9 @@ export default function LwinProfileCard(props) {
                             freeSolo
                             onChange={(event,value) => handleSelectedBinAutocompleteChange(value)} 
                             clearOnEscape
-                            options={infodata.map((option) => option.mock)}
+                            value={selectedBin}
+                            //options={bins.map((option) => option.binname)}
+                            options={bins}
                             renderInput={(params) => (
                                 <Grid container spacing={1} justify="center" alignItems="center">
                                     <Grid item>
@@ -711,7 +724,7 @@ export default function LwinProfileCard(props) {
                                 </Grid>
                             )}
                             />
-                        </Grid>  
+                        </Grid>
                         
                         <Grid item xs={6}>
                             <Autocomplete
