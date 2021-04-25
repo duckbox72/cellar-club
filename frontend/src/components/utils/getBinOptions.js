@@ -28,7 +28,6 @@ export function getBinOptions(cellarname) {
             binOptions.push(option.binname)
         })
     })
-    console.log(binOptions)
     
     return binOptions
 }

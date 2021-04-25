@@ -8,6 +8,5 @@ export function getCellarOptions() {
             cellarOptions.push(option.cellarname)
         })
     })
-    console.log(cellarOptions)
     return cellarOptions
 }

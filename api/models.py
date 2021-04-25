@@ -68,7 +68,7 @@ class Cellar(models.Model):
 class Bin(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
     cellar = models.ForeignKey(Cellar, on_delete=models.CASCADE, null=False, blank=False)
-    binname = models.CharField(max_length=64, null=False, blank=False, unique=True)
+    binname = models.CharField(max_length=64, null=False, blank=False)
 
     def serializer(self):
         return {
@@ -116,10 +116,24 @@ class Bottle(models.Model):
         }
     
     def serializer(self):
+        
+        # Return cellarname if cellar exists
+        if self.cellar:
+            cellarname = self.cellar.cellarname
+        else:
+            cellarname = None
+
+        # Return binname if bin exists
+        if self.bin:
+            binname = self.bin.binname
+        else:
+            binname = None
+
+        
         return {
             "id": self.id,
-            "cellar": self.cellar,
-            "bin": self.bin,
+            "cellar": cellarname,
+            "bin": binname,
             "score": self.score,
             "lwin": self.lwin,
             "display_name": self.display_name,

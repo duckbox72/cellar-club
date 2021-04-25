@@ -167,6 +167,26 @@ def add_bottle_to_collection(request):
     user = request.user
     data = json.loads(request.body)
 
+    # Parse cellarname and check if exists
+    if data ['cellarname'] != None:
+        try:
+            cellar = Cellar.objects.get(cellarname=data['cellarname'])
+        except:
+            cellar = Cellar(user=user, cellarname=data['cellarname'])
+            cellar.save()
+    else:
+        cellar = None
+
+    # Parse binname and check if exists
+    if data['binname'] != None and cellar != None:
+        try:
+            bin = Bin.objects.get(cellar=cellar, binname=data['binname'])
+        except:
+            bin = Bin(user=user, cellar=cellar, binname=data['binname'])
+            bin.save()
+    else:
+        bin = None
+
     # Parse date_added
     if data['date_added'] == None:
         date_added = None
@@ -181,8 +201,8 @@ def add_bottle_to_collection(request):
 
     bottle = Bottle(
         user = user,
-        cellar = data['cellar'],
-        bin = data['bin'],
+        cellar = cellar,
+        bin = bin,
         score = data['score'],
         lwin = lwin,
         display_name = data['display_name'],
@@ -280,7 +300,10 @@ def search_bottle(request, display_name):
 @login_required
 def cellar_options(request):
     user = request.user
-    options = Cellar.objects.filter(user=user).order_by('cellarname')
+    try:
+        options = Cellar.objects.filter(user=user).order_by('cellarname')
+    except:
+        options = []
 
     return JsonResponse([cellar.serializer() for cellar in options], safe=False, status=status.HTTP_200_OK)
 
@@ -288,7 +311,11 @@ def cellar_options(request):
 @login_required
 def bin_options(request, cellarname):
     user = request.user
-    cellar = Cellar.objects.get(cellarname=cellarname)
-    options = Bin.objects.filter(user=user, cellar=cellar).order_by('binname')
+    try:
+        cellar = Cellar.objects.get(cellarname=cellarname)
+        options = Bin.objects.filter(user=user, cellar=cellar).order_by('binname')
+    except:
+        options= []
+    
 
     return JsonResponse([bin.serializer() for bin in options], safe=False, status=status.HTTP_200_OK)

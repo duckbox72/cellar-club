@@ -334,8 +334,8 @@ export default function LwinProfileCard(props) {
             method: 'POST',
             //headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                cellar: selectedCellar,
-                bin: selectedBin,
+                cellarname: selectedCellar,
+                binname: selectedBin,
                 score: score,
                 lwin: LwinData.lwin,
                 display_name: LwinData.display_name,

@@ -432,7 +432,7 @@ export default function BottleCard(props) {
                         }
                         secondary={
                             <Typography variant="body2" className={classes.info_text}>
-                                {bottle.cellar ? bottle.cellar : 'n/a'}
+                                {bottle.bin ? bottle.bin : 'n/a'}
                             </Typography>
                         }
                         />
