@@ -703,7 +703,6 @@ export default function LwinProfileCard(props) {
                             onChange={(event,value) => handleSelectedBinAutocompleteChange(value)} 
                             clearOnEscape
                             value={selectedBin}
-                            //options={bins.map((option) => option.binname)}
                             options={bins}
                             renderInput={(params) => (
                                 <Grid container spacing={1} justify="center" alignItems="center">

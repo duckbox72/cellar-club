@@ -23,7 +23,6 @@ import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import LanguageIcon from '@material-ui/icons/Language';
 import PublicIcon from '@material-ui/icons/Public';
