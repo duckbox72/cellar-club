@@ -519,7 +519,7 @@ export default function LwinProfileCard(props) {
                                 </Grid>
                                 <Grid item>   
                                     <Typography className={classes.form_title} size="small" variant="button">
-                                        Add to my cellar
+                                        Add to collection
                                     </Typography>
                                 </Grid>
                             </Grid>
