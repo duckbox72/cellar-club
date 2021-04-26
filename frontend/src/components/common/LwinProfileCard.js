@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import Alert from '@material-ui/lab/Alert'
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
-import DateFnsUtils from '@date-io/date-fns'; //choose lib in future
+import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import Avatar from '@material-ui/core/Avatar';
@@ -47,7 +47,6 @@ import { getBottleSizesOptions } from "../utils/getBottleSizesOptions";
 import { getVintageOptions } from "../utils/getVintageOptions";
 import { getCellarOptions } from "../utils/getCellarOptions";
 import { getBinOptions } from '../utils/getBinOptions';
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -124,13 +123,11 @@ const useStyles = makeStyles((theme) => ({
     icon: { 
         height: theme.spacing(2.5),
         width: theme.spacing(2.5), 
-        //color: mystyleprops => mystyleprops.colorSchemaA,
     },
     svg_icon: { 
         height: theme.spacing(2.5),
         width: theme.spacing(2.5),
         paddingTop: theme.spacing(1.5),
-        //color: mystyleprops => mystyleprops.colorSchemaA,
     },
     autocomplete:{ 
         paddingBottom: theme.spacing(2),
@@ -620,13 +617,14 @@ export default function LwinProfileCard(props) {
 
                                 <Grid item xs={8}>
                                     <TextField
+                                    //disabled
                                     className={classes.textfield}
                                     required
                                     id="quantity"
                                     type="number"
                                     fullWidth
                                     value={quantity}
-                                    InputProps={{ inputProps: { min: 0 }, 
+                                    InputProps={{ inputProps: { min: 1, max:1, defaultValue:1 }, 
                                     }}
                                     onChange={handleQuantityFieldChange}
                                     label="Quantity" 

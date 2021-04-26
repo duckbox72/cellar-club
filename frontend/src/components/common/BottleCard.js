@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-import brown from '@material-ui/core/colors/brown';
+import DateFnsUtils from '@date-io/date-fns'; //choose lib in future
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import Avatar from '@material-ui/core/Avatar'
 import Badge from '@material-ui/core/Badge';
@@ -15,6 +15,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Link from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText'; 
+import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
@@ -31,6 +32,10 @@ import ShowChartIcon from '@material-ui/icons/ShowChart';
 import SwapVertIcon from '@material-ui/icons/SwapVert';
 
 import { CompassIcon, GlassCheersIcon, PlaceOfWorshipIcon, StoreIcon, UndoIcon, WineGlassIcon } from './SvgIcons';
+
+import { currencyNumberFormat} from "../utils/currencyNumberFormat";
+
+import brown from '@material-ui/core/colors/brown';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -181,6 +186,22 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(1.5),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
+    drink_icon: {
+        height: theme.spacing(2.5),
+        width: theme.spacing(2.5), 
+        paddingTop: theme.spacing(2),
+    },
+    drink_icon_svg: {
+        height: theme.spacing(2.5),
+        width: theme.spacing(2.5),
+        paddingTop: theme.spacing(2),
+    },
+    drink_datepicker:{
+        paddingBottom: theme.spacing(2),
+    },
+    drink_textfield:{
+        paddingBottom: theme.spacing(2),
+    },
 
     remove_card: {
         height: screen.availHeight * 0.48,
@@ -206,7 +227,19 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(1.5),
         width: theme.spacing(1.5),
         color: mystyleprops => mystyleprops.colorSchemaA,
-    } 
+    },
+    remove_icon: {
+        height: theme.spacing(2.5),
+        width: theme.spacing(2.5), 
+    },
+    remove_icon_svg: {
+        height: theme.spacing(2.5),
+        width: theme.spacing(2.5),
+        paddingTop: theme.spacing(1.5),
+    },
+    remove_textfield: {
+        paddingBottom: theme.spacing(2),
+    },
 }));
 
 
@@ -229,6 +262,11 @@ export default function BottleCard(props) {
         
     }
     const classes = useStyles(mystyleprops);
+
+    // Form fields
+    const [gathered, setGathered] = useState(null);
+    const [privateNote, setPrivateNote] = useState(null)
+    const [selectedDate, handleDateChange] = useState(null);
 
 
     const handleFavoriteButton= (e) => {
@@ -281,6 +319,16 @@ export default function BottleCard(props) {
         window.scrollTo(0, 0);
         props.history.goBack();
     }
+
+
+    // FORM HANDLERS
+    const handlePrivateNoteChange = (e) => {
+        setPrivateNote(e.target.value);
+    }
+
+    const handleGatheredChange = (e) => {
+        setGathered(parseInt(e.target.value));
+    };
 
     
     return (
@@ -373,7 +421,16 @@ export default function BottleCard(props) {
             <Divider className={classes.divider} />
             
         </Card>    
-        
+
+
+
+
+
+
+
+
+
+
         <Collapse in={!drinkCollapse && !removeCollapse} timeout="auto">
             <Card className={classes.info_card} elevation={0}> 
                 <Grid container className={classes.info_container}>    
@@ -593,9 +650,18 @@ export default function BottleCard(props) {
             </Card>
         </Collapse>
 
+
+
+
+
+
+
+
+
+
         <Collapse in={drinkCollapse} timeout="auto">
             <Card className={classes.drink_card} elevation={0}> 
-                <Grid container className={classes.drink_container}>    
+                <Grid container className={classes.drink_container} justify="space-evenly">    
                 
                     <Grid item xs={6}>
                         <ListItem dense>
@@ -618,18 +684,98 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    
-                    
-                    
+                    <Grid item xs={12}>
+                        <Grid container spacing={1} justify="center" alignItems="center">
+                            <Grid item>
+                                <CommentOutlinedIcon className={classes.drink_icon} />
+                            </Grid>   
+
+                            <Grid item xs={10} >
+                                <TextField
+                                small
+                                className={classes.textfield}
+                                id="private-note"
+                                fullWidth
+                                onChange={handlePrivateNoteChange} 
+                                label="Private note/memory" 
+                                variant="standard"
+                                color={darkMode == true ? "primary" : "secondary"}
+                                />
+                            </Grid>
+                        </Grid> 
+                    </Grid>
+
+                    <Grid item xs={6}>             
+                        <Grid container spacing={1} justify="center" alignItems="center">
+                            <Grid item >
+                                <EventAvailableIcon className={classes.drink_icon} />
+                            </Grid>   
+
+                            <Grid item xs={8}>
+                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                    <DatePicker
+                                    className={classes.drink_datepicker}
+                                    small
+                                    required
+                                    autoOk
+                                    clearable 
+                                    value={selectedDate} 
+                                    label="Date"
+                                    format="MM/dd/yyyy"
+                                    inputVariant="standard"
+                                    onChange={handleDateChange}
+                                    color={darkMode == true ? "primary" : "secondary"}
+                                    fullWidth
+                                    disableToolbar
+                                    />
+                                </MuiPickersUtilsProvider>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item xs={6}>   
+                        <Grid container spacing={1} justify="center" alignItems="center">
+                            <Grid item >
+                                <AttachMoneyIcon className={classes.drink_icon} />
+                            </Grid>   
+
+                            <Grid item xs={8}>
+                                <TextField
+                                className={classes.drink_textfield}
+                                small
+                                id="gathered"
+                                fullWidth
+                                InputProps={{ 
+                                    inputProps: { min: 0 }, 
+                                    inputComponent: currencyNumberFormat,
+                                }}
+                                onChange={handleGatheredChange} 
+                                label="Gathered" 
+                                variant="standard"
+                                color={darkMode == true ? "primary" : "secondary"}
+                                />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
                 </Grid>
             </Card>
         </Collapse>
+
+
+
+
+
+
+
+
+
 
         <Collapse in={removeCollapse} timeout="auto">
             <Card className={classes.remove_card} elevation={0}> 
                 <Grid container className={classes.remove_container}>    
                 
-                    <Grid item xs={6}>
+                    <Grid item xs={7}>
                         <ListItem dense>
                             <Typography className={classes.drink_header} variant="button">
                                 Remove Bottle
@@ -637,7 +783,7 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={6}>
+                    <Grid item xs={5}>
                         <ListItem dense>
                             <Link 
                             className={classes.drink_link} 
