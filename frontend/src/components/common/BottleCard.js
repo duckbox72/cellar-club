@@ -276,6 +276,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(4),
         borderRadius: 20,
+        //backdropFilter: 'brightness(95%)',
     },
     // TO BE TESTED -----------------------------VVVV
     drink_snackbar: {
@@ -364,6 +365,7 @@ export default function BottleCard(props) {
     const [selectedRadio, setSelectedRadio] = useState('like');
     
     const [selectedScore, setSelectedScore] = useState(0);
+    const [tastingNote, setTastingNote] = useState(null);
 
 
     const clearDrinkFormState = () => {
@@ -472,6 +474,10 @@ export default function BottleCard(props) {
 
     const handleScoreSliderChange = (event, newValue) => {
         setSelectedScore(newValue);
+    }
+
+    const handleTastingNoteChange = (e) => {
+        setTastingNote(e.target.value);
     }
  
 
@@ -1035,7 +1041,7 @@ export default function BottleCard(props) {
                             id="tasting-note"
                             fullWidth
                             multiline
-                            //onChange={handleTastingNoteChange} 
+                            onChange={handleTastingNoteChange} 
                             label="Tasting Note" 
                             variant="standard"
                             color={darkMode == true ? "primary" : "secondary"}
@@ -1046,6 +1052,7 @@ export default function BottleCard(props) {
                     <Grid item xs={12} container spacing={0} alignItems="center" justify="space-around">
                         <Grid item xs={4}>
                             <Button
+                            disableElevation
                             fullWidth
                             className={classes.drink_button}  
                             onClick={handleCancelButtonClick} 
@@ -1059,6 +1066,7 @@ export default function BottleCard(props) {
                         <Grid item xs={4}>
                             <Button
                             disabled={!selectedDate}
+                            disableElevation
                             fullWidth
                             className={classes.drink_button} 
                             //onClick={handleSubmitButtonClick}

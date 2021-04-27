@@ -823,6 +823,7 @@ export default function LwinProfileCard(props) {
                         <Grid item xs={12} container spacing={0} alignItems="center" justify="space-around">
                             <Grid item xs={4}>
                                 <Button
+                                disableElevation
                                 fullWidth
                                 className={classes.button}  
                                 onClick={handleCancelButtonClick} 
@@ -836,6 +837,7 @@ export default function LwinProfileCard(props) {
                             <Grid item xs={4}>
                                 <Button
                                 disabled={submitButtonDisabled}
+                                disableElevation
                                 fullWidth
                                 className={classes.button} 
                                 onClick={handleSubmitButtonClick}
