@@ -864,7 +864,7 @@ export default function BottleCard(props) {
                                     autoOk
                                     clearable 
                                     value={selectedDate} 
-                                    label="Date"
+                                    label="Drink date"
                                     format="MM/dd/yyyy"
                                     inputVariant="standard"
                                     onChange={handleDateChange}
@@ -932,7 +932,7 @@ export default function BottleCard(props) {
                             : <PersonIcon className={classes.drink_description_icon}/>
                             } 
                             <Typography variant="body2">
-                                Select privacy 
+                                Select review privacy 
                             </Typography>
                                 
                             <Typography className={classes.drink_switch_label} variant="body2">
