@@ -622,7 +622,7 @@ export default function LwinProfileCard(props) {
                         </Grid>
 
                         <Grid item xs={6}>
-                            <Autocomplete
+                            <Autocomplete styles={{marginTop: 2}}
                             className={classes.autocomplete}  
                             size="small"
                             id="quantity"
@@ -652,32 +652,6 @@ export default function LwinProfileCard(props) {
                                 </Grid>
                             )}
                             />
-                        </Grid>
-
-                        <Grid item xs={6}>
-                                
-                            <Grid container spacing={1} justify="center" alignItems="center">
-                                <Grid item >
-                                    <UnfoldMoreIcon className={classes.icon} />
-                                </Grid>   
-
-                                <Grid item xs={8}>
-                                    <TextField
-                                    className={classes.textfield}
-                                    required
-                                    id="quantity"
-                                    type="number"
-                                    fullWidth
-                                    value={quantity}
-                                    InputProps={{ inputProps: { min: 1, max:1}, 
-                                    }}
-                                    onChange={handleQuantityFieldChange}
-                                    label="Quantity" 
-                                    variant="standard"
-                                    color={darkMode == true ? "primary" : "secondary"}
-                                    />
-                                </Grid>
-                            </Grid>
                         </Grid>
 
                         <Grid item xs={6}>   
