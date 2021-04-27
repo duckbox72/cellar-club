@@ -379,7 +379,6 @@ export default function LwinProfileCard(props) {
         availableVintages.includes(vintage) ? 
             gwsScores.forEach(element => {
                 if  (element.vintage == vintage) {
-                    console.log(element.vintage, element.score)
                     setScore(Math.round(element.score));
                 }
             })

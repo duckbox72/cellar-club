@@ -245,6 +245,12 @@ const useStyles = makeStyles((theme) => ({
     drink_switch: {
         marginRight: theme.spacing(2),
     },
+    drink_list_item_disabled: {
+        filter: 'opacity(40%)',
+    },
+    drink_list_item_disabled_hidden: {
+        display: 'none'
+    },
     drink_radio_label: {
         marginLeft: 'auto',
     },
@@ -265,10 +271,10 @@ const useStyles = makeStyles((theme) => ({
     },
     drink_button: { 
         marginTop: theme.spacing(1),
-        marginBottom: theme.spacing(3),
+        marginBottom: theme.spacing(4),
         borderRadius: 20,
     },
-    
+    // TO BE TESTED -----------------------------VVVV
     drink_snackbar: {
         width: '100%',
     },
@@ -331,7 +337,7 @@ export default function BottleCard(props) {
     const bottle = props.bottle;
     const [isFavorite, setIsFavorite] = useState(bottle.favorite);
     
-    const [drinkCollapse, setDrinkCollapse] = useState(true); // SET TO FALSE
+    const [drinkCollapse, setDrinkCollapse] = useState(false);
     const [removeCollapse, setRemoveCollapse] = useState(false);
 
     const theme = useTheme(); 
@@ -350,10 +356,22 @@ export default function BottleCard(props) {
     const [selectedDate, handleDateChange] = useState(null);
 
     const [addReview, setAddReview] = useState(false);
-    const [shareReview, setShareReview] = useState(false);
+    const [shareReview, setShareReview] = useState(true);
     const [selectedRadio, setSelectedRadio] = useState('like');
     
-    const [selectedScore, setSelectedScore] = useState(50);
+    const [selectedScore, setSelectedScore] = useState(0);
+
+
+    const clearDrinkFormState = () => {
+        setGathered(null);
+        setPrivateNote(null);
+        handleDateChange(null);
+        
+        setAddReview(false);
+        setShareReview(true);
+        setSelectedRadio('like');
+    };
+
 
 
     const handleFavoriteButton= (e) => {
@@ -377,9 +395,11 @@ export default function BottleCard(props) {
         removeCollapse ? () => {
             setRemoveCollapse(null);
             setDrinkCollapse(!drinkCollapse);
+            clearDrinkFormState()
         }
         :
-            setDrinkCollapse(!drinkCollapse); 
+            setDrinkCollapse(!drinkCollapse);
+            clearDrinkFormState() 
     }
 
     const handleRemoveButtonClick = (e) => {
@@ -405,6 +425,18 @@ export default function BottleCard(props) {
     const handleBackLinkClick = () => {
         window.scrollTo(0, 0);
         props.history.goBack();
+    }
+
+
+    const handleDrinkCancelLinkClick = () => {
+        // Toggle view from drink card to bottle card 
+        handleDrinkButtonClick();
+    }
+
+
+    const handleRemoveCancelLinkClick = () => {
+        // Toggle view from remove card to bottle card 
+        handleRemoveButtonClick();
     }
 
 
@@ -438,6 +470,11 @@ export default function BottleCard(props) {
         setSelectedScore(newValue);
     }
  
+
+    const handleCancelButtonClick = () => {
+        // Toggle view from drink card to bottle card 
+        handleDrinkButtonClick();
+    };
     
     return (
         <>
@@ -767,7 +804,7 @@ export default function BottleCard(props) {
 
 
 
-        <Collapse in={drinkCollapse} timeout="auto">
+        <Collapse in={drinkCollapse} timeout="auto" unmountOnExit>
             <Card className={classes.drink_card} elevation={0}> 
                 <Grid container spacing={0} className={classes.drink_container} justify="space-evenly">    
                 
@@ -780,7 +817,7 @@ export default function BottleCard(props) {
                             className={classes.drink_link} 
                             component="button"
                             variant="body2"
-                            onClick={handleBackLinkClick}
+                            onClick={handleDrinkCancelLinkClick}
                             >
                                 <UndoIcon className={classes.drink_link_svg_icon}/> Back
                             </Link>            
@@ -872,7 +909,7 @@ export default function BottleCard(props) {
                             </Typography>
 
                             <Typography className={classes.drink_switch_header_label} variant="button">
-                                {addReview ? 'On' : 'Off'}
+                                {addReview ? 'Yes' : 'No'}
                             </Typography>
                             <Switch 
                             className={classes.drink_switch_header}
@@ -884,7 +921,7 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid item xs={12} className={!addReview ? classes.drink_list_item_disabled_hidden : ''}>
                         <ListItem dense>
                             {shareReview 
                             ? <PeopleIcon className={classes.drink_description_icon}/> 
@@ -898,6 +935,7 @@ export default function BottleCard(props) {
                                 {shareReview ? 'Public' : 'Private'}
                             </Typography>
                             <Switch 
+                            disabled={!addReview}
                             className={classes.drink_switch}
                             checked={shareReview}
                             onChange={handleShareReviewSwitch}
@@ -907,7 +945,7 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid item xs={12} className={!addReview ? classes.drink_list_item_disabled_hidden : ''}>
                         <ListItem dense>
                             {selectedRadio === 'like' 
                             ? <ThumbUpOutlinedIcon className={classes.drink_description_icon}/> 
@@ -923,6 +961,7 @@ export default function BottleCard(props) {
                                 Like
                             </Typography>
                             <Radio
+                            disabled={!addReview}
                             checked={selectedRadio === 'like'}
                             onChange={handleSelectedRadio}
                             value="like"
@@ -934,6 +973,7 @@ export default function BottleCard(props) {
                                 Neutral
                             </Typography>
                             <Radio
+                            disabled={!addReview}
                             checked={selectedRadio === 'neutral'}
                             onChange={handleSelectedRadio}
                             value="neutral"
@@ -945,6 +985,7 @@ export default function BottleCard(props) {
                                 Dislike
                             </Typography>
                             <Radio
+                            disabled={!addReview}
                             className={classes.drink_radio}
                             checked={selectedRadio === 'dislike'}
                             onChange={handleSelectedRadio}
@@ -955,7 +996,7 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid item xs={12} Grid item xs={12} className={!addReview ? classes.drink_list_item_disabled_hidden : ''}>
                         <ListItem dense>
                             <StarBorderIcon className={classes.drink_description_icon}/>
                             <Typography variant="body2">
@@ -963,6 +1004,7 @@ export default function BottleCard(props) {
                             </Typography>   
 
                             <Slider
+                            disabled={!addReview}
                             className={classes.drink_slider}
                             aria-label="score-slider"
                             value={selectedScore}
@@ -978,21 +1020,22 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12} style={{marginTop: -8}}>
+                    <Grid item xs={12} style={{marginTop: -8, marginBottom: 8}} Grid item xs={12} className={!addReview ? classes.drink_list_item_disabled : ''}>
                         <ListItem dense>
                             <PostAddIcon className={classes.drink_description_icon}/>
                               
                             <TextField
-                                className={classes.drink_tasting_note_text_field}
-                                small
-                                id="tasting-note"
-                                fullWidth
-                                multiline
-                                //onChange={handleTastingNoteChange} 
-                                label="Tasting Note" 
-                                variant="standard"
-                                color={darkMode == true ? "primary" : "secondary"}
-                                />
+                            disabled={!addReview}
+                            className={classes.drink_tasting_note_text_field}
+                            small
+                            id="tasting-note"
+                            fullWidth
+                            multiline
+                            //onChange={handleTastingNoteChange} 
+                            label="Tasting Note" 
+                            variant="standard"
+                            color={darkMode == true ? "primary" : "secondary"}
+                            />
                         </ListItem>
                     </Grid>
 
@@ -1001,7 +1044,7 @@ export default function BottleCard(props) {
                             <Button
                             fullWidth
                             className={classes.drink_button}  
-                            //onClick={handleCancelButtonClick} 
+                            onClick={handleCancelButtonClick} 
                             variant="contained" 
                             color="default"
                             startIcon={<CloseIcon />}
@@ -1011,7 +1054,7 @@ export default function BottleCard(props) {
                         </Grid>
                         <Grid item xs={4}>
                             <Button
-                            //disabled={submitButtonDisabled}
+                            disabled={!selectedDate}
                             fullWidth
                             className={classes.drink_button} 
                             //onClick={handleSubmitButtonClick}
@@ -1074,7 +1117,7 @@ export default function BottleCard(props) {
                             className={classes.drink_link} 
                             component="button"
                             variant="body2"
-                            onClick={handleBackLinkClick}
+                            onClick={handleRemoveCancelLinkClick}
                             >
                                 <UndoIcon className={classes.drink_link_svg_icon}/> Back
                             </Link>
