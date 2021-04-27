@@ -131,11 +131,14 @@ const useStyles = makeStyles((theme) => ({
     form_title_icon:{
         marginLeft: 'auto',
         height: theme.spacing(2.5),
-        width: theme.spacing(2.5), 
+        width: theme.spacing(2.5),
+        color: mystyleprops => mystyleprops.colorSchemaA, 
     },
     form_title_typo:{
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(3),
+        color: mystyleprops => mystyleprops.colorSchemaA,
+        fontWeight: 500,
     },
     icon: { 
         height: theme.spacing(2.5),
@@ -624,7 +627,7 @@ export default function LwinProfileCard(props) {
 
                                 <Grid item xs={8}>
                                     <TextField
-                                    //disabled
+                                    select
                                     className={classes.textfield}
                                     required
                                     id="quantity"
@@ -637,7 +640,12 @@ export default function LwinProfileCard(props) {
                                     label="Quantity" 
                                     variant="standard"
                                     color={darkMode == true ? "primary" : "secondary"}
-                                    />
+                                    style={{backgroundColor: 'inherit'}}
+                                    >
+                                        <option key="1" value="1">
+                                            {'1'}
+                                        </option>
+                                    </TextField>
                                 </Grid>
                             </Grid>
                         </Grid>
