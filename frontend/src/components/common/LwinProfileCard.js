@@ -15,6 +15,7 @@ import Collapse from '@material-ui/core/Collapse';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
+import ListItem from '@material-ui/core/ListItem';
 import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
@@ -36,6 +37,7 @@ import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import RemoveIcon from '@material-ui/icons/Remove'
 import ShareIcon from '@material-ui/icons/Share';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
 
 import { CompassIcon, GlassCheersIcon, StoreIcon, WineBottleIcon } from './SvgIcons';
@@ -60,6 +62,11 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1, 1.25, 1, 1),
     },
     container_collapse: {
+        maxHeight: screen.availHeight * 0.39,
+        [theme.breakpoints.down('xs')]: {
+            maxHeight: screen.availHeight * 0.36
+        },
+        overflowY: 'scroll',
         padding: theme.spacing(2,2,1,2),
     },
     divider: {
@@ -118,7 +125,17 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(4),
     },
     form_title: {
+        fontSize: theme.spacing(2),
         color: mystyleprops => mystyleprops.colorSchemaA,
+    },
+    form_title_icon:{
+        marginLeft: 'auto',
+        height: theme.spacing(2.5),
+        width: theme.spacing(2.5), 
+    },
+    form_title_typo:{
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(3),
     },
     icon: { 
         height: theme.spacing(2.5),
@@ -507,38 +524,29 @@ export default function LwinProfileCard(props) {
                 
                 <form id="bottle-form" >
                     <Grid container className={classes.container_collapse} spacing={0} justify="space-evenly" >
-                        
-                        <Grid item xs={6} style={{marginBottom: 8}}>
-                            <Grid container>
-                                <Grid item xs={1}>
-                
-                                </Grid>
-                                <Grid item>   
-                                    <Typography className={classes.form_title} size="small" variant="button">
-                                        Add to collection
-                                    </Typography>
-                                </Grid>
-                            </Grid>
+
+                        <Grid item xs={12} style={{marginBottom: 8}}>
+                            <ListItem dense>
+                                <Typography className={classes.form_title} variant="button">
+                                    Add to collection
+                                </Typography>
+
+                                { score !== null ?
+                                <>
+                                    <Tooltip title="Critics Score">
+                                        <StarBorderIcon className={classes.form_title_icon} />
+                                    </Tooltip>
+                                    <Typography className={classes.form_title_typo} size="small" variant="body2" >
+                                        {score}/100
+                                    </Typography> 
+                                </>
+                                :
+                                <div />
+                                }
+                                
+                            </ListItem>
                         </Grid>
-                        
-                        { score !== null ?
-                        <Grid item xs={6} style={{marginBottom: 8}}> 
-                            <Grid container spacing={1} justify="center" alignItems="center">       
-                                <Grid item>
-                                    <AllInclusiveIcon className={classes.icon} />
-                                </Grid>
-                                <Grid item xs={8}>
-                                    <Typography size="small" variant="body2" >
-                                        {score} pts
-                                    </Typography>  
-                                </Grid>
-                            </Grid> 
-                        </Grid>
-                        :
-                        <Grid itmem xs={6} style={{marginBottom: 8}}>
-                        
-                        </Grid>
-                        }
+
 
                         <Grid item xs={6}>
                             <Autocomplete  

@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         width: window.width,
     },
     list_body: {
-        maxHeight: screen.availHeight * 0.5,
+        maxHeight: screen.availHeight * 0.48,
         overflowY: 'scroll',
     },
     sort_by_icon: {

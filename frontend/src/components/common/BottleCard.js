@@ -581,7 +581,7 @@ export default function BottleCard(props) {
 
 
         <Collapse in={!drinkCollapse && !removeCollapse} timeout="auto">
-            <Card className={classes.info_card} elevation={0}> 
+            <Card className={classes.info_card} elevation={3}> 
                 <Grid container className={classes.info_container}>    
                 
                     <Grid item xs={7}>
@@ -809,7 +809,7 @@ export default function BottleCard(props) {
 
 
         <Collapse in={drinkCollapse} timeout="auto" unmountOnExit>
-            <Card className={classes.drink_card} elevation={0}> 
+            <Card className={classes.drink_card} elevation={3}> 
                 <Grid container spacing={0} className={classes.drink_container} justify="space-evenly">    
                 
                     <Grid item xs={12}>
@@ -1108,7 +1108,7 @@ export default function BottleCard(props) {
 
 
         <Collapse in={removeCollapse} timeout="auto">
-            <Card className={classes.remove_card} elevation={0}> 
+            <Card className={classes.remove_card} elevation={3}> 
                 <Grid container className={classes.remove_container}>    
                 
                     <Grid item xs={12}>
