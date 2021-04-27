@@ -127,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     info_card: {
-        height: screen.availHeight * 0.48,
+        height: screen.availHeight * 0.46,
         overflowY: 'scroll',
         margin: theme.spacing(0, 2),
         borderRadius: '0px 0px 10px 10px',
@@ -137,8 +137,9 @@ const useStyles = makeStyles((theme) => ({
         
     },
     info_header:{
-        margin: theme.spacing(1,2,0,2.5),
+        margin: theme.spacing(0.5,2,0,2.5),
         color: mystyleprops => mystyleprops.colorSchemaA,
+        fontSize: theme.spacing(2),
     },
     info_link: {
         marginTop: theme.spacing(1),
@@ -178,7 +179,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     drink_card: {
-        height: screen.availHeight * 0.48,
+        height: screen.availHeight * 0.46,
         overflowY: 'scroll',
         margin: theme.spacing(0, 2),
         borderRadius: '0px 0px 10px 10px',
@@ -188,8 +189,9 @@ const useStyles = makeStyles((theme) => ({
         
     },
     drink_header:{
-        margin: theme.spacing(1,2,0,2.5),
+        margin: theme.spacing(0.5,2,0,2.5),
         color: mystyleprops => mystyleprops.colorSchemaA,
+        fontSize: theme.spacing(2),
     },
     drink_link: {
         marginTop: theme.spacing(1),
@@ -203,12 +205,13 @@ const useStyles = makeStyles((theme) => ({
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     drink_switch_header_label: {
-        marginTop: theme.spacing(1), 
+        marginTop: theme.spacing(0.5), 
         marginLeft: 'auto',
+        fontSize: theme.spacing(2),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     drink_switch_header: {
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(0.5),
         marginRight: theme.spacing(2),
     },
     drink_icon: {
@@ -291,7 +294,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     remove_card: {
-        height: screen.availHeight * 0.48,
+        height: screen.availHeight * 0.46,
         overflowY: 'scroll',
         margin: theme.spacing(0, 2),
         borderRadius: '0px 0px 10px 10px',
@@ -301,8 +304,9 @@ const useStyles = makeStyles((theme) => ({
         
     },
     remove_header:{
-        margin: theme.spacing(1,2,0,2.5),
+        margin: theme.spacing(0.5,2,0,2.5),
         color: mystyleprops => mystyleprops.colorSchemaA,
+        fontSize: theme.spacing(2),
     },
     remove_link: {
         marginTop: theme.spacing(1),
@@ -1014,7 +1018,7 @@ export default function BottleCard(props) {
                             color={darkMode ? 'primary' : 'secondary'}
                             />
                         
-                            <Typography className={classes.drink_slider_label} variant="body2">
+                            <Typography className={classes.drink_slider_label} variant="body2" style={{filter: selectedScore === 0 ? 'opacity(40%)' : ''}}>
                                 {selectedScore} pts 
                             </Typography>   
                         </ListItem>
