@@ -4,8 +4,10 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns'; //choose lib in future
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
-import Avatar from '@material-ui/core/Avatar'
-import Badge from '@material-ui/core/Badge';
+import Alert from '@material-ui/lab/Alert'
+
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Collapse from '@material-ui/core/Collapse';
@@ -14,28 +16,42 @@ import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import Link from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText'; 
+import ListItemText from '@material-ui/core/ListItemText';
+import Snackbar from '@material-ui/core/Snackbar';
+import Switch from '@material-ui/core/Switch'; 
 import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import CloseIcon from '@material-ui/icons/Close';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import LanguageIcon from '@material-ui/icons/Language';
+import PeopleIcon from '@material-ui/icons/People';
+import PersonIcon from '@material-ui/icons/Person';
+import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
+import PostAddIcon from '@material-ui/icons/PostAdd';
 import PublicIcon from '@material-ui/icons/Public';
+import Radio from '@material-ui/core/Radio';
 import RemoveIcon from '@material-ui/icons/Remove';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
+import Slider from '@material-ui/core/Slider';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 import SwapVertIcon from '@material-ui/icons/SwapVert';
+import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
+import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
+import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
 
 import { CompassIcon, GlassCheersIcon, PlaceOfWorshipIcon, StoreIcon, UndoIcon, WineGlassIcon } from './SvgIcons';
 
 import { currencyNumberFormat} from "../utils/currencyNumberFormat";
 
 import brown from '@material-ui/core/colors/brown';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -127,7 +143,7 @@ const useStyles = makeStyles((theme) => ({
     info_link: {
         marginTop: theme.spacing(1),
         marginLeft: 'auto',
-        marginRight: 3,
+        marginRight: theme.spacing(3),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     info_link_svg_icon: {
@@ -178,13 +194,22 @@ const useStyles = makeStyles((theme) => ({
     drink_link: {
         marginTop: theme.spacing(1),
         marginLeft: 'auto',
-        marginRight: 3,
+        marginRight: theme.spacing(3),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     drink_link_svg_icon: {
         height: theme.spacing(1.5),
         width: theme.spacing(1.5),
         color: mystyleprops => mystyleprops.colorSchemaA,
+    },
+    drink_switch_header_label: {
+        marginTop: theme.spacing(1), 
+        marginLeft: 'auto',
+        color: mystyleprops => mystyleprops.colorSchemaA,
+    },
+    drink_switch_header: {
+        marginTop: theme.spacing(1),
+        marginRight: theme.spacing(2),
     },
     drink_icon: {
         height: theme.spacing(2.5),
@@ -201,6 +226,62 @@ const useStyles = makeStyles((theme) => ({
     },
     drink_textfield:{
         paddingBottom: theme.spacing(2),
+    },
+    drink_description_icon: {
+        height: theme.spacing(2.5),
+        width: theme.spacing(2.5),
+        marginLeft: theme.spacing(2.5),
+        marginRight: theme.spacing(1),
+    },
+    drink_description_typo: {
+        display: 'block',
+        [theme.breakpoints.down('xs')]: {
+            display: 'none',
+        },
+    },
+    drink_switch_label: { 
+        marginLeft: 'auto',
+    },
+    drink_switch: {
+        marginRight: theme.spacing(2),
+    },
+    drink_radio_label: {
+        marginLeft: 'auto',
+    },
+    drink_radio: {
+        marginRight: theme.spacing(2),
+    },
+    drink_slider: {
+        marginLeft: 'auto',
+        marginRight: theme.spacing(2),
+        maxWidth: '30%',   
+    },
+    drink_slider_label: {
+        marginRight: theme.spacing(3),
+    },
+    drink_tasting_note_text_field: {
+        marginRight: theme.spacing(3),
+        marginBottom: theme.spacing(2),
+    },
+    drink_button: { 
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(3),
+        borderRadius: 20,
+    },
+    
+    drink_snackbar: {
+        width: '100%',
+    },
+    drink_alert_container: {
+        margin: theme.spacing(2, 6, 2, 2),
+        [theme.breakpoints.down('xs')]: {
+            margin: theme.spacing(2, 6, 2, 0),
+        },
+    },
+    drink_alert: {
+        width: '100%',
+        borderRadius: 10,
+        //margin: theme.spacing(4, 2),
     },
 
     remove_card: {
@@ -250,7 +331,7 @@ export default function BottleCard(props) {
     const bottle = props.bottle;
     const [isFavorite, setIsFavorite] = useState(bottle.favorite);
     
-    const [drinkCollapse, setDrinkCollapse] = useState(false);
+    const [drinkCollapse, setDrinkCollapse] = useState(true); // SET TO FALSE
     const [removeCollapse, setRemoveCollapse] = useState(false);
 
     const theme = useTheme(); 
@@ -267,6 +348,12 @@ export default function BottleCard(props) {
     const [gathered, setGathered] = useState(null);
     const [privateNote, setPrivateNote] = useState(null)
     const [selectedDate, handleDateChange] = useState(null);
+
+    const [addReview, setAddReview] = useState(false);
+    const [shareReview, setShareReview] = useState(false);
+    const [selectedRadio, setSelectedRadio] = useState('like');
+    
+    const [selectedScore, setSelectedScore] = useState(50);
 
 
     const handleFavoriteButton= (e) => {
@@ -326,10 +413,31 @@ export default function BottleCard(props) {
         setPrivateNote(e.target.value);
     }
 
+
     const handleGatheredChange = (e) => {
         setGathered(parseInt(e.target.value));
     };
 
+
+    const handleAddReviewSwitch = (e) => {
+        setAddReview(!addReview);
+    }
+
+
+    const handleShareReviewSwitch = (e) => {
+        setShareReview(!shareReview);
+    }
+
+
+    const handleSelectedRadio = (e) => {
+        setSelectedRadio(e.target.value)
+    } 
+
+
+    const handleScoreSliderChange = (event, newValue) => {
+        setSelectedScore(newValue);
+    }
+ 
     
     return (
         <>
@@ -661,18 +769,13 @@ export default function BottleCard(props) {
 
         <Collapse in={drinkCollapse} timeout="auto">
             <Card className={classes.drink_card} elevation={0}> 
-                <Grid container className={classes.drink_container} justify="space-evenly">    
+                <Grid container spacing={0} className={classes.drink_container} justify="space-evenly">    
                 
-                    <Grid item xs={6}>
+                    <Grid item xs={12}>
                         <ListItem dense>
                             <Typography className={classes.drink_header} variant="button">
                                 Drink Bottle
                             </Typography>
-                        </ListItem>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                        <ListItem dense>
                             <Link 
                             className={classes.drink_link} 
                             component="button"
@@ -680,11 +783,11 @@ export default function BottleCard(props) {
                             onClick={handleBackLinkClick}
                             >
                                 <UndoIcon className={classes.drink_link_svg_icon}/> Back
-                            </Link>
+                            </Link>            
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid item xs={12} style={{marginBottom: 8}}>
                         <Grid container spacing={1} justify="center" alignItems="center">
                             <Grid item>
                                 <CommentOutlinedIcon className={classes.drink_icon} />
@@ -758,6 +861,192 @@ export default function BottleCard(props) {
                         </Grid>
                     </Grid>
 
+                    <Grid item xs={12}>
+                        <Divider className={classes.divider} />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <ListItem dense>
+                            <Typography className={classes.drink_header} variant="button">
+                                Add tasting review
+                            </Typography>
+
+                            <Typography className={classes.drink_switch_header_label} variant="button">
+                                {addReview ? 'On' : 'Off'}
+                            </Typography>
+                            <Switch 
+                            className={classes.drink_switch_header}
+                            checked={addReview}
+                            onChange={handleAddReviewSwitch}
+                            color={darkMode ? 'primary' : 'secondary'}
+                            >
+                            </Switch>
+                        </ListItem>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <ListItem dense>
+                            {shareReview 
+                            ? <PeopleIcon className={classes.drink_description_icon}/> 
+                            : <PersonIcon className={classes.drink_description_icon}/>
+                            } 
+                            <Typography variant="body2">
+                                Select privacy 
+                            </Typography>
+                                
+                            <Typography className={classes.drink_switch_label} variant="body2">
+                                {shareReview ? 'Public' : 'Private'}
+                            </Typography>
+                            <Switch 
+                            className={classes.drink_switch}
+                            checked={shareReview}
+                            onChange={handleShareReviewSwitch}
+                            color={darkMode ? 'primary' : 'secondary'}
+                            >
+                            </Switch>
+                        </ListItem>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <ListItem dense>
+                            {selectedRadio === 'like' 
+                            ? <ThumbUpOutlinedIcon className={classes.drink_description_icon}/> 
+                            : selectedRadio === 'neutral' 
+                            ? <ThumbsUpDownOutlinedIcon className={classes.drink_description_icon}/>
+                            : <ThumbDownOutlinedIcon className={classes.drink_description_icon} />
+                            } 
+                            <Typography className={classes.drink_description_typo} variant="body2">
+                                Select option 
+                            </Typography>
+                
+                            <Typography className={classes.drink_radio_label} variant="body2">
+                                Like
+                            </Typography>
+                            <Radio
+                            checked={selectedRadio === 'like'}
+                            onChange={handleSelectedRadio}
+                            value="like"
+                            name="radio-like"
+                            color={darkMode ? 'primary' : 'secondary'}
+                            />
+                            
+                            <Typography variant="body2">
+                                Neutral
+                            </Typography>
+                            <Radio
+                            checked={selectedRadio === 'neutral'}
+                            onChange={handleSelectedRadio}
+                            value="neutral"
+                            name="radio-neutral"
+                            color={darkMode ? 'primary' : 'secondary'}
+                            />
+                            
+                            <Typography variant="body2">
+                                Dislike
+                            </Typography>
+                            <Radio
+                            className={classes.drink_radio}
+                            checked={selectedRadio === 'dislike'}
+                            onChange={handleSelectedRadio}
+                            value="dislike"
+                            name="radio-dislike"
+                            color={darkMode ? 'primary' : 'secondary'}
+                            />
+                        </ListItem>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <ListItem dense>
+                            <StarBorderIcon className={classes.drink_description_icon}/>
+                            <Typography variant="body2">
+                                Set Score
+                            </Typography>   
+
+                            <Slider
+                            className={classes.drink_slider}
+                            aria-label="score-slider"
+                            value={selectedScore}
+                            onChange={handleScoreSliderChange}
+                            min={50}
+                            max={100}
+                            color={darkMode ? 'primary' : 'secondary'}
+                            />
+                        
+                            <Typography className={classes.drink_slider_label} variant="body2">
+                                {selectedScore} pts 
+                            </Typography>   
+                        </ListItem>
+                    </Grid>
+
+                    <Grid item xs={12} style={{marginTop: -8}}>
+                        <ListItem dense>
+                            <PostAddIcon className={classes.drink_description_icon}/>
+                              
+                            <TextField
+                                className={classes.drink_tasting_note_text_field}
+                                small
+                                id="tasting-note"
+                                fullWidth
+                                multiline
+                                //onChange={handleTastingNoteChange} 
+                                label="Tasting Note" 
+                                variant="standard"
+                                color={darkMode == true ? "primary" : "secondary"}
+                                />
+                        </ListItem>
+                    </Grid>
+
+                    <Grid item xs={12} container spacing={0} alignItems="center" justify="space-around">
+                        <Grid item xs={4}>
+                            <Button
+                            fullWidth
+                            className={classes.drink_button}  
+                            //onClick={handleCancelButtonClick} 
+                            variant="contained" 
+                            color="default"
+                            startIcon={<CloseIcon />}
+                            >
+                                Cancel
+                            </Button>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Button
+                            //disabled={submitButtonDisabled}
+                            fullWidth
+                            className={classes.drink_button} 
+                            //onClick={handleSubmitButtonClick}
+                            variant="contained" 
+                            color={ darkMode ? "secondary" : "primary" } 
+                            startIcon={<PlaylistAddCheckIcon />}
+                            >    
+                                Submit
+                            </Button>
+                        </Grid>
+
+                        <Snackbar 
+                            className={classes.drink_snackbar}
+                            //open={snackbarOpen}
+                            autoHideDuration={1000}
+                            //onClose={handleSnackbarClose}
+                            >
+                            <Grid className={classes.drink_alert_container} container spacing={1} justify="center"> 
+                                <Grid item xs={12} sm={10} md={8}>
+                                <Alert
+                                className={classes.drink_alert}
+                                elevation={6} 
+                                variant="filled" 
+                                //onClose={handleSnackbarClose} 
+                                severity="success"
+                                >
+                                    SUCCESS - Added to Collection
+                                </Alert>
+                                </Grid>
+                            </Grid>
+                        </Snackbar>
+
+                    </Grid>
+
+                    
                 </Grid>
             </Card>
         </Collapse>
@@ -775,16 +1064,12 @@ export default function BottleCard(props) {
             <Card className={classes.remove_card} elevation={0}> 
                 <Grid container className={classes.remove_container}>    
                 
-                    <Grid item xs={7}>
+                    <Grid item xs={12}>
                         <ListItem dense>
                             <Typography className={classes.drink_header} variant="button">
                                 Remove Bottle
                             </Typography>
-                        </ListItem>
-                    </Grid>
 
-                    <Grid item xs={5}>
-                        <ListItem dense>
                             <Link 
                             className={classes.drink_link} 
                             component="button"
@@ -794,7 +1079,9 @@ export default function BottleCard(props) {
                                 <UndoIcon className={classes.drink_link_svg_icon}/> Back
                             </Link>
                         </ListItem>
-                    </Grid>     
+                    </Grid>
+
+
                 </Grid>
             </Card>
         </Collapse>
