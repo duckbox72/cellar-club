@@ -38,6 +38,7 @@ import PostAddIcon from '@material-ui/icons/PostAdd';
 import RemoveIcon from '@material-ui/icons/Remove'
 import ShareIcon from '@material-ui/icons/Share';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import StorefrontIcon from '@material-ui/icons/Storefront';
 import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
 
 import { CompassIcon, GlassCheersIcon, StoreIcon, WineBottleIcon } from './SvgIcons';
@@ -49,6 +50,7 @@ import { getBottleSizesOptions } from "../utils/getBottleSizesOptions";
 import { getVintageOptions } from "../utils/getVintageOptions";
 import { getCellarOptions } from "../utils/getCellarOptions";
 import { getBinOptions } from '../utils/getBinOptions';
+import { getQuantityOptions } from '../utils/getQuantityOptions';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -212,6 +214,7 @@ export default function LwinProfileCard(props) {
 
     // Form options
     const bottleSizes = getBottleSizesOptions();
+    const quantities = getQuantityOptions();
     const vintages = getVintageOptions();
     const cellars = getCellarOptions();   
     const [bins, setBins] = useState([]);
@@ -619,6 +622,39 @@ export default function LwinProfileCard(props) {
                         </Grid>
 
                         <Grid item xs={6}>
+                            <Autocomplete
+                            className={classes.autocomplete}  
+                            size="small"
+                            id="quantity"
+                            fullWidth
+                            //freeSolo
+                            onChange={handleQuantityFieldChange}
+                            clearOnEscape
+                            options={quantities}
+                            renderInput={(params) => (
+                                <Grid container spacing={1} justify="center" alignItems="center">
+                                    <Grid item >
+                                        <UnfoldMoreIcon className={classes.icon} />
+                                    </Grid>     
+
+                                    <Grid item xs={8}>
+                                        <TextField
+                                        required
+                                        id="quantity"
+                                        type="text"
+                                        {...params}
+                                        onChange={handleQuantityFieldChange} 
+                                        label="Quantity" 
+                                        variant="standard"
+                                        color={darkMode == true ? "primary" : "secondary"}
+                                        />
+                                    </Grid>
+                                </Grid>
+                            )}
+                            />
+                        </Grid>
+
+                        <Grid item xs={6}>
                                 
                             <Grid container spacing={1} justify="center" alignItems="center">
                                 <Grid item >
@@ -627,7 +663,6 @@ export default function LwinProfileCard(props) {
 
                                 <Grid item xs={8}>
                                     <TextField
-                                    select
                                     className={classes.textfield}
                                     required
                                     id="quantity"
@@ -640,12 +675,7 @@ export default function LwinProfileCard(props) {
                                     label="Quantity" 
                                     variant="standard"
                                     color={darkMode == true ? "primary" : "secondary"}
-                                    style={{backgroundColor: 'inherit'}}
-                                    >
-                                        <option key="1" value="1">
-                                            {'1'}
-                                        </option>
-                                    </TextField>
+                                    />
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -751,7 +781,7 @@ export default function LwinProfileCard(props) {
                             renderInput={(params) => (
                                 <Grid container spacing={1} justify="center" alignItems="center">
                                     <Grid item>
-                                        <StoreIcon className={classes.svg_icon} />
+                                        <StorefrontIcon className={classes.svg_icon} />
                                     </Grid>   
 
                                     <Grid item xs={8} >
