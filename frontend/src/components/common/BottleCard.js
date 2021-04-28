@@ -25,6 +25,7 @@ import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import Checkbox from '@material-ui/core/Checkbox';
 import CloseIcon from '@material-ui/icons/Close';
@@ -51,7 +52,7 @@ import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
 
-import { CompassIcon, GlassCheersIcon, PlaceOfWorshipIcon, StoreIcon, UndoIcon, WineGlassIcon } from './SvgIcons';
+import { CompassIcon, GlassCheersIcon, PlaceOfWorshipIcon, StoreIcon, WineGlassIcon } from './SvgIcons';
 
 import { currencyNumberFormat} from "../utils/currencyNumberFormat";
 import { getRemovalReasonsOptions } from '../utils/getRemovalReasonsOptions';
@@ -670,7 +671,7 @@ export default function BottleCard(props) {
                             variant="body2"
                             onClick={handleBackLinkClick}
                             >
-                                <UndoIcon className={classes.info_link_svg_icon}/> Back
+                                <ArrowBackIcon className={classes.info_link_svg_icon}/> Back
                             </Link>
                         </ListItem>
                     </Grid> 
@@ -893,7 +894,7 @@ export default function BottleCard(props) {
                             variant="body2"
                             onClick={handleDrinkCancelLinkClick}
                             >
-                                <UndoIcon className={classes.drink_link_svg_icon}/> Back
+                                <ArrowBackIcon className={classes.drink_link_svg_icon}/> Back
                             </Link>            
                         </ListItem>
                     </Grid>
@@ -1191,7 +1192,7 @@ export default function BottleCard(props) {
                             variant="body2"
                             onClick={handleRemoveCancelLinkClick}
                             >
-                                <UndoIcon className={classes.drink_link_svg_icon}/> Back
+                                <ArrowBackIcon className={classes.drink_link_svg_icon}/> Back
                             </Link>
                         </ListItem>
                     </Grid>

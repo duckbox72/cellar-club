@@ -12,7 +12,7 @@ import ListIcon from '@material-ui/icons/List';
 import SearchIcon from '@material-ui/icons/Search';
 
 import brown from '@material-ui/core/colors/brown';
-import { IconButton } from '@material-ui/core';
+import { IconButton, ListItem } from '@material-ui/core';
 
 
 
@@ -30,22 +30,25 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: 10,
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
     },
-    dashboard_avatar: {
-        
-        //width: theme.spacing(3),
-        //height: theme.spacing(3),
+    dashboard_header_title: {
+        fontSize: theme.spacing(2),
+        margin: theme.spacing(1),
+        color:  mystyleprops => mystyleprops.colorSchemaA,
+    },
+    dashboard_header_avatar: {
+        marginLeft: 'auto',
+        width: theme.spacing(3),
+        height: theme.spacing(3),
         backgroundColor: mystyleprops => mystyleprops.colorSchemaA,
         color:  mystyleprops => mystyleprops.colorSchemaB,
     },
-    dashboard_title: {
-        //margin: theme.spacing(1),
-        color:  mystyleprops => mystyleprops.colorSchemaA,
-    },
-    dashboard_username: {
+    dashboard_header_username: {
+        margin: theme.spacing(1),
         color: mystyleprops => mystyleprops.colorSchemaA,
         fontWeight: 500,
-        flex: 1,
     },
+
+
 
     action_paper: {
         height: screen.availHeight * 0.15,
@@ -119,15 +122,19 @@ export default function Dashboard(props) {
     return (
             <div className={classes.root} >
                 <Grid container spacing={2} justify="center">
-                    <Paper  className={classes.dashboard_paper} >
-                        <Grid item xs={12} container spacing={0} alignItems="center">
-                            <Avatar className={classes.dashboard_avatar}>{userProfile.username[0]}</Avatar>
-                            <Typography  className={classes.dashboard_username} variant="body1">
-                                {userProfile.username}
-                            </Typography>
-                            <Typography className={classes.dashboard_title} variant="button">
-                                DASHBOARD
-                            </Typography>
+                    <Paper  className={classes.dashboard_paper} elevation={3}>
+                        <Grid item xs={12} container spacing={0} >
+                            <ListItem> 
+                                <Typography className={classes.dashboard_header_title} variant="button">
+                                    DASHBOARD
+                                </Typography>
+
+                                <Avatar className={classes.dashboard_header_avatar}>{userProfile.username[0]}</Avatar>
+                                
+                                <Typography  className={classes.dashboard_header_username} variant="body1">
+                                    {userProfile.username}
+                                </Typography>
+                            </ListItem>
                         </Grid>
                         <Grid item xs={12} container spacing={2}>
                         
