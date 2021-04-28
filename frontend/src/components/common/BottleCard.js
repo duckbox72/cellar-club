@@ -5,12 +5,14 @@ import DateFnsUtils from '@date-io/date-fns'; //choose lib in future
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import Alert from '@material-ui/lab/Alert'
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Collapse from '@material-ui/core/Collapse';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
@@ -24,13 +26,16 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import Checkbox from '@material-ui/core/Checkbox';
 import CloseIcon from '@material-ui/icons/Close';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import LanguageIcon from '@material-ui/icons/Language';
+import LoopIcon from '@material-ui/icons/Loop';
 import PeopleIcon from '@material-ui/icons/People';
 import PersonIcon from '@material-ui/icons/Person';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
@@ -49,8 +54,11 @@ import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
 import { CompassIcon, GlassCheersIcon, PlaceOfWorshipIcon, StoreIcon, UndoIcon, WineGlassIcon } from './SvgIcons';
 
 import { currencyNumberFormat} from "../utils/currencyNumberFormat";
+import { getRemovalReasonsOptions } from '../utils/getRemovalReasonsOptions';
+
 
 import brown from '@material-ui/core/colors/brown';
+
 
 
 
@@ -273,7 +281,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(2),
     },
     drink_button: { 
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(3),
         marginBottom: theme.spacing(4),
         borderRadius: 20,
         //backdropFilter: 'brightness(95%)',
@@ -329,9 +337,34 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(2.5),
         paddingTop: theme.spacing(1.5),
     },
+    drink_datepicker:{
+        paddingBottom: theme.spacing(2),
+    },
     remove_textfield: {
         paddingBottom: theme.spacing(2),
     },
+    remove_description_icon: {
+        height: theme.spacing(2.5),
+        width: theme.spacing(2.5),
+        marginLeft: theme.spacing(2),
+        [theme.breakpoints.down('xs')]: {
+            marginLeft: theme.spacing(0),
+        },
+        marginRight: theme.spacing(1),
+    },
+    remove_auxiliar_attention_icon: {
+        height: theme.spacing(1.75),
+        width: theme.spacing(1.75),
+    },
+    remove_button: { 
+        marginTop: theme.spacing(5),
+        marginBottom: theme.spacing(4),
+        borderRadius: 20,
+        //backdropFilter: 'brightness(95%)',
+    },
+
+    
+   
 }));
 
 
@@ -355,6 +388,9 @@ export default function BottleCard(props) {
     }
     const classes = useStyles(mystyleprops);
 
+    const removalReasons = getRemovalReasonsOptions();
+
+
     // Form fields
     const [gathered, setGathered] = useState(null);
     const [privateNote, setPrivateNote] = useState(null)
@@ -367,8 +403,11 @@ export default function BottleCard(props) {
     const [selectedScore, setSelectedScore] = useState(0);
     const [tastingNote, setTastingNote] = useState(null);
 
+    const [selectedRemovalReason, setSelectedRemovalReason] = useState(null);
+    const [permanentRemoval, setPermanentRemoval] = useState(false);
 
-    const clearDrinkFormState = () => {
+
+    const clearFormState = () => {
         setGathered(null);
         setPrivateNote(null);
         handleDateChange(null);
@@ -376,6 +415,11 @@ export default function BottleCard(props) {
         setAddReview(false);
         setShareReview(true);
         setSelectedRadio('like');
+        setSelectedScore(0);
+        setTastingNote(null);
+
+        setSelectedRemovalReason(null);
+        setPermanentRemoval(false);
     };
 
 
@@ -401,20 +445,22 @@ export default function BottleCard(props) {
         removeCollapse ? () => {
             setRemoveCollapse(null);
             setDrinkCollapse(!drinkCollapse);
-            clearDrinkFormState()
+            cleaFormState()
         }
         :
             setDrinkCollapse(!drinkCollapse);
-            clearDrinkFormState() 
+            clearFormState() 
     }
 
     const handleRemoveButtonClick = (e) => {
         drinkCollapse ? () => {
             setDrinkCollapse(null);
-            setRemoveCollapse(!drinkCollapse);
+            setRemoveCollapse(!removeCollapse);
+            clearFormState()
         }
         :
             setRemoveCollapse(!removeCollapse); 
+            clearFormState()
     }
 
 
@@ -481,11 +527,29 @@ export default function BottleCard(props) {
     }
  
 
-    const handleCancelButtonClick = () => {
+    const handleDrinkCancelButtonClick = () => {
         // Toggle view from drink card to bottle card 
         handleDrinkButtonClick();
     };
+
+
+    const handleRemoveCancelButtonClick = () => {
+        // Toggle view from drink card to bottle card 
+        handleRemoveButtonClick();
+    };
     
+
+    const handleSelectedRemovalReasonAutocompleteChange = (value) => {
+        setSelectedRemovalReason(value);
+    };
+
+
+    const handlePermanentRemovalSwitch = () => {
+        setPermanentRemoval(!permanentRemoval);
+    };
+
+
+
     return (
         <>
         <Card className={classes.header_card} elevation={3}> 
@@ -844,7 +908,7 @@ export default function BottleCard(props) {
                                 <TextField
                                 small
                                 className={classes.textfield}
-                                id="private-note"
+                                id="drink-private-note"
                                 fullWidth
                                 onChange={handlePrivateNoteChange} 
                                 label="Private note/memory" 
@@ -893,7 +957,7 @@ export default function BottleCard(props) {
                                 <TextField
                                 className={classes.drink_textfield}
                                 small
-                                id="gathered"
+                                id="drink-gathered"
                                 fullWidth
                                 InputProps={{ 
                                     inputProps: { min: 0 }, 
@@ -906,10 +970,6 @@ export default function BottleCard(props) {
                                 />
                             </Grid>
                         </Grid>
-                    </Grid>
-
-                    <Grid item xs={12}>
-                        <Divider className={classes.divider} />
                     </Grid>
 
                     <Grid item xs={12}>
@@ -938,7 +998,7 @@ export default function BottleCard(props) {
                             : <PersonIcon className={classes.drink_description_icon}/>
                             } 
                             <Typography variant="body2">
-                                Select review privacy 
+                                Set review privacy 
                             </Typography>
                                 
                             <Typography className={classes.drink_switch_label} variant="body2">
@@ -964,7 +1024,7 @@ export default function BottleCard(props) {
                             : <ThumbDownOutlinedIcon className={classes.drink_description_icon} />
                             } 
                             <Typography className={classes.drink_description_typo} variant="body2">
-                                Select option 
+                                Select feedback 
                             </Typography>
                 
                             <Typography className={classes.drink_radio_label} variant="body2">
@@ -1055,7 +1115,7 @@ export default function BottleCard(props) {
                             disableElevation
                             fullWidth
                             className={classes.drink_button}  
-                            onClick={handleCancelButtonClick} 
+                            onClick={handleDrinkCancelButtonClick} 
                             variant="contained" 
                             color="default"
                             startIcon={<CloseIcon />}
@@ -1115,7 +1175,7 @@ export default function BottleCard(props) {
 
 
 
-        <Collapse in={removeCollapse} timeout="auto">
+        <Collapse in={removeCollapse} timeout="auto" unmountOnExit>
             <Card className={classes.remove_card} elevation={3}> 
                 <Grid container className={classes.remove_container}>    
                 
@@ -1134,6 +1194,174 @@ export default function BottleCard(props) {
                                 <UndoIcon className={classes.drink_link_svg_icon}/> Back
                             </Link>
                         </ListItem>
+                    </Grid>
+
+                    <Grid item xs={12} style={{marginBottom: 8}}>
+                            <Autocomplete
+                            className={classes.autocomplete}  
+                            size="small"
+                            id="removal-reason"
+                            fullWidth
+                            value={selectedRemovalReason}
+                            onChange={(event,value) => handleSelectedRemovalReasonAutocompleteChange(value)}
+                            clearOnEscape
+                            options={removalReasons}
+                            renderInput={(params) => (
+                                <Grid container spacing={1} justify="center" alignItems="center">
+                                    <Grid item>
+                                        <LoopIcon className={classes.icon} />
+                                    </Grid>   
+
+                                    <Grid item xs={10} >
+                                        <TextField
+                                        required
+                                        id="removal-reason-input"
+                                        {...params}
+                                        label="Select a reason for removal" 
+                                        variant="standard"
+                                        color={darkMode == true ? "primary" : "secondary"}
+                                        />
+                                    </Grid>
+                                </Grid>
+                            )}
+                            />
+                        </Grid>
+
+                    <Grid item xs={12} style={{marginBottom: 8}}>
+                        <Grid container spacing={1} justify="center" alignItems="center">
+                            <Grid item>
+                                <CommentOutlinedIcon className={classes.remove_icon} />
+                            </Grid>   
+
+                            <Grid item xs={10} >
+                                <TextField
+                                small
+                                className={classes.textfield}
+                                id="remove-private-note"
+                                fullWidth
+                                onChange={handlePrivateNoteChange} 
+                                label="Private note/memory" 
+                                variant="standard"
+                                color={darkMode == true ? "primary" : "secondary"}
+                                />
+                            </Grid>
+                        </Grid> 
+                    </Grid>
+
+                    <Grid item xs={6}>             
+                        <Grid container spacing={1} justify="center" alignItems="center">
+                            <Grid item >
+                                <EventAvailableIcon className={classes.remove_icon} />
+                            </Grid>   
+
+                            <Grid item xs={8}>
+                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                    <DatePicker
+                                    className={classes.remove_datepicker}
+                                    small
+                                    required
+                                    autoOk
+                                    clearable 
+                                    value={selectedDate} 
+                                    label="Removal date"
+                                    format="MM/dd/yyyy"
+                                    inputVariant="standard"
+                                    onChange={handleDateChange}
+                                    color={darkMode == true ? "primary" : "secondary"}
+                                    fullWidth
+                                    disableToolbar
+                                    />
+                                </MuiPickersUtilsProvider>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item xs={6}>   
+                        <Grid container spacing={1} justify="center" alignItems="center">
+                            <Grid item >
+                                <AttachMoneyIcon className={classes.remove_icon} />
+                            </Grid>   
+
+                            <Grid item xs={8}>
+                                <TextField
+                                className={classes.remove_textfield}
+                                small
+                                id="remove-gathered"
+                                fullWidth
+                                InputProps={{ 
+                                    inputProps: { min: 0 }, 
+                                    inputComponent: currencyNumberFormat,
+                                }}
+                                onChange={handleGatheredChange} 
+                                label="Gathered" 
+                                variant="standard"
+                                color={darkMode == true ? "primary" : "secondary"}
+                                />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <ListItem dense>
+                           
+                            <DeleteOutlineIcon className={classes.remove_description_icon}/>
+                            
+                            <ListItemText
+                            primary={
+                                <Typography 
+                                variant="body2"
+                                color={permanentRemoval ? 'error' : 'textSecondary'}
+                                >
+                                    {permanentRemoval 
+                                    ? 'Remove permanently from database and history. Action can\'t be undone'
+                                    : 'Remove permanently from database and history'
+
+                                    }
+                                <Tooltip title="If selected item will be deleted and acction can not be undone">    
+                                    <ErrorOutlineIcon className={classes.remove_auxiliar_attention_icon}/>
+                                </Tooltip>
+                                </Typography>
+                            }
+                            >
+                            </ListItemText>
+                            
+                            <Checkbox 
+                            checked={permanentRemoval}
+                            onChange={handlePermanentRemovalSwitch}
+                            color={darkMode ? 'primary' : 'secondary'}
+                            />
+                            
+                        </ListItem>
+                    </Grid>
+
+                    <Grid item xs={12} container spacing={0} alignItems="center" justify="space-around">
+                        <Grid item xs={4}>
+                            <Button
+                            disableElevation
+                            fullWidth
+                            className={classes.remove_button}  
+                            onClick={handleRemoveCancelButtonClick} 
+                            variant="contained" 
+                            color="default"
+                            startIcon={<CloseIcon />}
+                            >
+                                Cancel
+                            </Button>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Button
+                            disabled={!selectedDate || !selectedRemovalReason}
+                            disableElevation
+                            fullWidth
+                            className={classes.remove_button} 
+                            //onClick={handleSubmitButtonClick}
+                            variant="contained" 
+                            color={ darkMode ? "secondary" : "primary" } 
+                            startIcon={<PlaylistAddCheckIcon />}
+                            >    
+                                Submit
+                            </Button>
+                        </Grid>
                     </Grid>
 
 

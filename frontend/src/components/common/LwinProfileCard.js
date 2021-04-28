@@ -274,7 +274,15 @@ export default function LwinProfileCard(props) {
     };
 
 
-    const handleQuantityFieldChange = (e) => {
+    const handleQuantityAutocompleteChange = (value) => {
+        value >= 1 ?
+        setQuantity(value)
+        :
+        setQuantity(null)
+    };
+
+
+    const handleQuantityTextFieldChange = (e) => {
         e.target.value >= 1 ?
         setQuantity(e.target.value)
         :
@@ -628,7 +636,8 @@ export default function LwinProfileCard(props) {
                             id="quantity"
                             fullWidth
                             //freeSolo
-                            onChange={handleQuantityFieldChange}
+                            value={quantity}
+                            onChange={(event, value) => handleQuantityAutocompleteChange(value)}
                             clearOnEscape
                             options={quantities}
                             renderInput={(params) => (
@@ -642,8 +651,8 @@ export default function LwinProfileCard(props) {
                                         required
                                         id="quantity"
                                         type="text"
-                                        {...params}
-                                        onChange={handleQuantityFieldChange} 
+                                        {...params} 
+                                        onChange={handleQuantityTextFieldChange}
                                         label="Quantity" 
                                         variant="standard"
                                         color={darkMode == true ? "primary" : "secondary"}
