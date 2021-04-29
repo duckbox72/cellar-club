@@ -269,6 +269,14 @@ const useStyles = makeStyles((theme) => ({
     drink_radio: {
         marginRight: theme.spacing(2),
     },
+    drink_auxiliar_attention_icon: {
+        marginTop: -theme.spacing(0.5),
+        height: theme.spacing(1.75),
+        width: theme.spacing(1.75),
+        '&:hover': {
+            color: 'red',
+        }
+    },
     drink_slider: {
         marginLeft: 'auto',
         marginRight: theme.spacing(2),
@@ -354,8 +362,12 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(1),
     },
     remove_auxiliar_attention_icon: {
+        marginTop: -theme.spacing(0.5),
         height: theme.spacing(1.75),
         width: theme.spacing(1.75),
+        '&:hover': {
+            color: 'red',
+        }
     },
     remove_button: { 
         marginTop: theme.spacing(5),
@@ -912,7 +924,7 @@ export default function BottleCard(props) {
                                 id="drink-private-note"
                                 fullWidth
                                 onChange={handlePrivateNoteChange} 
-                                label="Private note/memory" 
+                                label="Private note/memo" 
                                 variant="standard"
                                 color={darkMode == true ? "primary" : "secondary"}
                                 />
@@ -1071,9 +1083,23 @@ export default function BottleCard(props) {
                         <ListItem dense>
                             <StarBorderIcon className={classes.drink_description_icon}/>
                             <Typography variant="body2">
-                                Set Score
-                            </Typography>   
-
+                                Set score
+                            </Typography>
+                            <Tooltip 
+                            title={(
+                            <>
+                                <Typography>
+                                    Use this guide to select the right score on Robert Parker's 100 point scale: 
+                                </Typography>
+                                <Typography>
+                                    D 50-69 avoid | C 70-79 below/average | B 80-85 good | B+ 86-89 very good | A- 90-93 excelent | A 94-97 outstanding | 98-100 extraordinary.
+                                </Typography>
+                            </>
+                            )}
+                            >
+                                <ErrorOutlineIcon  className={classes.drink_auxiliar_attention_icon}/>   
+                            </Tooltip>
+                            
                             <Slider
                             disabled={!addReview}
                             className={classes.drink_slider}
@@ -1103,7 +1129,7 @@ export default function BottleCard(props) {
                             fullWidth
                             multiline
                             onChange={handleTastingNoteChange} 
-                            label="Tasting Note" 
+                            label="Tasting note" 
                             variant="standard"
                             color={darkMode == true ? "primary" : "secondary"}
                             />
