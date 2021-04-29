@@ -332,6 +332,8 @@ def add_consumption(request):
     user = request.user
     data = json.loads(request.body)
 
+    date_consumed = data['date_consumed'][0:9]
+
 
     try:
         bottle = Bottle.objects.get(id=data['bottle_id'])
@@ -351,7 +353,7 @@ def add_consumption(request):
     consumption = Consumption(
         user = user,
         bottle = bottle,
-        date_consumed = data['date_consumed'],
+        date_consumed = date_consumed,
         reason = data['reason'],
         private_note = data['private_note'],
         gathered = data['gathered'],
@@ -363,8 +365,8 @@ def add_consumption(request):
 
 
     print(consumption.user.username, consumption.bottle.id, consumption.date_consumed, consumption.reason, consumption.private_note, consumption.gathered, consumption.review, consumption.permanently_deleted)
-    # consumption.save()
-
+    consumption.save()
+    
     return JsonResponse({"success": "posted successfully"}, safe=False, status=status.HTTP_200_OK)
 
 
@@ -376,6 +378,8 @@ def add_review(request):
     
     user = request.user
     data = json.loads(request.body)
+
+    date_tasted = data['date_tasted'][0:9]
 
     if data['bottle_id']:
         try: 
@@ -395,7 +399,7 @@ def add_review(request):
 
     review = Review(
         user = user,
-        date_tasted = data['date_tasted'],
+        date_tasted = date_tasted,
 
         bottle = bottle,
         lwin = lwin,

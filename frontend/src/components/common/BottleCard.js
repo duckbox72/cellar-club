@@ -373,7 +373,20 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(3),
         marginBottom: theme.spacing(4),
         borderRadius: 20,
-        //backdropFilter: 'brightness(95%)',
+    },
+    remove_snackbar: {
+        width: '100%',
+    },
+    remove_alert_container: {
+        margin: theme.spacing(2, 6, 2, 2),
+        [theme.breakpoints.down('xs')]: {
+            margin: theme.spacing(2, 6, 2, 0),
+        },
+    },
+    remove_alert: {
+        width: '100%',
+        borderRadius: 10,
+        //margin: theme.spacing(4, 2),
     },
 
     
@@ -418,6 +431,10 @@ export default function BottleCard(props) {
 
     const [selectedRemovalReason, setSelectedRemovalReason] = useState(null);
     const [permanentRemoval, setPermanentRemoval] = useState(false);
+
+    const [removeSnackbarOpen, setRemoveSnackbarOpen] = useState(false);
+    const [removeSnackbarSeverity, setRemoveSnackbarSeverity] = useState('');
+
 
 
     const clearFormState = () => {
@@ -579,13 +596,27 @@ export default function BottleCard(props) {
         .then(response => response.json())
         .then(result => {
             console.log(result);
-        //if (result.success) {
-        //    handleSnackbarCall();
-        //  } else {
-        //    alert(result.error)
-        //  }
-        //});
+            
+            if (result.success) {
+                setRemoveSnackbarSeverity('success')
+                
+            } else {
+                setRemoveSnackbarSeverity('error')
+            }
+            handleRemoveSnackbarCall();
         });   
+    }
+
+
+    const handleRemoveSnackbarCall = () => {
+        setRemoveSnackbarOpen(true);
+    }
+
+
+    const handleRemoveSnackbarClose = (e) => {
+        setRemoveSnackbarOpen(false);
+        
+        // TO DO -> redirect to memories page
     }
     
 
@@ -1417,6 +1448,29 @@ export default function BottleCard(props) {
                         </Grid>
                     </Grid>
 
+                    <Snackbar 
+                            className={classes.remove_snackbar}
+                            open={removeSnackbarOpen}
+                            autoHideDuration={1000}
+                            onClose={handleRemoveSnackbarClose}
+                            >
+                            <Grid className={classes.remove_alert_container} container spacing={1} justify="center"> 
+                                <Grid item xs={12} sm={10} md={8}>
+                                <Alert
+                                className={classes.remove_alert}
+                                elevation={6} 
+                                variant="filled" 
+                                onClose={handleRemoveSnackbarClose} 
+                                severity={removeSnackbarSeverity}
+                                >
+                                    {removeSnackbarSeverity === 'success'
+                                    ? 'SUCCESS - Consumption added to memories.'
+                                    : 'Error - Please try again.'
+                                    } 
+                                </Alert>
+                                </Grid>
+                            </Grid>
+                        </Snackbar>
 
                 </Grid>
             </Card>
