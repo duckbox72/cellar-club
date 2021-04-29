@@ -335,6 +335,8 @@ def add_consumption(request):
 
     try:
         bottle = Bottle.objects.get(id=data['bottle_id'])
+        bottle.consumed = True
+        bottle.save()
     except:
         return JsonResponse({"error": "BAD request."}, safe=False, status=status.HTTP_400_BAD_REQUEST)
     
@@ -343,7 +345,8 @@ def add_consumption(request):
             review = Review.objects.get(id=data['review_id'])
         except:
             review = None
-
+    else:
+        review = None
 
     consumption = Consumption(
         user = user,
@@ -352,10 +355,14 @@ def add_consumption(request):
         reason = data['reason'],
         private_note = data['private_note'],
         gathered = data['gathered'],
+        permanently_deleted = data['permanently_deleted'],
 
         review=review,
     )
-    print(consumption)
+    
+
+
+    print(consumption.user.username, consumption.bottle.id, consumption.date_consumed, consumption.reason, consumption.private_note, consumption.gathered, consumption.review, consumption.permanently_deleted)
     # consumption.save()
 
     return JsonResponse({"success": "posted successfully"}, safe=False, status=status.HTTP_200_OK)
@@ -375,12 +382,16 @@ def add_review(request):
             bottle = Review.objects.get(id=data['review_id'])
         except:
             bottle = None
+    else:
+        bottle = None
 
     if data['lwin_lwin']:
         try: 
             lwin = Review.objects.get(lwin=data['lwin_lwin'])
         except:
             lwin = None
+    else:
+        lwin = None
 
     review = Review(
         user = user,
@@ -398,5 +409,5 @@ def add_review(request):
 
     print(review)
     # review.save()
-    
+
     return JsonResponse({"success": "posted successfully"}, safe=False, status=status.HTTP_200_OK)

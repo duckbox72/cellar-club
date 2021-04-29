@@ -360,7 +360,7 @@ export default function LwinProfileCard(props) {
 
         fetch('/api/add_bottle_to_collection', {
             method: 'POST',
-            //headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 cellarname: selectedCellar,
                 binname: selectedBin,

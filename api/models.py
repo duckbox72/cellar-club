@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models.expressions import F
 from django.db.models.fields import DateField
 from django.utils import timezone
 
@@ -160,6 +161,7 @@ class Consumption(models.Model):
     reason = models.CharField(max_length=64, null=False, blank=False)
     private_note = models.CharField(max_length=64, null=True, blank=True)
     gathered = models.IntegerField(default=0, null=True, blank=True)
+    permanently_deleted = models.BooleanField(default=False)
 
     review = models.ForeignKey("Review", on_delete=models.DO_NOTHING, null=True, blank=True)
 
@@ -178,6 +180,7 @@ class Consumption(models.Model):
             "private_note": self.private_note,
             "gathered": self.gathered,
             "review_id": review_id,
+            "permanently_deleted": self.permanently_deleted,
         }
         
 

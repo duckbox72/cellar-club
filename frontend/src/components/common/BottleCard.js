@@ -538,19 +538,6 @@ export default function BottleCard(props) {
     const handleTastingNoteChange = (e) => {
         setTastingNote(e.target.value);
     }
- 
-
-    const handleDrinkCancelButtonClick = () => {
-        // Toggle view from drink card to bottle card 
-        handleDrinkButtonClick();
-    };
-
-
-    const handleRemoveCancelButtonClick = () => {
-        // Toggle view from drink card to bottle card 
-        handleRemoveButtonClick();
-    };
-    
 
     const handleSelectedRemovalReasonAutocompleteChange = (value) => {
         setSelectedRemovalReason(value);
@@ -560,8 +547,47 @@ export default function BottleCard(props) {
     const handlePermanentRemovalSwitch = () => {
         setPermanentRemoval(!permanentRemoval);
     };
+ 
+    const handleDrinkCancelButtonClick = () => {
+        // Toggle view from drink card to bottle card 
+        handleDrinkButtonClick();
+    };
 
 
+
+
+    const handleRemoveCancelButtonClick = () => {
+        // Toggle view from drink card to bottle card 
+        handleRemoveButtonClick();
+    };
+
+    const handleRemoveSubmitButtonClick = () => {
+
+        fetch('/api/add_consumption', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                bottle_id: bottle.id,
+                date_consumed: selectedDate,
+                reason: selectedRemovalReason,
+                private_note: privateNote,
+                gathered: gathered,
+                permanently_deleted: permanentRemoval,
+                review_id: null,
+            }),
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+        //if (result.success) {
+        //    handleSnackbarCall();
+        //  } else {
+        //    alert(result.error)
+        //  }
+        //});
+        });   
+    }
+    
 
     return (
         <>
@@ -1381,7 +1407,7 @@ export default function BottleCard(props) {
                             disableElevation
                             fullWidth
                             className={classes.remove_button} 
-                            //onClick={handleSubmitButtonClick}
+                            onClick={handleRemoveSubmitButtonClick}
                             variant="contained" 
                             color={ darkMode ? "secondary" : "primary" } 
                             startIcon={<PlaylistAddCheckIcon />}
