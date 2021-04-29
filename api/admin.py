@@ -7,3 +7,6 @@ admin.site.register(Lwin)
 admin.site.register(Bottle)
 admin.site.register(Cellar)
 admin.site.register(Bin)
+admin.site.register(Consumption)
+admin.site.register(Review)
+
