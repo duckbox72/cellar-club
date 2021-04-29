@@ -319,3 +319,83 @@ def bin_options(request, cellarname):
     
 
     return JsonResponse([bin.serializer() for bin in options], safe=False, status=status.HTTP_200_OK)
+
+
+    # ------------------------- MEMORY RELATED ROUTES models CONSUMPTION and REVIEW -------------------------
+
+@csrf_exempt
+@login_required
+def add_consumption(request):
+    if request.method != 'POST':
+        return JsonResponse({"error": "POST request required."}, safe=False, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    user = request.user
+    data = json.loads(request.body)
+
+
+    try:
+        bottle = Bottle.objects.get(id=data['bottle_id'])
+    except:
+        return JsonResponse({"error": "BAD request."}, safe=False, status=status.HTTP_400_BAD_REQUEST)
+    
+    if data['review_id']:
+        try: 
+            review = Review.objects.get(id=data['review_id'])
+        except:
+            review = None
+
+
+    consumption = Consumption(
+        user = user,
+        bottle = bottle,
+        date_consumed = data['date_consumed'],
+        reason = data['reason'],
+        private_note = data['private_note'],
+        gathered = data['gathered'],
+
+        review=review,
+    )
+    print(consumption)
+    # consumption.save()
+
+    return JsonResponse({"success": "posted successfully"}, safe=False, status=status.HTTP_200_OK)
+
+
+@csrf_exempt
+@login_required
+def add_review(request):
+    if request.method != 'POST':
+        return JsonResponse({"error": "POST request required."}, safe=False, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    
+    user = request.user
+    data = json.loads(request.body)
+
+    if data['bottle_id']:
+        try: 
+            bottle = Review.objects.get(id=data['review_id'])
+        except:
+            bottle = None
+
+    if data['lwin_lwin']:
+        try: 
+            lwin = Review.objects.get(lwin=data['lwin_lwin'])
+        except:
+            lwin = None
+
+    review = Review(
+        user = user,
+        date_tasted = data['date_tasted'],
+
+        bottle = bottle,
+        lwin = lwin,
+        vintage = data['vintage'],
+
+        is_public = data['is_public'],
+        like_status = data['like_status'],
+        score = data['score'],
+        tasting_note = data['tasting_note'],
+    )
+
+    
+
+    return JsonResponse({"success": "posted successfully"}, safe=False, status=status.HTTP_200_OK)

@@ -30,8 +30,11 @@ urlpatterns = [
     path('add_bottle_to_collection', views.add_bottle_to_collection, name="add_bottle_to_collection"),
     path('toggle_bottle_favorite', views.toggle_bottle_favorite, name="toggle_bottle_favorite"),
 
-    # POSITION RELATED ROUTES
+    # LOCATION RELATED ROUTES
     path('cellar_options', views.cellar_options, name="cellar_options"),
     path('bin_options/<str:cellarname>', views.bin_options, name="bin_options"),
 
+    # MEMORY RELATED ROUTES
+    path('add_consumption', views.add_consumption, name="add_consumption"),
+    path('add_review', views.add_review, name="add_review")
 ]

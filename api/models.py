@@ -156,8 +156,8 @@ class Bottle(models.Model):
 class Consumption(models.Model):
     user = models.ForeignKey("User", on_delete=models.CASCADE, null=False, blank=False)
     bottle = models.ForeignKey("Bottle", on_delete=models.CASCADE, null=False, blank=False)
+    date_consumed = models.DateField(default=timezone.now)
     reason = models.CharField(max_length=64, null=False, blank=False)
-    date_consumed = models.DateField(default=timezone.now, null=True, blank=True)
     private_note = models.CharField(max_length=64, null=True, blank=True)
     gathered = models.IntegerField(default=0, null=True, blank=True)
 
@@ -190,7 +190,7 @@ class Review(models.Model):
     
     # Case review comes from a non collection bottle
     lwin = models.ForeignKey("Lwin", on_delete=models.DO_NOTHING, null=True, blank=True)
-    vintage = models.CharField(max_length=4)
+    vintage = models.CharField(max_length=4, null=True, blank=True)
     
     is_public = models.BooleanField(default=True)
     like_status = models.CharField(max_length=64, default='like')
@@ -204,9 +204,9 @@ class Review(models.Model):
             bottle_id = None
 
         if self.lwin:
-            lwin = self.lwin.lwin
+            lwin_lwin = self.lwin.lwin
         else:
-            lwin = None     
+            lwin_lwin = None     
 
         return {
             "id": self.id,
@@ -214,7 +214,7 @@ class Review(models.Model):
 
             "bottle_id": bottle_id,
             
-            "lwin": lwin,
+            "lwin_lwin": lwin_lwin,
             "vintage": self.vintage,
 
             "is_public": self.is_public,
