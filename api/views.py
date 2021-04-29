@@ -396,6 +396,7 @@ def add_review(request):
         tasting_note = data['tasting_note'],
     )
 
+    print(review)
+    # review.save()
     
-
     return JsonResponse({"success": "posted successfully"}, safe=False, status=status.HTTP_200_OK)
