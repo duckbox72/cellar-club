@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models.fields import DateField
 from django.utils import timezone
 
 
@@ -77,15 +78,12 @@ class Bin(models.Model):
 
 
 class Bottle(models.Model):
-    # retrieved data
+    # gathered data
     user = models.ForeignKey("User", on_delete=models.CASCADE, null=False, blank=False)
-    # cellar = models.CharField(max_length=64, null=True, blank=True)
-    # bin = models.CharField(max_length=64, null=True, blank=True)
     cellar = models.ForeignKey("Cellar", on_delete=models.DO_NOTHING, null=True, blank=True)
     bin = models.ForeignKey("Bin", on_delete=models.DO_NOTHING, null=True, blank=True)
 
     score = models.CharField(max_length=6, null=True, blank=True)
-    
 
     lwin = models.CharField(max_length=7, null=True, blank=True)
     display_name = models.CharField(max_length=256, null=False, blank=False)
@@ -129,7 +127,6 @@ class Bottle(models.Model):
         else:
             binname = None
 
-        
         return {
             "id": self.id,
             "cellar": cellarname,
@@ -156,6 +153,72 @@ class Bottle(models.Model):
         }
 
 
+class Consumption(models.Model):
+    user = models.ForeignKey("User", on_delete=models.CASCADE, null=False, blank=False)
+    bottle = models.ForeignKey("Bottle", on_delete=models.CASCADE, null=False, blank=False)
+    reason = models.CharField(max_length=64, null=False, blank=False)
+    date_consumed = models.DateField(default=timezone.now, null=True, blank=True)
+    private_note = models.CharField(max_length=64, null=True, blank=True)
+    gathered = models.IntegerField(default=0, null=True, blank=True)
 
+    review = models.ForeignKey("Review", on_delete=models.DO_NOTHING, null=True, blank=True)
+
+    def serializer(self):
+        # Return review id if review exists
+        if self.review:
+            review_id = self.review.id
+        else:
+            review_id = None
+
+        return {
+            "id": self.id,
+            "bottle_id": self.bottle.id,
+            "date_consumed": self.date_consumed,
+            "reason": self.reason,
+            "private_note": self.private_note,
+            "gathered": self.gathered,
+            "review_id": review_id,
+        }
+        
+
+class Review(models.Model):
+    user = models.ForeignKey("User", on_delete=models.CASCADE, null=False, blank=False)
+    date_tasted = models.DateField(default=timezone.now, null=True, blank=True)
     
+    # Case review comes from a collection bottle
+    bottle = models.ForeignKey("Bottle", on_delete=models.DO_NOTHING, null=True, blank=True)
+    
+    # Case review comes from a non collection bottle
+    lwin = models.ForeignKey("Lwin", on_delete=models.DO_NOTHING, null=True, blank=True)
+    vintage = models.CharField(max_length=4)
+    
+    is_public = models.BooleanField(default=True)
+    like_status = models.CharField(max_length=64, default='like')
+    score = models.CharField(max_length=3, null=True, blank=True)
+    tasting_note = models.CharField(max_length=512, null=True, blank=True)
+    
+    def serializer(self):
+        if self.bottle:
+            bottle_id = self.bottle.id
+        else:
+            bottle_id = None
 
+        if self.lwin:
+            lwin = self.lwin.lwin
+        else:
+            lwin = None     
+
+        return {
+            "id": self.id,
+            "date_tasted": self.date_tasted,
+
+            "bottle_id": bottle_id,
+            
+            "lwin": lwin,
+            "vintage": self.vintage,
+
+            "is_public": self.is_public,
+            "like_status": self.like_status,
+            "score": self.score,
+            "tasting_note": self.tasting_note,     
+        }

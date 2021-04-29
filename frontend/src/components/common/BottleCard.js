@@ -370,7 +370,7 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     remove_button: { 
-        marginTop: theme.spacing(5),
+        marginTop: theme.spacing(3),
         marginBottom: theme.spacing(4),
         borderRadius: 20,
         //backdropFilter: 'brightness(95%)',
