@@ -424,6 +424,8 @@ export default function BottleCard(props) {
 
     const [addReview, setAddReview] = useState(false);
     const [shareReview, setShareReview] = useState(true);
+    const [reviewId,setReviewId] = useState(null);
+
     const [selectedRadio, setSelectedRadio] = useState('like');
     
     const [selectedScore, setSelectedScore] = useState(0);
@@ -434,6 +436,8 @@ export default function BottleCard(props) {
 
     const [removeSnackbarOpen, setRemoveSnackbarOpen] = useState(false);
     const [removeSnackbarSeverity, setRemoveSnackbarSeverity] = useState('');
+    const [drinkSnackbarOpen, setDrinkSnackbarOpen] = useState(false);
+    const [drinkSnackbarSeverity, setDrinkSnackbarSeverity] = useState('');
 
 
 
@@ -565,10 +569,76 @@ export default function BottleCard(props) {
         setPermanentRemoval(!permanentRemoval);
     };
  
+    
+    const handleAddReview = () => {
+
+        fetch('api/add_review', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                bottle_id: bottle.id,
+                date_tasted: selectedDate,
+                
+                lwin_lwin: null,
+                lwin_vintage: null,
+
+                is_public: shareReview,
+                like_status: selectedRadio,
+                score: selectedScore,
+                tasting_note: tastingNote,
+
+            }),
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            setReviewId(result.review_id)
+        });   
+
+    }
+    
+    
+    
     const handleDrinkCancelButtonClick = () => {
         // Toggle view from drink card to bottle card 
         handleDrinkButtonClick();
     };
+
+
+    const handleDrinkSubmitButtonClick = () => {
+
+        setSelectedRemovalReason('Drank bottle');
+
+        if (addReview) {
+            handleAddReview()
+        } 
+
+        fetch('/api/add_consumption', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                bottle_id: bottle.id,
+                date_consumed: selectedDate,
+                reason: selectedRemovalReason,
+                private_note: privateNote,
+                gathered: gathered,
+                permanently_deleted: permanentRemoval,
+                review_id: reviewId,
+            }),
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            
+            if (result.success) {
+                setDrinkSnackbarSeverity('success')
+                
+            } else {
+                setDrinkSnackbarSeverity('error')
+            }
+            handleDrinkSnackbarCall();
+        });   
+    }
 
 
 
@@ -577,6 +647,7 @@ export default function BottleCard(props) {
         // Toggle view from drink card to bottle card 
         handleRemoveButtonClick();
     };
+
 
     const handleRemoveSubmitButtonClick = () => {
 
@@ -605,6 +676,18 @@ export default function BottleCard(props) {
             }
             handleRemoveSnackbarCall();
         });   
+    }
+
+
+    const handleDrinkSnackbarCall = () => {
+        setDrinkSnackbarOpen(true);
+    }
+
+
+    const handleDrinkSnackbarClose = (e) => {
+        setDrinkSnackbarOpen(false);
+        
+        // TO DO -> redirect to memories page
     }
 
 
@@ -1213,7 +1296,7 @@ export default function BottleCard(props) {
                             disableElevation
                             fullWidth
                             className={classes.drink_button} 
-                            //onClick={handleSubmitButtonClick}
+                            onClick={handleDrinkSubmitButtonClick}
                             variant="contained" 
                             color={ darkMode ? "secondary" : "primary" } 
                             startIcon={<PlaylistAddCheckIcon />}
@@ -1223,21 +1306,24 @@ export default function BottleCard(props) {
                         </Grid>
 
                         <Snackbar 
-                            className={classes.drink_snackbar}
-                            //open={snackbarOpen}
-                            autoHideDuration={1000}
-                            //onClose={handleSnackbarClose}
-                            >
+                        className={classes.drink_snackbar}
+                        open={drinkSnackbarOpen}
+                        autoHideDuration={1000}
+                        onClose={handleDrinkSnackbarClose}
+                        >
                             <Grid className={classes.drink_alert_container} container spacing={1} justify="center"> 
                                 <Grid item xs={12} sm={10} md={8}>
                                 <Alert
                                 className={classes.drink_alert}
                                 elevation={6} 
                                 variant="filled" 
-                                //onClose={handleSnackbarClose} 
-                                severity="success"
+                                onClose={handleDrinkSnackbarClose} 
+                                severity={drinkSnackbarSeverity}
                                 >
-                                    SUCCESS - Added to Collection
+                                    {drinkSnackbarSeverity === 'success'
+                                    ? 'SUCCESS - Consumption added to memories.'
+                                    : 'Error - Please try again.'
+                                    } 
                                 </Alert>
                                 </Grid>
                             </Grid>
@@ -1449,28 +1535,28 @@ export default function BottleCard(props) {
                     </Grid>
 
                     <Snackbar 
-                            className={classes.remove_snackbar}
-                            open={removeSnackbarOpen}
-                            autoHideDuration={1000}
-                            onClose={handleRemoveSnackbarClose}
+                        className={classes.remove_snackbar}
+                        open={removeSnackbarOpen}
+                        autoHideDuration={1000}
+                        onClose={handleRemoveSnackbarClose}
+                        >
+                        <Grid className={classes.remove_alert_container} container spacing={1} justify="center"> 
+                            <Grid item xs={12} sm={10} md={8}>
+                            <Alert
+                            className={classes.remove_alert}
+                            elevation={6} 
+                            variant="filled" 
+                            onClose={handleRemoveSnackbarClose} 
+                            severity={removeSnackbarSeverity}
                             >
-                            <Grid className={classes.remove_alert_container} container spacing={1} justify="center"> 
-                                <Grid item xs={12} sm={10} md={8}>
-                                <Alert
-                                className={classes.remove_alert}
-                                elevation={6} 
-                                variant="filled" 
-                                onClose={handleRemoveSnackbarClose} 
-                                severity={removeSnackbarSeverity}
-                                >
-                                    {removeSnackbarSeverity === 'success'
-                                    ? 'SUCCESS - Consumption added to memories.'
-                                    : 'Error - Please try again.'
-                                    } 
-                                </Alert>
-                                </Grid>
+                                {removeSnackbarSeverity === 'success'
+                                ? 'SUCCESS - Consumption added to memories.'
+                                : 'Error - Please try again.'
+                                } 
+                            </Alert>
                             </Grid>
-                        </Snackbar>
+                        </Grid>
+                    </Snackbar>
 
                 </Grid>
             </Card>

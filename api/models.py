@@ -193,7 +193,7 @@ class Review(models.Model):
     
     # Case review comes from a non collection bottle
     lwin = models.ForeignKey("Lwin", on_delete=models.DO_NOTHING, null=True, blank=True)
-    vintage = models.CharField(max_length=4, null=True, blank=True)
+    lwin_vintage = models.CharField(max_length=4, null=True, blank=True)
     
     is_public = models.BooleanField(default=True)
     like_status = models.CharField(max_length=64, default='like')
@@ -218,7 +218,7 @@ class Review(models.Model):
             "bottle_id": bottle_id,
             
             "lwin_lwin": lwin_lwin,
-            "vintage": self.vintage,
+            "lwin_vintage": self.lwin_vintage,
 
             "is_public": self.is_public,
             "like_status": self.like_status,

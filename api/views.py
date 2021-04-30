@@ -1,4 +1,5 @@
 import os
+import re
 from typing import Sized
 from django.db.models.query_utils import RegisterLookupMixin
 import requests
@@ -337,8 +338,8 @@ def add_consumption(request):
 
     try:
         bottle = Bottle.objects.get(id=data['bottle_id'])
-        bottle.consumed = True
-        bottle.save()
+        #bottle.consumed = True
+        #bottle.save()
     except:
         return JsonResponse({"error": "BAD request."}, safe=False, status=status.HTTP_400_BAD_REQUEST)
     
@@ -361,11 +362,10 @@ def add_consumption(request):
 
         review=review,
     )
-    
 
 
     print(consumption.user.username, consumption.bottle.id, consumption.date_consumed, consumption.reason, consumption.private_note, consumption.gathered, consumption.review, consumption.permanently_deleted)
-    consumption.save()
+    #consumption.save()
     
     return JsonResponse({"success": "posted successfully"}, safe=False, status=status.HTTP_200_OK)
 
@@ -383,7 +383,7 @@ def add_review(request):
 
     if data['bottle_id']:
         try: 
-            bottle = Review.objects.get(id=data['review_id'])
+            bottle = Bottle.objects.get(id=data['bottle_id'])
         except:
             bottle = None
     else:
@@ -391,7 +391,7 @@ def add_review(request):
 
     if data['lwin_lwin']:
         try: 
-            lwin = Review.objects.get(lwin=data['lwin_lwin'])
+            lwin = Lwin.objects.get(lwin=data['lwin_lwin'])
         except:
             lwin = None
     else:
@@ -403,7 +403,7 @@ def add_review(request):
 
         bottle = bottle,
         lwin = lwin,
-        vintage = data['vintage'],
+        lwin_vintage = data['lwin_vintage'],
 
         is_public = data['is_public'],
         like_status = data['like_status'],
@@ -411,7 +411,7 @@ def add_review(request):
         tasting_note = data['tasting_note'],
     )
 
-    print(review)
+    print(review.user.username, review.date_tasted, review.bottle.country, review.lwin, review.is_public, review.like_status,review.score, review.tasting_note)
     # review.save()
 
-    return JsonResponse({"success": "posted successfully"}, safe=False, status=status.HTTP_200_OK)
+    return JsonResponse({"success": "posted successfully", "review_id": review.id}, safe=False, status=status.HTTP_200_OK)
