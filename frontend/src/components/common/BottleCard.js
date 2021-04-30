@@ -290,12 +290,11 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(2),
     },
     drink_button: { 
-        marginTop: theme.spacing(3),
+        marginTop: theme.spacing(2),
         marginBottom: theme.spacing(4),
         borderRadius: 20,
         //backdropFilter: 'brightness(95%)',
     },
-    // TO BE TESTED -----------------------------VVVV
     drink_snackbar: {
         width: '100%',
     },
@@ -592,7 +591,6 @@ export default function BottleCard(props) {
         .then(response => response.json())
         .then(result => {
             console.log(result);
-            setReviewId(result.review_id)
         });   
 
     }
@@ -607,8 +605,6 @@ export default function BottleCard(props) {
 
     const handleDrinkSubmitButtonClick = () => {
 
-        setSelectedRemovalReason('Drank bottle');
-
         if (addReview) {
             handleAddReview()
         } 
@@ -619,11 +615,11 @@ export default function BottleCard(props) {
             body: JSON.stringify({
                 bottle_id: bottle.id,
                 date_consumed: selectedDate,
-                reason: selectedRemovalReason,
+                reason: 'Drank bottle',
                 private_note: privateNote,
                 gathered: gathered,
                 permanently_deleted: permanentRemoval,
-                review_id: reviewId,
+                has_review: addReview,
             }),
         })
         .then(response => response.json())

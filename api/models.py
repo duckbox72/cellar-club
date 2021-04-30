@@ -162,8 +162,7 @@ class Consumption(models.Model):
     private_note = models.CharField(max_length=64, null=True, blank=True)
     gathered = models.IntegerField(default=0, null=True, blank=True)
     permanently_deleted = models.BooleanField(default=False)
-
-    review = models.ForeignKey("Review", on_delete=models.DO_NOTHING, null=True, blank=True)
+    has_review = models.BooleanField(default=False)
 
     def serializer(self):
         # Return review id if review exists
@@ -179,7 +178,7 @@ class Consumption(models.Model):
             "reason": self.reason,
             "private_note": self.private_note,
             "gathered": self.gathered,
-            "review_id": review_id,
+            "has_review": self.has_review,
             "permanently_deleted": self.permanently_deleted,
         }
         
@@ -192,7 +191,7 @@ class Review(models.Model):
     bottle = models.ForeignKey("Bottle", on_delete=models.DO_NOTHING, null=True, blank=True)
     
     # Case review comes from a non collection bottle
-    lwin = models.ForeignKey("Lwin", on_delete=models.DO_NOTHING, null=True, blank=True)
+    lwin_lwin = models.CharField(max_length=7, null=True, blank=True)
     lwin_vintage = models.CharField(max_length=4, null=True, blank=True)
     
     is_public = models.BooleanField(default=True)
@@ -217,7 +216,7 @@ class Review(models.Model):
 
             "bottle_id": bottle_id,
             
-            "lwin_lwin": lwin_lwin,
+            "lwin_lwin": self.lwin_lwin,
             "lwin_vintage": self.lwin_vintage,
 
             "is_public": self.is_public,

@@ -343,13 +343,6 @@ def add_consumption(request):
     except:
         return JsonResponse({"error": "BAD request."}, safe=False, status=status.HTTP_400_BAD_REQUEST)
     
-    if data['review_id']:
-        try: 
-            review = Review.objects.get(id=data['review_id'])
-        except:
-            review = None
-    else:
-        review = None
 
     consumption = Consumption(
         user = user,
@@ -360,7 +353,7 @@ def add_consumption(request):
         gathered = data['gathered'],
         permanently_deleted = data['permanently_deleted'],
 
-        review=review,
+        has_review=data['has_review'],
     )
 
     consumption.save()
@@ -387,20 +380,12 @@ def add_review(request):
     else:
         bottle = None
 
-    if data['lwin_lwin']:
-        try: 
-            lwin = Lwin.objects.get(lwin=data['lwin_lwin'])
-        except:
-            lwin = None
-    else:
-        lwin = None
-
     review = Review(
         user = user,
         date_tasted = date_tasted,
 
         bottle = bottle,
-        lwin = lwin,
+        lwin_lwin = data['lwin_lwin'],
         lwin_vintage = data['lwin_vintage'],
 
         is_public = data['is_public'],
