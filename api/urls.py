@@ -3,8 +3,11 @@ from django.views.generic.base import View
 #from .views import CreateLwinView, UserView
 from . import views
 
+
 urlpatterns = [
     # path('', UserView.as_view()),
+    # IMPORT LWIN datadabase ROUTE
+    path('lwin_import', views.lwin_import, name="lwin_import"),
 
     # AUTH API Routes
     path('is_authenticated', views.is_authenticated_view, name="is_authenticated"),

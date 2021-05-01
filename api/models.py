@@ -11,7 +11,7 @@ class User(AbstractUser):
 
 
 class Lwin(models.Model):
-    lwin = models.CharField(max_length=8, blank=False, null=False, unique=True)
+    lwin = models.CharField(max_length=7) # , unique=True)
     display_name = models.CharField(max_length=256)
     producer_title = models.CharField(max_length=64)
     producer_name = models.CharField(max_length=64)

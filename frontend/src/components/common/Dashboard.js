@@ -116,6 +116,12 @@ export default function Dashboard(props) {
         //window.scrollTo(0, 0);
         //props.history.push('/storage');
         console.log('CLICK STORAGE')
+
+        fetch('/api/lwin_import')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+        })              
     }
     
 
