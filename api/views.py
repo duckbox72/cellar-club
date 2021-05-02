@@ -195,9 +195,6 @@ def add_bottle_to_collection(request):
     else:
         date_added = data['date_added'][0:10]
 
-    print(data['date_added'])
-    print(date_added)
-
     # Parse lwin
     if 'lwin' not in data:
         lwin = '9999999'
