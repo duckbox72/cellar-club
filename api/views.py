@@ -188,11 +188,15 @@ def add_bottle_to_collection(request):
     else:
         bin = None
 
+    
     # Parse date_added
     if data['date_added'] == None:
         date_added = None
     else:
-        date_added = data['date_added'][0:9]
+        date_added = data['date_added'][0:10]
+
+    print(data['date_added'])
+    print(date_added)
 
     # Parse lwin
     if 'lwin' not in data:

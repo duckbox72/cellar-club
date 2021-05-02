@@ -1,5 +1,5 @@
 /api/lwin_import.py
-/api/LWINdatabase.xls
-/api/LWINdatabase2.xls
+/api/LWINdatabase.xlsx
+/api/LWINdatabase.tsv
 
 /burgundigger/.env
