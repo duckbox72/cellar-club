@@ -337,7 +337,7 @@ def add_consumption(request):
     user = request.user
     data = json.loads(request.body)
 
-    date_consumed = data['date_consumed'][0:9]
+    date_consumed = data['date_consumed'][0:10]
 
 
     try:
@@ -365,6 +365,7 @@ def add_consumption(request):
     return JsonResponse({"success": "posted successfully"}, safe=False, status=status.HTTP_200_OK)
 
 
+
 @csrf_exempt
 @login_required
 def add_review(request):
@@ -374,7 +375,7 @@ def add_review(request):
     user = request.user
     data = json.loads(request.body)
 
-    date_tasted = data['date_tasted'][0:9]
+    date_tasted = data['date_tasted'][0:10]
 
     if data['bottle_id']:
         try: 
@@ -398,9 +399,14 @@ def add_review(request):
         tasting_note = data['tasting_note'],
     )
 
+
     review.save()
 
     return JsonResponse({"success": "posted successfully", "review_id": review.id}, safe=False, status=status.HTTP_200_OK)
+
+
+
+
 
 
 

@@ -106,7 +106,7 @@ class Bottle(models.Model):
 
     # auto entered data
     lwin11 = models.CharField(max_length=11,null=True, blank=True)
-    date_added = models.DateTimeField(default=timezone.now, null=True, blank=True)
+    date_added = models.DateField(default=timezone.now, null=True, blank=True)
     created = models.DateTimeField(default=timezone.now)
 
     def mini_serializer(self):
@@ -157,7 +157,7 @@ class Bottle(models.Model):
 class Consumption(models.Model):
     user = models.ForeignKey("User", on_delete=models.CASCADE, null=False, blank=False)
     bottle = models.ForeignKey("Bottle", on_delete=models.CASCADE, null=False, blank=False)
-    date_consumed = models.DateTimeField(default=timezone.now)
+    date_consumed = models.DateField(default=timezone.now)
     reason = models.CharField(max_length=64, null=False, blank=False)
     private_note = models.CharField(max_length=64, null=True, blank=True)
     gathered = models.IntegerField(default=0, null=True, blank=True)
@@ -185,7 +185,7 @@ class Consumption(models.Model):
 
 class Review(models.Model):
     user = models.ForeignKey("User", on_delete=models.CASCADE, null=False, blank=False)
-    date_tasted = models.DateTimeField(default=timezone.now, null=True, blank=True)
+    date_tasted = models.DateField(default=timezone.now, null=True, blank=True)
     
     # Case review comes from a collection bottle
     bottle = models.ForeignKey("Bottle", on_delete=models.DO_NOTHING, null=True, blank=True)

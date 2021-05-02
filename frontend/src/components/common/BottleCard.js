@@ -657,7 +657,7 @@ export default function BottleCard(props) {
                 private_note: privateNote,
                 gathered: gathered,
                 permanently_deleted: permanentRemoval,
-                review_id: null,
+                has_review: addReview,
             }),
         })
         .then(response => response.json())
