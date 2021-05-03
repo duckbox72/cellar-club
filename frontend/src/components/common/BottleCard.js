@@ -30,7 +30,7 @@ import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import Checkbox from '@material-ui/core/Checkbox';
 import CloseIcon from '@material-ui/icons/Close';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
-import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
+import RemoveIcon from '@material-ui/icons/Remove';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -736,8 +736,8 @@ export default function BottleCard(props) {
                         className={!removeCollapse 
                             ? classes.remove_iconbutton 
                             : classes.remove_iconbuttonOpen}
-                        >
-                            <DeleteSweepIcon />
+                            >
+                    <RemoveIcon />
                         </IconButton>
                     </Tooltip>
 
