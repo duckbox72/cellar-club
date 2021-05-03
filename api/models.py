@@ -100,7 +100,7 @@ class Bottle(models.Model):
     size = models.CharField(max_length=8)
     store = models.CharField(max_length=64, null=True, blank=True)
     cost = models.IntegerField(default=0, null=True, blank=True)
-    note = models.CharField(max_length=128, null=True, blank=True)
+    note = models.CharField(max_length=256, null=True, blank=True)
     consumed = models.BooleanField(default=False)
     favorite = models.BooleanField(default=False)
 
@@ -159,7 +159,7 @@ class Consumption(models.Model):
     bottle = models.ForeignKey("Bottle", on_delete=models.CASCADE, null=False, blank=False)
     date_consumed = models.DateField(default=timezone.now)
     reason = models.CharField(max_length=64, null=False, blank=False)
-    private_note = models.CharField(max_length=64, null=True, blank=True)
+    private_note = models.CharField(max_length=256, null=True, blank=True)
     gathered = models.IntegerField(default=0, null=True, blank=True)
     permanently_deleted = models.BooleanField(default=False)
     has_review = models.BooleanField(default=False)
