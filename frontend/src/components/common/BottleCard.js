@@ -162,8 +162,10 @@ const useStyles = makeStyles((theme) => ({
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     info_icon: { 
-        height: theme.spacing(2),
-        width: theme.spacing(2),
+        height: theme.spacing(2.5),
+        width: theme.spacing(2.5),
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(1),
         color: theme.palette.text.secondary,
     },
     info_color_icon: {
@@ -172,19 +174,19 @@ const useStyles = makeStyles((theme) => ({
         color: mystyleprops => mystyleprops.infoColor,
     },
     info_svg_icon: { 
-        height: theme.spacing(1.75),
-        width: theme.spacing(1.75),
-        //margin: theme.spacing(0,1),
-        //color: mystyleprops => mystyleprops.colorSchemaA,
+        height: theme.spacing(2.0),
+        width: theme.spacing(2.0),
+        marginLeft: theme.spacing(2.25),
+        marginRight: theme.spacing(1),
         color: theme.palette.text.secondary,
     },
     info_label: {
-        //color: mystyleprops => mystyleprops.colorSchemaA,
         color: theme.palette.text.secondary,
     },
     info_text: {
         fontWeight: 500,
-        marginLeft: theme.spacing(2.625),
+        marginLeft: 'auto',
+        marginRight: theme.spacing(2),
     },
 
     drink_card: {
@@ -824,193 +826,158 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid> 
 
-                    <Grid item xs={6}>
+                    <Grid item xs={12}>
                         <ListItem dense>
-                            <ListItemText
-                            primary={
+                                <SwapVertIcon className={classes.info_icon}/>
+                                
                                 <Typography variant="body2" className={classes.info_label}> 
-                                    <PlaceOfWorshipIcon className={classes.info_svg_icon}/> Producer
+                                    Color/Size
                                 </Typography>
-                            }
-                            secondary={
-                                <Typography variant="body2" className={classes.info_text}>
-                                    {bottle.producer_title} {bottle.producer_name}
-                                </Typography>
-                            }
-                            />
-                        </ListItem>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                        <ListItem dense>
-                            <ListItemText
-                            primary={
-                                <Typography variant="body2" className={classes.info_label}> 
-                                    <LanguageIcon className={classes.info_icon}/> Origin
-                                </Typography>
-                            }
-                            secondary={
-                                <Typography variant="body2" className={classes.info_text}>
-                                    {bottle.region}, {bottle.country}
-                                </Typography>
-                            }
-                            />
-                        </ListItem>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                        <ListItem dense>
-                            <ListItemText
-                            primary={
-                                <Typography variant="body2" className={classes.info_label}> 
-                                    <SwapVertIcon className={classes.info_icon}/> Color/Size
-                                </Typography>
-                            }
-                            secondary={
-                                <>
+                            
                                 
                                 <Typography variant="body2" className={classes.info_text} color="textPrimary">
                                     <WineGlassIcon className={classes.info_color_icon}/> {bottle.colour ? bottle.colour : 'n/a'} {bottle.size}
-                                </Typography>
-                                </>
-                            }
-                            />
-                        </ListItem>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                        <ListItem dense>
-                            <ListItemText
-                            primary={
-                                <Typography variant="body2" className={classes.info_label}> 
-                                    <PublicIcon className={classes.info_icon}/> Appelation
-                                </Typography>
-                            }
-                            secondary={
-                                <Typography variant="body2" className={classes.info_text}>
-                                    {bottle.sub_region ? bottle.sub_region : 'n/a'}
-                                </Typography>
-                            }
-                            />
-                        </ListItem>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                        <ListItem dense>
-                            <ListItemText
-                            primary={
-                                <Typography variant="body2" className={classes.info_label}> 
-                                    <ShowChartIcon className={classes.info_icon}/> Critics Score
-                                </Typography>
-                            }
-                            secondary={
-                                <Typography variant="body2" className={classes.info_text}>
-                                    {bottle.score ? `${bottle.score} / 100` : 'n/a'}
-                                </Typography>
-                            }
-                            />
-                        </ListItem>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                        <ListItem dense>
-                            <ListItemText
-                            primary={
-                                <Typography variant="body2" className={classes.info_label}> 
-                                    <EventAvailableIcon className={classes.info_icon}/> Date Added
-                                </Typography>
-                            }
-                            secondary={
-                                <Typography variant="body2" className={classes.info_text}>
-                                    {bottle.date_added ? bottle.date_added : bottle.created.slice(0,10)}
-                                </Typography>
-                            }
-                            />
-                        </ListItem>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                        <ListItem dense>
-                            <ListItemText
-                            primary={
-                                <Typography variant="body2" className={classes.info_label}> 
-                                    <KitchenIcon className={classes.info_icon}/> Location/Cellar
-                                </Typography>
-                            }
-                            secondary={
-                                <Typography variant="body2" className={classes.info_text}>
-                                    {bottle.cellar ? bottle.cellar : 'n/a'}
-                                </Typography>
-                            }
-                            />
-                        </ListItem>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                        <ListItem dense>
-                            <ListItemText
-                            primary={
-                                <Typography variant="body2" className={classes.info_label}> 
-                                    <CompassIcon className={classes.info_svg_icon}/> Location/Bin
-                                </Typography>
-                            }
-                            secondary={
-                                <Typography variant="body2" className={classes.info_text}>
-                                    {bottle.bin ? bottle.bin : 'n/a'}
-                                </Typography>
-                            }
-                            />
-                        </ListItem>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                        <ListItem dense>
-                            <ListItemText
-                            primary={
-                                <Typography variant="body2" className={classes.info_label}> 
-                                    <StoreIcon className={classes.info_svg_icon}/> Purchased From
-                                </Typography>
-                            }
-                            secondary={
-                                <Typography variant="body2" className={classes.info_text}>
-                                    {bottle.store ? bottle.store : 'n/a'}
-                                </Typography>
-                            }
-                            />
-                        </ListItem>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                        <ListItem dense>
-                            <ListItemText
-                            primary={
-                                <Typography variant="body2" className={classes.info_label}> 
-                                    <AttachMoneyIcon className={classes.info_icon}/> Price/Cost
-                                </Typography>
-                            }
-                            secondary={
-                                <Typography variant="body2" className={classes.info_text}>
-                                    {bottle.cost ? `$ ${bottle.cost}` : 'n/a'}
-                                </Typography>
-                            }
-                            />
+                                </Typography>                               
                         </ListItem>
                     </Grid>
 
                     <Grid item xs={12}>
                         <ListItem dense>
-                            <ListItemText
-                            primary={
+                                <PlaceOfWorshipIcon className={classes.info_svg_icon}/>
+                                
                                 <Typography variant="body2" className={classes.info_label}> 
-                                    <CommentOutlinedIcon className={classes.info_icon}/> Note
+                                    Producer
                                 </Typography>
-                            }
-                            secondary={
+                           
                                 <Typography variant="body2" className={classes.info_text}>
-                                    {bottle.note ? bottle.note : 'n/a'}
+                                    {bottle.producer_title} {bottle.producer_name}
                                 </Typography>
-                            }
-                            />
+                        </ListItem>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <ListItem dense>
+                                <LanguageIcon className={classes.info_icon}/>
+
+                                <Typography variant="body2" className={classes.info_label}> 
+                                    Origin
+                                </Typography>
+                            
+                                <Typography variant="body2" className={classes.info_text}>
+                                    {bottle.region}, {bottle.country}
+                                </Typography>          
+                        </ListItem>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <ListItem dense>      
+                            <PublicIcon className={classes.info_icon}/> 
+
+                            <Typography variant="body2" className={classes.info_label}> 
+                                Appelation
+                            </Typography>
+                        
+                            <Typography variant="body2" className={classes.info_text}>
+                                {bottle.sub_region ? bottle.sub_region : 'n/a'}
+                            </Typography>
+                        </ListItem>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <ListItem dense>
+                            <ShowChartIcon className={classes.info_icon}/>
+                            
+                            <Typography variant="body2" className={classes.info_label}> 
+                                Critics Score
+                            </Typography>
+                        
+                            <Typography variant="body2" className={classes.info_text}>
+                                {bottle.score ? `${bottle.score} / 100` : 'n/a'}
+                            </Typography>
+                        </ListItem>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <ListItem dense>
+                            <EventAvailableIcon className={classes.info_icon}/>
+                                
+                            <Typography variant="body2" className={classes.info_label}> 
+                                Date Added
+                            </Typography>
+                        
+                            <Typography variant="body2" className={classes.info_text}>
+                                {bottle.date_added ? bottle.date_added : bottle.created.slice(0,10)}
+                            </Typography>
+                        </ListItem>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <ListItem dense>
+                            <KitchenIcon className={classes.info_icon}/>
+                            
+                            <Typography variant="body2" className={classes.info_label}> 
+                                Location/Cellar
+                            </Typography>
+                        
+                            <Typography variant="body2" className={classes.info_text}>
+                                {bottle.cellar ? bottle.cellar : 'n/a'}
+                            </Typography>
+                        </ListItem>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <ListItem dense>
+                            <CompassIcon className={classes.info_svg_icon}/>
+
+                            <Typography variant="body2" className={classes.info_label}> 
+                                Location/Bin
+                            </Typography>
+                        
+                            <Typography variant="body2" className={classes.info_text}>
+                                {bottle.bin ? bottle.bin : 'n/a'}
+                            </Typography>
+                        </ListItem>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <ListItem dense>
+                            <StoreIcon className={classes.info_svg_icon}/>
+                            
+                            <Typography variant="body2" className={classes.info_label}> 
+                                Purchased From
+                            </Typography>
+                        
+                            <Typography variant="body2" className={classes.info_text}>
+                                {bottle.store ? bottle.store : 'n/a'}
+                            </Typography>
+                        </ListItem>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <ListItem dense>
+                            <AttachMoneyIcon className={classes.info_icon}/>
+                    
+                            <Typography variant="body2" className={classes.info_label}> 
+                                Price/Cost
+                            </Typography>
+                        
+                            <Typography variant="body2" className={classes.info_text}>
+                                {bottle.cost ? `$ ${bottle.cost}` : 'n/a'}
+                            </Typography>
+                        </ListItem>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <ListItem dense>
+                            <CommentOutlinedIcon className={classes.info_icon}/>
+                            
+                            <Typography variant="body2" className={classes.info_label}> 
+                                Note
+                            </Typography>
+                        
+                            <Typography variant="body2" className={classes.info_text}>
+                                {bottle.note ? bottle.note : 'n/a'}
+                            </Typography>
                         </ListItem>
                     </Grid>
 
