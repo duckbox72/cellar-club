@@ -182,6 +182,32 @@ export default function LwinAddReview(props) {
     };
 
 
+    const handleSubmitButtonClick = () => {
+
+        fetch('api/add_review', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                bottle_id: null,
+                date_tasted: selectedDate,
+                
+                lwin_lwin: LwinData.lwin,
+                lwin_vintage: selectedVintage,
+
+                is_public: shareReview,
+                like_status: selectedRadio,
+                score: selectedScore,
+                tasting_note: tastingNote,
+
+            }),
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+        });    
+    }
+
+
     return (
         <>
             <Grid item xs={12}>
@@ -389,11 +415,11 @@ export default function LwinAddReview(props) {
                 </Grid>
                 <Grid item xs={4}>
                     <Button
-                    disabled={!selectedDate}
+                    disabled={!selectedDate || !selectedVintage}
                     disableElevation
                     fullWidth
                     className={classes.button} 
-                    //onClick={handleDrinkSubmitButtonClick}
+                    onClick={handleSubmitButtonClick}
                     variant="contained" 
                     color={ darkMode ? "secondary" : "primary" } 
                     startIcon={<PlaylistAddCheckIcon />}
