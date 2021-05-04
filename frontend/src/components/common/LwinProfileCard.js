@@ -51,6 +51,7 @@ import { getVintageOptions } from "../utils/getVintageOptions";
 import { getCellarOptions } from "../utils/getCellarOptions";
 import { getBinOptions } from '../utils/getBinOptions';
 import { getQuantityOptions } from '../utils/getQuantityOptions';
+import LwinAddReview from './LwinAddReview';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -182,6 +183,14 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: 10,
         //margin: theme.spacing(4, 2),
     },
+    add_review_container_collapse: {
+        maxHeight: screen.availHeight * 0.39,
+        [theme.breakpoints.down('xs')]: {
+            maxHeight: screen.availHeight * 0.36
+        },
+        overflowY: 'scroll',
+        //padding: theme.spacing(2,2,1,2),
+    },
 }));
 
 
@@ -203,7 +212,15 @@ export default function LwinProfileCard(props) {
     }
     const classes = useStyles(mystyleprops);
     
-    
+
+    // Add Review collapsed
+    const [addReviewCollapse, setAddReviewCollapse] = useState(false);
+    const handleAddReviewButtonClick = () => {
+        setAddReviewCollapse(!addReviewCollapse)
+    }
+
+
+    // Add Bottle expanded
     const [expanded, setExpanded] = useState(false);
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -212,15 +229,12 @@ export default function LwinProfileCard(props) {
     };
 
 
-    // Form options
+    // Add Bottle Form options
     const bottleSizes = getBottleSizesOptions();
     const quantities = getQuantityOptions();
     const vintages = getVintageOptions();
     const cellars = getCellarOptions();   
     const [bins, setBins] = useState([]);
-    
-    
-
     
     const infodata = [
         {mock: 'some string', store: 'ABC Wine and Spirits'},
@@ -231,7 +245,7 @@ export default function LwinProfileCard(props) {
     ];
 
 
-    // Form fields
+    // Add Bottle Form fields
     const [cost, setCost] = useState(null);
     const [note, setNote] = useState(null);
     const [quantity, setQuantity] = useState(null);
@@ -462,15 +476,23 @@ export default function LwinProfileCard(props) {
 
             <div id="actions">
                 <Grid container spacing={1} className={classes.container_actions} alignItems="center">
+                    
                     <IconButton>
                         <FavoriteBorderIcon/>
                     </IconButton>
                     <IconButton >
                         <ShareIcon />
                     </IconButton>
-                    <IconButton>
-                        <PostAddIcon />
-                    </IconButton>
+                    
+                    <Tooltip title="Write a tasting review">
+                        <IconButton
+                        disabled={expanded}
+                        onClick={handleAddReviewButtonClick}
+                        >
+                            <PostAddIcon />
+                        </IconButton>
+                    </Tooltip>
+                    
                     <Tooltip title="Find on Wine-Searcher">              
                         <IconButton
                         className={classes.iconbutton_external_link_ws}
@@ -509,6 +531,7 @@ export default function LwinProfileCard(props) {
             action={
                 <Tooltip title="Add to my cellar">
                     <IconButton
+                    disabled={addReviewCollapse}
                     className={clsx(classes.expand, {
                         [classes.expandOpen]: expanded,
                     })}
@@ -884,6 +907,21 @@ export default function LwinProfileCard(props) {
                     </Grid>
                 </form>    
             </Collapse>
+
+
+            <Collapse in={addReviewCollapse} timeout="auto" unmountOnExit>
+
+                <Divider className={classes.divider} />
+
+                <Grid container className={classes.add_review_container_collapse} spacing={0} justify="space-evenly" >
+                    <LwinAddReview 
+                    darkMode={darkMode}
+                    LwinData={LwinData}
+                    />
+                </Grid>
+
+            </Collapse>
+
         </Card>
     );
 }

@@ -20,6 +20,7 @@ import Link from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Snackbar from '@material-ui/core/Snackbar';
+import Slider from '@material-ui/core/Slider'
 import Switch from '@material-ui/core/Switch'; 
 import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -45,7 +46,6 @@ import PostAddIcon from '@material-ui/icons/PostAdd';
 import PublicIcon from '@material-ui/icons/Public';
 import Radio from '@material-ui/core/Radio';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
-import Slider from '@material-ui/core/Slider';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import SwapVertIcon from '@material-ui/icons/SwapVert';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
@@ -1215,7 +1215,7 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12} Grid item xs={12} className={!addReview ? classes.drink_list_item_disabled_hidden : ''}>
+                    <Grid item xs={12} className={!addReview ? classes.drink_list_item_disabled_hidden : ''}>
                         <ListItem dense>
                             <StarBorderIcon className={classes.drink_description_icon}/>
                             <Typography variant="body2">
@@ -1224,10 +1224,10 @@ export default function BottleCard(props) {
                             <Tooltip 
                             title={(
                             <>
-                                <Typography>
+                                <Typography variant="body2">
                                     Use this guide to select the right score on Robert Parker's 100 point scale: 
                                 </Typography>
-                                <Typography>
+                                <Typography variant="body2" align="justify" >
                                     D 50-69 avoid | C 70-79 below/average | B 80-85 good | B+ 86-89 very good | A- 90-93 excelent | A 94-97 outstanding | 98-100 extraordinary.
                                 </Typography>
                             </>
@@ -1253,7 +1253,7 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12} style={{marginTop: -8, marginBottom: 8}} Grid item xs={12} className={!addReview ? classes.drink_list_item_disabled : ''}>
+                    <Grid item xs={12} style={{marginTop: -8, marginBottom: 8}} className={!addReview ? classes.drink_list_item_disabled : ''}>
                         <ListItem dense>
                             <PostAddIcon className={classes.drink_description_icon}/>
                               
@@ -1324,7 +1324,6 @@ export default function BottleCard(props) {
                                 </Grid>
                             </Grid>
                         </Snackbar>
-
                     </Grid>
 
                     
