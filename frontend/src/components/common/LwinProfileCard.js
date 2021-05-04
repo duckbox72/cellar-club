@@ -219,6 +219,10 @@ export default function LwinProfileCard(props) {
         setAddReviewCollapse(!addReviewCollapse)
     }
 
+    const handleAddReviewCancelCallback = () => {
+        setAddReviewCollapse(false);
+    }
+
 
     // Add Bottle expanded
     const [expanded, setExpanded] = useState(false);
@@ -820,7 +824,8 @@ export default function LwinProfileCard(props) {
                                         clearable 
                                         value={selectedDate} 
                                         label="Date"
-                                        format="MM/dd/yyyy"
+                                        //format="MM/dd/yyyy"
+                                        format='MMM d yyyy'
                                         inputVariant="standard"
                                         onChange={handleDateChange}
                                         color={darkMode == true ? "primary" : "secondary"}
@@ -917,6 +922,7 @@ export default function LwinProfileCard(props) {
                     <LwinAddReview 
                     darkMode={darkMode}
                     LwinData={LwinData}
+                    cancelParentCallback={handleAddReviewCancelCallback}
                     />
                 </Grid>
 

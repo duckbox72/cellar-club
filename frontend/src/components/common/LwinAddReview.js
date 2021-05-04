@@ -46,16 +46,22 @@ const useStyles = makeStyles(theme => ({
     datepicker_icon: {
         height: theme.spacing(2.5),
         width: theme.spacing(2.5),
+        marginLeft: theme.spacing(2.5),
+        marginRight: theme.spacing(1),
     },
     datepicker:{
-        
+        marginRight: theme.spacing(2),
+        paddingBottom: theme.spacing(2),
     },
     autocomplete_svg_icon: {
         height: theme.spacing(2.5),
         width: theme.spacing(2.5),
+        marginLeft: theme.spacing(2.5),
+        marginRight: theme.spacing(1),
     },
     autocomplete : {
-        
+        marginRight: theme.spacing(2),
+        paddingBottom: theme.spacing(1),   
     },
     
     description_icon: {
@@ -107,6 +113,11 @@ const useStyles = makeStyles(theme => ({
     tasting_note_text_field: {
         marginRight: theme.spacing(3),
         marginBottom: theme.spacing(2),
+    },
+    button: { 
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(4),
+        borderRadius: 20,
     },
 }));
 
@@ -166,6 +177,11 @@ export default function LwinAddReview(props) {
     }
 
 
+    const handleCancelButtonClick = () => { 
+        props.cancelParentCallback();
+    };
+
+
     return (
         <>
             <Grid item xs={12}>
@@ -176,66 +192,59 @@ export default function LwinAddReview(props) {
                 </ListItem>
             </Grid>
 
-            <Grid item xs={12}>
-                <Autocomplete  
-                className={classes.autocomplete}
-                size="small"
-                id="selected-review-vintage"
-                fullWidth
-                //freeSolo
-                //value={selectedVintage}
-                onChange={(event,value) => handleSelectedVintageAutocompleteChange(value)} 
-                clearOnEscape
-                options={vintages}
-                renderInput={(params) => (
-                    <Grid container spacing={1} justify="center" alignItems="center">
-                        <Grid item>
-                            <GlassCheersIcon className={classes.autocomplete_svg_icon} />
-                        </Grid>   
+            <Grid item xs={12} sm={6}>
+                <ListItem dense>
+                    <GlassCheersIcon className={classes.autocomplete_svg_icon} />
 
-                        <Grid item xs={8}>
+                    <Autocomplete  
+                    className={classes.autocomplete}
+                    size="small"
+                    id="selected-review-vintage"
+                    fullWidth
+                    //freeSolo
+                    //value={selectedVintage}
+                    onChange={(event,value) => handleSelectedVintageAutocompleteChange(value)} 
+                    clearOnEscape
+                    options={vintages}
+                    renderInput={(params) => (
                         <TextField className={classes.autocomplete}
                         required
                         id="review-vintage"
                         type="text"
                         {...params}
                         onChange={handleSelectedVintageTextFieldChange}
-                        label="Vintage" 
+                        label="Select Vintage" 
                         variant="standard"
                         color={darkMode == true ? "primary" : "secondary"}
                         />
-                        </Grid>
-                    </Grid>
-                )}
-                />
+                    )}
+                    />
+                </ListItem>
             </Grid>
 
-            <Grid item xs={12}>             
-                <Grid container spacing={1} justify="center" alignItems="center">
-                    <Grid item >
-                        <EventAvailableIcon className={classes.datepicker_icon} />
-                    </Grid>   
-
-                    <Grid item xs={8}>
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <DatePicker
-                            className={classes.datepicker}
-                            small
-                            required
-                            autoOk
-                            clearable 
-                            value={selectedDate} 
-                            label="Drink date"
-                            format="MM/dd/yyyy"
-                            inputVariant="standard"
-                            onChange={handleDateChange}
-                            color={darkMode == true ? "primary" : "secondary"}
-                            fullWidth
-                            disableToolbar
-                            />
-                        </MuiPickersUtilsProvider>
-                    </Grid>
-                </Grid>
+            <Grid item xs={12} sm={6}>             
+                <ListItem dense>
+                    <EventAvailableIcon className={classes.datepicker_icon} />
+                
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <DatePicker
+                        className={classes.datepicker}
+                        small
+                        required
+                        autoOk
+                        clearable 
+                        value={selectedDate} 
+                        label="Tasting date"
+                        //format="MM/dd/yyyy"
+                        format='MMM d yyyy'
+                        inputVariant="standard"
+                        onChange={handleDateChange}
+                        color={darkMode == true ? "primary" : "secondary"}
+                        fullWidth
+                        disableToolbar
+                        />
+                    </MuiPickersUtilsProvider>
+                </ListItem>
             </Grid>
 
             <Grid item xs={12} >
@@ -364,7 +373,37 @@ export default function LwinAddReview(props) {
                 </ListItem>
             </Grid>
         
-        
+            <Grid item xs={12} container spacing={0} alignItems="center" justify="space-around">
+                <Grid item xs={4}>
+                    <Button
+                    disableElevation
+                    fullWidth
+                    className={classes.button}  
+                    onClick={handleCancelButtonClick} 
+                    variant="contained" 
+                    color="default"
+                    startIcon={<CloseIcon />}
+                    >
+                        Cancel
+                    </Button>
+                </Grid>
+                <Grid item xs={4}>
+                    <Button
+                    disabled={!selectedDate}
+                    disableElevation
+                    fullWidth
+                    className={classes.button} 
+                    //onClick={handleDrinkSubmitButtonClick}
+                    variant="contained" 
+                    color={ darkMode ? "secondary" : "primary" } 
+                    startIcon={<PlaylistAddCheckIcon />}
+                    >    
+                        Submit
+                    </Button>
+                </Grid>
+
+                
+            </Grid>
         
         
         </>

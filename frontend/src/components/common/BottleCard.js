@@ -1084,7 +1084,8 @@ export default function BottleCard(props) {
                                     clearable 
                                     value={selectedDate} 
                                     label="Drink date"
-                                    format="MM/dd/yyyy"
+                                    //format="MM/dd/yyyy"
+                                    format='MMM d yyyy'
                                     inputVariant="standard"
                                     onChange={handleDateChange}
                                     color={darkMode == true ? "primary" : "secondary"}
@@ -1429,7 +1430,8 @@ export default function BottleCard(props) {
                                     clearable 
                                     value={selectedDate} 
                                     label="Removal date"
-                                    format="MM/dd/yyyy"
+                                    //format="MM/dd/yyyy"
+                                    format='MMM d yyyy'
                                     inputVariant="standard"
                                     onChange={handleDateChange}
                                     color={darkMode == true ? "primary" : "secondary"}
