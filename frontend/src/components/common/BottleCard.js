@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-import DateFnsUtils from '@date-io/date-fns'; //choose lib in future
+import DateFnsUtils from '@date-io/date-fns';
+import { format } from 'date-fns';
+
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import Alert from '@material-ui/lab/Alert'
@@ -34,10 +36,12 @@ import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import RemoveIcon from '@material-ui/icons/Remove';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
+import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import LanguageIcon from '@material-ui/icons/Language';
+import LocationCityIcon from '@material-ui/icons/LocationCity';
 import LoopIcon from '@material-ui/icons/Loop';
 import PeopleIcon from '@material-ui/icons/People';
 import PersonIcon from '@material-ui/icons/Person';
@@ -47,14 +51,15 @@ import PublicIcon from '@material-ui/icons/Public';
 import Radio from '@material-ui/core/Radio';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import StoreIcon from '@material-ui/icons/Store';
 import SwapVertIcon from '@material-ui/icons/SwapVert';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
 
-import { CompassIcon, GlassCheersIcon, PlaceOfWorshipIcon, StoreIcon, WineGlassIcon } from './SvgIcons';
+import { GlassCheersIcon, WineGlassIcon } from './SvgIcons';
 
-import { currencyNumberFormat} from "../utils/currencyNumberFormat";
+import { currencyNumberFormat } from "../utils/currencyNumberFormat";
 import { getRemovalReasonsOptions } from '../utils/getRemovalReasonsOptions';
 
 
@@ -145,6 +150,9 @@ const useStyles = makeStyles((theme) => ({
     info_container: {
         
     },
+    info_grid: {
+        marginTop: theme.spacing(1),
+    },
     info_header:{
         margin: theme.spacing(0.5,2,0,2.5),
         color: mystyleprops => mystyleprops.colorSchemaA,
@@ -173,20 +181,28 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(1.5),
         color: mystyleprops => mystyleprops.infoColor,
     },
-    info_svg_icon: { 
-        height: theme.spacing(2.0),
-        width: theme.spacing(2.0),
-        marginLeft: theme.spacing(2.25),
+    info_label: {
         marginRight: theme.spacing(1),
         color: theme.palette.text.secondary,
-    },
-    info_label: {
-        color: theme.palette.text.secondary,
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]:{
+            fontSize: theme.spacing(1.75),
+        },
     },
     info_text: {
+        textAlign: 'right',
         fontWeight: 500,
         marginLeft: 'auto',
         marginRight: theme.spacing(2),
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]:{
+            fontSize: theme.spacing(1.75),
+        },
+    },
+    info_button: { 
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(4),
+        borderRadius: 20,
     },
 
     drink_card: {
@@ -806,7 +822,7 @@ export default function BottleCard(props) {
                 <Grid container className={classes.info_container}>    
                 
                     <Grid item xs={7}>
-                        <ListItem dense>
+                        <ListItem>
                             <Typography className={classes.info_header} variant="button">
                                 Bottle Profile
                             </Typography>
@@ -814,11 +830,11 @@ export default function BottleCard(props) {
                     </Grid>
 
                     <Grid item xs={5}>
-                        <ListItem dense>
+                        <ListItem>
                             <Link 
                             className={classes.info_link} 
                             component="button"
-                            variant="body2"
+                            variant="body1"
                             onClick={handleBackLinkClick}
                             >
                                 <ArrowBackIcon className={classes.info_link_svg_icon}/> Back
@@ -826,11 +842,11 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid> 
 
-                    <Grid item xs={12}>
-                        <ListItem dense>
+                    <Grid item xs={12} className={classes.info_grid}>
+                        <ListItem>
                                 <SwapVertIcon className={classes.info_icon}/>
                                 
-                                <Typography variant="body2" className={classes.info_label}> 
+                                <Typography variant='body2' className={classes.info_label}> 
                                     Color/Size
                                 </Typography>
                             
@@ -841,9 +857,9 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid item xs={12} className={classes.info_grid}>
                         <ListItem dense>
-                                <PlaceOfWorshipIcon className={classes.info_svg_icon}/>
+                                <LocationCityIcon className={classes.info_icon}/>
                                 
                                 <Typography variant="body2" className={classes.info_label}> 
                                     Producer
@@ -855,8 +871,8 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <ListItem dense>
+                    <Grid item xs={12} className={classes.info_grid}>
+                        <ListItem>
                                 <LanguageIcon className={classes.info_icon}/>
 
                                 <Typography variant="body2" className={classes.info_label}> 
@@ -869,8 +885,8 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <ListItem dense>      
+                    <Grid item xs={12} className={classes.info_grid}>
+                        <ListItem>      
                             <PublicIcon className={classes.info_icon}/> 
 
                             <Typography variant="body2" className={classes.info_label}> 
@@ -883,8 +899,8 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <ListItem dense>
+                    <Grid item xs={12} className={classes.info_grid}>
+                        <ListItem>
                             <ShowChartIcon className={classes.info_icon}/>
                             
                             <Typography variant="body2" className={classes.info_label}> 
@@ -897,8 +913,8 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <ListItem dense>
+                    <Grid item xs={12} className={classes.info_grid}>
+                        <ListItem>
                             <EventAvailableIcon className={classes.info_icon}/>
                                 
                             <Typography variant="body2" className={classes.info_label}> 
@@ -906,13 +922,15 @@ export default function BottleCard(props) {
                             </Typography>
                         
                             <Typography variant="body2" className={classes.info_text}>
-                                {bottle.date_added ? bottle.date_added : bottle.created.slice(0,10)}
+                                {//bottle.date_added ? bottle.date_added : bottle.created.slice(0,10)
+                                   bottle.date_added ? format(new Date(bottle.date_added), 'MMM d yyyy') : format(new Date(bottle.created), 'MMM d yyyy')
+                                }
                             </Typography>
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <ListItem dense>
+                    <Grid item xs={12} className={classes.info_grid}>
+                        <ListItem>
                             <KitchenIcon className={classes.info_icon}/>
                             
                             <Typography variant="body2" className={classes.info_label}> 
@@ -925,9 +943,9 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <ListItem dense>
-                            <CompassIcon className={classes.info_svg_icon}/>
+                    <Grid item xs={12} className={classes.info_grid}>
+                        <ListItem>
+                            <ExploreOutlinedIcon className={classes.info_icon}/>
 
                             <Typography variant="body2" className={classes.info_label}> 
                                 Location/Bin
@@ -939,12 +957,12 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <ListItem dense>
-                            <StoreIcon className={classes.info_svg_icon}/>
+                    <Grid item xs={12} className={classes.info_grid}>
+                        <ListItem>
+                            <StoreIcon className={classes.info_icon}/>
                             
                             <Typography variant="body2" className={classes.info_label}> 
-                                Purchased From
+                                Provenance
                             </Typography>
                         
                             <Typography variant="body2" className={classes.info_text}>
@@ -953,8 +971,8 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <ListItem dense>
+                    <Grid item xs={12} className={classes.info_grid}>
+                        <ListItem>
                             <AttachMoneyIcon className={classes.info_icon}/>
                     
                             <Typography variant="body2" className={classes.info_label}> 
@@ -967,8 +985,8 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <ListItem dense>
+                    <Grid item xs={12} className={classes.info_grid}>
+                        <ListItem>
                             <CommentOutlinedIcon className={classes.info_icon}/>
                             
                             <Typography variant="body2" className={classes.info_label}> 
@@ -980,6 +998,24 @@ export default function BottleCard(props) {
                             </Typography>
                         </ListItem>
                     </Grid>
+
+                    <Grid item xs={12} container spacing={0} alignItems="center" justify="space-around">
+                        <Grid item xs={8} sm={4}>
+                            <Button
+                            disableElevation
+                            fullWidth
+                            className={classes.info_button} 
+                            onClick={handleBackLinkClick}
+                            variant="contained" 
+                            color={ darkMode ? "secondary" : "primary" } 
+                            startIcon={<ArrowBackIcon />}
+                            >    
+                                Back to collection
+                            </Button>
+                        </Grid>
+                    </Grid>
+
+                    
 
                 </Grid>  
             </Card>
@@ -1006,7 +1042,7 @@ export default function BottleCard(props) {
                             <Link 
                             className={classes.drink_link} 
                             component="button"
-                            variant="body2"
+                            variant="body1"
                             onClick={handleDrinkCancelLinkClick}
                             >
                                 <ArrowBackIcon className={classes.drink_link_svg_icon}/> Back
@@ -1321,7 +1357,7 @@ export default function BottleCard(props) {
                             <Link 
                             className={classes.drink_link} 
                             component="button"
-                            variant="body2"
+                            variant="body1"
                             onClick={handleRemoveCancelLinkClick}
                             >
                                 <ArrowBackIcon className={classes.drink_link_svg_icon}/> Back
