@@ -15,6 +15,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import EventIcon from '@material-ui/icons/Event';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ListIcon from '@material-ui/icons/List';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -130,6 +131,13 @@ export default function DrawerMenu(props) {
             <ListIcon className={classes.iconButton} />
           </ListItemIcon>
           <ListItemText primary={"My Collection"} />
+        </ListItem>
+
+        <ListItem button key="memories" to="/memories" component={Link}>
+          <ListItemIcon>
+            <EventIcon className={classes.iconButton} />
+          </ListItemIcon>
+          <ListItemText primary={"My Memories"} />
         </ListItem>
 
         <ListItem button key="signout" onClick={handleSignOutButton}>
