@@ -256,11 +256,13 @@ def get_bottle(request, bottle_id):
 
 @login_required
 def get_bottle_list(request, bottle_name):
+    user = request.user
+
     if bottle_name == 'null':
-        bottle_list = Bottle.objects.filter(consumed=False).order_by('-created')
+        bottle_list = Bottle.objects.filter(user=user, consumed=False).order_by('-created')
     else:
         try:    
-            bottle_list = Bottle.objects.filter(display_name=bottle_name, consumed=False)
+            bottle_list = Bottle.objects.filter(user=user, display_name=bottle_name, consumed=False)
         except:
             return JsonResponse({"error": "Sorry, no results found."})
         
@@ -269,8 +271,9 @@ def get_bottle_list(request, bottle_name):
 
 @login_required
 def get_bottle_name(request, display_name):
+    user = request.user
     try:
-        result = Bottle.objects.filter(display_name=display_name, consumed=False)
+        result = Bottle.objects.filter(user=user, display_name=display_name, consumed=False)
     except:
         return JsonResponse({"error": "Sorry, no results found."})
     
@@ -281,7 +284,8 @@ def get_bottle_name(request, display_name):
 
 @login_required
 def search_bottle(request, display_name):
-    results = Bottle.objects.filter(display_name__contains=display_name, consumed=False)
+    user = request.user
+    results = Bottle.objects.filter(user=user, display_name__contains=display_name, consumed=False)
     
     # Lists only display_name (aka mini_serializer)
     all_results = []
@@ -396,12 +400,15 @@ def add_review(request):
         tasting_note = data['tasting_note'],
     )
 
-
     review.save()
 
     return JsonResponse({"success": "posted successfully", "review_id": review.id}, safe=False, status=status.HTTP_200_OK)
 
 
+@login_required
+def get_memories_list(request):
+
+    return "to do"
 
 
 

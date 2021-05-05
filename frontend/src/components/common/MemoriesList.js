@@ -107,7 +107,7 @@ export default function MemoriesList(props) {
     const handleItemClick = (memory) => {
         window.scrollTo(0, 0);
         props.history.push({
-            pathname: '/bottle',
+            pathname: '/memory',
             //search: '?query=abc',
             state: { memory: memory }
         });
@@ -117,9 +117,9 @@ export default function MemoriesList(props) {
     const handleItemActionClick = (memory) => {
         window.scrollTo(0, 0);
         props.history.push({
-            pathname: '/bottle',
+            pathname: '/memory',
             //search: '?query=abc',
-            state: { bottle: bottle }
+            state: { memory: memory }
         });
     }
     
