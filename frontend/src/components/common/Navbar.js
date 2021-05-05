@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
     appbar_typography: {
         flex: 1,
+        letterSpacing: theme.spacing(0.75),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     iconButton: {
@@ -72,8 +73,8 @@ export default function Navbar(props) {
                     <AllInclusiveIcon className={classes.iconLogo} onClick={() => {props.history.push('/')}}/>
                 </Tooltip>   
                 <ThemeProvider theme={logoFontTheme}>
-                    <Typography variant={'h6'} className={classes.appbar_typography} onClick={() => {props.history.push('/')}}>
-                        C e l l a r C l u b
+                    <Typography variant="h5" className={classes.appbar_typography} onClick={() => {props.history.push('/')}}>
+                        CellarClub
                     </Typography> 
                 </ThemeProvider>
                 <Tooltip title="Toggle light/dark mode">

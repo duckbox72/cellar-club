@@ -45,10 +45,12 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1,1,1,0),
     },
     sort_by_label: {
+        fontSize: theme.spacing(2),
         margin: theme.spacing(1,1,1,0),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     feed_name_label: {
+        fontSize: theme.spacing(2),
         margin: theme.spacing(1,1.5,1,0),
         color: mystyleprops => mystyleprops.colorSchemaA,
         marginLeft: 'auto',

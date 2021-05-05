@@ -57,7 +57,7 @@ import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
 
-import { GlassCheersIcon, WineGlassIcon } from './SvgIcons';
+import { GlassCheersIcon, WineBottleIcon, WineGlassIcon } from './SvgIcons';
 
 import { currencyNumberFormat } from "../utils/currencyNumberFormat";
 import { getRemovalReasonsOptions } from '../utils/getRemovalReasonsOptions';
@@ -151,7 +151,7 @@ const useStyles = makeStyles((theme) => ({
         
     },
     info_grid: {
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(2),
     },
     info_header:{
         margin: theme.spacing(0.5,2,0,2.5),
@@ -191,7 +191,7 @@ const useStyles = makeStyles((theme) => ({
     },
     info_text: {
         textAlign: 'right',
-        fontWeight: 500,
+        fontWeight: 400,
         marginLeft: 'auto',
         marginRight: theme.spacing(2),
         fontSize: theme.spacing(2),
@@ -754,8 +754,8 @@ export default function BottleCard(props) {
                         className={!removeCollapse 
                             ? classes.remove_iconbutton 
                             : classes.remove_iconbuttonOpen}
-                            >
-                    <RemoveIcon />
+                        >
+                            <RemoveIcon />
                         </IconButton>
                     </Tooltip>
 
@@ -922,8 +922,9 @@ export default function BottleCard(props) {
                             </Typography>
                         
                             <Typography variant="body2" className={classes.info_text}>
-                                {//bottle.date_added ? bottle.date_added : bottle.created.slice(0,10)
-                                   bottle.date_added ? format(new Date(bottle.date_added), 'MMM d yyyy') : format(new Date(bottle.created), 'MMM d yyyy')
+                                {bottle.date_added 
+                                ? format(new Date(bottle.date_added), 'MMM d yyyy') 
+                                : format(new Date(bottle.created), 'MMM d yyyy')
                                 }
                             </Typography>
                         </ListItem>
@@ -999,7 +1000,7 @@ export default function BottleCard(props) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12} container spacing={0} alignItems="center" justify="space-around">
+                    <Grid item xs={12} container spacing={0} alignItems="center" justify="center" className={classes.info_grid}>
                         <Grid item xs={8} sm={4}>
                             <Button
                             disableElevation
@@ -1013,9 +1014,7 @@ export default function BottleCard(props) {
                                 Back to collection
                             </Button>
                         </Grid>
-                    </Grid>
-
-                    
+                    </Grid> 
 
                 </Grid>  
             </Card>

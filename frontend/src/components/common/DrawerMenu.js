@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
 import clsx from 'clsx';
+
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
-
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-
-import Tooltip from '@material-ui/core/Tooltip';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Tooltip from '@material-ui/core/Tooltip';
 
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import ListIcon from '@material-ui/icons/List';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
 import ViewListOutlinedIcon from '@material-ui/icons/ViewListOutlined';
@@ -126,7 +127,7 @@ export default function DrawerMenu(props) {
 
         <ListItem button key="collection" to="/collection" component={Link}>
           <ListItemIcon>
-            <ViewListOutlinedIcon className={classes.iconButton} />
+            <ListIcon className={classes.iconButton} />
           </ListItemIcon>
           <ListItemText primary={"My Collection"} />
         </ListItem>

@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography'
 import EventIcon from '@material-ui/icons/Event';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import ListIcon from '@material-ui/icons/List';
+
 import SearchIcon from '@material-ui/icons/Search';
 
 import brown from '@material-ui/core/colors/brown';
@@ -183,7 +184,7 @@ export default function Dashboard(props) {
                                 <Grid container spacing={0} direction="column" alignItems="center">
                                     <Grid item className={classes.action_title_grid}>
                                         <Typography variant="button" className={classes.action_title}>
-                                            Cellar Club
+                                            Search
                                         </Typography>
                                     </Grid>
                                     <Grid item>
@@ -193,7 +194,7 @@ export default function Dashboard(props) {
                                     </Grid>
                                     <Grid item>
                                         <Typography variant="caption">
-                                            Search Bottles
+                                            Find, add and review bottles
                                         </Typography>
                                     </Grid>
                                 </Grid>
