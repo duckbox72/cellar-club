@@ -22,7 +22,6 @@ export default function Collection(props) {
   
     const userProfile = (getUserProfile());
     const [bottleName, setBottleName] = useState(null);
-    const [bottleData, setBottleData] = useState(null);
 
     const [bottleList, setBottleList] = useState(null);
     const [bottleListLength, setBottleListLength] = useState(null);

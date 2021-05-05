@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
+import brown from '@material-ui/core/colors/brown';
+
 import Badge from '@material-ui/core/Badge';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
+
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -22,8 +26,6 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import SortIcon from '@material-ui/icons/Sort';
 
 import { WineGlassIcon } from './SvgIcons';
-
-import brown from '@material-ui/core/colors/brown';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -59,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center', 
         marginLeft: -theme.spacing(2)
     },
+
     list_item_avatar: {
         fontWeight: 500,
         //fontSize: theme.spacing(2),   
@@ -80,14 +83,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function BottleList(props) {
+export default function MemoriesList(props) {
 
     const darkMode = props.darkMode;
     const userProfile = props.userProfile;
-    const bottleName = props.bottleName;
-    const bottleList = props.bottleList != null ? props.bottleList : [];
-    const bottleListLength = props.bottleListLength != null ? props.bottleListLength : 0;
+    const displayName = props.displayName;
+    const memoriesList = props.memoriesList != null ? props.memoriesList : [];
+    const memoriesListLength = props.memoriesListLength != null ? props.memoriesListLength : 0;
     
+
     const [sortByMenuAnchor, setSortByMenuAnchor] = useState(null);
     const [sortByLabel, setSortByLabel] = useState('Recently Added')
 
@@ -100,17 +104,17 @@ export default function BottleList(props) {
     const classes = useStyles(mystyleprops);
 
     
-    const handleItemClick = (bottle) => {
+    const handleItemClick = (memory) => {
         window.scrollTo(0, 0);
         props.history.push({
             pathname: '/bottle',
             //search: '?query=abc',
-            state: { bottle: bottle }
+            state: { memory: memory }
         });
     }
 
 
-    const handleItemActionClick = (bottle) => {
+    const handleItemActionClick = (memory) => {
         window.scrollTo(0, 0);
         props.history.push({
             pathname: '/bottle',
@@ -120,26 +124,26 @@ export default function BottleList(props) {
     }
     
 
-    const bottleListItems = (bottles) => {
-        if (bottles) {
-            return bottles.map(bottle => (
+    const memoriesListItems = (memoriesList) => {
+        if (memoriesList) {
+            return memoriesList.map(memory => (
                 <ListItem 
                 button 
-                key={bottle.id} 
-                onClick={() => handleItemClick(bottle)}
+                key={memory.id} 
+                onClick={() => handleItemClick(memory)}
                 divider
                 >
                     <ListItemAvatar>
                         <div className={classes.list_item_avatar_container}>
                             <Typography variant="subtitle2" classeName={classes.list_item_avatar}>
-                                {bottle.vintage}
+                                {memory.vintage}
                             </Typography>
                             <Typography variant="caption">
                                 <WineGlassIcon 
                                 className={classes.list_item_color_icon}
-                                // bottle icon color  
-                                style={bottle.colour === 'Red' ? {color: 'maroon'} : bottle.colour === 'White' ? {color: 'tan'} : bottle.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
-                                /> {bottle.size}
+                                // memory icon color  
+                                style={memory.colour === 'Red' ? {color: 'maroon'} : memory.colour === 'White' ? {color: 'tan'} : memory.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
+                                /> {memory.size}
                             </Typography>
                         </div>
                     </ListItemAvatar>     
@@ -147,19 +151,19 @@ export default function BottleList(props) {
                     
                     primary={
                         <Typography variant="body2" className={classes.list_item_title}>
-                            {bottle.display_name}
+                            {memory.display_name}
                         </Typography>    
                     }
                     secondary={
                         <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
-                            {`${bottle.colour} ${bottle.region}, ${bottle.country}`} 
+                            {`${memory.colour} ${memory.region}, ${memory.country}`} 
                         </Typography>
                     } 
                     />    
                     <ListItemSecondaryAction>
                         <IconButton 
-                        key={bottle.id} 
-                        onClick={() => handleItemActionClick(bottle)}
+                        key={memory.id} 
+                        onClick={() => handleItemActionClick(memory)}
                         >
                             <MoreHorizIcon />
                         </IconButton>
@@ -168,7 +172,6 @@ export default function BottleList(props) {
             ));
         }     
     };
-
 
 
     const handleSortByMenuClick = (event) => {
@@ -182,21 +185,20 @@ export default function BottleList(props) {
 
 
     const handleSortRecentlyAddedClick = (event) => {
-        bottleList.sort((a,b) => (a.created < b.created) ? 1 : -1);
+        memoriesList.sort((a,b) => (a.created < b.created) ? 1 : -1);
         setSortByLabel('Recently Added');
         handleSortByMenuClose();
     }
     
     // sort  increase display_name  increase date order
     const handleSortNameAZClick = (event) => {
-        bottleList.sort((a,b) => (a.display_name > b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage > b.vintage) ? 1 : -1) : -1);
+        memoriesList.sort((a,b) => (a.display_name > b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage > b.vintage) ? 1 : -1) : -1);
         
-        if (bottleName === null) {
+        if (displayName === null) {
             setSortByLabel('Name A-Z');
             
         } else {
             setSortByLabel('Vintage Up')
-
         }
 
         handleSortByMenuClose();
@@ -205,12 +207,12 @@ export default function BottleList(props) {
     // sort  decrease display_name decrease date order
     const handleSortNameZAClick = (event) => {   
         
-        if (bottleName === null) {
-        bottleList.sort((a,b) => (a.display_name < b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage > b.vintage) ? 1 : -1) : -1)
-        setSortByLabel('Name Z-A');
+        if (displayName === null) {
+            memoriesList.sort((a,b) => (a.display_name < b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage > b.vintage) ? 1 : -1) : -1)
+            setSortByLabel('Name Z-A');
         
         } else {
-            bottleList.sort((a,b) => (a.display_name < b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage < b.vintage) ? 1 : -1) : -1)
+            memoriesList.sort((a,b) => (a.display_name < b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage < b.vintage) ? 1 : -1) : -1)
             setSortByLabel('Vintage Down');
         }
 
@@ -225,8 +227,9 @@ export default function BottleList(props) {
 
     useEffect(() => {
         setSortByLabel('Recently Added')
-    }, [bottleName],);
-    
+    }, [displayName],);
+
+
     return (
         <Paper className={classes.list_paper} elevation={3}>
             <ListItem divider>
@@ -249,8 +252,8 @@ export default function BottleList(props) {
                     onClose={handleSortByMenuClose}
                     >
                         <MenuItem dense onClick={handleSortRecentlyAddedClick}>Recently Added</MenuItem>
-                        <MenuItem dense onClick={handleSortNameAZClick}>{bottleName === null ? 'Name A-Z' : 'Vintage Up'}</MenuItem>
-                        <MenuItem dense onClick={handleSortNameZAClick}>{bottleName === null ? 'Name Z-A' : 'Vintage Down'}</MenuItem>
+                        <MenuItem dense onClick={handleSortNameAZClick}>{displayName === null ? 'Name A-Z' : 'Vintage Up'}</MenuItem>
+                        <MenuItem dense onClick={handleSortNameZAClick}>{displayName === null ? 'Name Z-A' : 'Vintage Down'}</MenuItem>
                     </Menu>
 
                     <Typography variant={'button'} className={classes.sort_by_label}>{sortByLabel}</Typography> 
@@ -262,20 +265,20 @@ export default function BottleList(props) {
                         horizontal: 'left',
                     }}
                     color={darkMode ? 'primary' : 'secondary'}
-                    badgeContent={bottleListLength} 
+                    badgeContent={memoriesListLength} 
                     >
                         <KitchenIcon className={classes.icon_numof_bottles} />
                     </Badge>
                     
                 </Grid>
             </ListItem>
-            { bottleListLength === 0 ?
+            { memoriesListLength === 0 ?
             <LinearProgress color={darkMode ? 'primary' : 'secondary'}/>
                 :
             <List onChange={handleListChange} className={classes.list_body} dense>                    
-                {bottleListItems(bottleList)}
+                {memoriesListItems(memoriesList)}
             </List>
             }
         </Paper>
     );
-} 
+}

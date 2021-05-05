@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Grid  from "@material-ui/core/Grid";
 
-import BottleList from './common/BottleList';
+import MemoriesList from './common/MemoriesList';
 import Copyright from './common/Copyright';
 import Navbar from "./common/Navbar";
 import NavbarTransparent from "./common/NavbarTransparent";
@@ -18,14 +18,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Collection(props) {
+export default function Memories(props) {
   
     const userProfile = (getUserProfile());
-    const [bottleName, setBottleName] = useState(null);
-    const [bottleData, setBottleData] = useState(null);
+    const [displayName, setDisplayName] = useState(null);
 
-    const [bottleList, setBottleList] = useState(null);
-    const [bottleListLength, setBottleListLength] = useState(null);
+    const [memoriesList, setMemoriesList] = useState(null);
+    const [memoriesListLength, setMemoriesListLength] = useState(null);
 
     const classes = useStyles();
 
@@ -40,15 +39,15 @@ export default function Collection(props) {
 
 
     // Searchbar callbacks
-    const BottleNameCallback = (bottle_name) => {
-        setBottleName(bottle_name);
-        console.log(bottle_name);
+    const DisplayNameCallback = (display_name) => {
+        setDisplayName(display_name);
+        console.log(display_name);
     }
-    const BottleListCallback = (bottle_list) => {
-        setBottleList(bottle_list);
-        setBottleListLength(Object.keys(bottle_list).length);
-        console.log(bottle_list);
-        console.log(Object.keys(bottle_list).length)
+    const MemoriesListCallback = (memories_list) => {
+        setMemoriesList(memories_list);
+        setMemoriesListLength(Object.keys(memories_list).length);
+        console.log(memories_list);
+        console.log(Object.keys(memories_list).length)
     }
     
     
@@ -71,18 +70,18 @@ export default function Collection(props) {
                     <Searchbar 
                     {...props} 
                     darkMode={props.darkMode}
-                    parentBottleNameCallback={BottleNameCallback}
-                    parentBottleListCallback={BottleListCallback}
-                    searchLocation={'Search My Collection'}
+                    parentDisplayNameCallback={DisplayNameCallback}
+                    parentMemoriesListCallback={MemoriesListCallback}
+                    searchLocation={'Search My Memories'}
                     />
                 </Grid>
                 <Grid item xs={12} sm={10} md={8}>
-                    <BottleList 
+                    <MemoriesList 
                     {...props} 
                     darkMode={props.darkMode}
-                    bottleName={bottleName}
-                    bottleList={bottleList}
-                    bottleListLength={bottleListLength}
+                    displayName={displayName}
+                    memoriesList={memoriesList}
+                    memoriesListLength={memoriesListLength}
                     />
                 </Grid>
                 <Grid item xs={12} sm={10} md={8} style={{margin: 8}}>
