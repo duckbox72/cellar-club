@@ -94,7 +94,7 @@ export default function Dashboard(props) {
     const classes = useStyles(mystyleprops);
 
 
-    const handleCellarClubActionClick = e => {
+    const handleSearchActionClick = e => {
         window.scrollTo(0, 0);
         props.history.push('/search');
     }
@@ -107,9 +107,8 @@ export default function Dashboard(props) {
 
 
     const handleMemoriesActionClick = e => {
-        //window.scrollTo(0, 0);
-        //props.history.push('/memories');
-        console.log('CLICK MEMORIES')
+        window.scrollTo(0, 0);
+        props.history.push('/memories');
     }
 
 
@@ -179,7 +178,7 @@ export default function Dashboard(props) {
                             elevation={3} 
                             className={classes.action_paper} 
                             role="button"
-                            onClick={handleCellarClubActionClick}
+                            onClick={handleSearchActionClick}
                             >
                                 <Grid container spacing={0} direction="column" alignItems="center">
                                     <Grid item className={classes.action_title_grid}>
