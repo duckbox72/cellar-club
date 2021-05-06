@@ -61,7 +61,7 @@ export default function Searchbar(props) {
     }
     const classes = useStyles(mystyleprops);
 
-
+    // LWIN RELATED
     const getSearchResults = (location, value) => {
         fetch(`/api/search_${location}/${value}`)
         .then((response) => response.json())
@@ -69,7 +69,6 @@ export default function Searchbar(props) {
             setSearchResult(data);
         });  
     }
-    
 
     const getLwinData = (value) => {
         fetch(`api/get_lwin/${value}`)
@@ -79,7 +78,7 @@ export default function Searchbar(props) {
         });  
     }
 
-    
+    // BOTTLE RELATED
     const getBottleName = (value) => {
         fetch(`api/get_bottle_name/${value}`)
         .then((response) => response.json())
@@ -87,7 +86,6 @@ export default function Searchbar(props) {
             props.parentBottleNameCallback(bottle.display_name);
         });  
     }
-
     
     const getBottleList  = (value) => {
         fetch(`/api/get_bottle_list/${value}`)
@@ -97,14 +95,23 @@ export default function Searchbar(props) {
         });
     };
     
-    
-    // TO BE MOVED
+    // TO BE MOVED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     const getBottleData = (bottle_id) => {
         fetch(`api/get_bottle/${bottle_id}`)
         .then((response) => response.json())
         .then(bottle_data => {
             props.parentBottleDataCallback(bottle_data);
         });  
+    }
+
+
+    
+    const getMemoriesList = (value) => {
+        fetch(`/api/get_memories_list/${value}`)
+        .then(response => response.json())
+        .then(memories_list => {
+            props.parentMemoriesListCallback(memories_list);
+        });
     }
 
     
@@ -131,7 +138,12 @@ export default function Searchbar(props) {
                 props.parentBottleNameCallback(value); // value = false
                 setSearchResult([]);
             }
-        }        
+        }
+        
+        // Memories.js calls
+        if (searchLocation == 'Search My Memories') {
+            getMemoriesList(value); 
+        }
     }
     
     
@@ -188,7 +200,13 @@ export default function Searchbar(props) {
                 // default bottle list
                 getBottleList(null); 
                 setToggler(false);
-        }          
+        }
+        
+        if (searchLocation == 'Search My Memories' && toggler) {
+            // default bottle list
+            getMemoriesList(null); 
+            setToggler(false);
+    }          
     })
 
     

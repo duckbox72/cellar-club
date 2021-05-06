@@ -598,6 +598,8 @@ export default function BottleCard(props) {
                 
                 lwin_lwin: null,
                 lwin_vintage: null,
+                lwin_display_name: null,
+                lwin_colour: null,
 
                 is_public: shareReview,
                 like_status: selectedRadio,

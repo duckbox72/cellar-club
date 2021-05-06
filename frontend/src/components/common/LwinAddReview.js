@@ -193,6 +193,8 @@ export default function LwinAddReview(props) {
                 
                 lwin_lwin: LwinData.lwin,
                 lwin_vintage: selectedVintage,
+                lwin_display_name: LwinData.display_name,
+                lwin_colour: LwinData.colour,
 
                 is_public: shareReview,
                 like_status: selectedRadio,

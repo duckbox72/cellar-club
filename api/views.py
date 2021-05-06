@@ -393,6 +393,8 @@ def add_review(request):
         bottle = bottle,
         lwin_lwin = data['lwin_lwin'],
         lwin_vintage = data['lwin_vintage'],
+        lwin_display_name = data['lwin_display_name'],
+        lwin_colour = data['lwin_colour'],
 
         is_public = data['is_public'],
         like_status = data['like_status'],
@@ -406,10 +408,30 @@ def add_review(request):
 
 
 @login_required
-def get_memories_list(request):
+def get_memories_list(request, display_name):
+    user = request.user
 
-    return "to do"
 
+    # Get consumption list
+    if display_name == 'null':
+        consumption_list = Consumption.objects.filter(user=user, permanently_deleted=False)
+    else:
+        try:
+            consumption_list = Consumption.objects.filter(user=user, bottle_display_name=display_name, permanently_deleted=False)
+        except: 
+            return JsonResponse({"error": "Sorry, no results found."})
+    
+    # Get reviews list
+    if display_name == 'null':
+        review_list = Review.objects.filter(user=user)
+    else:
+        try:
+            review_list = Review.objects.filter(user.user, lwin_display_name=display_name)
+        except: 
+            return JsonResponse({"error": "Sorry, no results found."})
+
+    return JsonResponse([consumption.serializer() for consumption in consumption_list] + [review.serializer() for review in review_list], safe=False, status=status.HTTP_200_OK)
+    
 
 
 

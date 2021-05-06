@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models.expressions import F
-from django.db.models.fields import DateField
+from django.db.models.fields import DateField, NOT_PROVIDED
 from django.utils import timezone
 
 
@@ -165,15 +165,13 @@ class Consumption(models.Model):
     has_review = models.BooleanField(default=False)
 
     def serializer(self):
-        # Return review id if review exists
-        if self.review:
-            review_id = self.review.id
-        else:
-            review_id = None
 
         return {
             "id": self.id,
             "bottle_id": self.bottle.id,
+            "bottle_display_name": self.bottle.display_name,
+            "bottle_vintage": self.bottle.vintage,
+            "bottle_colour": self.bottle.colour,
             "date_consumed": self.date_consumed,
             "reason": self.reason,
             "private_note": self.private_note,
@@ -193,7 +191,9 @@ class Review(models.Model):
     # Case review comes from a non collection bottle
     lwin_lwin = models.CharField(max_length=7, null=True, blank=True)
     lwin_vintage = models.CharField(max_length=4, null=True, blank=True)
-    
+    lwin_display_name = models.CharField(max_length=256, null=True, blank=True)
+    lwin_colour = models.CharField(max_length=16, null=True, blank=True)
+
     is_public = models.BooleanField(default=True)
     like_status = models.CharField(max_length=64, default='like')
     score = models.CharField(max_length=3, null=True, blank=True)
@@ -202,22 +202,29 @@ class Review(models.Model):
     def serializer(self):
         if self.bottle:
             bottle_id = self.bottle.id
+            bottle_display_name = self.bottle.display_name
+            bottle_vintage = self.bottle.vintage
+            bottle_colour = self.bottle.colour
         else:
             bottle_id = None
-
-        if self.lwin:
-            lwin_lwin = self.lwin.lwin
-        else:
-            lwin_lwin = None     
+            bottle_display_name = None
+            bottle_vintage = None
+            bottle_colour = None
 
         return {
             "id": self.id,
             "date_tasted": self.date_tasted,
 
             "bottle_id": bottle_id,
+            "bottle_display_name": bottle_display_name,
+            "bottle_vintage": bottle_vintage,
+            "bottle_colour": bottle_colour,
             
             "lwin_lwin": self.lwin_lwin,
+            "lwin_display_name": self.lwin_display_name,
             "lwin_vintage": self.lwin_vintage,
+            "lwin_colour": self.lwin_colour,
+
 
             "is_public": self.is_public,
             "like_status": self.like_status,
