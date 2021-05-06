@@ -136,7 +136,7 @@ export default function MemoriesList(props) {
                     <ListItemAvatar>
                         <div className={classes.list_item_avatar_container}>
                             <Typography variant="subtitle2" classeName={classes.list_item_avatar}>
-                                {memory.vintage}
+                                {memory.lwin_vintage ? memory.lwin_vintage : memory.bottle_vintage}
                             </Typography>
                             <Typography variant="caption">
                                 <WineGlassIcon 

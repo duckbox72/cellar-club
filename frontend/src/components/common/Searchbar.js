@@ -61,7 +61,7 @@ export default function Searchbar(props) {
     }
     const classes = useStyles(mystyleprops);
 
-    // LWIN RELATED
+    // LWIN SEARCH RELATED
     const getSearchResults = (location, value) => {
         fetch(`/api/search_${location}/${value}`)
         .then((response) => response.json())
@@ -78,7 +78,7 @@ export default function Searchbar(props) {
         });  
     }
 
-    // BOTTLE RELATED
+    // COLLECTION SEARCH RELATED (BOTTLE)
     const getBottleName = (value) => {
         fetch(`api/get_bottle_name/${value}`)
         .then((response) => response.json())
@@ -105,7 +105,7 @@ export default function Searchbar(props) {
     }
 
 
-    
+    // MEMORIES SEARCH RELATED [consumption + review]
     const getMemoriesList = (value) => {
         fetch(`/api/get_memories_list/${value}`)
         .then(response => response.json())

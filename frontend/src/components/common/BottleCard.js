@@ -57,7 +57,7 @@ import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
 
-import { GlassCheersIcon, WineBottleIcon, WineGlassIcon } from './SvgIcons';
+import { GlassCheersIcon, WineBottleIcon, WineGlassIcon, WineGlassAltIcon} from './SvgIcons';
 
 import { currencyNumberFormat } from "../utils/currencyNumberFormat";
 import { getRemovalReasonsOptions } from '../utils/getRemovalReasonsOptions';
@@ -80,18 +80,37 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1,1)
     },
     drink_iconbutton: {
-
+        height: theme.spacing(6),
+        width: theme.spacing(6),
     },
     drink_iconbuttonOpen: {
+        height: theme.spacing(6),
+        width: theme.spacing(6),
+
         filter: 'opacity(50%)',
         backdropFilter: 'invert(10%) opacity(30%)',
+    },
+    drink_iconbutton_icon: {
+        height: theme.spacing(2.375),
+        width: theme.spacing(2.375),
     },
     remove_iconbutton: {
-
+        height: theme.spacing(6),
+        width: theme.spacing(6),
     },
     remove_iconbuttonOpen: {
+        height: theme.spacing(6),
+        width: theme.spacing(6),
+
         filter: 'opacity(50%)',
         backdropFilter: 'invert(10%) opacity(30%)',
+    },
+    remove_iconbutton_icon: {
+        marginRight: -theme.spacing(0.5),
+        height: theme.spacing(2.125),
+        width: theme.spacing(2.125),
+
+        transform: 'rotate(315deg)',
     },
 
     iconbutton_external_link_ws: {
@@ -293,7 +312,7 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(1.75),
         '&:hover': {
             color: 'red',
-        }
+        },
     },
     drink_slider: {
         marginLeft: 'auto',
@@ -746,7 +765,7 @@ export default function BottleCard(props) {
                             ? classes.drink_iconbutton 
                             : classes.drink_iconbuttonOpen}
                         >
-                            <GlassCheersIcon style={{width: theme.spacing(2.75)}}/>
+                            <WineGlassAltIcon className={classes.drink_iconbutton_icon}/>
                         </IconButton>
                     </Tooltip>
 
@@ -757,7 +776,17 @@ export default function BottleCard(props) {
                             ? classes.remove_iconbutton 
                             : classes.remove_iconbuttonOpen}
                         >
-                            <RemoveIcon />
+                            <>
+                                <WineBottleIcon className={classes.remove_iconbutton_icon}/>
+                                <RemoveIcon 
+                                style={{
+                                    
+                                    width: theme.spacing(1.75),
+                                    marginLeft: -theme.spacing(0.5),
+                                    marginTop: -theme.spacing(1.5),   
+                                }}
+                                />
+                            </>
                         </IconButton>
                     </Tooltip>
 

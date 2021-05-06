@@ -411,22 +411,21 @@ def add_review(request):
 def get_memories_list(request, display_name):
     user = request.user
 
-
     # Get consumption list
     if display_name == 'null':
-        consumption_list = Consumption.objects.filter(user=user, permanently_deleted=False)
+        consumption_list = Consumption.objects.filter(user=user, permanently_deleted=False).order_by('-date_consumed')
     else:
         try:
-            consumption_list = Consumption.objects.filter(user=user, bottle_display_name=display_name, permanently_deleted=False)
+            consumption_list = Consumption.objects.filter(user=user, bottle_display_name=display_name, permanently_deleted=False).order_by('-date_consumed')
         except: 
             return JsonResponse({"error": "Sorry, no results found."})
     
     # Get reviews list
     if display_name == 'null':
-        review_list = Review.objects.filter(user=user)
+        review_list = Review.objects.filter(user=user).order_by('-date_tasted')
     else:
         try:
-            review_list = Review.objects.filter(user.user, lwin_display_name=display_name)
+            review_list = Review.objects.filter(user.user, lwin_display_name=display_name).order_by('-date_tasted')
         except: 
             return JsonResponse({"error": "Sorry, no results found."})
 
