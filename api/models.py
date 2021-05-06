@@ -164,14 +164,12 @@ class Consumption(models.Model):
     permanently_deleted = models.BooleanField(default=False)
     has_review = models.BooleanField(default=False)
 
+
     def serializer(self):
 
         return {
             "id": self.id,
-            "bottle_id": self.bottle.id,
-            "bottle_display_name": self.bottle.display_name,
-            "bottle_vintage": self.bottle.vintage,
-            "bottle_colour": self.bottle.colour,
+            "bottle": self.bottle.serializer(),
             "date_consumed": self.date_consumed,
             "reason": self.reason,
             "private_note": self.private_note,
@@ -201,24 +199,14 @@ class Review(models.Model):
     
     def serializer(self):
         if self.bottle:
-            bottle_id = self.bottle.id
-            bottle_display_name = self.bottle.display_name
-            bottle_vintage = self.bottle.vintage
-            bottle_colour = self.bottle.colour
-        else:
-            bottle_id = None
-            bottle_display_name = None
-            bottle_vintage = None
-            bottle_colour = None
+            bottle = self.bottle.serializer()
+
 
         return {
             "id": self.id,
             "date_tasted": self.date_tasted,
 
-            "bottle_id": bottle_id,
-            "bottle_display_name": bottle_display_name,
-            "bottle_vintage": bottle_vintage,
-            "bottle_colour": bottle_colour,
+            "bottle": bottle,
             
             "lwin_lwin": self.lwin_lwin,
             "lwin_display_name": self.lwin_display_name,

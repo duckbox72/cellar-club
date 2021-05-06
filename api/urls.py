@@ -41,5 +41,6 @@ urlpatterns = [
     path('add_consumption', views.add_consumption, name="add_consumption"),
     path('add_review', views.add_review, name="add_review"),
 
-    path('get_memories_list/<str:display_name>', views.get_memories_list, name="get_memories_list")
+    path('get_memories_list/<str:display_name>', views.get_memories_list, name="get_memories_list"),
+    path('get_review_list/<str:display_name>', views.get_review_list, name="get_review_list"),
 ]

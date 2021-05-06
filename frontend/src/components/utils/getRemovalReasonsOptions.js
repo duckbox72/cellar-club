@@ -2,9 +2,9 @@ export function getRemovalReasonsOptions() {
     const removalReasons = 
     ['Sold or traded',
      'Given as a gift',
-     'Dropped or broken bottle',
+     'Dropped or broken',
      'Missing or not found',
-     'Spoiled or (corked/oxidized)',
+     'Spoiled or oxidized',
      'Other reason(s)'
     ];
     

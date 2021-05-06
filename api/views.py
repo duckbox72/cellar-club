@@ -420,6 +420,13 @@ def get_memories_list(request, display_name):
         except: 
             return JsonResponse({"error": "Sorry, no results found."})
     
+    return JsonResponse([consumption.serializer() for consumption in consumption_list], safe=False, status=status.HTTP_200_OK)
+
+
+@login_required
+def get_review_list(request, display_name):
+    user = request.user
+    
     # Get reviews list
     if display_name == 'null':
         review_list = Review.objects.filter(user=user).order_by('-date_tasted')
@@ -429,8 +436,7 @@ def get_memories_list(request, display_name):
         except: 
             return JsonResponse({"error": "Sorry, no results found."})
 
-    return JsonResponse([consumption.serializer() for consumption in consumption_list] + [review.serializer() for review in review_list], safe=False, status=status.HTTP_200_OK)
-    
+    return JsonResponse([review.serializer() for review in review_list], safe=False, status=status.HTTP_200_OK)
 
 
 
