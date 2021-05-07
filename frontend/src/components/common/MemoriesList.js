@@ -32,7 +32,7 @@ import SortIcon from '@material-ui/icons/Sort';
 import StarIcon from '@material-ui/icons/Star';
 import StarOutlinedIcon from '@material-ui/icons/StarOutline';
 
-import { GlassCheersIcon, WineGlassIcon } from './SvgIcons';
+import { GlassCheersIcon, WineBottleIcon,WineGlassIcon } from './SvgIcons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -59,23 +59,15 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(6),
         height:theme.spacing(6), 
         marginLeft: 'auto',
+        marginRight: theme.spacing(1),
     },
     icon_numof_consumed: {
         width: theme.spacing(2.75),
         height:theme.spacing(2.75), 
-        //color: mystyleprops => mystyleprops.colorSchemaA,
+        //transform: 'rotate(270deg)',
+        color: mystyleprops => mystyleprops.colorSchemaA,
     },
-    iconbutton_reviews: {
-        marginRight: theme.spacing(1),
-        [theme.breakpoints.down('xs')]: {
-            marginRight: theme.spacing(0),
-        },
-    },
-    icon_numof_reviews: { 
-        width: theme.spacing(2.75),
-        height:theme.spacing(2.75),
-        //color: mystyleprops => mystyleprops.colorSchemaA,
-    },
+    
     
     list_item_avatar_container: {
         textAlign: 'center', 
@@ -115,7 +107,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]: {
             fontSize: theme.spacing(1.75),
         }, 
-        color: mystyleprops => mystyleprops.colorSchemaA,
+        //color: mystyleprops => mystyleprops.colorSchemaA,
     },
     list_item_subheader_icon:{
         width: theme.spacing(1.75),
@@ -199,7 +191,7 @@ export default function MemoriesList(props) {
                     secondary={ 
                         <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
                             {`${memory.reason.split(" ", 1)} , ${format(new Date(memory.date_consumed), 'MMM d yyyy')}`} 
-
+                            {' '}
                             {memory.private_note
                             ? <Tooltip title="Private note">
                                 <CommentIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
@@ -333,28 +325,14 @@ export default function MemoriesList(props) {
                         <Badge 
                         anchorOrigin={{
                             vertical: 'top',
-                            horizontal: 'right',
+                            horizontal: 'left',
                         }}
                         color={darkMode ? 'primary' : 'secondary'}
                         badgeContent={memoriesListLength} 
                         >
-                            <GlassCheersIcon className={classes.icon_numof_consumed} />
+                            <WineBottleIcon className={classes.icon_numof_consumed} />
                         </Badge>
                     </IconButton>
-                
-                    <IconButton className={classes.iconbutton_reviews}>
-                        <Badge 
-                        anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
-                        color={darkMode ? 'inherit' : 'inherit'}
-                        badgeContent={memoriesListLength} 
-                        >
-                            <PostAddIcon className={classes.icon_numof_reviews} />
-                        </Badge>
-                    </IconButton>
-
                 </Grid>
             </ListItem>
 
