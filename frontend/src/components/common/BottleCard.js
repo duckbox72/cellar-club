@@ -170,7 +170,7 @@ const useStyles = makeStyles((theme) => ({
         
     },
     info_grid: {
-        marginTop: theme.spacing(2),
+        marginTop: theme.spacing(1.5),
     },
     info_header:{
         margin: theme.spacing(0.5,2,0,2.5),

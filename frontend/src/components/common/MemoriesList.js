@@ -22,9 +22,15 @@ import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
+import CommentIcon from '@material-ui/icons/Comment';
+import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import SortIcon from '@material-ui/icons/Sort';
+import StarIcon from '@material-ui/icons/Star';
+import StarOutlinedIcon from '@material-ui/icons/StarOutline';
 
 import { GlassCheersIcon, WineGlassIcon } from './SvgIcons';
 
@@ -88,6 +94,14 @@ const useStyles = makeStyles((theme) => ({
             fontSize: theme.spacing(1.5),
         },          
     },
+    list_item_color_icon: { 
+        height: theme.spacing(1.5),
+        width: theme.spacing(1.5),
+        [theme.breakpoints.down('xs')]: {
+            height: theme.spacing(1.25),
+            width: theme.spacing(1.25),
+        }, 
+    },
     list_item_title: {
         fontWeight: 500,
         fontSize: theme.spacing(2),
@@ -101,14 +115,12 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]: {
             fontSize: theme.spacing(1.75),
         }, 
+        color: mystyleprops => mystyleprops.colorSchemaA,
     },
-    list_item_color_icon: { 
-        height: theme.spacing(1.5),
-        width: theme.spacing(1.5),
-        [theme.breakpoints.down('xs')]: {
-            height: theme.spacing(1.25),
-            width: theme.spacing(1.25),
-        }, 
+    list_item_subheader_icon:{
+        width: theme.spacing(1.75),
+        height: theme.spacing(1.75),
+        margin: theme.spacing(0.5),
     },
 }));
 
@@ -186,7 +198,34 @@ export default function MemoriesList(props) {
                     }
                     secondary={ 
                         <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
-                            {`${memory.reason.split(" ", 1)} , ${format(new Date(memory.date_consumed), 'MMM d yyyy')} ${memory.has_review}`} 
+                            {`${memory.reason.split(" ", 1)} , ${format(new Date(memory.date_consumed), 'MMM d yyyy')}`} 
+
+                            {memory.private_note
+                            ? <Tooltip title="Private note">
+                                <CommentIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                              </Tooltip>
+                            : <Tooltip title="No private Note">
+                                <CommentOutlinedIcon className={classes.list_item_subheader_icon} />
+                              </Tooltip>
+                            }
+
+                            {memory.gathered !== 0
+                            ? <Tooltip title="Money gathered">
+                                <MonetizationOnIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                              </Tooltip>
+                            : <Tooltip title="No money gathered">
+                                <MonetizationOnOutlinedIcon className={classes.list_item_subheader_icon} />
+                              </Tooltip>
+                            }
+
+                            {memory.has_review
+                            ? <Tooltip title="Review">
+                                <StarIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                              </Tooltip>
+                            : <Tooltip title="No review">
+                                <StarOutlinedIcon className={classes.list_item_subheader_icon} />
+                              </Tooltip>
+                            }
                         </Typography>
                     } 
                     />    
