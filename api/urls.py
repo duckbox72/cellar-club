@@ -43,4 +43,6 @@ urlpatterns = [
 
     path('get_memories_list/<str:display_name>', views.get_memories_list, name="get_memories_list"),
     path('get_review_list/<str:display_name>', views.get_review_list, name="get_review_list"),
+
+    path('search_memory/<str:display_name>', views.search_memory, name="search_memory"),
 ]

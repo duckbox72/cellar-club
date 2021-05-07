@@ -135,14 +135,15 @@ export default function Searchbar(props) {
             if (value !== null) {
                 getBottleName(value);
             } else {
-                props.parentBottleNameCallback(value); // value = false
+                props.parentDisplayNameCallback(value); // value = false
                 setSearchResult([]);
             }
         }
         
         // Memories.js calls
         if (searchLocation == 'Search My Memories') {
-            getMemoriesList(value); 
+            getMemoriesList(value); //called in all change cases
+
         }
     }
     
@@ -180,6 +181,21 @@ export default function Searchbar(props) {
                 }
             }
         }
+
+        // Memories.js calls
+        if (searchLocation == 'Search My Memories') {
+            const location = 'memory';
+
+            if (e.target.value == null ) {
+                setSearchResult([]);
+            } else {
+                if ((e.target.value).length > 2) {
+                    getSearchResults(location, e.target.value);
+                } else {
+                    setSearchResult([]);
+                }
+            }
+        }
     }
 
 
@@ -197,9 +213,9 @@ export default function Searchbar(props) {
     const [toggler, setToggler] = useState(true);
     useEffect(() => {
         if (searchLocation == 'Search My Collection' && toggler) {
-                // default bottle list
-                getBottleList(null); 
-                setToggler(false);
+            // default bottle list
+            getBottleList(null); 
+            setToggler(false);
         }
         
         if (searchLocation == 'Search My Memories' && toggler) {

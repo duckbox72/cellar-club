@@ -352,6 +352,7 @@ def add_consumption(request):
     consumption = Consumption(
         user = user,
         bottle = bottle,
+        display_name = bottle.display_name,
         date_consumed = date_consumed,
         reason = data['reason'],
         private_note = data['private_note'],
@@ -391,6 +392,7 @@ def add_review(request):
         date_tasted = date_tasted,
 
         bottle = bottle,
+        display_name = bottle.display_name,
         lwin_lwin = data['lwin_lwin'],
         lwin_vintage = data['lwin_vintage'],
         lwin_display_name = data['lwin_display_name'],
@@ -437,6 +439,34 @@ def get_review_list(request, display_name):
             return JsonResponse({"error": "Sorry, no results found."})
 
     return JsonResponse([review.serializer() for review in review_list], safe=False, status=status.HTTP_200_OK)
+
+
+@login_required
+def search_memory(request, display_name):
+    user = request.user
+    results = Consumption.objects.filter(user=user, display_name__contains=display_name, permanently_deleted=False)
+    
+    # Lists only display_name (aka mini_serializer)
+    all_results = []
+    for result in results:
+        all_results.append({'display_name': result.display_name})
+
+    # Parse results to return only distinct items
+    response = []
+    for result in all_results:
+        if result not in response:
+            response.append(result)
+
+    return JsonResponse(response, safe=False, status=status.HTTP_200_OK)
+
+
+
+
+
+
+
+
+
 
 
 

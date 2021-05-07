@@ -190,7 +190,7 @@ export default function MemoriesList(props) {
                     }
                     secondary={ 
                         <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
-                            {`${memory.reason.split(" ", 1)} , ${format(new Date(memory.date_consumed), 'MMM d yyyy')}`} 
+                            {`${memory.reason.split(" ", 1)}, ${format(new Date(memory.date_consumed), 'MMM d yyyy')}`} 
                             {' '}
                             {memory.private_note
                             ? <Tooltip title="Private note">

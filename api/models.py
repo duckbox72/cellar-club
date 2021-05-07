@@ -157,6 +157,7 @@ class Bottle(models.Model):
 class Consumption(models.Model):
     user = models.ForeignKey("User", on_delete=models.CASCADE, null=False, blank=False)
     bottle = models.ForeignKey("Bottle", on_delete=models.CASCADE, null=False, blank=False)
+    display_name = models.CharField(max_length=256, null=True, blank=True,) 
     date_consumed = models.DateField(default=timezone.now)
     reason = models.CharField(max_length=64, null=False, blank=False)
     private_note = models.CharField(max_length=256, null=True, blank=True)
@@ -170,6 +171,7 @@ class Consumption(models.Model):
         return {
             "id": self.id,
             "bottle": self.bottle.serializer(),
+            "display_name": self.display_name,
             "date_consumed": self.date_consumed,
             "reason": self.reason,
             "private_note": self.private_note,
@@ -185,7 +187,8 @@ class Review(models.Model):
     
     # Case review comes from a collection bottle
     bottle = models.ForeignKey("Bottle", on_delete=models.DO_NOTHING, null=True, blank=True)
-    
+    display_name = models.CharField(max_length=256, null=True, blank=True,)
+
     # Case review comes from a non collection bottle
     lwin_lwin = models.CharField(max_length=7, null=True, blank=True)
     lwin_vintage = models.CharField(max_length=4, null=True, blank=True)
