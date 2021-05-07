@@ -5,6 +5,8 @@ import { AppBar, IconButton, Toolbar, Tooltip, Typography} from '@material-ui/co
 
 import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
+import Brightness7Icon from '@material-ui/icons/Brightness7';
+import NightsStayOutlinedIcon from '@material-ui/icons/NightsStayOutlined';
 
 import { makeStyles, useTheme } from '@material-ui/styles';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -79,7 +81,10 @@ export default function Navbar(props) {
                 </ThemeProvider>
                 <Tooltip title="Toggle light/dark mode">
                     <IconButton aria-label="toggleDarkMode" onClick={toggleDarKMode}>
-                        <Brightness4Icon className={classes.iconButton} />
+                    { darkMode
+                    ? <Brightness7Icon className={classes.iconButton} />
+                    : <Brightness4Icon className={classes.iconButton} />
+                    }
                     </IconButton>
                 </Tooltip>
                 <DrawerMenu 

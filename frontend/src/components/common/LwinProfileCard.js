@@ -26,11 +26,11 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import BookmarkIcon from '@material-ui/icons/Bookmark';
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import CloseIcon from '@material-ui/icons/Close';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ImportExportIcon from '@material-ui/icons/ImportExport';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
@@ -482,7 +482,7 @@ export default function LwinProfileCard(props) {
                 <Grid container spacing={1} className={classes.container_actions} alignItems="center">
                     
                     <IconButton>
-                        <FavoriteBorderIcon/>
+                        <BookmarkBorderIcon/>
                     </IconButton>
                     <IconButton >
                         <ShareIcon />

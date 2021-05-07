@@ -1,8 +1,8 @@
 export function getRemovalReasonsOptions() {
     const removalReasons = 
     ['Sold or traded',
-     'Given as a gift',
-     'Dropped or broken',
+     'Donated or given as a gift',
+     'Broken',
      'Missing or not found',
      'Spoiled or oxidized',
      'Other reason(s)'
