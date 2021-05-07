@@ -382,17 +382,20 @@ def add_review(request):
     if data['bottle_id']:
         try: 
             bottle = Bottle.objects.get(id=data['bottle_id'])
+            display_name = bottle.display_name
         except:
             bottle = None
+            display_name = None
     else:
         bottle = None
+        display_name = None
 
     review = Review(
         user = user,
         date_tasted = date_tasted,
 
         bottle = bottle,
-        display_name = bottle.display_name,
+        display_name = display_name,
         lwin_lwin = data['lwin_lwin'],
         lwin_vintage = data['lwin_vintage'],
         lwin_display_name = data['lwin_display_name'],

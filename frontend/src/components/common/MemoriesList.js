@@ -112,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
     list_item_subheader_icon:{
         width: theme.spacing(1.75),
         height: theme.spacing(1.75),
-        margin: theme.spacing(0.5),
+        margin: theme.spacing(0, 0.5),
     },
 }));
 
