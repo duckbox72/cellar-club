@@ -42,7 +42,10 @@ urlpatterns = [
     path('add_review', views.add_review, name="add_review"),
 
     path('get_memories_list/<str:display_name>', views.get_memories_list, name="get_memories_list"),
+    path('get_display_name/<str:display_name>', views.get_display_name, name="get_display_name"),
+    path('search_memory/<str:display_name>', views.search_memory, name="search_memory"),
+
     path('get_review_list/<str:display_name>', views.get_review_list, name="get_review_list"),
 
-    path('search_memory/<str:display_name>', views.search_memory, name="search_memory"),
+    
 ]

@@ -45,14 +45,15 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1,1,1,0),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
-    feed_name_label: {
-        fontSize: theme.spacing(2),
-        margin: theme.spacing(1,1.5,1,0),
-        color: mystyleprops => mystyleprops.colorSchemaA,
+    iconbutton_numof_bottles: {
+        width: theme.spacing(6),
+        height:theme.spacing(6), 
         marginLeft: 'auto',
+        marginRight: theme.spacing(1),
     },
     icon_numof_bottles: { 
-        margin: theme.spacing(1,1.5,0,0),
+        width: theme.spacing(2.75),
+        height:theme.spacing(2.75), 
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     list_item_avatar_container: {
@@ -60,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: -theme.spacing(2)
     },
     list_item_avatar: {
-        fontWeight: 500,
+        fontWeight: 400,
         fontSize: theme.spacing(2),
         [theme.breakpoints.down('xs')]: {
             fontSize: theme.spacing(1.75),
@@ -73,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     },       
     },
     list_item_title: {
-        fontWeight: 500,
+        fontWeight: 400,
         fontSize: theme.spacing(2),
         [theme.breakpoints.down('xs')]: {
             fontSize: theme.spacing(1.75),
@@ -271,18 +272,23 @@ export default function BottleList(props) {
                     </Menu>
 
                     <Typography variant={'button'} className={classes.sort_by_label}>{sortByLabel}</Typography> 
-                    <Typography small variant={'button'} className={classes.feed_name_label}>Items</Typography>
+                    
                 
-                    <Badge 
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                    }}
-                    color={darkMode ? 'primary' : 'secondary'}
-                    badgeContent={bottleListLength} 
-                    >
-                        <KitchenIcon className={classes.icon_numof_bottles} />
-                    </Badge>
+
+                    <IconButton className={classes.iconbutton_numof_bottles}> 
+                        <Badge 
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'left',
+                        }}
+                        color={darkMode ? 'primary' : 'secondary'}
+                        badgeContent={bottleListLength} 
+                        >
+                            <Tooltip title={bottleName ? "Selected items" : "All items"}>
+                                <KitchenIcon className={classes.icon_numof_bottles} />
+                            </Tooltip>
+                        </Badge>
+                    </IconButton>
                     
                 </Grid>
             </ListItem>

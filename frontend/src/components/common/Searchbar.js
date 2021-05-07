@@ -106,6 +106,14 @@ export default function Searchbar(props) {
 
 
     // MEMORIES SEARCH RELATED [consumption + review]
+    const getDisplayName = (value) => {
+        fetch(`api/get_display_name/${value}`)
+        .then((response) => response.json())
+        .then(memory => {
+            props.parenDisplayNameCallback(memory.display_name);
+        });  
+    }
+
     const getMemoriesList = (value) => {
         fetch(`/api/get_memories_list/${value}`)
         .then(response => response.json())
@@ -116,7 +124,6 @@ export default function Searchbar(props) {
 
     
     const handleAutocompleteChange = (value) => {
-        console.log(`AUTOCOMPLETE CHANGE TO value ==>> ${value}`);
         setSearchbarValue(value)
         
         // Search.js calls
@@ -143,7 +150,12 @@ export default function Searchbar(props) {
         // Memories.js calls
         if (searchLocation == 'Search My Memories') {
             getMemoriesList(value); //called in all change cases
-
+            if (value !== null) {
+                getDisplayName(value);
+            } else {
+                props.parentDisplayNameCallback(value); // value = false
+                setSearchResult([]);
+            }
         }
     }
     

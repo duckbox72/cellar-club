@@ -165,6 +165,11 @@ class Consumption(models.Model):
     permanently_deleted = models.BooleanField(default=False)
     has_review = models.BooleanField(default=False)
 
+    def mini_serializer(self):
+        return {
+            "display_name": self.display_name,
+        }
+
 
     def serializer(self):
 

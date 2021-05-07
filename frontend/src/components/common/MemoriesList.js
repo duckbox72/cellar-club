@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: -theme.spacing(2)
     },
     list_item_avatar: {
-        fontWeight: 500,
+        fontWeight: 400,
         fontSize: theme.spacing(2),
         [theme.breakpoints.down('xs')]: {
             fontSize: theme.spacing(1.75),
@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
         }, 
     },
     list_item_title: {
-        fontWeight: 500,
+        fontWeight: 400,
         fontSize: theme.spacing(2),
         [theme.breakpoints.down('xs')]: {
             fontSize: theme.spacing(1.75),

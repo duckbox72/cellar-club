@@ -421,7 +421,7 @@ def get_memories_list(request, display_name):
         consumption_list = Consumption.objects.filter(user=user, permanently_deleted=False).order_by('-date_consumed')
     else:
         try:
-            consumption_list = Consumption.objects.filter(user=user, bottle_display_name=display_name, permanently_deleted=False).order_by('-date_consumed')
+            consumption_list = Consumption.objects.filter(user=user, display_name=display_name, permanently_deleted=False).order_by('-date_consumed')
         except: 
             return JsonResponse({"error": "Sorry, no results found."})
     
@@ -429,19 +429,16 @@ def get_memories_list(request, display_name):
 
 
 @login_required
-def get_review_list(request, display_name):
+def get_display_name(request, display_name):
     user = request.user
+    try:
+        result = Consumption.objects.filter(user=user, display_name=display_name, permanently_deleted=False)
+    except:
+        return JsonResponse({"error": "Sorry, no results found."})
     
-    # Get reviews list
-    if display_name == 'null':
-        review_list = Review.objects.filter(user=user).order_by('-date_tasted')
-    else:
-        try:
-            review_list = Review.objects.filter(user.user, lwin_display_name=display_name).order_by('-date_tasted')
-        except: 
-            return JsonResponse({"error": "Sorry, no results found."})
-
-    return JsonResponse([review.serializer() for review in review_list], safe=False, status=status.HTTP_200_OK)
+    # Return first occurence of display_name // mini_serializer returns display_name data only
+    return JsonResponse(result[0].mini_serializer(),  safe=False, status=status.HTTP_200_OK)
+    # TO DO issue - handle no result-     
 
 
 @login_required
@@ -461,6 +458,25 @@ def search_memory(request, display_name):
             response.append(result)
 
     return JsonResponse(response, safe=False, status=status.HTTP_200_OK)
+
+
+@login_required
+def get_review_list(request, display_name):
+    user = request.user
+    
+    # Get reviews list
+    if display_name == 'null':
+        review_list = Review.objects.filter(user=user).order_by('-date_tasted')
+    else:
+        try:
+            review_list = Review.objects.filter(user.user, lwin_display_name=display_name).order_by('-date_tasted')
+        except: 
+            return JsonResponse({"error": "Sorry, no results found."})
+
+    return JsonResponse([review.serializer() for review in review_list], safe=False, status=status.HTTP_200_OK)
+
+
+
 
 
 
