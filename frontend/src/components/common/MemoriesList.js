@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { format } from 'date-fns';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
@@ -76,21 +77,38 @@ const useStyles = makeStyles((theme) => ({
     },
     list_item_avatar: {
         fontWeight: 500,
-        //fontSize: theme.spacing(2),   
-        //color: mystyleprops => mystyleprops.colorSchemaA,       
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]: {
+            fontSize: theme.spacing(1.75),
+        },          
+    },
+    list_item_avatar_size: {
+        fontSize: theme.spacing(1.75),
+        [theme.breakpoints.down('xs')]: {
+            fontSize: theme.spacing(1.5),
+        },          
     },
     list_item_title: {
         fontWeight: 500,
-        //fontSize: theme.spacing(2),    
-        //color: mystyleprops => mystyleprops.colorSchemaA,       
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]: {
+            fontSize: theme.spacing(1.75),
+        },           
     },
     list_item_subheader: {
         fontWeight: 400,
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]: {
+            fontSize: theme.spacing(1.75),
+        }, 
     },
     list_item_color_icon: { 
-        //margin: theme.spacing(1,1.5,0,0),
-        height: theme.spacing(1.25),
-        width: theme.spacing(1.25),
+        height: theme.spacing(1.5),
+        width: theme.spacing(1.5),
+        [theme.breakpoints.down('xs')]: {
+            height: theme.spacing(1.25),
+            width: theme.spacing(1.25),
+        }, 
     },
 }));
 
@@ -147,10 +165,10 @@ export default function MemoriesList(props) {
                 >
                     <ListItemAvatar>
                         <div className={classes.list_item_avatar_container}>
-                            <Typography variant="subtitle2" classeName={classes.list_item_avatar}>
+                            <Typography variant="subtitle2" className={classes.list_item_avatar}>
                                 {memory.bottle.vintage}
                             </Typography>
-                            <Typography variant="caption">
+                            <Typography variant="caption" className={classes.list_item_avatar_size}>
                                 <WineGlassIcon 
                                 className={classes.list_item_color_icon}
                                 // memory icon color  
@@ -166,9 +184,9 @@ export default function MemoriesList(props) {
                             {memory.bottle.display_name}
                         </Typography>    
                     }
-                    secondary={
+                    secondary={ 
                         <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
-                            {`${memory.bottle.colour} ${memory.bottle.region}, ${memory.bottle.country}`} 
+                            {`${memory.reason.split(" ", 1)} , ${format(new Date(memory.date_consumed), 'MMM d yyyy')} ${memory.has_review}`} 
                         </Typography>
                     } 
                     />    

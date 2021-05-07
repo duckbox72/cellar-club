@@ -61,21 +61,38 @@ const useStyles = makeStyles((theme) => ({
     },
     list_item_avatar: {
         fontWeight: 500,
-        //fontSize: theme.spacing(2),   
-        //color: mystyleprops => mystyleprops.colorSchemaA,       
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]: {
+            fontSize: theme.spacing(1.75),
+        },
+    list_item_avatar_size: {
+        fontSize: theme.spacing(1.75),
+        [theme.breakpoints.down('xs')]: {
+            fontSize: theme.spacing(1.5),
+        },          
+    },       
     },
     list_item_title: {
         fontWeight: 500,
-        //fontSize: theme.spacing(2),    
-        //color: mystyleprops => mystyleprops.colorSchemaA,       
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]: {
+            fontSize: theme.spacing(1.75),
+        },        
     },
     list_item_subheader: {
         fontWeight: 400,
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]: {
+            fontSize: theme.spacing(1.75),
+        }, 
     },
     list_item_color_icon: { 
-        //margin: theme.spacing(1,1.5,0,0),
-        height: theme.spacing(1.25),
-        width: theme.spacing(1.25),
+        height: theme.spacing(1.5),
+        width: theme.spacing(1.5),
+        [theme.breakpoints.down('xs')]: {
+            height: theme.spacing(1.25),
+            width: theme.spacing(1.25),
+        }, 
     },
 }));
 
@@ -134,7 +151,7 @@ export default function BottleList(props) {
                             <Typography variant="subtitle2" classeName={classes.list_item_avatar}>
                                 {bottle.vintage}
                             </Typography>
-                            <Typography variant="caption">
+                            <Typography variant="caption" className={classes.list_item_avatar_size}>
                                 <WineGlassIcon 
                                 className={classes.list_item_color_icon}
                                 // bottle icon color  
