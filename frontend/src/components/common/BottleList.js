@@ -21,7 +21,7 @@ import KitchenIcon from '@material-ui/icons/Kitchen';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import SortIcon from '@material-ui/icons/Sort';
 
-import { WineGlassIcon } from './SvgIcons';
+import { WineBottleIcon ,WineGlassIcon } from './SvgIcons';
 
 import brown from '@material-ui/core/colors/brown';
 
@@ -52,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(1),
     },
     icon_numof_bottles: { 
+        transform: 'rotate(315deg)',
         width: theme.spacing(2.75),
         height:theme.spacing(2.75), 
         color: mystyleprops => mystyleprops.colorSchemaA,
@@ -276,7 +277,7 @@ export default function BottleList(props) {
                 
 
                     <IconButton className={classes.iconbutton_numof_bottles}> 
-                        <Badge 
+                        <Badge
                         anchorOrigin={{
                             vertical: 'top',
                             horizontal: 'left',
@@ -285,7 +286,7 @@ export default function BottleList(props) {
                         badgeContent={bottleListLength} 
                         >
                             <Tooltip title={bottleName ? "Selected items" : "All items"}>
-                                <KitchenIcon className={classes.icon_numof_bottles} />
+                                <WineBottleIcon className={classes.icon_numof_bottles} />
                             </Tooltip>
                         </Badge>
                     </IconButton>

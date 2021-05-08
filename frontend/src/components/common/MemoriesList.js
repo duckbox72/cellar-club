@@ -201,7 +201,7 @@ export default function MemoriesList(props) {
                               </Tooltip>
                             }
 
-                            {memory.gathered !== 0
+                            {memory.gathered
                             ? <Tooltip title="Money gathered">
                                 <MonetizationOnIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
                               </Tooltip>
