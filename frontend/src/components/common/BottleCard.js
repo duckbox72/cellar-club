@@ -719,10 +719,13 @@ export default function BottleCard(props) {
     }
 
 
-    const handleDrinkSnackbarClose = (e) => {
+    const handleDrinkSnackbarClose = (e, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
         setDrinkSnackbarOpen(false);
-        
-        // TO DO -> redirect to memories page
+        window.scrollTo(0, 0);
+        props.history.push('/memories');
     }
 
 
@@ -731,9 +734,14 @@ export default function BottleCard(props) {
     }
 
 
-    const handleRemoveSnackbarClose = (e) => {
+    const handleRemoveSnackbarClose = (e, reason) => {
         setRemoveSnackbarOpen(false);
-        
+        if (reason === 'clickaway') {
+            return;
+        }
+        setRemoveSnackbarOpen(false);
+        window.scrollTo(0, 0);
+        props.history.push('/memories');
         // TO DO -> redirect to memories page
     }
     
