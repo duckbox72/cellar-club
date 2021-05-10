@@ -742,7 +742,6 @@ export default function BottleCard(props) {
         setRemoveSnackbarOpen(false);
         window.scrollTo(0, 0);
         props.history.push('/memories');
-        // TO DO -> redirect to memories page
     }
     
 
@@ -962,7 +961,8 @@ export default function BottleCard(props) {
                         
                             <Typography variant="body2" className={classes.info_text}>
                                 {bottle.date_added 
-                                ? format(new Date(bottle.date_added), 'MMM d yyyy') 
+                                ? new Date(bottle.date_added).toUTCString().slice(5, 16) 
+                                //? bottle.date_added
                                 : format(new Date(bottle.created), 'MMM d yyyy')
                                 }
                             </Typography>

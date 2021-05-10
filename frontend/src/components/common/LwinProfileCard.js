@@ -233,6 +233,13 @@ export default function LwinProfileCard(props) {
     };
 
 
+    // Toggle Bookmark --TO DO functionalities--
+    const handleBookmarkButtonClick = () => {
+        console.log("BOOKMARK CLICK");
+        console.log(new Date());
+    }
+
+
     // Add Bottle Form options
     const bottleSizes = getBottleSizesOptions();
     const quantities = getQuantityOptions();
@@ -481,9 +488,14 @@ export default function LwinProfileCard(props) {
             <div id="actions">
                 <Grid container spacing={1} className={classes.container_actions} alignItems="center">
                     
-                    <IconButton>
-                        <BookmarkBorderIcon/>
-                    </IconButton>
+                    <Tooltip title="Bookmark">
+                        <IconButton
+                        onClick={handleBookmarkButtonClick}
+                        >
+                            <BookmarkBorderIcon/>
+                        </IconButton>
+                    </Tooltip>
+                    
                     <IconButton >
                         <ShareIcon />
                     </IconButton>

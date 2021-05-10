@@ -106,7 +106,7 @@ class Bottle(models.Model):
 
     # auto entered data
     lwin11 = models.CharField(max_length=11,null=True, blank=True)
-    date_added = models.DateField(default=timezone.now, null=True, blank=True)
+    date_added = models.DateTimeField(null=True, blank=True)
     created = models.DateTimeField(default=timezone.now)
 
     def mini_serializer(self):
