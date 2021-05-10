@@ -13,7 +13,13 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import Collapse from '@material-ui/core/Collapse';
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
@@ -21,9 +27,6 @@ import Link from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Snackbar from '@material-ui/core/Snackbar';
-import Slider from '@material-ui/core/Slider'
-import Switch from '@material-ui/core/Switch'; 
-import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
@@ -43,9 +46,6 @@ import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 
 import StarOutline from '@material-ui/icons/StarOutline';
 import SwapVertIcon from '@material-ui/icons/SwapVert';
-import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
-import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
-import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
 import UndoIcon from '@material-ui/icons/Undo';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
@@ -217,6 +217,14 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(4),
         borderRadius: 20,
     },
+    alert_dialog: {
+        borderRadius: 20,
+    },
+    alert_button: { 
+        marginRight: theme.spacing(2),
+        marginBottom: theme.spacing(2),
+        borderRadius: 20,
+    },
 
     
    
@@ -228,8 +236,11 @@ export default function MemoryCard(props) {
     const darkMode = props.darkMode;
     const userProfile = props.userProfile;
     const memory = props.memory;
+    
     const [isFavorite, setIsFavorite] = useState(memory.bottle.favorite);
     
+    const [undoRemoveAlertOpen, setUndoRemoveAlertOpen] = useState(false);
+
 
     const theme = useTheme(); 
     const mystyleprops = {
@@ -262,11 +273,18 @@ export default function MemoryCard(props) {
 
 
     const handleSeeReviewClick = (e) => {
-        console.log("DRINK CLICK")
-        console.log(memory.has_review)
+        console.log("SEE REVIEW CLICK")
     }
 
+   
     const handleUndoRemoveButtonClick = (e) => {
+        setUndoRemoveAlertOpen(true);
+        console.log("UNDO REMOVE CLICK")
+    }
+
+    
+    const handleUndoRemoveAlertClose = (e) => {
+        setUndoRemoveAlertOpen(false);
         console.log("UNDO REMOVE CLICK")
     }
 
@@ -326,23 +344,64 @@ export default function MemoryCard(props) {
                             </IconButton>
                         </Tooltip>
 
-                        <Tooltip title="Undo Remove Bottle">    
-                            <IconButton 
-                            onClick={handleUndoRemoveButtonClick} 
-                            className={classes.undo_remove_iconbutton}
+                        <div>
+                            <Tooltip title="Undo Remove Bottle">    
+                                <IconButton 
+                                onClick={handleUndoRemoveButtonClick} 
+                                className={classes.undo_remove_iconbutton}
+                                >
+                                    <>
+                                        <WineBottleIcon className={classes.undo_remove_iconbutton_icon}/>
+                                        <UndoIcon 
+                                        style={{
+                                            width: theme.spacing(1.75),
+                                            marginLeft: -theme.spacing(0.25),
+                                            marginTop: -theme.spacing(1.5),   
+                                        }}
+                                        />
+                                    </>
+                                </IconButton>
+                            </Tooltip>
+
+                            <Dialog
+                                className={classes.alert_dialog}
+                                open={undoRemoveAlertOpen}
+                                onClose={handleUndoRemoveAlertClose}
+                                aria-labelledby="undo-remove"
                             >
-                                <>
-                                    <WineBottleIcon className={classes.undo_remove_iconbutton_icon}/>
-                                    <UndoIcon 
-                                    style={{
-                                        width: theme.spacing(1.75),
-                                        marginLeft: -theme.spacing(0.25),
-                                        marginTop: -theme.spacing(1.5),   
-                                    }}
-                                    />
-                                </>
-                            </IconButton>
-                        </Tooltip>
+                                <DialogTitle id="undo-remove">
+                                    {"Undo remove bottle?"}
+                                </DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText id="alert-dialog-description">
+                                        This will delete this memory entry and return bottle to my collection.
+                                    </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button
+                                    className={classes.alert_button} 
+                                    disableElevation
+                                    variant="contained" 
+                                    startIcon={<CloseIcon />}
+                                    onClick={handleUndoRemoveAlertClose} 
+                                    color="default"
+                                    >
+                                        Cancel
+                                    </Button>
+                                    <Button 
+                                    className={classes.alert_button}
+                                    disableElevation
+                                    variant="contained" 
+                                    startIcon={<PlaylistAddCheckIcon />}
+                                    onClick={handleUndoRemoveAlertClose} 
+                                    color={ darkMode ? "secondary" : "primary" }
+                                    autoFocus
+                                    >
+                                        Submit
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+                        </div>
 
                         <Tooltip title="Find on Wine-Searcher">              
                             <IconButton
