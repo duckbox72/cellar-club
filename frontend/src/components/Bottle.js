@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Collection(props) {
+export default function Bottle(props) {
   
     const userProfile = (getUserProfile());
 

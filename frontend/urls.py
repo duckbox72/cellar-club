@@ -7,6 +7,7 @@ urlpatterns = [
     path('collection', index),
     path('bottle', index),
     path('memories', index),
+    path('memory', index),
     
     
     # AUTH Routes
