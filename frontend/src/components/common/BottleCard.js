@@ -308,6 +308,7 @@ const useStyles = makeStyles((theme) => ({
     },
     drink_auxiliar_attention_icon: {
         marginTop: -theme.spacing(0.5),
+        marginLeft: theme.spacing(0.25),
         height: theme.spacing(1.75),
         width: theme.spacing(1.75),
         '&:hover': {

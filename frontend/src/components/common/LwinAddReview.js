@@ -96,6 +96,7 @@ const useStyles = makeStyles(theme => ({
     },
     auxiliar_attention_icon: {
         marginTop: -theme.spacing(0.5),
+        marginLeft: theme.spacing(0.25),
         height: theme.spacing(1.75),
         width: theme.spacing(1.75),
         '&:hover': {
@@ -118,6 +119,20 @@ const useStyles = makeStyles(theme => ({
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(4),
         borderRadius: 20,
+    },
+    snackbar: {
+        width: '100%',
+    },
+    alert_container: {
+        margin: theme.spacing(2, 6, 2, 2),
+        [theme.breakpoints.down('xs')]: {
+            margin: theme.spacing(2, 6, 2, 0),
+        },
+    },
+    alert: {
+        width: '100%',
+        borderRadius: 10,
+        //margin: theme.spacing(4, 2),
     },
 }));
 
@@ -145,6 +160,9 @@ export default function LwinAddReview(props) {
 
     const [selectedScore, setSelectedScore] = useState(0);
     const [tastingNote, setTastingNote] = useState(null);
+
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarSeverity, setSnackbarSeverity] = useState('');
 
 
     const handleSelectedVintageAutocompleteChange = (value) => {
@@ -206,9 +224,34 @@ export default function LwinAddReview(props) {
         .then(response => response.json())
         .then(result => {
             console.log(result);
+
+            if (result.success) {
+                setSnackbarSeverity('success')
+                
+            } else {
+                setSnackbarSeverity('error')
+            }
+            handleSnackbarCall();
         });    
     }
 
+
+    const handleSnackbarCall = () => {
+        setSnackbarOpen(true);
+    }
+
+
+    const handleSnackbarClose = (e, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setSnackbarOpen(false);
+
+        // TO DO REDIRECT 
+        //window.scrollTo(0, 0);
+        //props.history.push('/memories');
+    }
+    
 
     return (
         <>
@@ -429,6 +472,30 @@ export default function LwinAddReview(props) {
                         Submit
                     </Button>
                 </Grid>
+
+                <Snackbar 
+                        className={classes.snackbar}
+                        open={snackbarOpen}
+                        autoHideDuration={1000}
+                        onClose={handleSnackbarClose}
+                        >
+                            <Grid className={classes.alert_container} container spacing={1} justify="center"> 
+                                <Grid item xs={12} sm={10} md={8}>
+                                <Alert
+                                className={classes.alert}
+                                elevation={6} 
+                                variant="filled" 
+                                onClose={handleSnackbarClose} 
+                                severity={snackbarSeverity}
+                                >
+                                    {snackbarSeverity === 'success'
+                                    ? 'SUCCESS - Review added to reviews.'
+                                    : 'Error - Please try again.'
+                                    } 
+                                </Alert>
+                                </Grid>
+                            </Grid>
+                        </Snackbar>
 
                 
             </Grid>
