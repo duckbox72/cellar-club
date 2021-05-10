@@ -176,6 +176,7 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(0.5,2,0,2.5),
         color: mystyleprops => mystyleprops.colorSchemaA,
         fontSize: theme.spacing(2),
+        //fontWeight: 400,
     },
     info_link: {
         marginTop: theme.spacing(1),
@@ -838,7 +839,7 @@ export default function BottleCard(props) {
                 </Typography>}
             subheader={
                 <Typography variant="body2" className={classes.header_subheader} color="textSecondary">
-                    {bottle.region}, {bottle.country}
+                    {bottle.colour ? <WineGlassIcon className={classes.info_color_icon}/> : ''} {bottle.colour ? bottle.colour : ''} {bottle.region}, {bottle.country}
                 </Typography>
             }  
             />
@@ -1034,7 +1035,7 @@ export default function BottleCard(props) {
                                 Note
                             </Typography>
                         
-                            <Typography variant="body2" className={classes.info_text}>
+                            <Typography variant="body2" className={classes.info_text} style={{textAlign: 'justify'}}>
                                 {bottle.note ? bottle.note : 'n/a'}
                             </Typography>
                         </ListItem>
