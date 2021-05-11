@@ -142,7 +142,8 @@ def get_gws_data(request, lwin):
 @login_required
 def get_lwin(request, display_name):
     try:
-        result = Lwin.objects.get(display_name=display_name)
+        results = Lwin.objects.filter(display_name=display_name)
+        result = results[0]
     except:
         return JsonResponse({"message": "Sorry, no results found."})
     
@@ -388,18 +389,21 @@ def add_review(request):
             display_name = None
     else:
         bottle = None
-        display_name = None
+        display_name = data['display_name']
 
     review = Review(
         user = user,
         date_tasted = date_tasted,
+        display_name = display_name,
 
         bottle = bottle,
-        display_name = display_name,
+        
         lwin_lwin = data['lwin_lwin'],
         lwin_vintage = data['lwin_vintage'],
-        lwin_display_name = data['lwin_display_name'],
         lwin_colour = data['lwin_colour'],
+        lwin_country = data['lwin_country'],
+        lwin_region = data['lwin_region'],
+
 
         is_public = data['is_public'],
         like_status = data['like_status'],
@@ -475,7 +479,7 @@ def delete_memory_unconsume_bottle(request, memory_id):
 
 
 @login_required
-def get_review_list(request, display_name):
+def get_reviews_list(request, display_name):
     user = request.user
     
     # Get reviews list

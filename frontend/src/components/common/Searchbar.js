@@ -257,7 +257,7 @@ export default function Searchbar(props) {
             setToggler(false);
         }   
         
-        if (searchLocation == 'Search My Review' && toggler) {
+        if (searchLocation == 'Search My Reviews' && toggler) {
             // default reviews list
             getReviewsList(null); 
             setToggler(false);

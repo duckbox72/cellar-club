@@ -172,14 +172,14 @@ export default function ReviewsList(props) {
                     <ListItemAvatar>
                         <div className={classes.list_item_avatar_container}>
                             <Typography variant="subtitle2" className={classes.list_item_avatar}>
-                                {review.bottle.vintage}
+                                {review.vintage}
                             </Typography>
                             <Typography variant="caption" className={classes.list_item_avatar_size}>
                                 <WineGlassIcon 
                                 className={classes.list_item_color_icon}
                                 // memory icon color  
-                                style={review.bottle.colour === 'Red' ? {color: 'maroon'} : review.bottle.colour === 'White' ? {color: 'tan'} : review.bottle.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
-                                /> {review.bottle.size}
+                                style={review.colour === 'Red' ? {color: 'maroon'} : review.colour === 'White' ? {color: 'tan'} : review.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
+                                /> {review.size}
                             </Typography>
                         </div>
                     </ListItemAvatar>     
@@ -187,23 +187,23 @@ export default function ReviewsList(props) {
                     
                     primary={
                         <Typography variant="body2" className={classes.list_item_title}>
-                            {review.bottle.display_name}
+                            {review.display_name}
                         </Typography>    
                     }
                     secondary={ 
                         <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
-                            {`${review.reason.split(" ", 1)}, ${new Date(review.date_consumed).toUTCString().slice(5, 16)}`} 
+                            {`${review.score}, ${new Date(review.date_tasted).toUTCString().slice(5, 16)}`} 
                             {' '}
-                            {review.private_note
-                            ? <Tooltip title="Private note">
+                            {review.tasting_note
+                            ? <Tooltip title="Tasting note">
                                 <CommentIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
                               </Tooltip>
-                            : <Tooltip title="No private Note">
+                            : <Tooltip title="No Tasting Note">
                                 <CommentOutlinedIcon className={classes.list_item_subheader_icon} />
                               </Tooltip>
                             }
 
-                            {review.gathered
+                            {review.is_public
                             ? <Tooltip title="Money gathered">
                                 <MonetizationOnIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
                               </Tooltip>
@@ -212,7 +212,7 @@ export default function ReviewsList(props) {
                               </Tooltip>
                             }
 
-                            {review.has_review
+                            {review.is_public
                             ? <Tooltip title="Review">
                                 <StarIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
                               </Tooltip>
@@ -315,8 +315,8 @@ export default function ReviewsList(props) {
                     onClose={handleSortByMenuClose}
                     >
                         <MenuItem dense onClick={handleSortRecentlyAddedClick}>Recently Reviewed</MenuItem>
-                        <MenuItem dense onClick={handleSortNameAZClick}>{displayName === null ? 'Name A-Z' : 'Vintage Up'}</MenuItem>
-                        <MenuItem dense onClick={handleSortNameZAClick}>{displayName === null ? 'Name Z-A' : 'Vintage Down'}</MenuItem>
+                        <MenuItem dense onClick={handleSortNameAZClick}>{reviewDisplayName === null ? 'Name A-Z' : 'Vintage Up'}</MenuItem>
+                        <MenuItem dense onClick={handleSortNameZAClick}>{reviewDisplayName === null ? 'Name Z-A' : 'Vintage Down'}</MenuItem>
                     </Menu>
 
                     <Typography variant={'button'} className={classes.sort_by_label}>

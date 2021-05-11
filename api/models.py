@@ -218,10 +218,10 @@ class Review(models.Model):
             country = bottle.country
             region = bottle.region
         else:
-            vintage = self.lwin.vintage
-            colour = self.lwin.colour
-            country = self.lwin.country
-            region = self.lwin.region
+            vintage = self.lwin_vintage
+            colour = self.lwin_colour
+            country = self.lwin_country
+            region = self.lwin_region
 
 
         return {
