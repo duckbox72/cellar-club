@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { format } from 'date-fns';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
+import brown from '@material-ui/core/colors/brown';
+
 import Badge from '@material-ui/core/Badge';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
+
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -17,13 +22,17 @@ import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
-import KitchenIcon from '@material-ui/icons/Kitchen';
+import CommentIcon from '@material-ui/icons/Comment';
+import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import PostAddIcon from '@material-ui/icons/PostAdd';
 import SortIcon from '@material-ui/icons/Sort';
+import StarIcon from '@material-ui/icons/Star';
+import StarOutlinedIcon from '@material-ui/icons/StarOutline';
 
-import { WineBottleIcon ,WineGlassIcon } from './SvgIcons';
-
-import brown from '@material-ui/core/colors/brown';
+import { GlassCheersIcon, WineBottleIcon,WineGlassIcon } from './SvgIcons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -42,21 +51,24 @@ const useStyles = makeStyles((theme) => ({
     },
     sort_by_label: {
         fontSize: theme.spacing(2),
-        margin: theme.spacing(1,1,1,0),
+        margin: theme.spacing(1,0,1,0),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
-    iconbutton_numof_bottles: {
+
+    iconbutton_consumed: {
         width: theme.spacing(6),
         height:theme.spacing(6), 
         marginLeft: 'auto',
         marginRight: theme.spacing(1),
     },
-    icon_numof_bottles: { 
-        transform: 'rotate(315deg)',
+    icon_numof_consumed: {
         width: theme.spacing(2.75),
         height:theme.spacing(2.75), 
+        //transform: 'rotate(270deg)',
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
+    
+    
     list_item_avatar_container: {
         textAlign: 'center', 
         marginLeft: -theme.spacing(2)
@@ -66,27 +78,13 @@ const useStyles = makeStyles((theme) => ({
         fontSize: theme.spacing(2),
         [theme.breakpoints.down('xs')]: {
             fontSize: theme.spacing(1.75),
-        },
+        },          
+    },
     list_item_avatar_size: {
         fontSize: theme.spacing(1.75),
         [theme.breakpoints.down('xs')]: {
             fontSize: theme.spacing(1.5),
         },          
-    },       
-    },
-    list_item_title: {
-        fontWeight: 400,
-        fontSize: theme.spacing(2),
-        [theme.breakpoints.down('xs')]: {
-            fontSize: theme.spacing(1.75),
-        },        
-    },
-    list_item_subheader: {
-        fontWeight: 400,
-        fontSize: theme.spacing(2),
-        [theme.breakpoints.down('xs')]: {
-            fontSize: theme.spacing(1.75),
-        }, 
     },
     list_item_color_icon: { 
         height: theme.spacing(1.5),
@@ -96,18 +94,39 @@ const useStyles = makeStyles((theme) => ({
             width: theme.spacing(1.25),
         }, 
     },
+    list_item_title: {
+        fontWeight: 400,
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]: {
+            fontSize: theme.spacing(1.75),
+        },           
+    },
+    list_item_subheader: {
+        fontWeight: 400,
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]: {
+            fontSize: theme.spacing(1.75),
+        }, 
+        //color: mystyleprops => mystyleprops.colorSchemaA,
+    },
+    list_item_subheader_icon:{
+        width: theme.spacing(1.75),
+        height: theme.spacing(1.75),
+        margin: theme.spacing(0, 0.5),
+    },
 }));
 
 
-export default function BottleList(props) {
+export default function ReviewsList(props) {
 
     const darkMode = props.darkMode;
-    const bottleName = props.bottleName;
-    const bottleList = props.bottleList != null ? props.bottleList : [];
-    const bottleListLength = props.bottleListLength != null ? props.bottleListLength : 0;
+    const reviewDisplayName = props.reviewDisplayName;
+    const reviewsList = props.reviewsList != null ? props.reviewsList : [];
+    const reviewsListLength = props.reviewsListLength != null ? props.reviewsListLength : 0;
     
+
     const [sortByMenuAnchor, setSortByMenuAnchor] = useState(null);
-    const [sortByLabel, setSortByLabel] = useState('Recently Added')
+    const [sortByLabel, setSortByLabel] = useState('Recently Reviewed')
 
 
     const theme = useTheme(); 
@@ -118,46 +137,49 @@ export default function BottleList(props) {
     const classes = useStyles(mystyleprops);
 
     
-    const handleItemClick = (bottle) => {
+    const handleItemClick = (review) => {
+        /*
         window.scrollTo(0, 0);
         props.history.push({
-            pathname: '/bottle',
+            pathname: '/review',
             //search: '?query=abc',
-            state: { bottle: bottle }
+            state: { review: review }
         });
+        */
+
     }
 
 
-    const handleItemActionClick = (bottle) => {
+    const handleItemActionClick = (review) => {
         window.scrollTo(0, 0);
         props.history.push({
-            pathname: '/bottle',
+            pathname: '/review',
             //search: '?query=abc',
-            state: { bottle: bottle }
+            state: { review: review }
         });
     }
     
 
-    const bottleListItems = (bottles) => {
-        if (bottles) {
-            return bottles.map(bottle => (
+    const reviewsListItems = (reviewsList) => {
+        if (reviewsList) {
+            return reviewsList.map(review => (
                 <ListItem 
                 button 
-                key={bottle.id} 
-                onClick={() => handleItemClick(bottle)}
+                key={review.id} 
+                onClick={() => handleItemClick(review)}
                 divider
                 >
                     <ListItemAvatar>
                         <div className={classes.list_item_avatar_container}>
-                            <Typography variant="subtitle2" classeName={classes.list_item_avatar}>
-                                {bottle.vintage}
+                            <Typography variant="subtitle2" className={classes.list_item_avatar}>
+                                {review.bottle.vintage}
                             </Typography>
                             <Typography variant="caption" className={classes.list_item_avatar_size}>
                                 <WineGlassIcon 
                                 className={classes.list_item_color_icon}
-                                // bottle icon color  
-                                style={bottle.colour === 'Red' ? {color: 'maroon'} : bottle.colour === 'White' ? {color: 'tan'} : bottle.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
-                                /> {bottle.size}
+                                // memory icon color  
+                                style={review.bottle.colour === 'Red' ? {color: 'maroon'} : review.bottle.colour === 'White' ? {color: 'tan'} : review.bottle.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
+                                /> {review.bottle.size}
                             </Typography>
                         </div>
                     </ListItemAvatar>     
@@ -165,19 +187,46 @@ export default function BottleList(props) {
                     
                     primary={
                         <Typography variant="body2" className={classes.list_item_title}>
-                            {bottle.display_name}
+                            {review.bottle.display_name}
                         </Typography>    
                     }
-                    secondary={
+                    secondary={ 
                         <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
-                            {`${bottle.colour} ${bottle.region}, ${bottle.country}`} 
+                            {`${review.reason.split(" ", 1)}, ${new Date(review.date_consumed).toUTCString().slice(5, 16)}`} 
+                            {' '}
+                            {review.private_note
+                            ? <Tooltip title="Private note">
+                                <CommentIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                              </Tooltip>
+                            : <Tooltip title="No private Note">
+                                <CommentOutlinedIcon className={classes.list_item_subheader_icon} />
+                              </Tooltip>
+                            }
+
+                            {review.gathered
+                            ? <Tooltip title="Money gathered">
+                                <MonetizationOnIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                              </Tooltip>
+                            : <Tooltip title="No money gathered">
+                                <MonetizationOnOutlinedIcon className={classes.list_item_subheader_icon} />
+                              </Tooltip>
+                            }
+
+                            {review.has_review
+                            ? <Tooltip title="Review">
+                                <StarIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                              </Tooltip>
+                            : <Tooltip title="No review">
+                                <StarOutlinedIcon className={classes.list_item_subheader_icon} />
+                              </Tooltip>
+                            }
                         </Typography>
                     } 
                     />    
                     <ListItemSecondaryAction>
                         <IconButton 
-                        key={bottle.id} 
-                        onClick={() => handleItemActionClick(bottle)}
+                        key={review.id} 
+                        onClick={() => handleItemActionClick(review)}
                         >
                             <MoreHorizIcon />
                         </IconButton>
@@ -186,7 +235,6 @@ export default function BottleList(props) {
             ));
         }     
     };
-
 
 
     const handleSortByMenuClick = (event) => {
@@ -200,21 +248,20 @@ export default function BottleList(props) {
 
 
     const handleSortRecentlyAddedClick = (event) => {
-        bottleList.sort((a,b) => (a.created < b.created) ? 1 : -1);
-        setSortByLabel('Recently Added');
+        reviewsList.sort((a,b) => (a.date_tasted < b.date_tasted) ? 1 : -1);
+        setSortByLabel('Recently Reviewed');
         handleSortByMenuClose();
     }
     
     // sort  increase display_name  increase date order
     const handleSortNameAZClick = (event) => {
-        bottleList.sort((a,b) => (a.display_name > b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage > b.vintage) ? 1 : -1) : -1);
+        reviewsList.sort((a,b) => (a.display_name > b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage > b.vintage) ? 1 : -1) : -1);
         
-        if (bottleName === null) {
+        if (reviewDisplayName === null) {
             setSortByLabel('Name A-Z');
             
         } else {
             setSortByLabel('Vintage Up')
-
         }
 
         handleSortByMenuClose();
@@ -223,12 +270,12 @@ export default function BottleList(props) {
     // sort  decrease display_name decrease date order
     const handleSortNameZAClick = (event) => {   
         
-        if (bottleName === null) {
-        bottleList.sort((a,b) => (a.display_name < b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage > b.vintage) ? 1 : -1) : -1)
-        setSortByLabel('Name Z-A');
+        if (reviewDisplayName === null) {
+            reviewsList.sort((a,b) => (a.display_name < b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage > b.vintage) ? 1 : -1) : -1)
+            setSortByLabel('Name Z-A');
         
         } else {
-            bottleList.sort((a,b) => (a.display_name < b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage < b.vintage) ? 1 : -1) : -1)
+            reviewsList.sort((a,b) => (a.display_name < b.display_name) ? 1 : (a.display_name === b.display_name) ? ((a.vintage < b.vintage) ? 1 : -1) : -1)
             setSortByLabel('Vintage Down');
         }
 
@@ -242,9 +289,10 @@ export default function BottleList(props) {
     
 
     useEffect(() => {
-        setSortByLabel('Recently Added')
-    }, [bottleName],);
-    
+        setSortByLabel('Recently Reviewed')
+    }, [reviewDisplayName],);
+
+
     return (
         <Paper className={classes.list_paper} elevation={3}>
             <ListItem divider>
@@ -266,39 +314,38 @@ export default function BottleList(props) {
                     open={Boolean(sortByMenuAnchor)}
                     onClose={handleSortByMenuClose}
                     >
-                        <MenuItem dense onClick={handleSortRecentlyAddedClick}>Recently Added</MenuItem>
-                        <MenuItem dense onClick={handleSortNameAZClick}>{bottleName === null ? 'Name A-Z' : 'Vintage Up'}</MenuItem>
-                        <MenuItem dense onClick={handleSortNameZAClick}>{bottleName === null ? 'Name Z-A' : 'Vintage Down'}</MenuItem>
+                        <MenuItem dense onClick={handleSortRecentlyAddedClick}>Recently Reviewed</MenuItem>
+                        <MenuItem dense onClick={handleSortNameAZClick}>{displayName === null ? 'Name A-Z' : 'Vintage Up'}</MenuItem>
+                        <MenuItem dense onClick={handleSortNameZAClick}>{displayName === null ? 'Name Z-A' : 'Vintage Down'}</MenuItem>
                     </Menu>
 
-                    <Typography variant={'button'} className={classes.sort_by_label}>{sortByLabel}</Typography> 
+                    <Typography variant={'button'} className={classes.sort_by_label}>
+                        {sortByLabel}
+                    </Typography> 
                     
-                
-
-                    <IconButton className={classes.iconbutton_numof_bottles}> 
-                        <Badge
+                    <IconButton className={classes.iconbutton_consumed}>
+                        <Badge 
                         anchorOrigin={{
                             vertical: 'top',
                             horizontal: 'left',
                         }}
                         color={darkMode ? 'primary' : 'secondary'}
-                        badgeContent={bottleListLength} 
+                        badgeContent={reviewsListLength} 
                         >
-                            <Tooltip title={bottleName ? "Selected items" : "All items"}>
-                                <WineBottleIcon className={classes.icon_numof_bottles} />
-                            </Tooltip>
+                            <WineBottleIcon className={classes.icon_numof_consumed} />
                         </Badge>
                     </IconButton>
-                    
                 </Grid>
             </ListItem>
-            { bottleListLength === 0 ?
+
+            
+            { reviewsListLength === 0 ?
             <LinearProgress color={darkMode ? 'primary' : 'secondary'}/>
                 :
             <List onChange={handleListChange} className={classes.list_body} dense>                    
-                {bottleListItems(bottleList)}
+                {reviewsListItems(reviewsList)}
             </List>
             }
         </Paper>
     );
-} 
+}

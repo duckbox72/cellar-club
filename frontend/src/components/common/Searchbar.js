@@ -105,7 +105,7 @@ export default function Searchbar(props) {
     }
 
 
-    // MEMORIES SEARCH RELATED [consumption + review]
+    // MEMORIES SEARCH RELATED
     const getDisplayName = (value) => {
         fetch(`api/get_display_name/${value}`)
         .then((response) => response.json())
@@ -121,6 +121,27 @@ export default function Searchbar(props) {
             props.parentMemoriesListCallback(memories_list);
         });
     }
+
+
+    // REVIEW SEARCH RELATED
+    const getReviewDisplayName = (value) => {
+        fetch(`api/get_review_display_name/${value}`)
+        .then((response) => response.json())
+        .then(review => {
+            props.parentReviewDisplayNameCallback(review.display_name);
+        });  
+    }
+
+    const getReviewsList = (value) => {
+        fetch(`/api/get_reviews_list/${value}`)
+        .then(response => response.json())
+        .then(reviews_list => {
+            props.parentReviewsListCallback(reviews_list);
+        });
+    }
+
+
+
 
     
     const handleAutocompleteChange = (value) => {
@@ -231,10 +252,16 @@ export default function Searchbar(props) {
         }
         
         if (searchLocation == 'Search My Memories' && toggler) {
-            // default bottle list
+            // default memories list
             getMemoriesList(null); 
             setToggler(false);
-    }          
+        }   
+        
+        if (searchLocation == 'Search My Review' && toggler) {
+            // default reviews list
+            getReviewsList(null); 
+            setToggler(false);
+        }   
     })
 
     

@@ -20,7 +20,7 @@ import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ListIcon from '@material-ui/icons/List';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
-import ViewListOutlinedIcon from '@material-ui/icons/ViewListOutlined';
+import StarOutlinedIcon from '@material-ui/icons/StarOutline';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -138,6 +138,13 @@ export default function DrawerMenu(props) {
             <EventIcon className={classes.iconButton} />
           </ListItemIcon>
           <ListItemText primary={"My Memories"} />
+        </ListItem>
+
+        <ListItem button key="memories" to="/reviews" component={Link}>
+          <ListItemIcon>
+            <StarOutlinedIcon className={classes.iconButton} />
+          </ListItemIcon>
+          <ListItemText primary={"My Reviews"} />
         </ListItem>
 
         <ListItem button key="signout" onClick={handleSignOutButton}>

@@ -120,7 +120,6 @@ const useStyles = makeStyles((theme) => ({
 export default function MemoriesList(props) {
 
     const darkMode = props.darkMode;
-    const userProfile = props.userProfile;
     const displayName = props.displayName;
     const memoriesList = props.memoriesList != null ? props.memoriesList : [];
     const memoriesListLength = props.memoriesListLength != null ? props.memoriesListLength : 0;
@@ -246,7 +245,7 @@ export default function MemoriesList(props) {
 
 
     const handleSortRecentlyAddedClick = (event) => {
-        memoriesList.sort((a,b) => (a.created < b.created) ? 1 : -1);
+        memoriesList.sort((a,b) => (a.date_consumed < b.date_consumed) ? 1 : -1);
         setSortByLabel('Recently Consumed');
         handleSortByMenuClose();
     }
