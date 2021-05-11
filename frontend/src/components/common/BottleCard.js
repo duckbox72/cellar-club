@@ -614,13 +614,16 @@ export default function BottleCard(props) {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                bottle_id: bottle.id,
                 date_tasted: selectedDate,
+                bottle_id: bottle.id,
+
+                display_name: bottle.display_name,
                 
                 lwin_lwin: null,
                 lwin_vintage: null,
-                lwin_display_name: null,
                 lwin_colour: null,
+                lwin_country: null,
+                lwin_region: null,
 
                 is_public: shareReview,
                 like_status: selectedRadio,

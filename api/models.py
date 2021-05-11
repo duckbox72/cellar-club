@@ -190,16 +190,19 @@ class Review(models.Model):
     user = models.ForeignKey("User", on_delete=models.CASCADE, null=False, blank=False)
     date_tasted = models.DateField(default=timezone.now, null=True, blank=True)
     
+    # In any case must be provided
+    display_name = models.CharField(max_length=256, null=True, blank=True,)
+
     # Case review comes from a collection bottle
     bottle = models.ForeignKey("Bottle", on_delete=models.DO_NOTHING, null=True, blank=True)
-    display_name = models.CharField(max_length=256, null=True, blank=True,)
 
     # Case review comes from a non collection bottle
     lwin_lwin = models.CharField(max_length=7, null=True, blank=True)
     lwin_vintage = models.CharField(max_length=4, null=True, blank=True)
-    lwin_display_name = models.CharField(max_length=256, null=True, blank=True)
     lwin_colour = models.CharField(max_length=16, null=True, blank=True)
-
+    lwin_country = models.CharField(max_length=64, null=True, blank=True)
+    lwin_region = models.CharField(max_length=64, null=True, blank=True)
+    
     is_public = models.BooleanField(default=True)
     like_status = models.CharField(max_length=64, default='like')
     score = models.CharField(max_length=3, null=True, blank=True)
@@ -207,20 +210,29 @@ class Review(models.Model):
     
     def serializer(self):
         if self.bottle:
-            bottle = self.bottle.serializer()
+            #bottle = self.bottle.serializer()
+            bottle = self.bottle
+            
+            vintage = bottle.vintage
+            colour = bottle.colour
+            country = bottle.country
+            region = bottle.region
+        else:
+            vintage = self.lwin.vintage
+            colour = self.lwin.colour
+            country = self.lwin.country
+            region = self.lwin.region
 
 
         return {
             "id": self.id,
             "date_tasted": self.date_tasted,
+            "display_name": self.display_name,
 
-            "bottle": bottle,
-            
-            "lwin_lwin": self.lwin_lwin,
-            "lwin_display_name": self.lwin_display_name,
-            "lwin_vintage": self.lwin_vintage,
-            "lwin_colour": self.lwin_colour,
-
+            "vintage": vintage,
+            "colour": colour,
+            "country": country,
+            "region" : region,
 
             "is_public": self.is_public,
             "like_status": self.like_status,

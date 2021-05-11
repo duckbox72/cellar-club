@@ -483,7 +483,7 @@ def get_review_list(request, display_name):
         review_list = Review.objects.filter(user=user).order_by('-date_tasted')
     else:
         try:
-            review_list = Review.objects.filter(user.user, lwin_display_name=display_name).order_by('-date_tasted')
+            review_list = Review.objects.filter(user=user, display_name=display_name).order_by('-date_tasted')
         except: 
             return JsonResponse({"error": "Sorry, no results found."})
 

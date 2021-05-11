@@ -206,13 +206,16 @@ export default function LwinAddReview(props) {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                bottle_id: null,
                 date_tasted: selectedDate,
-                
-                lwin_lwin: LwinData.lwin,
+                bottle_id: null,
+
+                display_name: LwinData.display_name,
+
                 lwin_vintage: selectedVintage,
-                lwin_display_name: LwinData.display_name,
+                lwin_lwin: LwinData.lwin,
                 lwin_colour: LwinData.colour,
+                lwin_country: LwinData.country,
+                lwin_region: LwinData.region,
 
                 is_public: shareReview,
                 like_status: selectedRadio,
