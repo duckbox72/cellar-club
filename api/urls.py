@@ -46,8 +46,6 @@ urlpatterns = [
     path('search_memory/<str:display_name>', views.search_memory, name="search_memory"),
     path('delete_memory_unconsume_bottle/<str:memory_id>', views.delete_memory_unconsume_bottle, name="delete_memory_unconsume_bottle"),
 
-
     path('get_reviews_list/<str:display_name>', views.get_reviews_list, name="get_reviews_list"),
-
-    
+   
 ]

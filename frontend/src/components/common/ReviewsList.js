@@ -62,8 +62,8 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(1),
     },
     icon_numof_consumed: {
-        width: theme.spacing(2.75),
-        height:theme.spacing(2.75), 
+        //width: theme.spacing(2.75),
+        //height:theme.spacing(2.75), 
         //transform: 'rotate(270deg)',
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
@@ -332,7 +332,7 @@ export default function ReviewsList(props) {
                         color={darkMode ? 'primary' : 'secondary'}
                         badgeContent={reviewsListLength} 
                         >
-                            <WineBottleIcon className={classes.icon_numof_consumed} />
+                            <StarOutlinedIcon className={classes.icon_numof_consumed} />
                         </Badge>
                     </IconButton>
                 </Grid>

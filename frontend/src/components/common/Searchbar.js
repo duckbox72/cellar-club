@@ -286,6 +286,7 @@ export default function Searchbar(props) {
                 <MenuItem dense onClick={() => props.history.push('/search')}>Search CellarClub</MenuItem>
                 <MenuItem dense onClick={() => props.history.push('/collection')}>Search Collection</MenuItem>
                 <MenuItem dense onClick={() => props.history.push('/memories')}>Search Memories</MenuItem>
+                <MenuItem dense onClick={() => props.history.push('/reviews')}>Search Reviews</MenuItem>
             </Menu>
                 <Divider className={classes.divider} orientation="vertical" />
             <Autocomplete  
