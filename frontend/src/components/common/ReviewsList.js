@@ -179,7 +179,7 @@ export default function ReviewsList(props) {
                                 className={classes.list_item_color_icon}
                                 // memory icon color  
                                 style={review.colour === 'Red' ? {color: 'maroon'} : review.colour === 'White' ? {color: 'tan'} : review.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
-                                /> {review.size}
+                                /> {review.score}/100
                             </Typography>
                         </div>
                     </ListItemAvatar>     

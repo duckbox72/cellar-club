@@ -249,10 +249,9 @@ export default function LwinAddReview(props) {
             return;
         }
         setSnackbarOpen(false);
-
-        // TO DO REDIRECT 
-        //window.scrollTo(0, 0);
-        //props.history.push('/memories');
+ 
+        window.scrollTo(0, 0);
+        props.history.push('/reviews');
     }
     
 

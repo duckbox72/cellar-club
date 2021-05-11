@@ -932,6 +932,7 @@ export default function LwinProfileCard(props) {
 
                 <Grid container className={classes.add_review_container_collapse} spacing={0} justify="space-evenly" >
                     <LwinAddReview 
+                    {...props}
                     darkMode={darkMode}
                     LwinData={LwinData}
                     cancelParentCallback={handleAddReviewCancelCallback}
