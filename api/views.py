@@ -461,6 +461,20 @@ def search_memory(request, display_name):
 
 
 @login_required
+def delete_memory_unconsume_bottle(request, memory_id):
+
+    memory = Consumption.objects.get(id=memory_id)
+    
+    bottle = memory.bottle
+    bottle.consumed = False
+    bottle.save()
+
+    memory.delete()
+
+    return JsonResponse({"success": "memory deleted and bottle returned to collection successfully"}, safe=False, status=status.HTTP_200_OK)
+
+
+@login_required
 def get_review_list(request, display_name):
     user = request.user
     

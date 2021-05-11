@@ -279,13 +279,22 @@ export default function MemoryCard(props) {
    
     const handleUndoRemoveButtonClick = (e) => {
         setUndoRemoveAlertOpen(true);
-        console.log("UNDO REMOVE CLICK")
+    }
+
+    const handleUndoRemoveAlertSubmit = (e) => {
+        fetch(`/api/delete_memory_unconsume_bottle/${memory.id}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        });
+        
+        setUndoRemoveAlertOpen(false);
+        props.history.push('/collection');
     }
 
     
-    const handleUndoRemoveAlertClose = (e) => {
+    const handleUndoRemoveAlertCancel = (e) => {
         setUndoRemoveAlertOpen(false);
-        console.log("UNDO REMOVE CLICK")
     }
 
 
@@ -366,7 +375,7 @@ export default function MemoryCard(props) {
                             <Dialog
                                 className={classes.alert_dialog}
                                 open={undoRemoveAlertOpen}
-                                onClose={handleUndoRemoveAlertClose}
+                                onClose={handleUndoRemoveAlertCancel}
                                 aria-labelledby="undo-remove"
                             >
                                 <DialogTitle id="undo-remove">
@@ -383,7 +392,7 @@ export default function MemoryCard(props) {
                                     disableElevation
                                     variant="contained" 
                                     startIcon={<CloseIcon />}
-                                    onClick={handleUndoRemoveAlertClose} 
+                                    onClick={handleUndoRemoveAlertCancel} 
                                     color="default"
                                     >
                                         Cancel
@@ -393,7 +402,7 @@ export default function MemoryCard(props) {
                                     disableElevation
                                     variant="contained" 
                                     startIcon={<PlaylistAddCheckIcon />}
-                                    onClick={handleUndoRemoveAlertClose} 
+                                    onClick={handleUndoRemoveAlertSubmit} 
                                     color={ darkMode ? "secondary" : "primary" }
                                     autoFocus
                                     >
