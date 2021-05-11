@@ -9,6 +9,8 @@ import Home from "./Home";
 import Landing from "./Landing";
 import Memories from "./Memories";
 import Memory from "./Memory";
+import Reviews from "./Reviews";
+import Review from "./Review";
 import Search from "./Search";
 import SignIn from "./Signin";
 import SignUp from "./Signup";
@@ -110,6 +112,18 @@ export default function App(props) {
                             isAuthenticated={isAuthenticated}
                             />} />
                             <Route path='/memory' render= {props => <Memory {...props} 
+                            darkMode={darkMode}
+                            parentDarkModeCallback={darkModeCallback}
+                            parentSignOutCallback={signOutCallback}
+                            isAuthenticated={isAuthenticated}
+                            />} />
+                            <Route path='/reviews' render= {props => <Reviews {...props} 
+                            darkMode={darkMode}
+                            parentDarkModeCallback={darkModeCallback}
+                            parentSignOutCallback={signOutCallback}
+                            isAuthenticated={isAuthenticated}
+                            />} />
+                            <Route path='/review' render= {props => <Review {...props} 
                             darkMode={darkMode}
                             parentDarkModeCallback={darkModeCallback}
                             parentSignOutCallback={signOutCallback}

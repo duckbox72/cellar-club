@@ -8,6 +8,8 @@ urlpatterns = [
     path('bottle', index),
     path('memories', index),
     path('memory', index),
+    path('reviews', index),
+    path('review', index),
     
     
     # AUTH Routes
