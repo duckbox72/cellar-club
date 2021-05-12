@@ -194,15 +194,15 @@ const useStyles = makeStyles((theme) => ({
     info_button: { 
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(4),
-        borderRadius: 20,
+        borderRadius: 10,
     },
     alert_dialog: {
-        borderRadius: 20,
+        borderRadius: 10,
     },
     alert_button: { 
         marginRight: theme.spacing(2),
         marginBottom: theme.spacing(2),
-        borderRadius: 20,
+        borderRadius: 10,
     },  
 }));
 
@@ -539,7 +539,7 @@ export default function MemoryCard(props) {
                             color={ darkMode ? "secondary" : "primary" } 
                             startIcon={<ArrowBackIcon />}
                             >    
-                                Back to memories
+                                Back
                             </Button>
                         </Grid>
                     </Grid> 

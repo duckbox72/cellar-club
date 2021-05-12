@@ -166,7 +166,7 @@ const useStyles = makeStyles((theme) => ({
     },
     button: { 
         margin: theme.spacing(1),
-        borderRadius: 20,
+        borderRadius: 10,
     },
     
     snackbar: {

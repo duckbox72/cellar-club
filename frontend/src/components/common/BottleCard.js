@@ -222,7 +222,7 @@ const useStyles = makeStyles((theme) => ({
     info_button: { 
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(4),
-        borderRadius: 20,
+        borderRadius: 10,
     },
 
     drink_card: {
@@ -331,7 +331,7 @@ const useStyles = makeStyles((theme) => ({
     drink_button: { 
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(4),
-        borderRadius: 20,
+        borderRadius: 10,
         //backdropFilter: 'brightness(95%)',
     },
     drink_snackbar: {
@@ -410,7 +410,7 @@ const useStyles = makeStyles((theme) => ({
     remove_button: { 
         marginTop: theme.spacing(3),
         marginBottom: theme.spacing(4),
-        borderRadius: 20,
+        borderRadius: 10,
     },
     remove_snackbar: {
         width: '100%',

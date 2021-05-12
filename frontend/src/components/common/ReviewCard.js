@@ -194,15 +194,15 @@ const useStyles = makeStyles((theme) => ({
     info_button: { 
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(4),
-        borderRadius: 20,
+        borderRadius: 10,
     },
     alert_dialog: {
-        borderRadius: 20,
+        borderRadius: 10,
     },
     alert_button: { 
         marginRight: theme.spacing(2),
         marginBottom: theme.spacing(2),
-        borderRadius: 20,
+        borderRadius: 10,
     },  
 }));
 
@@ -531,7 +531,7 @@ export default function ReviewCard(props) {
                             color={ darkMode ? "secondary" : "primary" } 
                             startIcon={<ArrowBackIcon />}
                             >    
-                                Back to reviews
+                                Back
                             </Button>
                         </Grid>
                     </Grid> 
