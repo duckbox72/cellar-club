@@ -37,7 +37,7 @@ import SwapVertIcon from '@material-ui/icons/SwapVert';
 import UndoIcon from '@material-ui/icons/Undo';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
-import { WineBottleIcon, WineGlassIcon, WineGlassAltIcon} from './SvgIcons';
+import { GlassCheersIcon, WineBottleIcon, WineGlassIcon, WineGlassAltIcon} from './SvgIcons';
 
 import brown from '@material-ui/core/colors/brown';
 
@@ -65,18 +65,18 @@ const useStyles = makeStyles((theme) => ({
     review_iconbutton_icon: {
         
     },
-    undo_remove_iconbutton: {
+    remove_iconbutton: {
         height: theme.spacing(6),
         width: theme.spacing(6),
     },
-    undo_remove_iconbuttonOpen: {
+    remove_iconbuttonOpen: {
         height: theme.spacing(6),
         width: theme.spacing(6),
 
         filter: 'opacity(50%)',
         backdropFilter: 'invert(10%) opacity(30%)',
     },
-    undo_remove_iconbutton_icon: {
+    remove_iconbutton_icon: {
         marginRight: -theme.spacing(0.5),
         height: theme.spacing(2.125),
         width: theme.spacing(2.125),
@@ -207,31 +207,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function MemoryCard(props) {
+export default function ReviewCard(props) {
 
     const darkMode = props.darkMode;
     const userProfile = props.userProfile;
-    const memory = props.memory;
+    const review = props.review;
     
-    const [isFavorite, setIsFavorite] = useState(memory.bottle.favorite);
+    const [isPublic, setIsPublic] = useState(review.is_public);
     
-    const [undoRemoveAlertOpen, setUndoRemoveAlertOpen] = useState(false);
+    const [removeAlertOpen, setRemoveAlertOpen] = useState(false);
 
 
     const theme = useTheme(); 
     const mystyleprops = {
         backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
         colorSchemaA: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
-        flagImage: `url(/static/images/country-flags/${memory.bottle.country.split(" ").join("-").toLowerCase()}.png)`,
-        infoColor: memory.bottle.colour === 'Red' ? 'maroon' : memory.bottle.colour === 'White' ? 'tan' : memory.bottle.colour === 'Rose' ? 'lightcoral' : 'grey',
+        flagImage: `url(/static/images/country-flags/${review.country.split(" ").join("-").toLowerCase()}.png)`,
+        infoColor: review.colour === 'Red' ? 'maroon' : review.colour === 'White' ? 'tan' : review.colour === 'Rose' ? 'lightcoral' : 'grey',
         
     }
     const classes = useStyles(mystyleprops);
 
-
-    const handleFavoriteButton= (e) => {
-        console.log("FAVORITE CLICK")
-        
+    // TO DO 
+    const handlePublicButton= (e) => {
+        console.log("PUBLIC CLICK")
+        /*
         fetch('/api/toggle_bottle_favorite', {
             method: 'POST',
             body: JSON.stringify({
@@ -244,53 +244,45 @@ export default function MemoryCard(props) {
             if (data.success) {
                 setIsFavorite(!isFavorite)
             }
-        })
+        })*/
     };
 
 
     const handleSeeReviewClick = (e) => {
         console.log("SEE REVIEW CLICK")
-        fetch(`/api/get_review/${memory.bottle.id}`)
-        .then(response => response.json())
-        .then(review => {
-            window.scrollTo(0, 0);
-            props.history.push({
-                pathname: '/review',
-                //search: '?query=abc',
-                state: { review: review }
-            });
-        });
     }
 
    
-    const handleUndoRemoveButtonClick = (e) => {
-        setUndoRemoveAlertOpen(true);
+    const handleRemoveButtonClick = (e) => {
+        setRemoveAlertOpen(true);
     }
 
-    const handleUndoRemoveAlertSubmit = (e) => {
-        fetch(`/api/delete_memory_unconsume_bottle/${memory.id}`)
+    const handleRemoveAlertSubmit = (e) => {
+        /*
+        fetch(`/api/delete_review/${review.id}`)
         .then(response => response.json())
         .then(data => {
             console.log(data);
         });
         
-        setUndoRemoveAlertOpen(false);
-        props.history.push('/collection');
+        setRemoveAlertOpen(false);
+        props.history.push('/reviews');
+        */
     }
 
     
-    const handleUndoRemoveAlertCancel = (e) => {
-        setUndoRemoveAlertOpen(false);
+    const handleRemoveAlertCancel = (e) => {
+        setRemoveAlertOpen(false);
     }
 
 
     const handleVivinoButton = () => {
-        window.location.href = `https://vivino.com/search/wines?q=${memory.bottle.display_name}`;
+        window.location.href = `https://vivino.com/search/wines?q=${review.display_name}`;
     };
 
 
     const handleWineSearcherButton = () => {
-        window.location.href = `https://wine-searcher.com/find/${memory.bottle.display_name}`;
+        window.location.href = `https://wine-searcher.com/find/${review.display_name}`;
     };
 
 
@@ -306,24 +298,24 @@ export default function MemoryCard(props) {
                 <div id="actions" className={classes.actions_container}>
                     <Grid container spacing={1} className={classes.container_actions} alignItems="center">
                         {
-                            isFavorite ? 
-                            <Tooltip title="Remove from Favorites">
-                                <IconButton onClick={handleFavoriteButton}>
-                                        <FavoriteIcon color="error" />
+                            isPublic ? 
+                            <Tooltip title="Is public private status">
+                                <IconButton onClick={handlePublicButton}>
+                                        <PeopleIcon  />
                                 </IconButton>
                             </Tooltip>
                             :
-                            <Tooltip title="Add to Favorites">
-                                <IconButton onClick={handleFavoriteButton}>
-                                        <FavoriteBorderIcon />
+                            <Tooltip title="Toggle public/private status">
+                                <IconButton onClick={handlePublicButton}>
+                                        <PersonIcon />
                                 </IconButton>
                             </Tooltip>
                         }
 
                         <Tooltip title="See tasting review">
                             <IconButton 
-                            disabled={!memory.has_review}
-                            onClick={handleSeeReviewClick} 
+                            //disabled={!memory.has_review}
+                            //onClick={handleSeeReviewClick} 
                             className={classes.review_iconbutton}
                             >
                                 <>
@@ -340,13 +332,13 @@ export default function MemoryCard(props) {
                         </Tooltip>
 
                         <div>
-                            <Tooltip title="Undo Remove Bottle">    
+                            <Tooltip title="Remove Review">    
                                 <IconButton 
-                                onClick={handleUndoRemoveButtonClick} 
-                                className={classes.undo_remove_iconbutton}
+                                onClick={handleRemoveButtonClick} 
+                                className={classes.remove_iconbutton}
                                 >
                                     <>
-                                        <WineBottleIcon className={classes.undo_remove_iconbutton_icon}/>
+                                        <WineBottleIcon className={classes.remove_iconbutton_icon}/>
                                         <UndoIcon 
                                         style={{
                                             width: theme.spacing(1.75),
@@ -360,16 +352,16 @@ export default function MemoryCard(props) {
 
                             <Dialog
                                 className={classes.alert_dialog}
-                                open={undoRemoveAlertOpen}
-                                onClose={handleUndoRemoveAlertCancel}
+                                open={removeAlertOpen}
+                                onClose={handleRemoveAlertCancel}
                                 aria-labelledby="undo-remove"
                             >
                                 <DialogTitle id="undo-remove">
-                                    {"Undo remove bottle?"}
+                                    {"Remove review?"}
                                 </DialogTitle>
                                 <DialogContent>
                                     <DialogContentText id="alert-dialog-description">
-                                        This will delete this memory entry and return bottle to my collection.
+                                        This will delete this review permanently.
                                     </DialogContentText>
                                 </DialogContent>
                                 <DialogActions>
@@ -378,7 +370,7 @@ export default function MemoryCard(props) {
                                     disableElevation
                                     variant="contained" 
                                     startIcon={<CloseIcon />}
-                                    onClick={handleUndoRemoveAlertCancel} 
+                                    onClick={handleRemoveAlertCancel} 
                                     color="default"
                                     >
                                         Cancel
@@ -388,7 +380,7 @@ export default function MemoryCard(props) {
                                     disableElevation
                                     variant="contained" 
                                     startIcon={<PlaylistAddCheckIcon />}
-                                    onClick={handleUndoRemoveAlertSubmit} 
+                                    onClick={handleRemoveAlertSubmit} 
                                     color={ darkMode ? "secondary" : "primary" }
                                     autoFocus
                                     >
@@ -434,11 +426,11 @@ export default function MemoryCard(props) {
                 }
                 title={
                     <Typography variant="body1" className={classes.header_title}>
-                        {memory.bottle.vintage} {memory.bottle.display_name}
+                        {review.vintage} {review.display_name}
                     </Typography>}
                 subheader={
                     <Typography variant="body2" className={classes.header_subheader} color="textSecondary">
-                        {memory.bottle.colour ? <WineGlassIcon className={classes.info_color_icon}/> : ''} {memory.bottle.colour ? memory.bottle.colour : ''} {memory.bottle.region}, {memory.bottle.country}
+                        {review.colour ? <WineGlassIcon className={classes.info_color_icon}/> : ''} {review.colour ? review.colour : ''} {review.region}, {review.country}
                     </Typography>
                 }  
                 />
@@ -453,7 +445,7 @@ export default function MemoryCard(props) {
                     <Grid item xs={7}>
                         <ListItem>
                             <Typography className={classes.info_header} variant="button">
-                                Memory Profile
+                                Review Profile
                             </Typography>
                         </ListItem>
                     </Grid>
@@ -476,11 +468,11 @@ export default function MemoryCard(props) {
                             <EventAvailableIcon className={classes.info_icon}/>
                                 
                             <Typography variant="body2" className={classes.info_label}> 
-                                Date Consumed
+                                Date Tasted
                             </Typography>
                         
                             <Typography variant="body2" className={classes.info_text}>
-                                {new Date(memory.date_consumed).toUTCString().slice(5, 16)}
+                                {new Date(review.date_tasted).toUTCString().slice(5, 16)}
                             </Typography>
                         </ListItem>
                     </Grid>
@@ -490,12 +482,12 @@ export default function MemoryCard(props) {
                                 <SwapVertIcon className={classes.info_icon}/>
                                 
                                 <Typography variant='body2' className={classes.info_label}> 
-                                    Reason for removal
+                                    Gerneral Impression
                                 </Typography>
                             
                                 
                                 <Typography variant="body2" className={classes.info_text} color="textPrimary">
-                                     {memory.reason.split(" ", 1)}
+                                     {review.like_status}
                                 </Typography>                               
                         </ListItem>
                     </Grid>
@@ -505,11 +497,11 @@ export default function MemoryCard(props) {
                             <AttachMoneyIcon className={classes.info_icon}/>
                     
                             <Typography variant="body2" className={classes.info_label}> 
-                                Gathered
+                                Score
                             </Typography>
                         
                             <Typography variant="body2" className={classes.info_text}>
-                                {memory.gathered ? `$ ${memory.gathered}` : 'n/a'}
+                                {review.score}
                             </Typography>
                         </ListItem>
                     </Grid>
@@ -519,11 +511,11 @@ export default function MemoryCard(props) {
                             <CommentOutlinedIcon className={classes.info_icon}/>
                             
                             <Typography variant="body2" className={classes.info_label}> 
-                                Private Note
+                                Tasting Note
                             </Typography>
                         
                             <Typography variant="body2" className={classes.info_text} style={{textAlign: 'justify'}}>
-                                {memory.private_note ? memory.private_note : 'n/a'}
+                                {review.tasting_note ? review.tasting_note : 'n/a'}
                             </Typography>
                         </ListItem>
                     </Grid>
@@ -539,7 +531,7 @@ export default function MemoryCard(props) {
                             color={ darkMode ? "secondary" : "primary" } 
                             startIcon={<ArrowBackIcon />}
                             >    
-                                Back to memories
+                                Back to reviews
                             </Button>
                         </Grid>
                     </Grid> 

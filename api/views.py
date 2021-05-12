@@ -526,8 +526,13 @@ def search_review(request, display_name):
     return JsonResponse(response, safe=False, status=status.HTTP_200_OK)
 
 
+# Requested from MemoryCard.js handleSeeReviewClick()
+@login_required
+def get_review(request, bottle_id):
+    bottle = Bottle.objects.get(id=bottle_id)
+    review = Review.objects.get(bottle=bottle)
 
-
+    return JsonResponse(review.serializer(), safe=False, status=status.HTTP_200_OK)
 
 
 

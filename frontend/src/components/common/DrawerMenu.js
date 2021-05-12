@@ -27,10 +27,11 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     width: theme.spacing(4),
     height: theme.spacing(4),
+    marginLeft: -theme.spacing(0.5),
     backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaB,
   },
   list: {
-    width: 250,
+    width: 200,
   },
   fullList: {
     width: 'auto',
@@ -103,7 +104,7 @@ export default function DrawerMenu(props) {
     >
       <List>
 
-        <ListItem button key="username">
+        <ListItem button key="username" color="primary">
           <ListItemIcon>
             <Avatar className={classes.avatar}>{userProfile.username[0]}</Avatar>
           </ListItemIcon>
@@ -130,21 +131,21 @@ export default function DrawerMenu(props) {
           <ListItemIcon>
             <ListIcon className={classes.iconButton} />
           </ListItemIcon>
-          <ListItemText primary={"My Collection"} />
+          <ListItemText primary={"Collection"} />
         </ListItem>
 
         <ListItem button key="memories" to="/memories" component={Link}>
           <ListItemIcon>
             <EventIcon className={classes.iconButton} />
           </ListItemIcon>
-          <ListItemText primary={"My Memories"} />
+          <ListItemText primary={"Memories"} />
         </ListItem>
 
         <ListItem button key="memories" to="/reviews" component={Link}>
           <ListItemIcon>
             <StarOutlinedIcon className={classes.iconButton} />
           </ListItemIcon>
-          <ListItemText primary={"My Reviews"} />
+          <ListItemText primary={"Reviews"} />
         </ListItem>
 
         <ListItem button key="signout" onClick={handleSignOutButton}>

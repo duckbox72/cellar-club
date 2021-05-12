@@ -27,10 +27,9 @@ import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import PostAddIcon from '@material-ui/icons/PostAdd';
 import SortIcon from '@material-ui/icons/Sort';
 import StarIcon from '@material-ui/icons/Star';
-import StarOutlinedIcon from '@material-ui/icons/StarOutline';
+import StarOutlineIcon from '@material-ui/icons/StarOutline';
 
 import { GlassCheersIcon, WineBottleIcon,WineGlassIcon } from './SvgIcons';
 
@@ -138,15 +137,12 @@ export default function ReviewsList(props) {
 
     
     const handleItemClick = (review) => {
-        /*
         window.scrollTo(0, 0);
         props.history.push({
             pathname: '/review',
             //search: '?query=abc',
             state: { review: review }
         });
-        */
-
     }
 
 
@@ -217,7 +213,7 @@ export default function ReviewsList(props) {
                                 <StarIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
                               </Tooltip>
                             : <Tooltip title="No review">
-                                <StarOutlinedIcon className={classes.list_item_subheader_icon} />
+                                <StarOutlineIcon className={classes.list_item_subheader_icon} />
                               </Tooltip>
                             }
                         </Typography>
@@ -332,7 +328,7 @@ export default function ReviewsList(props) {
                         color={darkMode ? 'primary' : 'secondary'}
                         badgeContent={reviewsListLength} 
                         >
-                            <StarOutlinedIcon className={classes.icon_numof_consumed} />
+                            <StarOutlineIcon className={classes.icon_numof_consumed} />
                         </Badge>
                     </IconButton>
                 </Grid>

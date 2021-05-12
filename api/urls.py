@@ -49,4 +49,5 @@ urlpatterns = [
     path('get_reviews_list/<str:display_name>', views.get_reviews_list, name="get_reviews_list"),
     path('get_review_display_name/<str:display_name>', views.get_review_display_name, name="get_review_display_name"),
     path('search_review/<str:display_name>', views.search_review, name="search_review"),
+    path('get_review/<str:bottle_id>', views.get_review, name="get_review"),
 ]
