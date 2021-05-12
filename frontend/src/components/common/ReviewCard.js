@@ -486,7 +486,7 @@ export default function ReviewCard(props) {
                             
                                 
                                 <Typography variant="body2" className={classes.info_text} color="textPrimary">
-                                     {review.like_status}
+                                     {(review.like_status).charAt(0).toUpperCase() + (review.like_status).slice(1)}
                                 </Typography>                               
                         </ListItem>
                     </Grid>
