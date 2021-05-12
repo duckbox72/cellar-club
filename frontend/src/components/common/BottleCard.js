@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import DateFnsUtils from '@date-io/date-fns';
@@ -42,7 +42,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import LanguageIcon from '@material-ui/icons/Language';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
-import LoopIcon from '@material-ui/icons/Loop';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 import PeopleIcon from '@material-ui/icons/People';
 import PersonIcon from '@material-ui/icons/Person';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
@@ -57,7 +57,7 @@ import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
 
-import { GlassCheersIcon, WineBottleIcon, WineGlassIcon, WineGlassAltIcon} from './SvgIcons';
+import { WineBottleIcon, WineGlassIcon, WineGlassAltIcon} from './SvgIcons';
 
 import { currencyNumberFormat } from "../utils/currencyNumberFormat";
 import { getRemovalReasonsOptions } from '../utils/getRemovalReasonsOptions';
@@ -1364,7 +1364,7 @@ export default function BottleCard(props) {
                                 severity={drinkSnackbarSeverity}
                                 >
                                     {drinkSnackbarSeverity === 'success'
-                                    ? 'SUCCESS - Consumption added to memories.'
+                                    ? 'SUCCESS - Consumption added.'
                                     : 'Error - Please try again.'
                                     } 
                                 </Alert>
@@ -1421,7 +1421,7 @@ export default function BottleCard(props) {
                             renderInput={(params) => (
                                 <Grid container spacing={1} justify="center" alignItems="center">
                                     <Grid item>
-                                        <LoopIcon className={classes.icon} />
+                                        <MoreVertIcon className={classes.icon} />
                                     </Grid>   
 
                                     <Grid item xs={10} >
@@ -1593,7 +1593,7 @@ export default function BottleCard(props) {
                             severity={removeSnackbarSeverity}
                             >
                                 {removeSnackbarSeverity === 'success'
-                                ? 'SUCCESS - Consumption added to memories.'
+                                ? 'SUCCESS - Consumption added.'
                                 : 'Error - Please try again.'
                                 } 
                             </Alert>

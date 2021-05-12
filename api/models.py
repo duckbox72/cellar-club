@@ -208,6 +208,13 @@ class Review(models.Model):
     score = models.CharField(max_length=3, null=True, blank=True)
     tasting_note = models.CharField(max_length=512, null=True, blank=True)
     
+
+    def mini_serializer(self):
+        return {
+            "display_name": self.display_name,
+        }
+
+
     def serializer(self):
         if self.bottle:
             #bottle = self.bottle.serializer()

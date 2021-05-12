@@ -61,7 +61,7 @@ export default function Searchbar(props) {
     }
     const classes = useStyles(mystyleprops);
 
-    // LWIN SEARCH RELATED
+    // LWIN and SEARCH RELATED
     const getSearchResults = (location, value) => {
         fetch(`/api/search_${location}/${value}`)
         .then((response) => response.json())
@@ -140,9 +140,6 @@ export default function Searchbar(props) {
         });
     }
 
-
-
-
     
     const handleAutocompleteChange = (value) => {
         setSearchbarValue(value)
@@ -175,6 +172,17 @@ export default function Searchbar(props) {
                 getDisplayName(value);
             } else {
                 props.parentDisplayNameCallback(value); // value = false
+                setSearchResult([]);
+            }
+        }
+
+        // REviews.js calls
+        if (searchLocation == 'Search My Reviews') {
+            getReviewsList(value); //called in all change cases
+            if (value !== null) {
+                getReviewDisplayName(value);
+            } else {
+                props.parentReviewDisplayNameCallback(value); // value = false
                 setSearchResult([]);
             }
         }
@@ -218,6 +226,21 @@ export default function Searchbar(props) {
         // Memories.js calls
         if (searchLocation == 'Search My Memories') {
             const location = 'memory';
+
+            if (e.target.value == null ) {
+                setSearchResult([]);
+            } else {
+                if ((e.target.value).length > 2) {
+                    getSearchResults(location, e.target.value);
+                } else {
+                    setSearchResult([]);
+                }
+            }
+        }
+
+        // Reviews.js calls
+        if (searchLocation == 'Search My Reviews') {
+            const location = 'review';
 
             if (e.target.value == null ) {
                 setSearchResult([]);

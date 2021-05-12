@@ -368,54 +368,6 @@ def add_consumption(request):
     return JsonResponse({"success": "posted successfully"}, safe=False, status=status.HTTP_200_OK)
 
 
-
-@csrf_exempt
-@login_required
-def add_review(request):
-    if request.method != 'POST':
-        return JsonResponse({"error": "POST request required."}, safe=False, status=status.HTTP_405_METHOD_NOT_ALLOWED)
-    
-    user = request.user
-    data = json.loads(request.body)
-
-    date_tasted = data['date_tasted'][0:10]
-
-    if data['bottle_id']:
-        try: 
-            bottle = Bottle.objects.get(id=data['bottle_id'])
-            display_name = bottle.display_name
-        except:
-            bottle = None
-            display_name = None
-    else:
-        bottle = None
-        display_name = data['display_name']
-
-    review = Review(
-        user = user,
-        date_tasted = date_tasted,
-        display_name = display_name,
-
-        bottle = bottle,
-        
-        lwin_lwin = data['lwin_lwin'],
-        lwin_vintage = data['lwin_vintage'],
-        lwin_colour = data['lwin_colour'],
-        lwin_country = data['lwin_country'],
-        lwin_region = data['lwin_region'],
-
-
-        is_public = data['is_public'],
-        like_status = data['like_status'],
-        score = data['score'],
-        tasting_note = data['tasting_note'],
-    )
-
-    review.save()
-
-    return JsonResponse({"success": "posted successfully", "review_id": review.id}, safe=False, status=status.HTTP_200_OK)
-
-
 @login_required
 def get_memories_list(request, display_name):
     user = request.user
@@ -478,6 +430,54 @@ def delete_memory_unconsume_bottle(request, memory_id):
     return JsonResponse({"success": "memory deleted and bottle returned to collection successfully"}, safe=False, status=status.HTTP_200_OK)
 
 
+@csrf_exempt
+@login_required
+def add_review(request):
+    if request.method != 'POST':
+        return JsonResponse({"error": "POST request required."}, safe=False, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    
+    user = request.user
+    data = json.loads(request.body)
+
+    date_tasted = data['date_tasted'][0:10]
+
+    if data['bottle_id']:
+        try: 
+            bottle = Bottle.objects.get(id=data['bottle_id'])
+            display_name = bottle.display_name
+        except:
+            bottle = None
+            display_name = None
+    else:
+        bottle = None
+        display_name = data['display_name']
+
+    review = Review(
+        user = user,
+        date_tasted = date_tasted,
+        display_name = display_name,
+
+        bottle = bottle,
+        
+        lwin_lwin = data['lwin_lwin'],
+        lwin_vintage = data['lwin_vintage'],
+        lwin_colour = data['lwin_colour'],
+        lwin_country = data['lwin_country'],
+        lwin_region = data['lwin_region'],
+
+
+        is_public = data['is_public'],
+        like_status = data['like_status'],
+        score = data['score'],
+        tasting_note = data['tasting_note'],
+    )
+
+    review.save()
+
+    return JsonResponse({"success": "posted successfully", "review_id": review.id}, safe=False, status=status.HTTP_200_OK)
+
+
+
 @login_required
 def get_reviews_list(request, display_name):
     user = request.user
@@ -494,6 +494,36 @@ def get_reviews_list(request, display_name):
     return JsonResponse([review.serializer() for review in review_list], safe=False, status=status.HTTP_200_OK)
 
 
+@login_required
+def get_review_display_name(request, display_name):
+    user = request.user
+    try:
+        result = Review.objects.filter(user=user, display_name=display_name)
+    except:
+        return JsonResponse({"error": "Sorry, no results found."})
+    
+    # Return first occurence of display_name // mini_serializer returns display_name data only
+    return JsonResponse(result[0].mini_serializer(),  safe=False, status=status.HTTP_200_OK)
+    # TO DO issue - handle no result-  
+
+
+@login_required
+def search_review(request, display_name):
+    user = request.user
+    results = Review.objects.filter(user=user, display_name__contains=display_name)
+    
+    # Lists only display_name (aka mini_serializer)
+    all_results = []
+    for result in results:
+        all_results.append({'display_name': result.display_name})
+
+    # Parse results to return only distinct items
+    response = []
+    for result in all_results:
+        if result not in response:
+            response.append(result)
+
+    return JsonResponse(response, safe=False, status=status.HTTP_200_OK)
 
 
 

@@ -549,11 +549,11 @@ export default function MemoryCard(props) {
                             fullWidth
                             className={classes.info_button} 
                             onClick={handleBackLinkClick}
-                            variant="contained" 
+                            variant="contained"
                             color={ darkMode ? "secondary" : "primary" } 
                             startIcon={<ArrowBackIcon />}
                             >    
-                                Back to collection
+                                Back to memories
                             </Button>
                         </Grid>
                     </Grid> 
