@@ -26,9 +26,14 @@ import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import PeopleIcon from '@material-ui/icons/People';
+import PersonIcon from '@material-ui/icons/Person';
 import SortIcon from '@material-ui/icons/Sort';
 import StarIcon from '@material-ui/icons/Star';
 import StarOutlineIcon from '@material-ui/icons/StarOutline';
+import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
+import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
+import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
 
 import { GlassCheersIcon, WineBottleIcon, WineGlassIcon } from './SvgIcons';
 
@@ -193,31 +198,37 @@ export default function ReviewsList(props) {
                     secondary={ 
                         <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
                             {`Tasted in ${new Date(review.date_tasted).toUTCString().slice(5, 16)}`} 
+                            
                             {' '}
+                            
+                            {review.is_public
+                            ? <Tooltip title="Review is public">
+                                <PeopleIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                              </Tooltip>
+                            : <Tooltip title="Review is private">
+                                <PersonIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                              </Tooltip>
+                            }
+
+                            {review.like_status === 'like'
+                            ? <Tooltip title="Like">
+                                <ThumbUpOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                              </Tooltip>
+                            : review.like_status === 'neutral'
+                                ?   <Tooltip title="Neutral">
+                                        <ThumbsUpDownOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                                    </Tooltip>
+                                :   <Tooltip title="dislike">
+                                        <ThumbDownOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                                    </Tooltip>
+                            }
+
                             {review.tasting_note
                             ? <Tooltip title="Tasting note">
                                 <CommentIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
                               </Tooltip>
-                            : <Tooltip title="No Tasting Note">
-                                <CommentOutlinedIcon className={classes.list_item_subheader_icon} />
-                              </Tooltip>
-                            }
-
-                            {review.is_public
-                            ? <Tooltip title="Money gathered">
-                                <MonetizationOnIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
-                              </Tooltip>
-                            : <Tooltip title="No money gathered">
-                                <MonetizationOnOutlinedIcon className={classes.list_item_subheader_icon} />
-                              </Tooltip>
-                            }
-
-                            {review.is_public
-                            ? <Tooltip title="Review">
-                                <StarIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
-                              </Tooltip>
-                            : <Tooltip title="No review">
-                                <StarOutlineIcon className={classes.list_item_subheader_icon} />
+                            : <Tooltip title="No tasting note">
+                                <CommentOutlineIcon className={classes.list_item_subheader_icon} />
                               </Tooltip>
                             }
                         </Typography>
