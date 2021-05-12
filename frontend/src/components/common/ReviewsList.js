@@ -5,12 +5,11 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import brown from '@material-ui/core/colors/brown';
 
+import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
-import LinearProgress from '@material-ui/core/LinearProgress';
-
-
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -31,7 +30,7 @@ import SortIcon from '@material-ui/icons/Sort';
 import StarIcon from '@material-ui/icons/Star';
 import StarOutlineIcon from '@material-ui/icons/StarOutline';
 
-import { GlassCheersIcon, WineBottleIcon,WineGlassIcon } from './SvgIcons';
+import { GlassCheersIcon, WineBottleIcon, WineGlassIcon } from './SvgIcons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -70,7 +69,8 @@ const useStyles = makeStyles((theme) => ({
     
     list_item_avatar_container: {
         textAlign: 'center', 
-        marginLeft: -theme.spacing(2)
+        marginLeft: -theme.spacing(2),
+        marginRight: theme.spacing(0.5),
     },
     list_item_avatar: {
         fontWeight: 400,
@@ -86,6 +86,7 @@ const useStyles = makeStyles((theme) => ({
         },          
     },
     list_item_color_icon: { 
+        marginRight: -theme.spacing(0.25),
         height: theme.spacing(1.5),
         width: theme.spacing(1.5),
         [theme.breakpoints.down('xs')]: {
@@ -166,7 +167,9 @@ export default function ReviewsList(props) {
                 divider
                 >
                     <ListItemAvatar>
-                        <div className={classes.list_item_avatar_container}>
+                        <div 
+                        className={classes.list_item_avatar_container}    
+                        >
                             <Typography variant="subtitle2" className={classes.list_item_avatar}>
                                 {review.vintage}
                             </Typography>
@@ -175,6 +178,7 @@ export default function ReviewsList(props) {
                                 className={classes.list_item_color_icon}
                                 // memory icon color  
                                 style={review.colour === 'Red' ? {color: 'maroon'} : review.colour === 'White' ? {color: 'tan'} : review.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
+                                
                                 /> {review.score}/100
                             </Typography>
                         </div>
@@ -188,7 +192,7 @@ export default function ReviewsList(props) {
                     }
                     secondary={ 
                         <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
-                            {`${review.score}, ${new Date(review.date_tasted).toUTCString().slice(5, 16)}`} 
+                            {`Tasted in ${new Date(review.date_tasted).toUTCString().slice(5, 16)}`} 
                             {' '}
                             {review.tasting_note
                             ? <Tooltip title="Tasting note">

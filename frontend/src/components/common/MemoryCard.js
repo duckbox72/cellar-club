@@ -223,8 +223,7 @@ export default function MemoryCard(props) {
         backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
         colorSchemaA: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         flagImage: `url(/static/images/country-flags/${memory.bottle.country.split(" ").join("-").toLowerCase()}.png)`,
-        infoColor: memory.bottle.colour === 'Red' ? 'maroon' : memory.bottle.colour === 'White' ? 'tan' : memory.bottle.colour === 'Rose' ? 'lightcoral' : 'grey',
-        
+        infoColor: memory.bottle.colour === 'Red' ? 'maroon' : memory.bottle.colour === 'White' ? 'tan' : memory.bottle.colour === 'Rose' ? 'lightcoral' : 'grey',     
     }
     const classes = useStyles(mystyleprops);
 

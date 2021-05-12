@@ -67,12 +67,12 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]: {
             fontSize: theme.spacing(1.75),
         },
+    },
     list_item_avatar_size: {
         fontSize: theme.spacing(1.75),
         [theme.breakpoints.down('xs')]: {
             fontSize: theme.spacing(1.5),
-        },          
-    },       
+        },                 
     },
     list_item_title: {
         fontWeight: 400,
@@ -149,7 +149,7 @@ export default function BottleList(props) {
                 >
                     <ListItemAvatar>
                         <div className={classes.list_item_avatar_container}>
-                            <Typography variant="subtitle2" classeName={classes.list_item_avatar}>
+                            <Typography variant="subtitle2" className={classes.list_item_avatar}>
                                 {bottle.vintage}
                             </Typography>
                             <Typography variant="caption" className={classes.list_item_avatar_size}>

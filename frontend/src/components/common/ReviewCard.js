@@ -223,8 +223,7 @@ export default function ReviewCard(props) {
         backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
         colorSchemaA: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         flagImage: `url(/static/images/country-flags/${review.country.split(" ").join("-").toLowerCase()}.png)`,
-        infoColor: review.colour === 'Red' ? 'maroon' : review.colour === 'White' ? 'tan' : review.colour === 'Rose' ? 'lightcoral' : 'grey',
-        
+        infoColor: review.colour === 'Red' ? 'maroon' : review.colour === 'White' ? 'tan' : review.colour === 'Rose' ? 'lightcoral' : 'grey', 
     }
     const classes = useStyles(mystyleprops);
 
