@@ -1055,7 +1055,7 @@ export default function BottleCard(props) {
                             color={ darkMode ? "secondary" : "primary" } 
                             startIcon={<ArrowBackIcon />}
                             >    
-                                Back to collection
+                                Back
                             </Button>
                         </Grid>
                     </Grid> 
