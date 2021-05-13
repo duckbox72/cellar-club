@@ -110,7 +110,7 @@ export default function Searchbar(props) {
         fetch(`api/get_display_name/${value}`)
         .then((response) => response.json())
         .then(memory => {
-            props.parenDisplayNameCallback(memory.display_name);
+            props.parentDisplayNameCallback(memory.display_name);
         });  
     }
 
@@ -176,7 +176,7 @@ export default function Searchbar(props) {
             }
         }
 
-        // REviews.js calls
+        // Reviews.js calls
         if (searchLocation == 'Search My Reviews') {
             getReviewsList(value); //called in all change cases
             if (value !== null) {
