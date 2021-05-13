@@ -145,7 +145,7 @@ export default function Searchbar(props) {
         setSearchbarValue(value)
         
         // Search.js calls
-        if (searchLocation == 'Search CellarClub') {
+        if (searchLocation == 'Search Wines') {
             if (value !== null) {
                 getLwinData(value);
             } else {
@@ -194,7 +194,7 @@ export default function Searchbar(props) {
         setSearchbarValue(e.target.value);
         
         // Search.js calls
-        if (searchLocation == 'Search CellarClub') {
+        if (searchLocation == 'Search Wines') {
             const location = 'lwin';
             
             if (e.target.value == null ) {
@@ -306,7 +306,7 @@ export default function Searchbar(props) {
             open={Boolean(sourceMenuAnchor)}
             onClose={handleSourceMenuClose}
             >
-                <MenuItem dense onClick={() => props.history.push('/search')}>Search CellarClub</MenuItem>
+                <MenuItem dense onClick={() => props.history.push('/search')}>Search Wines</MenuItem>
                 <MenuItem dense onClick={() => props.history.push('/collection')}>Search Collection</MenuItem>
                 <MenuItem dense onClick={() => props.history.push('/memories')}>Search Memories</MenuItem>
                 <MenuItem dense onClick={() => props.history.push('/reviews')}>Search Reviews</MenuItem>

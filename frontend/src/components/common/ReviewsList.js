@@ -24,7 +24,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import PeopleIcon from '@material-ui/icons/People';
 import PersonIcon from '@material-ui/icons/Person';
 import SortIcon from '@material-ui/icons/Sort';
-import StarOutlineIcon from '@material-ui/icons/StarOutline';
+import StarIcon from '@material-ui/icons/Star';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
@@ -338,12 +338,12 @@ export default function ReviewsList(props) {
                         color={darkMode ? 'primary' : 'secondary'}
                         badgeContent={reviewsListLength} 
                         >
-                            <StarOutlineIcon className={classes.icon_numof_consumed} />
+                            <StarIcon className={classes.icon_numof_consumed} />
                         </Badge>
                     </IconButton>
                 </Grid>
             </ListItem>
-
+ 
             
             { reviewsListLength === 0 ?
             <LinearProgress color={darkMode ? 'primary' : 'secondary'}/>

@@ -153,7 +153,7 @@ def get_lwin(request, display_name):
 @login_required
 def search_lwin(request, display_name):
     results = Lwin.objects.filter(display_name__contains=display_name)
-    results = results[:15]
+    #results = results[:50]
     
     #mini_serializer returns display_name data only
     return JsonResponse([result.mini_serializer() for result in results], safe=False, status=status.HTTP_200_OK)

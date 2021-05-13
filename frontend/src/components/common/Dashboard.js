@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography'
 
 import EventIcon from '@material-ui/icons/Event';
-import KitchenIcon from '@material-ui/icons/Kitchen';
+import StarOutlinedIcon from '@material-ui/icons/StarOutline';
 import ListIcon from '@material-ui/icons/List';
 
 import SearchIcon from '@material-ui/icons/Search';
@@ -71,8 +71,8 @@ const useStyles = makeStyles((theme) => ({
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     action_icon: {
-        height: theme.spacing(4),
-        width: theme.spacing(4),
+        height: theme.spacing(3.5),
+        width: theme.spacing(3.5),
         //marginTop: theme.spacing(2),
     },
 
@@ -112,17 +112,9 @@ export default function Dashboard(props) {
     }
 
 
-    const handleStorageActionClick = e => {
-        //window.scrollTo(0, 0);
-        //props.history.push('/storage');
-        console.log('CLICK STORAGE')
- 
-        /* ADD LWIN REQUEST
-        fetch('/api/lwin_import')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-        })    */           
+    const handleReviewActionClick = e => {
+        window.scrollTo(0, 0);
+        props.history.push('/reviews');
     }
     
 
@@ -193,7 +185,7 @@ export default function Dashboard(props) {
                                     </Grid>
                                     <Grid item>
                                         <Typography variant="caption">
-                                            Find, add and review bottles
+                                            Find, add and review
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -220,7 +212,7 @@ export default function Dashboard(props) {
                                     </Grid>
                                     <Grid item>
                                         <Typography variant="caption">
-                                            Browse my Cellar
+                                            Browse, drink and remove
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -247,7 +239,7 @@ export default function Dashboard(props) {
                                     </Grid>
                                     <Grid item>
                                         <Typography variant="caption">
-                                            Notes and Reviews
+                                            Browse and manage
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -259,22 +251,22 @@ export default function Dashboard(props) {
                             elevation={3} 
                             className={classes.action_paper} 
                             role="button"
-                            onClick={handleStorageActionClick}
+                            onClick={handleReviewActionClick}
                             >
                                 <Grid container spacing={0} direction="column" alignItems="center">
                                     <Grid item className={classes.action_title_grid}>
                                         <Typography variant="button" className={classes.action_title}>
-                                            Storage
+                                            Reviews
                                         </Typography>
                                     </Grid>
                                     <Grid item>
                                         <IconButton>
-                                            <KitchenIcon className={classes.action_icon}/>
+                                            <StarOutlinedIcon className={classes.action_icon}/>
                                         </IconButton>
                                     </Grid>
                                     <Grid item>
                                         <Typography variant="caption">
-                                            Manage Locations
+                                            Browse and manage
                                         </Typography>
                                     </Grid>
                                 </Grid>
