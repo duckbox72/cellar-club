@@ -27,15 +27,11 @@ import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-
-import PeopleIcon from '@material-ui/icons/People';
-import PersonIcon from '@material-ui/icons/Person';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
-
-import StarOutline from '@material-ui/icons/StarOutline';
+import StarIcon from '@material-ui/icons/Star';
 import SwapVertIcon from '@material-ui/icons/SwapVert';
 import UndoIcon from '@material-ui/icons/Undo';
-import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import { WineBottleIcon, WineGlassIcon, WineGlassAltIcon} from './SvgIcons';
 
@@ -251,7 +247,6 @@ export default function MemoryCard(props) {
 
 
     const handleSeeReviewClick = (e) => {
-        console.log("SEE REVIEW CLICK")
         fetch(`/api/get_review/${memory.bottle.id}`)
         .then(response => response.json())
         .then(review => {
@@ -307,39 +302,18 @@ export default function MemoryCard(props) {
             <Card className={classes.header_card} elevation={3}> 
                 <div id="actions" className={classes.actions_container}>
                     <Grid container spacing={1} className={classes.container_actions} alignItems="center">
-                        {
-                            isFavorite ? 
-                            <Tooltip title="Remove from Favorites">
+                        {isFavorite 
+                        ?   <Tooltip title="Remove from Favorites">
                                 <IconButton onClick={handleFavoriteButton}>
                                         <FavoriteIcon color="error" />
                                 </IconButton>
                             </Tooltip>
-                            :
-                            <Tooltip title="Add to Favorites">
+                        :   <Tooltip title="Add to Favorites">
                                 <IconButton onClick={handleFavoriteButton}>
                                         <FavoriteBorderIcon />
                                 </IconButton>
                             </Tooltip>
                         }
-
-                        <Tooltip title="See tasting review">
-                            <IconButton 
-                            disabled={!memory.has_review}
-                            onClick={handleSeeReviewClick} 
-                            className={classes.review_iconbutton}
-                            >
-                                <>
-                                    <StarOutline className={classes.review_iconbutton_icon}/>
-                                    <VisibilityIcon 
-                                    style={{
-                                        width: theme.spacing(1.75),
-                                        marginLeft: -theme.spacing(0.625),
-                                        marginTop: -theme.spacing(1.5),   
-                                    }}
-                                    />
-                                </>
-                            </IconButton>
-                        </Tooltip>
 
                         <div>
                             <Tooltip title="Undo Remove Bottle">    
@@ -399,6 +373,25 @@ export default function MemoryCard(props) {
                                 </DialogActions>
                             </Dialog>
                         </div>
+
+                        <Tooltip title="See tasting review">
+                            <IconButton 
+                            disabled={!memory.has_review}
+                            onClick={handleSeeReviewClick} 
+                            className={classes.review_iconbutton}
+                            >
+                                <>
+                                    <StarIcon className={classes.review_iconbutton_icon}/>
+                                    <InfoOutlinedIcon 
+                                    style={{
+                                        width: theme.spacing(1.75),
+                                        marginLeft: -theme.spacing(0.625),
+                                        marginTop: -theme.spacing(1.5),   
+                                    }}
+                                    />
+                                </>
+                            </IconButton>
+                        </Tooltip>
 
                         <Tooltip title="Find on Wine-Searcher">              
                             <IconButton

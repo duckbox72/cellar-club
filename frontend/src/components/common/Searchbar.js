@@ -160,7 +160,7 @@ export default function Searchbar(props) {
             if (value !== null) {
                 getBottleName(value);
             } else {
-                props.parentDisplayNameCallback(value); // value = false
+                props.parentBottleNameCallback(value); // value = false
                 setSearchResult([]);
             }
         }

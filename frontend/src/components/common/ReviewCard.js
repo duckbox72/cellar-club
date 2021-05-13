@@ -18,6 +18,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Link from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
 import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
+import LockIcon from '@material-ui/icons/Lock';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
@@ -26,15 +27,16 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import CloseIcon from '@material-ui/icons/Close';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import PeopleIcon from '@material-ui/icons/People';
 import PersonIcon from '@material-ui/icons/Person';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import RemoveIcon from '@material-ui/icons/Remove';
+import StarIcon from '@material-ui/icons/Star';
 import StarOutlinedIcon from '@material-ui/icons/StarOutline';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
-import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import { WineBottleIcon, WineGlassIcon } from './SvgIcons';
 
@@ -300,9 +302,8 @@ export default function ReviewCard(props) {
             <Card className={classes.header_card} elevation={3}> 
                 <div id="actions" className={classes.actions_container}>
                     <Grid container spacing={1} className={classes.container_actions} alignItems="center">
-                        {
-                            isPublic ? 
-                            <Tooltip title="Toggle privacy status">
+                        {isPublic 
+                        ?   <Tooltip title="Toggle privacy status">
                                 <IconButton onClick={handlePublicButton}>
                                         <LockOpenOutlinedIcon  />
                                 </IconButton>
@@ -310,29 +311,10 @@ export default function ReviewCard(props) {
                             :
                             <Tooltip title="Toggle privacy status">
                                 <IconButton onClick={handlePublicButton}>
-                                        <LockOutlinedIcon />
+                                        <LockIcon />
                                 </IconButton>
                             </Tooltip>
                         }
-
-                        <Tooltip title="Bottle from collection, click for more info">
-                            <IconButton 
-                            disabled={!review.bottle.id}
-                            onClick={handleSeeBottlelClick} 
-                            className={classes.review_iconbutton}
-                            >
-                                <>
-                                    <WineBottleIcon className={classes.bottle_iconbutton_icon}/>
-                                    <VisibilityIcon 
-                                    style={{
-                                        width: theme.spacing(1.75),
-                                        marginLeft: -theme.spacing(0.625),
-                                        marginTop: -theme.spacing(1.5),   
-                                    }}
-                                    />
-                                </>
-                            </IconButton>
-                        </Tooltip>
 
                         <div>
                             <Tooltip title="Remove Review">    
@@ -341,11 +323,11 @@ export default function ReviewCard(props) {
                                 className={classes.remove_iconbutton}
                                 >
                                     <>
-                                        <StarOutlinedIcon className={classes.remove_iconbutton_icon}/>
+                                        <StarIcon className={classes.remove_iconbutton_icon}/>
                                         <RemoveIcon 
                                         style={{
                                             width: theme.spacing(1.75),
-                                            marginLeft: -theme.spacing(0.25),
+                                            marginLeft: -theme.spacing(0.75),
                                             marginTop: -theme.spacing(1.5),   
                                         }}
                                         />
@@ -392,6 +374,25 @@ export default function ReviewCard(props) {
                                 </DialogActions>
                             </Dialog>
                         </div>
+
+                        <Tooltip title="Bottle from collection, click for more info">
+                            <IconButton 
+                            disabled={!review.bottle.id}
+                            onClick={handleSeeBottlelClick} 
+                            className={classes.review_iconbutton}
+                            >
+                                <>
+                                    <WineBottleIcon className={classes.bottle_iconbutton_icon}/>
+                                    <InfoOutlinedIcon 
+                                    style={{
+                                        width: theme.spacing(1.75),
+                                        marginLeft: -theme.spacing(0.25),
+                                        marginTop: -theme.spacing(1.5),   
+                                    }}
+                                    />
+                                </>
+                            </IconButton>
+                        </Tooltip>
 
                         <Tooltip title="Find on Wine-Searcher">              
                             <IconButton

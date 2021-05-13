@@ -29,7 +29,7 @@ import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
 
-import {  WineGlassIcon } from './SvgIcons';
+import { WineBottleIcon, WineGlassIcon } from './SvgIcons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -112,6 +112,7 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(1.75),
         height: theme.spacing(1.75),
         margin: theme.spacing(0, 0.5),
+       // color: mystyleprops => mystyleprops.colorSchemaA,
     },
 }));
 
@@ -212,17 +213,17 @@ export default function ReviewsList(props) {
                                 ?   <Tooltip title="Neutral">
                                         <ThumbsUpDownOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
                                     </Tooltip>
-                                :   <Tooltip title="dislike">
+                                :   <Tooltip title="Dislike">
                                         <ThumbDownOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
                                     </Tooltip>
                             }
 
-                            {review.tasting_note
-                            ? <Tooltip title="Tasting note">
-                                <CommentIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                            {review.bottle.id
+                            ? <Tooltip title="Bottle consumed from collection">
+                                <WineBottleIcon className={classes.list_item_subheader_icon} style={{color: mystyleprops.colorSchemaA}}/>
                               </Tooltip>
-                            : <Tooltip title="No tasting note">
-                                <CommentOutlineIcon className={classes.list_item_subheader_icon} />
+                            : <Tooltip title="Bottle not consumed from collection">
+                                <WineBottleIcon className={classes.list_item_subheader_icon} style={{filter: 'opacity(50%)'}}/>
                               </Tooltip>
                             }
                         </Typography>
