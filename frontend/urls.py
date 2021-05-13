@@ -6,6 +6,7 @@ urlpatterns = [
     path('search', index),
     path('collection', index),
     path('bottle', index),
+    path('consumed_bottle', index),
     path('memories', index),
     path('memory', index),
     path('reviews', index),

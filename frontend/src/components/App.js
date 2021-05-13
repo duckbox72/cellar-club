@@ -4,6 +4,7 @@ import { createMuiTheme, makeStyles, ThemeProvider } from "@material-ui/core/sty
 import { Paper } from "@material-ui/core";
 
 import Bottle from "./Bottle";
+import ConsumedBottle from "./ConsumedBottle";
 import Collection from "./Collection";
 import Home from "./Home";
 import Landing from "./Landing";
@@ -94,6 +95,12 @@ export default function App(props) {
                             isAuthenticated={isAuthenticated}
                             />} />
                             <Route path='/bottle' render= {props => <Bottle {...props} 
+                            darkMode={darkMode}
+                            parentDarkModeCallback={darkModeCallback}
+                            parentSignOutCallback={signOutCallback}
+                            isAuthenticated={isAuthenticated}
+                            />} />
+                            <Route path='/consumed_bottle' render= {props => <ConsumedBottle {...props} 
                             darkMode={darkMode}
                             parentDarkModeCallback={darkModeCallback}
                             parentSignOutCallback={signOutCallback}

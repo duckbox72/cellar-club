@@ -132,6 +132,9 @@ const useStyles = makeStyles((theme) => ({
 
     info_card: {
         height: screen.availHeight * 0.46,
+        [theme.breakpoints.up('xs')]: {
+            height: screen.availHeight * 0.48,
+        },
         overflowY: 'scroll',
         margin: theme.spacing(0, 2),
         borderRadius: '0px 0px 10px 10px',
@@ -141,7 +144,7 @@ const useStyles = makeStyles((theme) => ({
         
     },
     info_grid: {
-        marginTop: theme.spacing(1.5),
+        marginTop: theme.spacing(1.25),
     },
     info_header:{
         marginLeft: theme.spacing(2),

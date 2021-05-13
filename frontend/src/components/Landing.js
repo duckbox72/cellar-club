@@ -60,7 +60,10 @@ const useStyles = makeStyles((theme) => ({
     },
     body_typography: {
         fontWeight: theme.typography.fontWeightMedium,
-        color: theme.palette.secondary.main ,
+        color: theme.palette.common.black,
+        [theme.breakpoints.down("sm")]: {
+            color: theme.palette.secondary.main,
+        },
     },
     body_button: {
         borderRadius: 0,

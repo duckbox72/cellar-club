@@ -17,27 +17,26 @@ import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import Link from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
+import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import CloseIcon from '@material-ui/icons/Close';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-
 import PeopleIcon from '@material-ui/icons/People';
 import PersonIcon from '@material-ui/icons/Person';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
-
-import StarOutline from '@material-ui/icons/StarOutline';
-import SwapVertIcon from '@material-ui/icons/SwapVert';
-import UndoIcon from '@material-ui/icons/Undo';
+import RemoveIcon from '@material-ui/icons/Remove';
+import StarOutlinedIcon from '@material-ui/icons/StarOutline';
+import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
+import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
+import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
-import { GlassCheersIcon, WineBottleIcon, WineGlassIcon, WineGlassAltIcon} from './SvgIcons';
+import { WineBottleIcon, WineGlassIcon } from './SvgIcons';
 
 import brown from '@material-ui/core/colors/brown';
 
@@ -62,8 +61,12 @@ const useStyles = makeStyles((theme) => ({
         filter: 'opacity(50%)',
         backdropFilter: 'invert(10%) opacity(30%)',
     },
-    review_iconbutton_icon: {
-        
+    bottle_iconbutton_icon: {
+        marginRight: -theme.spacing(0.5),
+        height: theme.spacing(2.125),
+        width: theme.spacing(2.125),
+
+        transform: 'rotate(315deg)',
     },
     remove_iconbutton: {
         height: theme.spacing(6),
@@ -78,10 +81,6 @@ const useStyles = makeStyles((theme) => ({
     },
     remove_iconbutton_icon: {
         marginRight: -theme.spacing(0.5),
-        height: theme.spacing(2.125),
-        width: theme.spacing(2.125),
-
-        transform: 'rotate(315deg)',
     },
 
     iconbutton_external_link_ws: {
@@ -132,6 +131,9 @@ const useStyles = makeStyles((theme) => ({
 
     info_card: {
         height: screen.availHeight * 0.46,
+        [theme.breakpoints.up('xs')]: {
+            height: screen.availHeight * 0.48,
+        },
         overflowY: 'scroll',
         margin: theme.spacing(0, 2),
         borderRadius: '0px 0px 10px 10px',
@@ -141,14 +143,13 @@ const useStyles = makeStyles((theme) => ({
         
     },
     info_grid: {
-        marginTop: theme.spacing(1.5),
+        marginTop: theme.spacing(1.25),
     },
     info_header:{
         marginLeft: theme.spacing(2),
         marginTop: theme.spacing(0.5),
         color: mystyleprops => mystyleprops.colorSchemaA,
         fontSize: theme.spacing(2),
-        //fontWeight: 400,
     },
     info_link: {
         marginTop: theme.spacing(1),
@@ -228,27 +229,31 @@ export default function ReviewCard(props) {
     const classes = useStyles(mystyleprops);
 
     // TO DO 
-    const handlePublicButton= (e) => {
-        console.log("PUBLIC CLICK")
-        /*
-        fetch('/api/toggle_bottle_favorite', {
+    const handlePublicButton= (e) => {  
+        fetch('/api/toggle_review_privacy', {
             method: 'POST',
             body: JSON.stringify({
-                id: memory.bottle.id,
-                favorite: !isFavorite,
+                id: review.id,
+                is_public: !review.is_public,
             }), 
         })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                setIsFavorite(!isFavorite)
+                setIsPublic(!isPublic)
             }
-        })*/
+        })
     };
 
 
-    const handleSeeReviewClick = (e) => {
-        console.log("SEE REVIEW CLICK")
+    const handleSeeBottlelClick = (e) => {
+        console.log("SEE BOTLE CLICK")
+        window.scrollTo(0, 0);
+        props.history.push({
+            pathname: '/consumed_bottle',
+            //search: '?query=abc',
+            state: { bottle: review.bottle }
+        });
     }
 
    
@@ -257,7 +262,7 @@ export default function ReviewCard(props) {
     }
 
     const handleRemoveAlertSubmit = (e) => {
-        /*
+        
         fetch(`/api/delete_review/${review.id}`)
         .then(response => response.json())
         .then(data => {
@@ -266,7 +271,6 @@ export default function ReviewCard(props) {
         
         setRemoveAlertOpen(false);
         props.history.push('/reviews');
-        */
     }
 
     
@@ -298,27 +302,27 @@ export default function ReviewCard(props) {
                     <Grid container spacing={1} className={classes.container_actions} alignItems="center">
                         {
                             isPublic ? 
-                            <Tooltip title="Is public private status">
+                            <Tooltip title="Toggle privacy status">
                                 <IconButton onClick={handlePublicButton}>
-                                        <PeopleIcon  />
+                                        <LockOpenOutlinedIcon  />
                                 </IconButton>
                             </Tooltip>
                             :
-                            <Tooltip title="Toggle public/private status">
+                            <Tooltip title="Toggle privacy status">
                                 <IconButton onClick={handlePublicButton}>
-                                        <PersonIcon />
+                                        <LockOutlinedIcon />
                                 </IconButton>
                             </Tooltip>
                         }
 
-                        <Tooltip title="See tasting review">
+                        <Tooltip title="Bottle from collection, click for more info">
                             <IconButton 
-                            //disabled={!memory.has_review}
-                            //onClick={handleSeeReviewClick} 
+                            disabled={!review.bottle.id}
+                            onClick={handleSeeBottlelClick} 
                             className={classes.review_iconbutton}
                             >
                                 <>
-                                    <StarOutline className={classes.review_iconbutton_icon}/>
+                                    <WineBottleIcon className={classes.bottle_iconbutton_icon}/>
                                     <VisibilityIcon 
                                     style={{
                                         width: theme.spacing(1.75),
@@ -337,8 +341,8 @@ export default function ReviewCard(props) {
                                 className={classes.remove_iconbutton}
                                 >
                                     <>
-                                        <WineBottleIcon className={classes.remove_iconbutton_icon}/>
-                                        <UndoIcon 
+                                        <StarOutlinedIcon className={classes.remove_iconbutton_icon}/>
+                                        <RemoveIcon 
                                         style={{
                                             width: theme.spacing(1.75),
                                             marginLeft: -theme.spacing(0.25),
@@ -478,29 +482,53 @@ export default function ReviewCard(props) {
 
                     <Grid item xs={12} className={classes.info_grid}>
                         <ListItem>
-                                <SwapVertIcon className={classes.info_icon}/>
+                                {isPublic
+                            ? <PeopleIcon className={classes.info_icon} />
+                            : <PersonIcon className={classes.info_icon} />
+                            }
                                 
-                                <Typography variant='body2' className={classes.info_label}> 
-                                    Gerneral Impression
-                                </Typography>
+                            <Typography variant='body2' className={classes.info_label}> 
+                                Privacy status
+                            </Typography>
+                        
                             
-                                
-                                <Typography variant="body2" className={classes.info_text} color="textPrimary">
-                                     {(review.like_status).charAt(0).toUpperCase() + (review.like_status).slice(1)}
-                                </Typography>                               
+                            <Typography variant="body2" className={classes.info_text} color="textPrimary">
+                                    {isPublic ? 'Public' : 'Private'}
+                            </Typography>                               
                         </ListItem>
                     </Grid>
 
                     <Grid item xs={12} className={classes.info_grid}>
                         <ListItem>
-                            <AttachMoneyIcon className={classes.info_icon}/>
+                                {review.like_status === 'like'
+                            ? <ThumbUpOutlinedIcon className={classes.info_icon} />
+                            : review.like_status === 'neutral'
+                                ? <ThumbsUpDownOutlinedIcon className={classes.info_icon} />
+                                    
+                                : <ThumbDownOutlinedIcon className={classes.info_icon} />
+                            }
+                                
+                            <Typography variant='body2' className={classes.info_label}> 
+                                Gerneral Impression
+                            </Typography>
+                        
+                            
+                            <Typography variant="body2" className={classes.info_text} color="textPrimary">
+                                    {(review.like_status).charAt(0).toUpperCase() + (review.like_status).slice(1)}
+                            </Typography>                               
+                        </ListItem>
+                    </Grid>
+
+                    <Grid item xs={12} className={classes.info_grid}>
+                        <ListItem>
+                            <StarOutlinedIcon className={classes.info_icon}/>
                     
                             <Typography variant="body2" className={classes.info_label}> 
                                 Score
                             </Typography>
                         
                             <Typography variant="body2" className={classes.info_text}>
-                                {review.score}
+                                {review.score} / 100
                             </Typography>
                         </ListItem>
                     </Grid>
@@ -513,7 +541,7 @@ export default function ReviewCard(props) {
                                 Tasting Note
                             </Typography>
                         
-                            <Typography variant="body2" className={classes.info_text} style={{textAlign: 'justify'}}>
+                            <Typography variant="body2" className={classes.info_text} >
                                 {review.tasting_note ? review.tasting_note : 'n/a'}
                             </Typography>
                         </ListItem>

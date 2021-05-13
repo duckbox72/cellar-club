@@ -217,7 +217,7 @@ class Review(models.Model):
 
     def serializer(self):
         if self.bottle:
-            #bottle = self.bottle.serializer()
+            serialized_bottle = self.bottle.serializer()
             bottle = self.bottle
             
             vintage = bottle.vintage
@@ -225,6 +225,7 @@ class Review(models.Model):
             country = bottle.country
             region = bottle.region
         else:
+            serialized_bottle = None,
             vintage = self.lwin_vintage
             colour = self.lwin_colour
             country = self.lwin_country
@@ -235,6 +236,7 @@ class Review(models.Model):
             "id": self.id,
             "date_tasted": self.date_tasted,
             "display_name": self.display_name,
+            "bottle": serialized_bottle,
 
             "vintage": vintage,
             "colour": colour,

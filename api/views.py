@@ -474,7 +474,7 @@ def add_review(request):
 
     review.save()
 
-    return JsonResponse({"success": "posted successfully", "review_id": review.id}, safe=False, status=status.HTTP_200_OK)
+    return JsonResponse({"success": "posted successfully"}, safe=False, status=status.HTTP_200_OK)
 
 
 
@@ -535,8 +535,29 @@ def get_review(request, bottle_id):
     return JsonResponse(review.serializer(), safe=False, status=status.HTTP_200_OK)
 
 
+# Requested from MemoryCard.js handleSeeReviewClick()
+@login_required
+def delete_review(request, review_id):
+    review = Review.objects.get(id=review_id)
+    review.delete()
+
+    return JsonResponse({"success": "deleted successfully"}, safe=False, status=status.HTTP_200_OK)
 
 
+@csrf_exempt
+@login_required
+def toggle_review_privacy(request):
+    if request.method != 'POST':
+        return JsonResponse({"error": "POST request required."}, safe=False, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    
+    data = json.loads(request.body)
+
+    review = Review.objects.get(id=data['id'])
+    review.is_public = data['is_public']
+
+    review.save()
+
+    return JsonResponse({"success": "updated successfully"}, safe=False, status=status.HTTP_200_OK)
 
 
 
