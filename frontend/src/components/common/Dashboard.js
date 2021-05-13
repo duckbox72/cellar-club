@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import Avatar from '@material-ui/core/Avatar'
 import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
+import ListItem from '@material-ui/core/ListItem'
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography'
 
 import EventIcon from '@material-ui/icons/Event';
-import StarOutlinedIcon from '@material-ui/icons/StarOutline';
 import ListIcon from '@material-ui/icons/List';
-
+import StarOutlinedIcon from '@material-ui/icons/StarOutline';
 import SearchIcon from '@material-ui/icons/Search';
 
+import { WineBottleIcon, WineGlassIcon } from './SvgIcons';
+
 import brown from '@material-ui/core/colors/brown';
-import { IconButton, ListItem } from '@material-ui/core';
 
 
 
@@ -21,8 +22,6 @@ const useStyles = makeStyles((theme) => ({
     root: {
         height: screen.availHeight * 0.68,
         marginTop: theme.spacing(1),
-        //backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
-        
     },
     dashboard_paper: {
         height: screen.availHeight * 0.33,
@@ -33,20 +32,50 @@ const useStyles = makeStyles((theme) => ({
     },
     dashboard_header_title: {
         fontSize: theme.spacing(2),
-        margin: theme.spacing(1),
+        marginLeft: theme.spacing(2.5),
+        marginTop: theme.spacing(1.5),
         color:  mystyleprops => mystyleprops.colorSchemaA,
     },
-    dashboard_header_avatar: {
-        marginLeft: 'auto',
-        width: theme.spacing(3),
-        height: theme.spacing(3),
-        backgroundColor: mystyleprops => mystyleprops.colorSchemaA,
-        color:  mystyleprops => mystyleprops.colorSchemaB,
-    },
     dashboard_header_username: {
-        margin: theme.spacing(1),
+        marginLeft: 'auto',
+        marginRight: theme.spacing(2),
+        marginTop: theme.spacing(1.125),
         color: mystyleprops => mystyleprops.colorSchemaA,
         fontWeight: 500,
+    },
+
+    dashboard_grid: {
+        marginTop: theme.spacing(1),
+    },
+    dashboard_icon: { 
+        height: theme.spacing(2.5),
+        width: theme.spacing(2.5),
+        marginLeft: theme.spacing(1.5),
+        marginRight: theme.spacing(1),
+        color: theme.palette.text.secondary,
+    },
+    dashboard_color_icon: {
+        height: theme.spacing(1.5),
+        width: theme.spacing(1.5),
+        color: mystyleprops => mystyleprops.infoColor,
+    },
+    dashboard_label: {
+        marginRight: theme.spacing(1),
+        color: theme.palette.text.secondary,
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]:{
+            fontSize: theme.spacing(1.75),
+        },
+    },
+    dashboard_text: {
+        textAlign: 'right',
+        fontWeight: 400,
+        marginLeft: 'auto',
+        marginRight: theme.spacing(2),
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]:{
+            fontSize: theme.spacing(1.75),
+        },
     },
 
 
@@ -68,11 +97,12 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(1)
     },
     action_title: {
+        fontSize: theme.spacing(2),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     action_icon: {
-        height: theme.spacing(3.5),
-        width: theme.spacing(3.5),
+        //height: theme.spacing(3.5),
+        //width: theme.spacing(3.5),
         //marginTop: theme.spacing(2),
     },
 
@@ -122,45 +152,85 @@ export default function Dashboard(props) {
             <div className={classes.root} >
                 <Grid container spacing={2} justify="center">
                     <Paper  className={classes.dashboard_paper} elevation={3}>
-                        <Grid item xs={12} container spacing={0} >
+                        <Grid item xs={12}>
                             <ListItem> 
                                 <Typography className={classes.dashboard_header_title} variant="button">
-                                    DASHBOARD
+                                    Home
                                 </Typography>
-
-                                <Avatar className={classes.dashboard_header_avatar}>{userProfile.username[0]}</Avatar>
                                 
                                 <Typography  className={classes.dashboard_header_username} variant="body1">
-                                    {userProfile.username}
+                                    Hello, {userProfile.username}
+                                </Typography>
+                            </ListItem>
+                        </Grid> 
+                        
+                        <Grid item xs={12} className={classes.dashboard_grid}>
+                            <ListItem>
+                                <StarOutlinedIcon className={classes.dashboard_icon}/>
+                                    
+                                <Typography variant="body2" className={classes.dashboard_label}> 
+                                    In collection
+                                </Typography>
+
+                                <Typography variant="body2" className={classes.dashboard_text}>
+                                    info text
                                 </Typography>
                             </ListItem>
                         </Grid>
-                        <Grid item xs={12} container spacing={2}>
-                        
-                            <Grid item xs={6} sm={3}>
-                                <Typography variant="body2">
-                                    Dashboard Item
+
+                        <Grid item xs={12} className={classes.dashboard_grid}>
+                            <ListItem>
+                                <StarOutlinedIcon className={classes.dashboard_icon}/>
+                                    
+                                <Typography variant="body2" className={classes.dashboard_label}> 
+                                    Consumed
                                 </Typography>
-                            </Grid>
-                            <Grid item xs={6} sm={3}>
-                                <Typography variant="body2">
-                                    Dashboard Item
+
+                                <Typography variant="body2" className={classes.dashboard_text}>
+                                    info text
                                 </Typography>
-                            </Grid>
-                            <Grid item xs={6} sm={3}>
-                                <Typography variant="body2">
-                                    Dashboard Item
+                            </ListItem>
+                        </Grid>
+
+                        <Grid item xs={12} className={classes.dashboard_grid}>
+                            <ListItem>
+                                <StarOutlinedIcon className={classes.dashboard_icon}/>
+                                    
+                                <Typography variant="body2" className={classes.dashboard_label}> 
+                                    Purchased
                                 </Typography>
-                            </Grid>
-                            <Grid item xs={6} sm={3}>
-                                <Typography variant="body2">
-                                    Dashboard Item
+
+                                <Typography variant="body2" className={classes.dashboard_text}>
+                                    info Text
                                 </Typography>
-                            </Grid>
+                            </ListItem>
+                        </Grid>
+
+                        <Grid item xs={12} className={classes.dashboard_grid}>
+                            <ListItem>
+                                <StarOutlinedIcon className={classes.dashboard_icon}/>
+                                    
+                                <Typography variant="body2" className={classes.dashboard_label}> 
+                                    Reviews
+                                </Typography>
+
+                                <Typography variant="body2" className={classes.dashboard_text}>
+                                    info text
+                                </Typography>
+                            </ListItem>
                         </Grid>
                     </Paper>
                 </Grid>
                 
+
+
+
+
+
+
+
+
+
 
                 <div className={classes.action_root}>
                     <Grid container spacing={2} justify="center">     
