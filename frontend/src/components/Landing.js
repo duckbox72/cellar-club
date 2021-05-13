@@ -59,10 +59,13 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(4),
     },
     body_typography: {
-        fontWeight: theme.typography.fontWeightMedium,
-        color: theme.palette.common.black,
+        //fontWeight: theme.typography.fontWeightMedium,
+        //color: theme.palette.secondary.dark,
+        
+        color: 'beige',
         [theme.breakpoints.down("sm")]: {
-            color: theme.palette.secondary.main,
+            color: theme.palette.secondary.dark,
+            fontWeight: 500,
         },
     },
     body_button: {
