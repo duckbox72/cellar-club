@@ -54,10 +54,12 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(1),
         color: theme.palette.text.secondary,
     },
-    dashboard_color_icon: {
-        height: theme.spacing(1.5),
-        width: theme.spacing(1.5),
-        color: mystyleprops => mystyleprops.infoColor,
+    dashboard_bottle_icon: {
+        height: theme.spacing(1.75),
+        width: theme.spacing(1.75),
+        marginLeft: theme.spacing(1.5),
+        marginRight: theme.spacing(1),
+        color: theme.palette.text.secondary,
     },
     dashboard_label: {
         marginRight: theme.spacing(1),
@@ -67,10 +69,21 @@ const useStyles = makeStyles((theme) => ({
             fontSize: theme.spacing(1.75),
         },
     },
+    dashboard_color_icon_first: {
+        marginLeft: 'auto',
+        height: theme.spacing(1.5),
+        width: theme.spacing(1.5),
+        color: mystyleprops => mystyleprops.infoColor,
+    },
+    dashboard_color_icon_else: {
+        height: theme.spacing(1.5),
+        width: theme.spacing(1.5),
+        color: mystyleprops => mystyleprops.infoColor,
+    },
     dashboard_text: {
         textAlign: 'right',
         fontWeight: 400,
-        marginLeft: 'auto',
+        marginLeft: theme.spacing(0.5),
         marginRight: theme.spacing(2),
         fontSize: theme.spacing(2),
         [theme.breakpoints.down('xs')]:{
@@ -163,24 +176,57 @@ export default function Dashboard(props) {
                                 </Typography>
                             </ListItem>
                         </Grid> 
-                        
+
+
+
+
+
+
+
+
+
+
+
+
                         <Grid item xs={12} className={classes.dashboard_grid}>
                             <ListItem>
-                                <StarOutlinedIcon className={classes.dashboard_icon}/>
+                                <WineBottleIcon className={classes.dashboard_bottle_icon} style={{transform: 'rotate(315deg)',}}/>
                                     
                                 <Typography variant="body2" className={classes.dashboard_label}> 
-                                    In collection
+                                    999 in collection
                                 </Typography>
 
+                                <WineGlassIcon 
+                                className={classes.dashboard_color_icon_first}
+                                style={{color: 'maroon'}}
+                                />
                                 <Typography variant="body2" className={classes.dashboard_text}>
-                                    info text
+                                    381
                                 </Typography>
+
+                                <WineGlassIcon 
+                                className={classes.dashboard_color_icon_else}
+                                style={{color: 'tan'}}
+                                />
+                                <Typography variant="body2" className={classes.dashboard_text}>
+                                    412
+                                </Typography>
+                            
+                                <WineGlassIcon 
+                                className={classes.dashboard_color_icon_else}
+                                style={{color: 'lightcoral'}}
+                                />
+                                <Typography variant="body2" className={classes.dashboard_text}>
+                                    697
+                                </Typography>
+                            
+                            
                             </ListItem>
                         </Grid>
 
                         <Grid item xs={12} className={classes.dashboard_grid}>
                             <ListItem>
-                                <StarOutlinedIcon className={classes.dashboard_icon}/>
+                                <WineBottleIcon className={classes.dashboard_bottle_icon}/>
                                     
                                 <Typography variant="body2" className={classes.dashboard_label}> 
                                     Consumed
