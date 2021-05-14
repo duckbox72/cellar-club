@@ -22,7 +22,6 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
 import StarOutlinedIcon from '@material-ui/icons/StarOutline';
 
-
 const useStyles = makeStyles((theme) => ({
   avatar: {
     width: theme.spacing(4),
@@ -141,7 +140,7 @@ export default function DrawerMenu(props) {
           <ListItemText primary={"Memories"} />
         </ListItem>
 
-        <ListItem button key="memories" to="/reviews" component={Link}>
+        <ListItem button key="reviews" to="/reviews" component={Link}>
           <ListItemIcon>
             <StarOutlinedIcon className={classes.iconButton} />
           </ListItemIcon>
@@ -161,7 +160,7 @@ export default function DrawerMenu(props) {
 
   
   return (
-    <div>
+    <div >
       <Tooltip title="Menu">
         <IconButton
           aria-label="menu"
