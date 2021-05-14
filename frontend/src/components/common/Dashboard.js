@@ -53,6 +53,10 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(1.5),
         marginRight: theme.spacing(1),
         color: theme.palette.text.secondary,
+        [theme.breakpoints.down('xs')]:{
+            marginLeft: -theme.spacing(0.375),
+            marginRight: theme.spacing(0.75),
+        },
     },
     dashboard_bottle_icon: {
         height: theme.spacing(1.75),
@@ -60,6 +64,10 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(1.5),
         marginRight: theme.spacing(1),
         color: theme.palette.text.secondary,
+        [theme.breakpoints.down('xs')]:{
+            marginLeft: theme.spacing(0),
+            marginRight: theme.spacing(0.75),
+        },
     },
     dashboard_label: {
         marginRight: theme.spacing(1),
@@ -69,13 +77,17 @@ const useStyles = makeStyles((theme) => ({
             fontSize: theme.spacing(1.75),
         },
     },
-    dashboard_color_icon_first: {
+    dashboard_text_T: {
         marginLeft: 'auto',
-        height: theme.spacing(1.5),
-        width: theme.spacing(1.5),
-        color: mystyleprops => mystyleprops.infoColor,
+        textAlign: 'right',
+        fontWeight: 500,
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]:{
+            fontSize: theme.spacing(1.75),
+        },
+        color: mystyleprops => mystyleprops.colorSchemaA,
     },
-    dashboard_color_icon_else: {
+    dashboard_color_icon: {
         height: theme.spacing(1.5),
         width: theme.spacing(1.5),
         color: mystyleprops => mystyleprops.infoColor,
@@ -88,6 +100,29 @@ const useStyles = makeStyles((theme) => ({
         fontSize: theme.spacing(2),
         [theme.breakpoints.down('xs')]:{
             fontSize: theme.spacing(1.75),
+            marginLeft: theme.spacing(0.25),
+            marginRight: theme.spacing(0.75),
+        },
+    },
+    dashboard_text_S: {
+        textAlign: 'right',
+        fontWeight: 400,
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]:{
+            fontSize: theme.spacing(1.75),
+        },
+        color: mystyleprops => mystyleprops.colorSchemaA,
+    },
+    dashboard_text_last: {
+        textAlign: 'right',
+        fontWeight: 400,
+        marginLeft: theme.spacing(0.5),
+        marginRight: theme.spacing(2),
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]:{
+            fontSize: theme.spacing(1.75),
+            marginLeft: theme.spacing(0.25),
+            marginRight: theme.spacing(0),
         },
     },
 
@@ -193,11 +228,18 @@ export default function Dashboard(props) {
                                 <WineBottleIcon className={classes.dashboard_bottle_icon} style={{transform: 'rotate(315deg)',}}/>
                                     
                                 <Typography variant="body2" className={classes.dashboard_label}> 
-                                    999 in collection
+                                    Collection
+                                </Typography>
+
+                                <Typography variant="button" className={classes.dashboard_text_T}>
+                                    T
+                                </Typography>
+                                <Typography variant="body2" className={classes.dashboard_text}>
+                                    986
                                 </Typography>
 
                                 <WineGlassIcon 
-                                className={classes.dashboard_color_icon_first}
+                                className={classes.dashboard_color_icon}
                                 style={{color: 'maroon'}}
                                 />
                                 <Typography variant="body2" className={classes.dashboard_text}>
@@ -205,7 +247,7 @@ export default function Dashboard(props) {
                                 </Typography>
 
                                 <WineGlassIcon 
-                                className={classes.dashboard_color_icon_else}
+                                className={classes.dashboard_color_icon}
                                 style={{color: 'tan'}}
                                 />
                                 <Typography variant="body2" className={classes.dashboard_text}>
@@ -213,11 +255,18 @@ export default function Dashboard(props) {
                                 </Typography>
                             
                                 <WineGlassIcon 
-                                className={classes.dashboard_color_icon_else}
+                                className={classes.dashboard_color_icon}
                                 style={{color: 'lightcoral'}}
                                 />
                                 <Typography variant="body2" className={classes.dashboard_text}>
-                                    697
+                                    297
+                                </Typography>
+
+                                <Typography variant="button" className={classes.dashboard_text_S}>
+                                    S
+                                </Typography>
+                                <Typography variant="body2" className={classes.dashboard_text_last}>
+                                    297
                                 </Typography>
                             
                             
