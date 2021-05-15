@@ -328,7 +328,7 @@ def bin_options(request, cellarname):
     return JsonResponse([bin.serializer() for bin in options], safe=False, status=status.HTTP_200_OK)
 
 
-    # ------------------------- MEMORY RELATED ROUTES models CONSUMPTION and REVIEW -------------------------
+# ------------------------- MEMORY RELATED ROUTES models CONSUMPTION and REVIEW -------------------------
 
 @csrf_exempt
 @login_required
