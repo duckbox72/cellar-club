@@ -45,17 +45,17 @@ const useStyles = makeStyles((theme) => ({
     },
 
     dashboard_grid: {
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(0.75),
     },
     dashboard_icon: { 
         height: theme.spacing(2.5),
         width: theme.spacing(2.5),
-        marginLeft: theme.spacing(1.5),
-        marginRight: theme.spacing(1),
+        marginLeft: theme.spacing(1.25),
+        marginRight: theme.spacing(0.625),
         color: theme.palette.text.secondary,
         [theme.breakpoints.down('xs')]:{
             marginLeft: -theme.spacing(0.375),
-            marginRight: theme.spacing(0.75),
+            marginRight: theme.spacing(0.5),
         },
     },
     dashboard_bottle_icon: {
@@ -230,7 +230,7 @@ export default function Dashboard(props) {
                                 <Typography variant="body2" className={classes.dashboard_label}> 
                                     Collection
                                 </Typography>
-
+                                
                                 <Typography variant="button" className={classes.dashboard_text_T}>
                                     T
                                 </Typography>

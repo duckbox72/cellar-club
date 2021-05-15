@@ -58,7 +58,6 @@ export default function Memory(props) {
                 <Grid item xs={12} sm={10} md={8}>
                     <MemoryCard
                     {...props}
-                    userProfile={userProfile} 
                     darkMode={props.darkMode}
                     memory={memory}
                     />

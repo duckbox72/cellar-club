@@ -435,7 +435,6 @@ const useStyles = makeStyles((theme) => ({
 export default function BottleCard(props) {
 
     const darkMode = props.darkMode;
-    const userProfile = props.userProfile;
     const bottle = props.bottle;
     const [isFavorite, setIsFavorite] = useState(bottle.favorite);
     

@@ -209,7 +209,6 @@ const useStyles = makeStyles((theme) => ({
 export default function MemoryCard(props) {
 
     const darkMode = props.darkMode;
-    const userProfile = props.userProfile;
     const memory = props.memory;
     
     const [isFavorite, setIsFavorite] = useState(memory.bottle.favorite);

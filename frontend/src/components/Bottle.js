@@ -57,8 +57,7 @@ export default function Bottle(props) {
             
                 <Grid item xs={12} sm={10} md={8}>
                     <BottleCard
-                    {...props}
-                    userProfile={userProfile} 
+                    {...props} 
                     darkMode={props.darkMode}
                     bottle={bottle}
                     />

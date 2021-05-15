@@ -79,7 +79,6 @@ export default function Reviews(props) {
                     <ReviewsList 
                     {...props} 
                     darkMode={props.darkMode}
-                    displayName={reviewDisplayName}
                     reviewsList={reviewsList}
                     reviewsListLength={reviewsListLength}
                     />

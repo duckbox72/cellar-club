@@ -213,7 +213,6 @@ const useStyles = makeStyles((theme) => ({
 export default function ReviewCard(props) {
 
     const darkMode = props.darkMode;
-    const userProfile = props.userProfile;
     const review = props.review;
     
     const [isPublic, setIsPublic] = useState(review.is_public);
