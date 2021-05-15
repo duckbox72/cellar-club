@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     dashboard_grid: {
-        marginTop: theme.spacing(0.75),
+        marginTop: theme.spacing(0.5),
     },
     dashboard_icon: { 
         height: theme.spacing(2.5),

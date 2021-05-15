@@ -302,6 +302,24 @@ def search_bottle(request, display_name):
     return JsonResponse(response, safe=False, status=status.HTTP_200_OK)
 
 
+@login_required
+def store_options(request):
+    user = request.user
+    results = Bottle.objects.filter(user=user, consumed=False)
+    
+    # Lists only store (aka store_serializer)
+    all_results = []
+    for result in results:
+        if result.store:
+            all_results.append({'store': result.store})
+
+    # Parse results to return only distinct items
+    response = []
+    for result in all_results:
+        if result not in response:
+            response.append(result)
+
+    return JsonResponse(response, safe=False, status=status.HTTP_200_OK)
 # ------------------------- LOCATION RELATED ROUTES models CELLAR and BIN-------------------------
 
 @login_required

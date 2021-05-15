@@ -48,6 +48,7 @@ import brown from '@material-ui/core/colors/brown';
 import { currencyNumberFormat} from "../utils/currencyNumberFormat";
 import { getBottleSizesOptions } from "../utils/getBottleSizesOptions";
 import { getVintageOptions } from "../utils/getVintageOptions";
+import { getStoreOptions } from "../utils/getStoreOptions";
 import { getCellarOptions } from "../utils/getCellarOptions";
 import { getBinOptions } from '../utils/getBinOptions';
 import { getQuantityOptions } from '../utils/getQuantityOptions';
@@ -198,7 +199,6 @@ export default function LwinProfileCard(props) {
 
     // Component props
     const darkMode = props.darkMode;
-    const userProfile = props.userProfile;
     const LwinData = props.LwinData;
     const bottleColor = LwinData === null ? "" : props.LwinData.colour;    
     const countryFlag = LwinData === null ? "" : LwinData.country.split(" ").join("-").toLowerCase();
@@ -244,16 +244,10 @@ export default function LwinProfileCard(props) {
     const bottleSizes = getBottleSizesOptions();
     const quantities = getQuantityOptions();
     const vintages = getVintageOptions();
+    const stores = getStoreOptions();    
+
     const cellars = getCellarOptions();   
     const [bins, setBins] = useState([]);
-    
-    const infodata = [
-        {mock: 'some string', store: 'ABC Wine and Spirits'},
-        {mock: 'some string', store: 'Total Wine & More'},
-        {mock: 'some string', store: 'Goody Goody'},
-        {mock: 'some string', store: 'Speck\'s Wines'},
-        {mock: 'some string', store: 'Cellaraiders.com'},
-    ];
 
 
     // Add Bottle Form fields
@@ -799,7 +793,7 @@ export default function LwinProfileCard(props) {
                             freeSolo
                             onChange={(event,value) => handleSelectedStoreAutocompleteChange(value)} 
                             clearOnEscape
-                            options={infodata.map((option) => option.store)}
+                            options={stores}
                             renderInput={(params) => (
                                 <Grid container spacing={1} justify="center" alignItems="center">
                                     <Grid item>

@@ -123,7 +123,6 @@ export default function Search(props) {
                     darkMode={props.darkMode}
                     LwinData={LwinData}
                     gwsScores={gwsScores}
-                    userProfile={userProfile}
                     parentFormExpandedCallback={formExpandedCallback}
                     />     
                 </Grid> 
