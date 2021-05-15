@@ -28,7 +28,7 @@ export function getUserProfile(props) {
     //                    "date_joined": date_joined
     };
     
-                        console.log(userProfile);
+    //console.log(userProfile);
 
     return userProfile;
 }

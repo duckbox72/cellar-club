@@ -24,9 +24,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import AddIcon from '@material-ui/icons/Add';
-import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-import BookmarkIcon from '@material-ui/icons/Bookmark';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import CloseIcon from '@material-ui/icons/Close';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
@@ -36,12 +34,11 @@ import KitchenIcon from '@material-ui/icons/Kitchen';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import RemoveIcon from '@material-ui/icons/Remove'
-import ShareIcon from '@material-ui/icons/Share';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
 
-import { CompassIcon, GlassCheersIcon, StoreIcon, WineBottleIcon } from './SvgIcons';
+import { CompassIcon, GlassCheersIcon, WineBottleIcon } from './SvgIcons';
 
 import brown from '@material-ui/core/colors/brown';
 
@@ -85,16 +82,16 @@ const useStyles = makeStyles((theme) => ({
     expandOpen: {
         transform: 'rotate(180deg)', 
     },
-    header: {
-        
+    add_bottle_iconbutton: {
+        height: theme.spacing(6),
+        width: theme.spacing(6),
     },
-    header_title: {
-        fontWeight: 500,
-        fontSize: theme.spacing(2),    
-        //color: mystyleprops => mystyleprops.colorSchemaA,       
-    },
-    header_subheader: {
-        fontWeight: 400,
+    add_bottle_iconbutton_icon: {
+        marginRight: -theme.spacing(0.5),
+        height: theme.spacing(2.125),
+        width: theme.spacing(2.125),
+
+        transform: 'rotate(315deg)',
     },
     iconbutton_external_link_ws: {
         height: theme.spacing(6.5),
@@ -127,6 +124,17 @@ const useStyles = makeStyles((theme) => ({
         backgroundPosition: 'center',
         height: theme.spacing(4),
         width: theme.spacing(4),
+    },
+    header: {
+        
+    },
+    header_title: {
+        fontWeight: 500,
+        fontSize: theme.spacing(2),    
+        //color: mystyleprops => mystyleprops.colorSchemaA,       
+    },
+    header_subheader: {
+        fontWeight: 400,
     },
     form_title: {
         fontSize: theme.spacing(2),
@@ -490,16 +498,31 @@ export default function LwinProfileCard(props) {
                         </IconButton>
                     </Tooltip>
                     
-                    <IconButton >
-                        <ShareIcon />
-                    </IconButton>
-                    
                     <Tooltip title="Write a tasting review">
                         <IconButton
                         disabled={expanded}
                         onClick={handleAddReviewButtonClick}
                         >
                             <PostAddIcon />
+                        </IconButton>
+                    </Tooltip>
+
+                    <Tooltip title="Add bottle to collection">    
+                        <IconButton 
+                        disabled={addReviewCollapse}
+                        onClick={handleExpandClick} 
+                        className={classes.add_bottle_iconbutton}
+                        >
+                            <>
+                                <WineBottleIcon className={classes.add_bottle_iconbutton_icon}/>
+                                <AddIcon 
+                                style={{
+                                    width: theme.spacing(1.75),
+                                    marginLeft: -theme.spacing(0.25),
+                                    marginTop: -theme.spacing(1.5),   
+                                }}
+                                />
+                            </>
                         </IconButton>
                     </Tooltip>
                     
@@ -539,7 +562,7 @@ export default function LwinProfileCard(props) {
                 </Avatar>
             }
             action={
-                <Tooltip title="Add to my cellar">
+                <Tooltip title="Add bottle to collection">
                     <IconButton
                     disabled={addReviewCollapse}
                     className={clsx(classes.expand, {
