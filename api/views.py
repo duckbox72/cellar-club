@@ -305,8 +305,8 @@ def search_bottle(request, display_name):
 @login_required
 def store_options(request):
     user = request.user
-    results = Bottle.objects.filter(user=user, consumed=False)
-    
+    results = Bottle.objects.filter(user=user, store__isnull=False, consumed=False)
+   
     # Lists only store (aka store_serializer)
     all_results = []
     for result in results:
@@ -578,7 +578,7 @@ def toggle_review_privacy(request):
     return JsonResponse({"success": "updated successfully"}, safe=False, status=status.HTTP_200_OK)
 
 
-
+# ------------------------- DASHBOARD (HOME) RELATED ROUTES models BOTTLE, CONSUMPTION and REVIEW -------------------------
 
 
 
@@ -586,6 +586,7 @@ def toggle_review_privacy(request):
 
 
 # To be used as temp ROUTE when loading the complete LWIN database
+'''
 @login_required
 def lwin_import(request):
     print('LWINimport CALLED')
@@ -638,3 +639,4 @@ def lwin_import(request):
     print('ALL SAVED')
 
     return JsonResponse({"sucess": "Lwin catalog created"})
+'''

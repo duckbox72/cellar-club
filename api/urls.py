@@ -6,8 +6,8 @@ from . import views
 
 urlpatterns = [
     # path('', UserView.as_view()),
-    # IMPORT LWIN datadabase ROUTE
-    path('lwin_import', views.lwin_import, name="lwin_import"),
+    # IMPORT LWIN datadabase TEMP ROUTE
+    # path('lwin_import', views.lwin_import, name="lwin_import"),
 
     # AUTH API Routes
     path('is_authenticated', views.is_authenticated_view, name="is_authenticated"),
@@ -53,4 +53,7 @@ urlpatterns = [
     path('get_review/<str:bottle_id>', views.get_review, name="get_review"),
     path('delete_review/<str:review_id>', views.delete_review, name="delete_review"),
     path('toggle_review_privacy', views.toggle_review_privacy, name="toggle_review_privacy"),
+
+    # DASHBOARD (HOME) CALLS RELATED ROUTES
+
 ]

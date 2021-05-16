@@ -113,11 +113,6 @@ class Bottle(models.Model):
         return {
             "display_name": self.display_name,
         }
-
-    def store_serializer(self):
-        return {
-            "store": self.store,
-        }
     
     def serializer(self):
         
