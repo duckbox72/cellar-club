@@ -7,6 +7,7 @@ from django.utils import timezone
 
 class User(AbstractUser):
     photo = models.ImageField(upload_to='static', blank=True)
+    dark_mode =  models.BooleanField(default=False)
     pass
 
 

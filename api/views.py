@@ -27,12 +27,14 @@ import pandas as pd
 
 
 # --------------------------- AUTH API ROUTES --------------------------- 
-def is_authenticated_view(request):
+def is_authenticated(request):
+    # This returns is_authenticated + dark_mode STATUSES
     if request.user.is_authenticated:
         user = request.user
-        return JsonResponse({"is_authenticated": True})
+        print(f"DARK_MODE STATUS {user.dark_mode}")
+        return JsonResponse({"is_authenticated": True, "dark_mode": user.dark_mode})
     else:
-        return JsonResponse({"is_authenticated": False})
+        return JsonResponse({"is_authenticated": False, "dark_mode": False})
 
 @login_required
 def user_profile(request):
@@ -116,6 +118,22 @@ def sign_up(request):
     else:    
         return JsonResponse({"error": "Invalid request method"})
 
+
+# ------------------------- USER model OPTIONS RELATED ROUTES
+@csrf_exempt
+@login_required
+def toggle_dark_mode(request):
+
+    if request.method != 'POST':
+        return JsonResponse({"error": "POST request required."}, safe=False, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    
+    user = request.user
+    data = json.loads(request.body)
+
+    user.dark_mode = data['dark_mode']
+    user.save()
+    
+    return JsonResponse({"success": "dark mode updated."})
 
 # ------------------------- GWS EXTERNAL API LOOKUP --------------------------------------
 @login_required
@@ -579,6 +597,11 @@ def toggle_review_privacy(request):
 
 
 # ------------------------- DASHBOARD (HOME) RELATED ROUTES models BOTTLE, CONSUMPTION and REVIEW -------------------------
+
+
+
+
+
 
 
 

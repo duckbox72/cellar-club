@@ -85,9 +85,23 @@ export default function Navbar(props) {
     const classes = useStyles(mystyleprops);
    
    
-    const toggleDarKMode = () => {
-        props.parentDarkModeCallback()
-        setdarkMode(!darkMode);
+    const toggleDarKMode = () => {    
+        // Write new user's dark_mode to User
+        fetch('/api/toggle_dark_mode', {
+            method: 'POST',
+            body: JSON.stringify({
+                dark_mode: !darkMode,
+            }), 
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Update darkMode and call parent callback
+            if (data.success) {
+                setdarkMode(!darkMode)
+                props.parentDarkModeCallback()
+            }
+        })
+
     }
 
     // Called from DrawerMenu

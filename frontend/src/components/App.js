@@ -19,7 +19,6 @@ import SignUp from "./Signup";
 import { brown } from "@material-ui/core/colors";
 
 
-
 const useStyles = makeStyles({
     appStyles: {
         minWidth: '100%',
@@ -34,13 +33,15 @@ const useStyles = makeStyles({
 
 export default function App(props) {  
     const classes = useStyles();
-    
-    const [darkMode, setDarkMode] = useState(false);
-    
-    const [isAuthenticated, updateIsAuthenticated] = useState(props.isAuthenticated);
 
+
+    const [isAuthenticated, updateIsAuthenticated] = useState(props.isAuthenticated);
+    const [darkMode, setDarkMode] = useState(props.darkMode);
+    
     console.log(`(App) props.isAuthenticated:  ${props.isAuthenticated}`)
     console.log(`(App) const isAuthenticated:  ${isAuthenticated}`)
+    console.log(`(App) props.darkMode:  ${props.darkMode}`)
+    console.log(`(App) const darkMode:  ${darkMode}`)
 
     const mytheme = createMuiTheme({ 
         palette: {

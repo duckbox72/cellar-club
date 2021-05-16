@@ -10,11 +10,14 @@ urlpatterns = [
     # path('lwin_import', views.lwin_import, name="lwin_import"),
 
     # AUTH API Routes
-    path('is_authenticated', views.is_authenticated_view, name="is_authenticated"),
+    path('is_authenticated', views.is_authenticated, name="is_authenticated"),
     path('signin', views.sign_in, name="signin"),
     path('signout', views.sign_out, name="signout"),
     path('signup', views.sign_up, name="signup"),
     path('user_profile', views.user_profile, name="user_profile"),
+
+    # User Preferences Routes
+    path('toggle_dark_mode', views.toggle_dark_mode, name="toggle_dark_mode"),
 
     # LWIN Database Routes
     # path('create', CreateLwinView.as_view()), 
