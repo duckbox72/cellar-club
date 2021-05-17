@@ -95,6 +95,7 @@ class Bottle(models.Model):
     region = models.CharField(max_length=64, null=True, blank=True)
     sub_region = models.CharField(max_length=64, null=True, blank=True)
     colour = models.CharField(max_length=16, null=True, blank=True)
+    type = models.CharField(max_length=64, null=True, blank=True)
 
     # data entered by user
     vintage = models.CharField(max_length=4)

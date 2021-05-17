@@ -233,6 +233,7 @@ def add_bottle_to_collection(request):
         region = data['region'],
         sub_region = data['sub_region'],
         colour = data['colour'],
+        type = data['type'],
         vintage = data['vintage'],
         size = data['size'],
         store = data['store'],
@@ -597,7 +598,26 @@ def toggle_review_privacy(request):
 
 
 # ------------------------- DASHBOARD (HOME) RELATED ROUTES models BOTTLE, CONSUMPTION and REVIEW -------------------------
+@login_required
+def dashboard_stats(request):
+    user = request.user
 
+    purchased = Bottle.objects.filter(user=user)
+    purchased_red = purchased.filter(colour='Red')
+    purchased_white = purchased.filter(colour='White')
+
+    
+    collection = purchased.filter(consumed=False)
+    
+    consumed = purchased.filter(consumed=True)
+
+
+
+
+    print(len(purchased_red) , len(collection) , len(consumed))
+
+    
+    return JsonResponse({"success": "stats cached"}, safe=False, status=status.HTTP_200_OK) 
 
 
 

@@ -58,5 +58,5 @@ urlpatterns = [
     path('toggle_review_privacy', views.toggle_review_privacy, name="toggle_review_privacy"),
 
     # DASHBOARD (HOME) CALLS RELATED ROUTES
-
+    path('dashboard_stats', views.dashboard_stats, name="dashboard_stats"),
 ]

@@ -9,6 +9,14 @@ import Navbar from "./common/Navbar";
 import NavbarTransparent from "./common/NavbarTransparent";
 //import { getUserProfile } from "./utils/getUserProfile";
 
+const  getDashboardStats = () => {
+    fetch('/api/dashboard_stats')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    });
+};
+
 
 const useStyles = makeStyles({
     root: {
@@ -21,6 +29,7 @@ export default function Home(props) {
     const classes = useStyles();
 
     //const userProfile = (getUserProfile());
+    const dashboardStats = getDashboardStats();
     const username = props.username
     const [LwinData, setLwinData] = useState({});
 
