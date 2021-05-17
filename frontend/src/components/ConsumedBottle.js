@@ -11,7 +11,6 @@ import Copyright from './common/Copyright';
 import Navbar from "./common/Navbar";
 import NavbarTransparent from "./common/NavbarTransparent";
 
-import { getUserProfile } from "./utils/getUserProfile";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ConsumedBottle(props) {
   
-    const userProfile = (getUserProfile());
+    const username = props.username;
 
     const location = useLocation();
     const bottle = location.state.bottle;
@@ -48,7 +47,7 @@ export default function ConsumedBottle(props) {
                     darkMode={props.darkMode} 
                     parentCallback={darkModeCallback}
                     parentSignOutCallback={signOutCallback}
-                    userProfile={userProfile}
+                    username={username}
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -58,7 +57,6 @@ export default function ConsumedBottle(props) {
                 <Grid item xs={12} sm={10} md={8}>
                     <ConsumedBottleCard
                     {...props}
-                    userProfile={userProfile} 
                     darkMode={props.darkMode}
                     bottle={bottle}
                     />

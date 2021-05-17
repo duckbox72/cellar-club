@@ -7,7 +7,7 @@ import Copyright from './common/Copyright';
 import Dashboard from "./common/Dashboard";
 import Navbar from "./common/Navbar";
 import NavbarTransparent from "./common/NavbarTransparent";
-import { getUserProfile } from "./utils/getUserProfile";
+//import { getUserProfile } from "./utils/getUserProfile";
 
 
 const useStyles = makeStyles({
@@ -20,7 +20,8 @@ const useStyles = makeStyles({
 export default function Home(props) {
     const classes = useStyles();
 
-    const userProfile = (getUserProfile());
+    //const userProfile = (getUserProfile());
+    const username = props.username
     const [LwinData, setLwinData] = useState({});
 
 
@@ -42,7 +43,7 @@ export default function Home(props) {
                     darkMode={props.darkMode} 
                     parentCallback={darkModeCallback}
                     parentSignOutCallback={signOutCallback}
-                    userProfile={userProfile}
+                    username={username}
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -52,7 +53,7 @@ export default function Home(props) {
                     <Dashboard
                     {...props} 
                     darkMode={props.darkMode}
-                    userProfile={userProfile}
+                    username={username}
                     />
                 </Grid>
                 <Grid item xs={12} sm={10} md={8} style={{margin: 8}}>

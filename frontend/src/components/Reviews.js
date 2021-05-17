@@ -9,7 +9,6 @@ import Navbar from "./common/Navbar";
 import NavbarTransparent from "./common/NavbarTransparent";
 import Searchbar from "./common/Searchbar";
 
-import { getUserProfile } from "./utils/getUserProfile";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Reviews(props) {
   
-    const userProfile = (getUserProfile());
+    const username = props.username;
     const [reviewDisplayName, setReviewDisplayName] = useState(null);
 
     const [reviewsList, setReviewsList] = useState(null);
@@ -41,13 +40,10 @@ export default function Reviews(props) {
     // Searchbar callbacks
     const ReviewDisplayNameCallback = (review_display_name) => {
         setReviewDisplayName(review_display_name);
-        console.log(review_display_name);
     }
     const ReviewsListCallback = (reviews_list) => {
         setReviewsList(reviews_list);
         setReviewsListLength(Object.keys(reviews_list).length);
-        console.log(reviews_list);
-        console.log(Object.keys(reviews_list).length)
     }
     
     
@@ -60,7 +56,7 @@ export default function Reviews(props) {
                     darkMode={props.darkMode} 
                     parentCallback={darkModeCallback}
                     parentSignOutCallback={signOutCallback}
-                    userProfile={userProfile}
+                    username={username}
                     />
                 </Grid>
                 <Grid item xs={12}>

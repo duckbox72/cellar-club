@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 export default function DrawerMenu(props) {
 
   const darkMode = props.darkMode;
-  const userProfile = props.userProfile;
+  const username = props.username;
 
   const theme = useTheme(); 
   const mystyleprops = {
@@ -105,9 +105,9 @@ export default function DrawerMenu(props) {
 
         <ListItem button key="username" color="primary">
           <ListItemIcon>
-            <Avatar className={classes.avatar}>{userProfile.username[0]}</Avatar>
+            <Avatar className={classes.avatar}>{username[0]}</Avatar>
           </ListItemIcon>
-          <ListItemText primary={userProfile.username} />
+          <ListItemText primary={username} />
         </ListItem>
 
         <Divider />

@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+// Momentarily deprecated.
+// Function replaced at index.js request isAuthenticated
 export function getUserProfile(props) {
 
     const [username, setUsername] = useState("");

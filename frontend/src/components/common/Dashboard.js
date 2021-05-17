@@ -154,7 +154,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard(props) {
 
     const darkMode = props.darkMode
-    const userProfile = props.userProfile;
+    const username = props.username;
 
     const theme = useTheme(); 
     const mystyleprops = {
@@ -200,7 +200,7 @@ export default function Dashboard(props) {
                                 </Typography>
                                 
                                 <Typography  className={classes.dashboard_header_username} variant="body1">
-                                    Hello, {userProfile.username}
+                                    Hello, {username}
                                 </Typography>
                             </ListItem>
                         </Grid> 

@@ -9,7 +9,6 @@ import Navbar from "./common/Navbar";
 import NavbarTransparent from "./common/NavbarTransparent";
 import Searchbar from "./common/Searchbar";
 
-import { getUserProfile } from "./utils/getUserProfile";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Collection(props) {
   
-    const userProfile = (getUserProfile());
+    const username = props.username;
     const [bottleName, setBottleName] = useState(null);
 
     const [bottleList, setBottleList] = useState(null);
@@ -41,13 +40,10 @@ export default function Collection(props) {
     // Searchbar callbacks
     const BottleNameCallback = (bottle_name) => {
         setBottleName(bottle_name);
-        console.log(bottle_name);
     }
     const BottleListCallback = (bottle_list) => {
         setBottleList(bottle_list);
         setBottleListLength(Object.keys(bottle_list).length);
-        console.log(bottle_list);
-        console.log(Object.keys(bottle_list).length)
     }
     
     
@@ -60,7 +56,7 @@ export default function Collection(props) {
                     darkMode={props.darkMode} 
                     parentCallback={darkModeCallback}
                     parentSignOutCallback={signOutCallback}
-                    userProfile={userProfile}
+                    username={username}
                     />
                 </Grid>
                 <Grid item xs={12}>

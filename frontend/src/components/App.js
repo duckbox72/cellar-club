@@ -37,11 +37,15 @@ export default function App(props) {
 
     const [isAuthenticated, updateIsAuthenticated] = useState(props.isAuthenticated);
     const [darkMode, setDarkMode] = useState(props.darkMode);
+    const username = props.username
     
     console.log(`(App) props.isAuthenticated:  ${props.isAuthenticated}`)
     console.log(`(App) const isAuthenticated:  ${isAuthenticated}`)
     console.log(`(App) props.darkMode:  ${props.darkMode}`)
     console.log(`(App) const darkMode:  ${darkMode}`)
+    console.log(`(App) props.username:  ${props.username}`)
+    console.log(`(App) const username:  ${username}`)
+    
 
     const mytheme = createMuiTheme({ 
         palette: {
@@ -94,54 +98,63 @@ export default function App(props) {
                             parentDarkModeCallback={darkModeCallback}
                             parentSignOutCallback={signOutCallback}
                             isAuthenticated={isAuthenticated}
+                            username={username}
                             />} />
                             <Route path='/bottle' render= {props => <Bottle {...props} 
                             darkMode={darkMode}
                             parentDarkModeCallback={darkModeCallback}
                             parentSignOutCallback={signOutCallback}
                             isAuthenticated={isAuthenticated}
+                            username={username}
                             />} />
                             <Route path='/consumed_bottle' render= {props => <ConsumedBottle {...props} 
                             darkMode={darkMode}
                             parentDarkModeCallback={darkModeCallback}
                             parentSignOutCallback={signOutCallback}
                             isAuthenticated={isAuthenticated}
+                            username={username}
                             />} />
                             <Route path='/collection' render= {props => <Collection {...props} 
                             darkMode={darkMode}
                             parentDarkModeCallback={darkModeCallback}
                             parentSignOutCallback={signOutCallback}
                             isAuthenticated={isAuthenticated}
+                            username={username}
                             />} />
                             <Route path='/memories' render= {props => <Memories {...props} 
                             darkMode={darkMode}
                             parentDarkModeCallback={darkModeCallback}
                             parentSignOutCallback={signOutCallback}
                             isAuthenticated={isAuthenticated}
+                            username={username}
                             />} />
                             <Route path='/memory' render= {props => <Memory {...props} 
                             darkMode={darkMode}
                             parentDarkModeCallback={darkModeCallback}
                             parentSignOutCallback={signOutCallback}
                             isAuthenticated={isAuthenticated}
+                            username={username}
                             />} />
                             <Route path='/reviews' render= {props => <Reviews {...props} 
                             darkMode={darkMode}
                             parentDarkModeCallback={darkModeCallback}
                             parentSignOutCallback={signOutCallback}
                             isAuthenticated={isAuthenticated}
+                            username={username}
                             />} />
                             <Route path='/review' render= {props => <Review {...props} 
                             darkMode={darkMode}
                             parentDarkModeCallback={darkModeCallback}
                             parentSignOutCallback={signOutCallback}
                             isAuthenticated={isAuthenticated}
+                            username={username}
                             />} />
                             <Route path='/search' render={props => <Search {...props} 
                             darkMode={darkMode}
                             parentDarkModeCallback={darkModeCallback}
                             parentSignOutCallback={signOutCallback}
                             isAuthenticated={isAuthenticated}
+                            username={username}
                             />} />
 
                             <Route path='/signin' render={props => <Redirect {...props} to="/" />} />

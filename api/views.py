@@ -28,13 +28,13 @@ import pandas as pd
 
 # --------------------------- AUTH API ROUTES --------------------------- 
 def is_authenticated(request):
-    # This returns is_authenticated + dark_mode STATUSES
+    # This returns is_authenticated + dark_mode STATUS + username
     if request.user.is_authenticated:
         user = request.user
         print(f"DARK_MODE STATUS {user.dark_mode}")
-        return JsonResponse({"is_authenticated": True, "dark_mode": user.dark_mode})
+        return JsonResponse({"is_authenticated": True, "dark_mode": user.dark_mode, "username":user.username})
     else:
-        return JsonResponse({"is_authenticated": False, "dark_mode": False})
+        return JsonResponse({"is_authenticated": False, "dark_mode": False, "username": False})
 
 @login_required
 def user_profile(request):

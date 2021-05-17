@@ -12,8 +12,6 @@ import Navbar from "./common/Navbar";
 import NavbarTransparent from "./common/NavbarTransparent";
 import Searchbar from "./common/Searchbar";
 
-import { getUserProfile } from "./utils/getUserProfile";
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Search(props) {
 
-    const userProfile = (getUserProfile());
+    const username = props.username;
     const [LwinData, setLwinData] = useState(null);
     const [gwsScores, setGwsScores] = useState(null);
 
@@ -99,7 +97,7 @@ export default function Search(props) {
                     darkMode={props.darkMode} 
                     parentCallback={darkModeCallback}
                     parentSignOutCallback={signOutCallback}
-                    userProfile={userProfile}
+                    username={username}
                     />
                 </Grid> 
                 <Grid item xs={12}>

@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Navbar(props) {
     
     const [darkMode, setdarkMode] = useState(props.darkMode);
-    const userProfile = props.userProfile;
+    const username = props.username;
     
     
     
@@ -147,10 +147,9 @@ export default function Navbar(props) {
                     </Tooltip>
                     <span className={classes.main_menu_on}>
                     <DrawerMenu
-
                         {...props}
                         darkMode={props.darkMode}
-                        userProfile={props.userProfile}
+                        username={username}
                         parentSignOutCallback={sigOutCallback}
                     />
                     </span>

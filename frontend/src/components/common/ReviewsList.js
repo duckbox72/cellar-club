@@ -59,9 +59,6 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(1),
     },
     icon_numof_consumed: {
-        //width: theme.spacing(2.75),
-        //height:theme.spacing(2.75), 
-        //transform: 'rotate(270deg)',
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     
@@ -106,13 +103,11 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]: {
             fontSize: theme.spacing(1.75),
         }, 
-        //color: mystyleprops => mystyleprops.colorSchemaA,
     },
     list_item_subheader_icon:{
         width: theme.spacing(1.75),
         height: theme.spacing(1.75),
         margin: theme.spacing(0, 0.5),
-       // color: mystyleprops => mystyleprops.colorSchemaA,
     },
 }));
 
@@ -219,11 +214,13 @@ export default function ReviewsList(props) {
                             }
 
                             {review.bottle.id
-                            ? <Tooltip title="Bottle consumed from collection">
+                            ? <Tooltip title="Bottle from collection">
                                 <WineBottleIcon className={classes.list_item_subheader_icon} style={{color: mystyleprops.colorSchemaA}}/>
                               </Tooltip>
-                            : <Tooltip title="Bottle not consumed from collection">
-                                <WineBottleIcon className={classes.list_item_subheader_icon} style={{filter: 'opacity(50%)'}}/>
+                            : <Tooltip title="Bottle not from collection">
+                                <span>
+                                    <WineBottleIcon className={classes.list_item_subheader_icon} style={{filter: 'opacity(50%)'}}/>
+                                </span>
                               </Tooltip>
                             }
                         </Typography>

@@ -9,7 +9,6 @@ import Navbar from "./common/Navbar";
 import NavbarTransparent from "./common/NavbarTransparent";
 import Searchbar from "./common/Searchbar";
 
-import { getUserProfile } from "./utils/getUserProfile";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Memories(props) {
   
-    const userProfile = (getUserProfile());
+    const username = props.username;
     const [displayName, setDisplayName] = useState(null);
 
     const [memoriesList, setMemoriesList] = useState(null);
@@ -41,13 +40,10 @@ export default function Memories(props) {
     // Searchbar callbacks
     const DisplayNameCallback = (display_name) => {
         setDisplayName(display_name);
-        console.log(display_name);
     }
     const MemoriesListCallback = (memories_list) => {
         setMemoriesList(memories_list);
         setMemoriesListLength(Object.keys(memories_list).length);
-        console.log(memories_list);
-        console.log(Object.keys(memories_list).length)
     }
     
     
@@ -60,7 +56,7 @@ export default function Memories(props) {
                     darkMode={props.darkMode} 
                     parentCallback={darkModeCallback}
                     parentSignOutCallback={signOutCallback}
-                    userProfile={userProfile}
+                    username={username}
                     />
                 </Grid>
                 <Grid item xs={12}>
