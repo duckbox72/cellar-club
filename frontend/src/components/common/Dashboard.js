@@ -14,7 +14,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import StarOutlinedIcon from '@material-ui/icons/StarOutline';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 
-import { GlassMartiniIcon, WineBottleIcon, WineGlassIcon } from './SvgIcons';
+import { GlassMartiniIcon, GlassCheersIcon, WineBottleIcon, WineGlassIcon } from './SvgIcons';
 
 import brown from '@material-ui/core/colors/brown';
 
@@ -68,6 +68,17 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]:{
             marginLeft: theme.spacing(0),
             marginRight: theme.spacing(0.75),
+        },
+    },
+    dashboard_cheers_icon: {
+        height: theme.spacing(2.5),
+        width: theme.spacing(2.5),
+        marginLeft: theme.spacing(1.25),
+        marginRight: theme.spacing(0.625),
+        color: theme.palette.text.secondary,
+        [theme.breakpoints.down('xs')]:{
+            marginLeft: -theme.spacing(0.375),
+            marginRight: theme.spacing(0.5),
         },
     },
     dashboard_label: {
@@ -147,8 +158,6 @@ const useStyles = makeStyles((theme) => ({
         //width: theme.spacing(3.5),
         //marginTop: theme.spacing(2),
     },
-
-    
 }));
 
 
@@ -283,7 +292,7 @@ export default function Dashboard(props) {
 
                         <Grid item xs={12} className={classes.dashboard_grid}>
                             <ListItem>
-                                <WineBottleIcon className={classes.dashboard_bottle_icon}/>
+                            <GlassCheersIcon className={classes.dashboard_cheers_icon}/>
                                     
                                 <Typography variant="body2" className={classes.dashboard_label}> 
                                     Consumed
