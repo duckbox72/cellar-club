@@ -31,10 +31,13 @@ def is_authenticated(request):
     # This returns is_authenticated + dark_mode STATUS + username
     if request.user.is_authenticated:
         user = request.user
-        print(f"DARK_MODE STATUS {user.dark_mode}")
-        return JsonResponse({"is_authenticated": True, "dark_mode": user.dark_mode, "username":user.username})
+        return JsonResponse({"is_authenticated": True, 
+                             "dark_mode": user.dark_mode, 
+                             "username":user.username})
     else:
-        return JsonResponse({"is_authenticated": False, "dark_mode": False, "username": False})
+        return JsonResponse({"is_authenticated": False, 
+                             "dark_mode": False, 
+                             "username": False})
 
 @login_required
 def user_profile(request):
@@ -603,22 +606,56 @@ def dashboard_stats(request):
     user = request.user
 
     purchased = Bottle.objects.filter(user=user)
-    purchased_red = purchased.filter(colour='Red')
-    purchased_white = purchased.filter(colour='White')
-
+    purchased_red = len(purchased.filter(colour='Red'))
+    purchased_white = len(purchased.filter(colour='White'))
+    purchased_rose = len(purchased.filter(colour='Rose'))
+    purchased_else = len(purchased) - (purchased_red + purchased_white + purchased_rose)
     
     collection = purchased.filter(consumed=False)
+    collection_red = len(collection.filter(colour='Red'))
+    collection_white = len(collection.filter(colour='White'))
+    collection_rose = len(collection.filter(colour='Rose'))
+    collection_else = len(collection) - (collection_red + collection_white + collection_rose)
     
     consumed = purchased.filter(consumed=True)
+    consumed_red = len(consumed.filter(colour='Red'))
+    consumed_white = len(consumed.filter(colour='White'))
+    consumed_rose = len(consumed.filter(colour='Rose'))
+    consumed_else = len(consumed) - (consumed_red + consumed_white + consumed_rose)
 
+    reviewed = Review.objects.filter(user=user)
+    reviewed_red = len(reviewed.filter(bottle__isnull=False, bottle__colour='Red')) + len(reviewed.filter(bottle__isnull=True, lwin_colour='Red'))
+    reviewed_white = len(reviewed.filter(bottle__isnull=False, bottle__colour='White')) + len(reviewed.filter(bottle__isnull=True, lwin_colour='White'))
+    reviewed_rose = len(reviewed.filter(bottle__isnull=False, bottle__colour='Rose')) + len(reviewed.filter(bottle__isnull=True, lwin_colour='Rose'))
+    reviewed_else = len(reviewed) - (reviewed_red + reviewed_white + reviewed_rose)
 
+    stats = {
+        "purchased": len(purchased),
+        "purchased_red": purchased_red,
+        "purchased_white": purchased_white,
+        "purchased_rose": purchased_rose,
+        "purchased_else": purchased_else,
 
+        "collection": len(collection),
+        "collection_red": collection_red,
+        "collection_white": collection_white,
+        "collection_rose": collection_rose,
+        "collection_else": collection_else,
 
-    print(len(purchased_red) , len(collection) , len(consumed))
+        "consumed": len(consumed),
+        "consumed_red": consumed_red,
+        "consumed_white": consumed_white,
+        "consumed_rose": consumed_rose,
+        "consumed_else": consumed_else,
 
-    
-    return JsonResponse({"success": "stats cached"}, safe=False, status=status.HTTP_200_OK) 
+        "reviewed": len(reviewed),
+        "reviewed_red": reviewed_red,
+        "reviewed_white": reviewed_white,
+        "reviewed_rose": reviewed_rose,
+        "reviewed_else": reviewed_else,
+    }
 
+    return JsonResponse(stats, safe=False, status=status.HTTP_200_OK) 
 
 
 

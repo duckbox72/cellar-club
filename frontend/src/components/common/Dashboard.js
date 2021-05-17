@@ -165,6 +165,9 @@ export default function Dashboard(props) {
 
     const darkMode = props.darkMode
     const username = props.username;
+    const stats = props.dashboardStats !== null ? props.dashboardStats : null;
+    console.log(stats)
+    
 
     const theme = useTheme(); 
     const mystyleprops = {
@@ -218,11 +221,6 @@ export default function Dashboard(props) {
 
 
 
-
-
-
-
-
                         <Grid item xs={12} className={classes.dashboard_grid}>
                             <ListItem>
                                 <WineBottleIcon className={classes.dashboard_bottle_icon} style={{transform: 'rotate(315deg)',}}/>
@@ -240,7 +238,7 @@ export default function Dashboard(props) {
                                     </div>
                                 </Tooltip>
                                 <Typography variant="body2" className={classes.dashboard_text}>
-                                    381
+                                    {stats ? stats.collection_red : ''}
                                 </Typography>
 
                                 <Tooltip title="White">
@@ -252,7 +250,7 @@ export default function Dashboard(props) {
                                     </div>
                                 </Tooltip>
                                 <Typography variant="body2" className={classes.dashboard_text}>
-                                    412
+                                {stats ? stats.collection_white : ''}
                                 </Typography>
                             
                                 <Tooltip title="Rose">
@@ -264,7 +262,7 @@ export default function Dashboard(props) {
                                     </div>
                                 </Tooltip>
                                 <Typography variant="body2" className={classes.dashboard_text}>
-                                    297
+                                    {stats ? stats.collection_rose : ''}
                                 </Typography>
                                 
                                 <Tooltip title="Spirits">
@@ -276,7 +274,7 @@ export default function Dashboard(props) {
                                     </div>
                                 </Tooltip>
                                 <Typography variant="body2" className={classes.dashboard_text}>
-                                    297
+                                    {stats ? stats.collection_else : ''}
                                 </Typography>
 
                                 <Tooltip title="All">
@@ -285,7 +283,7 @@ export default function Dashboard(props) {
                                     </Typography>
                                 </Tooltip>
                                 <Typography variant="body2" className={classes.dashboard_text_last}>
-                                    986
+                                    {stats ? stats.collection: ''}
                                 </Typography>
                             </ListItem>
                         </Grid>

@@ -1,4 +1,4 @@
-import React, { useState, } from "react";
+import React, { useEffect, useState, } from "react";
 import { makeStyles } from "@material-ui/core/styles"
 
 import Grid  from "@material-ui/core/Grid";
@@ -8,14 +8,6 @@ import Dashboard from "./common/Dashboard";
 import Navbar from "./common/Navbar";
 import NavbarTransparent from "./common/NavbarTransparent";
 //import { getUserProfile } from "./utils/getUserProfile";
-
-const  getDashboardStats = () => {
-    fetch('/api/dashboard_stats')
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-    });
-};
 
 
 const useStyles = makeStyles({
@@ -29,9 +21,9 @@ export default function Home(props) {
     const classes = useStyles();
 
     //const userProfile = (getUserProfile());
-    const dashboardStats = getDashboardStats();
     const username = props.username
     const [LwinData, setLwinData] = useState({});
+    const [dashboardStats, setDashbosardStats] = useState(null);
 
 
     // Navbar callbacks
@@ -41,6 +33,19 @@ export default function Home(props) {
     const signOutCallback = () => {
         props.parentSignOutCallback(false);
     }
+
+    const getDashboardStats = () => {
+        fetch('/api/dashboard_stats')
+        .then(response => response.json())
+        .then(data => {
+            setDashbosardStats(data)
+        });
+    };
+
+    useEffect(() => {
+        if (dashboardStats === null)
+            getDashboardStats();
+    })
     
 
     return (
@@ -63,6 +68,7 @@ export default function Home(props) {
                     {...props} 
                     darkMode={props.darkMode}
                     username={username}
+                    dashboardStats={dashboardStats}
                     />
                 </Grid>
                 <Grid item xs={12} sm={10} md={8} style={{margin: 8}}>
