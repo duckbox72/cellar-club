@@ -85,9 +85,8 @@ export default function SignIn(props) {
     fetch('/api/signin', requestOptions)
     .then(response => response.json())
     .then(data => {
-      console.log(data)
       if (data.success) {
-        props.parentSigninCallback(true)
+        props.parentSigninCallback([true, username])
         window.scrollTo(0, 0)
         props.history.push('/') 
       } else {

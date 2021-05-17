@@ -37,14 +37,14 @@ export default function App(props) {
 
     const [isAuthenticated, updateIsAuthenticated] = useState(props.isAuthenticated);
     const [darkMode, setDarkMode] = useState(props.darkMode);
-    const username = props.username
+    const [username, updateUsername] = useState(props.username);
     
-    console.log(`(App) props.isAuthenticated:  ${props.isAuthenticated}`)
-    console.log(`(App) const isAuthenticated:  ${isAuthenticated}`)
-    console.log(`(App) props.darkMode:  ${props.darkMode}`)
-    console.log(`(App) const darkMode:  ${darkMode}`)
-    console.log(`(App) props.username:  ${props.username}`)
-    console.log(`(App) const username:  ${username}`)
+    //console.log(`(App) props.isAuthenticated:  ${props.isAuthenticated}`)
+    //console.log(`(App) const isAuthenticated:  ${isAuthenticated}`)
+    //console.log(`(App) props.darkMode:  ${props.darkMode}`)
+    //console.log(`(App) const darkMode:  ${darkMode}`)
+    //console.log(`(App) props.username:  ${props.username}`)
+    //console.log(`(App) const username:  ${username}`)
     
 
     const mytheme = createMuiTheme({ 
@@ -75,7 +75,8 @@ export default function App(props) {
     }
 
     const signInCallback = (status) => {
-        updateIsAuthenticated(status);
+        updateIsAuthenticated(status[0]);
+        updateUsername(status[1]);
     }
 
     const signUpCallback = (status) => {
@@ -165,8 +166,8 @@ export default function App(props) {
                         (<>
                             <Route exact path='/' render={props => <Landing {...props} />} />
                             <Route path='/search' render={props => <Landing {...props} />} />
-                            <Route path='/signin' render={props => <SignIn parentSigninCallback={signInCallback} {...props} />} />
-                            <Route path='/signup' render={props => <SignUp parentSignupCallback={signUpCallback} {...props} />} />
+                            <Route path='/signin' render={props => <SignIn {...props} parentSigninCallback={signInCallback} />} />
+                            <Route path='/signup' render={props => <SignUp {...props} parentSignupCallback={signUpCallback} />} />
                         </>)
                         }   
                     </Switch>

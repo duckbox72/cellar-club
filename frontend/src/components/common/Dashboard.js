@@ -10,8 +10,9 @@ import Typography from '@material-ui/core/Typography'
 
 import EventIcon from '@material-ui/icons/Event';
 import ListIcon from '@material-ui/icons/List';
-import StarOutlinedIcon from '@material-ui/icons/StarOutline';
 import SearchIcon from '@material-ui/icons/Search';
+import StarOutlinedIcon from '@material-ui/icons/StarOutline';
+import StorefrontIcon from '@material-ui/icons/Storefront';
 
 import { GlassMartiniIcon, WineBottleIcon, WineGlassIcon } from './SvgIcons';
 
@@ -349,7 +350,7 @@ export default function Dashboard(props) {
 
                         <Grid item xs={12} className={classes.dashboard_grid}>
                             <ListItem>
-                                <StarOutlinedIcon className={classes.dashboard_icon}/>
+                                <StorefrontIcon className={classes.dashboard_icon}/>
                                     
                                 <Typography variant="body2" className={classes.dashboard_label}> 
                                     Purchased

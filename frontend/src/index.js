@@ -13,7 +13,6 @@ function getIsAuthenticatedAndRenderApp() {
     fetch("/api/is_authenticated")
     .then(response => response.json())
     .then(data => {
-        console.log(data)
         const isAuthenticated = data.is_authenticated;
         const darkMode = data.dark_mode;
         const authenticatedUsername = data.username;

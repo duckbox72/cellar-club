@@ -115,7 +115,6 @@ export default function Navbar(props) {
         .then(response => response.json())
         .then(data => {
           if (data.success) {
-            console.log(data.success);
             props.parentSignOutCallback();
             props.history.push('/');
           } else {
