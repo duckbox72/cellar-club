@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem'
@@ -130,6 +131,10 @@ const useStyles = makeStyles((theme) => ({
             marginRight: theme.spacing(0),
         },
     },
+    dashboard_circular_progress: {
+        color: mystyleprops => mystyleprops.colorSchemaA,
+        margin: theme.spacing(0, 0.75, 0, 0.5),
+    },
 
 
 
@@ -228,54 +233,110 @@ export default function Dashboard(props) {
                                 <Typography variant="body2" className={classes.dashboard_label}> 
                                     Collection
                                 </Typography>
-                            
-                                <Tooltip title="Red">
-                                    <div className={classes.dashboard_color_icon_first_div}>
-                                        <WineGlassIcon 
-                                        className={classes.dashboard_color_icon}
-                                        style={{color: 'maroon'}}
-                                        />
-                                    </div>
-                                </Tooltip>
-                                <Typography variant="body2" className={classes.dashboard_text}>
-                                    {stats ? stats.collection_red : ''}
-                                </Typography>
-
-                                <Tooltip title="White">
-                                    <div>
-                                        <WineGlassIcon 
-                                        className={classes.dashboard_color_icon}
-                                        style={{color: 'tan'}}
-                                        />
-                                    </div>
-                                </Tooltip>
-                                <Typography variant="body2" className={classes.dashboard_text}>
-                                {stats ? stats.collection_white : ''}
-                                </Typography>
-                            
-                                <Tooltip title="Rose">
-                                    <div>
-                                        <WineGlassIcon 
-                                        className={classes.dashboard_color_icon}
-                                        style={{color: 'lightcoral'}}
-                                        />
-                                    </div>
-                                </Tooltip>
-                                <Typography variant="body2" className={classes.dashboard_text}>
-                                    {stats ? stats.collection_rose : ''}
-                                </Typography>
                                 
-                                <Tooltip title="Spirits">
-                                    <div>
-                                        <GlassMartiniIcon 
-                                        className={classes.dashboard_color_icon}
-                                        style={{color: 'silver'}}
-                                        />
-                                    </div>
-                                </Tooltip>
-                                <Typography variant="body2" className={classes.dashboard_text}>
-                                    {stats ? stats.collection_else : ''}
-                                </Typography>
+                                {stats ? stats.collection_red > 0 
+                                    ? 
+                                    <Tooltip title="Red">
+                                        <div className={classes.dashboard_color_icon_first_div}>
+                                                <WineGlassIcon 
+                                                className={classes.dashboard_color_icon}
+                                                style={{color: 'maroon'}}
+                                                />
+                                        </div>
+                                    </Tooltip>
+                                    :  
+                                    <></>
+                                    :   
+                                    <></>
+                                }
+                                {stats ? stats.collection_red > 0 
+                                    ?
+                                    <Typography variant="body2" className={classes.dashboard_text}>
+                                        {stats.collection_red}
+                                    </Typography>
+                                    :
+                                    <></>
+                                    :
+                                    <> </>
+                                }
+
+                                {stats ? stats.collection_white > 0 
+                                    ? 
+                                    <Tooltip title="White">
+                                        <div>
+                                            <WineGlassIcon 
+                                            className={classes.dashboard_color_icon}
+                                            style={{color: 'tan'}}
+                                            />
+                                        </div>
+                                    </Tooltip>
+                                    :  
+                                    <></>
+                                    :   
+                                    <></>
+                                }
+                                {stats ? stats.collection_white > 0 
+                                    ?
+                                    <Typography variant="body2" className={classes.dashboard_text}>
+                                        {stats.collection_white}
+                                    </Typography>
+                                    :
+                                    <></>
+                                    :
+                                    <> </>
+                                }
+                            
+                                {stats ? stats.collection_rose > 0 
+                                    ? 
+                                    <Tooltip title="Rose">
+                                        <div>
+                                            <WineGlassIcon 
+                                            className={classes.dashboard_color_icon}
+                                            style={{color: 'lightcoral'}}
+                                            />
+                                        </div>
+                                    </Tooltip>
+                                    :  
+                                    <></>
+                                    :   
+                                    <></>
+                                }
+                                {stats ? stats.collection_rose > 0 
+                                    ?
+                                    <Typography variant="body2" className={classes.dashboard_text}>
+                                        {stats.collection_rose}
+                                    </Typography>
+                                    :
+                                    <></>
+                                    :
+                                    <> </>
+                                }
+                                
+                                {stats ? stats.collection_else > 0 
+                                    ? 
+                                    <Tooltip title="Spirits">
+                                        <div>
+                                            <GlassMartiniIcon 
+                                            className={classes.dashboard_color_icon}
+                                            style={{color: 'silver'}}
+                                            />
+                                        </div>
+                                    </Tooltip>
+                                    :  
+                                    <></>
+                                    :   
+                                    <></>
+                                }
+                                {stats ? stats.collection_else > 0 
+                                    ?
+                                    <Typography variant="body2" className={classes.dashboard_text}>
+                                        {stats.collection_else}
+                                    </Typography>
+                                    :
+                                    <></>
+                                    :
+                                    <> </>
+                                }
 
                                 <Tooltip title="All">
                                     <Typography variant="button" className={classes.dashboard_text_T}>
@@ -283,7 +344,7 @@ export default function Dashboard(props) {
                                     </Typography>
                                 </Tooltip>
                                 <Typography variant="body2" className={classes.dashboard_text_last}>
-                                    {stats ? stats.collection: ''}
+                                    {stats ? stats.collection : ''}
                                 </Typography>
                             </ListItem>
                         </Grid>
@@ -296,53 +357,109 @@ export default function Dashboard(props) {
                                     Consumed
                                 </Typography>
 
-                                <Tooltip title="Red">
-                                    <div className={classes.dashboard_color_icon_first_div}>
-                                        <WineGlassIcon 
-                                        className={classes.dashboard_color_icon}
-                                        style={{color: 'maroon'}}
-                                        />
-                                    </div>
-                                </Tooltip>
-                                <Typography variant="body2" className={classes.dashboard_text}>
-                                    381
-                                </Typography>
+                                {stats ? stats.consumed_red > 0 
+                                    ? 
+                                    <Tooltip title="Red">
+                                        <div className={classes.dashboard_color_icon_first_div}>
+                                                <WineGlassIcon 
+                                                className={classes.dashboard_color_icon}
+                                                style={{color: 'maroon'}}
+                                                />
+                                        </div>
+                                    </Tooltip>
+                                    :  
+                                    <></>
+                                    :   
+                                    <></>
+                                }
+                                {stats ? stats.consumed_red > 0 
+                                    ?
+                                    <Typography variant="body2" className={classes.dashboard_text}>
+                                        {stats.consumed_red}
+                                    </Typography>
+                                    :
+                                    <></>
+                                    :
+                                    <> </>
+                                }
 
-                                <Tooltip title="White">
-                                    <div>
-                                        <WineGlassIcon 
-                                        className={classes.dashboard_color_icon}
-                                        style={{color: 'tan'}}
-                                        />
-                                    </div>
-                                </Tooltip>
-                                <Typography variant="body2" className={classes.dashboard_text}>
-                                    412
-                                </Typography>
+                                {stats ? stats.consumed_white > 0 
+                                    ? 
+                                    <Tooltip title="White">
+                                        <div>
+                                            <WineGlassIcon 
+                                            className={classes.dashboard_color_icon}
+                                            style={{color: 'tan'}}
+                                            />
+                                        </div>
+                                    </Tooltip>
+                                    :  
+                                    <></>
+                                    :   
+                                    <></>
+                                }
+                                {stats ? stats.consumed_white > 0 
+                                    ?
+                                    <Typography variant="body2" className={classes.dashboard_text}>
+                                        {stats.consumed_white}
+                                    </Typography>
+                                    :
+                                    <></>
+                                    :
+                                    <> </>
+                                }
                             
-                                <Tooltip title="Rose">
-                                    <div>
-                                        <WineGlassIcon 
-                                        className={classes.dashboard_color_icon}
-                                        style={{color: 'lightcoral'}}
-                                        />
-                                    </div>
-                                </Tooltip>
-                                <Typography variant="body2" className={classes.dashboard_text}>
-                                    297
-                                </Typography>
+                                {stats ? stats.consumed_rose > 0 
+                                    ? 
+                                    <Tooltip title="Rose">
+                                        <div>
+                                            <WineGlassIcon 
+                                            className={classes.dashboard_color_icon}
+                                            style={{color: 'lightcoral'}}
+                                            />
+                                        </div>
+                                    </Tooltip>
+                                    :  
+                                    <></>
+                                    :   
+                                    <></>
+                                }
+                                {stats ? stats.consumed_rose > 0 
+                                    ?
+                                    <Typography variant="body2" className={classes.dashboard_text}>
+                                        {stats.consumed_rose}
+                                    </Typography>
+                                    :
+                                    <></>
+                                    :
+                                    <> </>
+                                }
                                 
-                                <Tooltip title="Spirits">
-                                    <div>
-                                        <GlassMartiniIcon 
-                                        className={classes.dashboard_color_icon}
-                                        style={{color: 'silver'}}
-                                        />
-                                    </div>
-                                </Tooltip>
-                                <Typography variant="body2" className={classes.dashboard_text}>
-                                    297
-                                </Typography>
+                                {stats ? stats.consumed_else > 0 
+                                    ? 
+                                    <Tooltip title="Spirits">
+                                        <div>
+                                            <GlassMartiniIcon 
+                                            className={classes.dashboard_color_icon}
+                                            style={{color: 'silver'}}
+                                            />
+                                        </div>
+                                    </Tooltip>
+                                    :  
+                                    <></>
+                                    :   
+                                    <></>
+                                }
+                                {stats ? stats.consumed_else > 0 
+                                    ?
+                                    <Typography variant="body2" className={classes.dashboard_text}>
+                                        {stats.consumed_else}
+                                    </Typography>
+                                    :
+                                    <></>
+                                    :
+                                    <> </>
+                                }
 
                                 <Tooltip title="All">
                                     <Typography variant="button" className={classes.dashboard_text_T}>
@@ -350,7 +467,7 @@ export default function Dashboard(props) {
                                     </Typography>
                                 </Tooltip>
                                 <Typography variant="body2" className={classes.dashboard_text_last}>
-                                    986
+                                    {stats ? stats.consumed : ''}
                                 </Typography>
                             </ListItem>
                         </Grid>
@@ -363,53 +480,109 @@ export default function Dashboard(props) {
                                     Purchased
                                 </Typography>
 
-                                <Tooltip title="Red">
-                                    <div className={classes.dashboard_color_icon_first_div}>
-                                        <WineGlassIcon 
-                                        className={classes.dashboard_color_icon}
-                                        style={{color: 'maroon'}}
-                                        />
-                                    </div>
-                                </Tooltip>
-                                <Typography variant="body2" className={classes.dashboard_text}>
-                                    381
-                                </Typography>
+                                {stats ? stats.purchased_red > 0 
+                                    ? 
+                                    <Tooltip title="Red">
+                                        <div className={classes.dashboard_color_icon_first_div}>
+                                                <WineGlassIcon 
+                                                className={classes.dashboard_color_icon}
+                                                style={{color: 'maroon'}}
+                                                />
+                                        </div>
+                                    </Tooltip>
+                                    :  
+                                    <></>
+                                    :   
+                                    <></>
+                                }
+                                {stats ? stats.purchased_red > 0 
+                                    ?
+                                    <Typography variant="body2" className={classes.dashboard_text}>
+                                        {stats.purchased_red}
+                                    </Typography>
+                                    :
+                                    <></>
+                                    :
+                                    <> </>
+                                }
 
-                                <Tooltip title="White">
-                                    <div>
-                                        <WineGlassIcon 
-                                        className={classes.dashboard_color_icon}
-                                        style={{color: 'tan'}}
-                                        />
-                                    </div>
-                                </Tooltip>
-                                <Typography variant="body2" className={classes.dashboard_text}>
-                                    412
-                                </Typography>
+                                {stats ? stats.purchased_white > 0 
+                                    ? 
+                                    <Tooltip title="White">
+                                        <div>
+                                            <WineGlassIcon 
+                                            className={classes.dashboard_color_icon}
+                                            style={{color: 'tan'}}
+                                            />
+                                        </div>
+                                    </Tooltip>
+                                    :  
+                                    <></>
+                                    :   
+                                    <></>
+                                }
+                                {stats ? stats.purchased_white > 0 
+                                    ?
+                                    <Typography variant="body2" className={classes.dashboard_text}>
+                                        {stats.purchased_white}
+                                    </Typography>
+                                    :
+                                    <></>
+                                    :
+                                    <> </>
+                                }
                             
-                                <Tooltip title="Rose">
-                                    <div>
-                                        <WineGlassIcon 
-                                        className={classes.dashboard_color_icon}
-                                        style={{color: 'lightcoral'}}
-                                        />
-                                    </div>
-                                </Tooltip>
-                                <Typography variant="body2" className={classes.dashboard_text}>
-                                    297
-                                </Typography>
+                                {stats ? stats.purchased_rose > 0 
+                                    ? 
+                                    <Tooltip title="Rose">
+                                        <div>
+                                            <WineGlassIcon 
+                                            className={classes.dashboard_color_icon}
+                                            style={{color: 'lightcoral'}}
+                                            />
+                                        </div>
+                                    </Tooltip>
+                                    :  
+                                    <></>
+                                    :   
+                                    <></>
+                                }
+                                {stats ? stats.purchased_rose > 0 
+                                    ?
+                                    <Typography variant="body2" className={classes.dashboard_text}>
+                                        {stats.purchased_rose}
+                                    </Typography>
+                                    :
+                                    <></>
+                                    :
+                                    <> </>
+                                }
                                 
-                                <Tooltip title="Spirits">
-                                    <div>
-                                        <GlassMartiniIcon 
-                                        className={classes.dashboard_color_icon}
-                                        style={{color: 'silver'}}
-                                        />
-                                    </div>
-                                </Tooltip>
-                                <Typography variant="body2" className={classes.dashboard_text}>
-                                    297
-                                </Typography>
+                                {stats ? stats.purchased_else > 0 
+                                    ? 
+                                    <Tooltip title="Spirits">
+                                        <div>
+                                            <GlassMartiniIcon 
+                                            className={classes.dashboard_color_icon}
+                                            style={{color: 'silver'}}
+                                            />
+                                        </div>
+                                    </Tooltip>
+                                    :  
+                                    <></>
+                                    :   
+                                    <></>
+                                }
+                                {stats ? stats.purchased_else > 0 
+                                    ?
+                                    <Typography variant="body2" className={classes.dashboard_text}>
+                                        {stats.purchased_else}
+                                    </Typography>
+                                    :
+                                    <></>
+                                    :
+                                    <> </>
+                                }
 
                                 <Tooltip title="All">
                                     <Typography variant="button" className={classes.dashboard_text_T}>
@@ -417,7 +590,7 @@ export default function Dashboard(props) {
                                     </Typography>
                                 </Tooltip>
                                 <Typography variant="body2" className={classes.dashboard_text_last}>
-                                    986
+                                    {stats ? stats.purchased : ''}
                                 </Typography>
                             </ListItem>
                         </Grid>
@@ -430,53 +603,109 @@ export default function Dashboard(props) {
                                     Reviews
                                 </Typography>
 
-                                <Tooltip title="Red">
-                                    <div className={classes.dashboard_color_icon_first_div}>
-                                        <WineGlassIcon 
-                                        className={classes.dashboard_color_icon}
-                                        style={{color: 'maroon'}}
-                                        />
-                                    </div>
-                                </Tooltip>
-                                <Typography variant="body2" className={classes.dashboard_text}>
-                                    381
-                                </Typography>
+                                {stats ? stats.reviewed_red > 0 
+                                    ? 
+                                    <Tooltip title="Red">
+                                        <div className={classes.dashboard_color_icon_first_div}>
+                                                <WineGlassIcon 
+                                                className={classes.dashboard_color_icon}
+                                                style={{color: 'maroon'}}
+                                                />
+                                        </div>
+                                    </Tooltip>
+                                    :  
+                                    <></>
+                                    :   
+                                    <></>
+                                }
+                                {stats ? stats.reviewed_red > 0 
+                                    ?
+                                    <Typography variant="body2" className={classes.dashboard_text}>
+                                        {stats.reviewed_red}
+                                    </Typography>
+                                    :
+                                    <></>
+                                    :
+                                    <> </>
+                                }
 
-                                <Tooltip title="White">
-                                    <div>
-                                        <WineGlassIcon 
-                                        className={classes.dashboard_color_icon}
-                                        style={{color: 'tan'}}
-                                        />
-                                    </div>
-                                </Tooltip>
-                                <Typography variant="body2" className={classes.dashboard_text}>
-                                    412
-                                </Typography>
+                                {stats ? stats.reviewed_white > 0 
+                                    ? 
+                                    <Tooltip title="White">
+                                        <div>
+                                            <WineGlassIcon 
+                                            className={classes.dashboard_color_icon}
+                                            style={{color: 'tan'}}
+                                            />
+                                        </div>
+                                    </Tooltip>
+                                    :  
+                                    <></>
+                                    :   
+                                    <></>
+                                }
+                                {stats ? stats.reviewed_white > 0 
+                                    ?
+                                    <Typography variant="body2" className={classes.dashboard_text}>
+                                        {stats.reviewed_white}
+                                    </Typography>
+                                    :
+                                    <></>
+                                    :
+                                    <> </>
+                                }
                             
-                                <Tooltip title="Rose">
-                                    <div>
-                                        <WineGlassIcon 
-                                        className={classes.dashboard_color_icon}
-                                        style={{color: 'lightcoral'}}
-                                        />
-                                    </div>
-                                </Tooltip>
-                                <Typography variant="body2" className={classes.dashboard_text}>
-                                    297
-                                </Typography>
+                                {stats ? stats.reviewed_rose > 0 
+                                    ? 
+                                    <Tooltip title="Rose">
+                                        <div>
+                                            <WineGlassIcon 
+                                            className={classes.dashboard_color_icon}
+                                            style={{color: 'lightcoral'}}
+                                            />
+                                        </div>
+                                    </Tooltip>
+                                    :  
+                                    <></>
+                                    :   
+                                    <></>
+                                }
+                                {stats ? stats.reviewed_rose > 0 
+                                    ?
+                                    <Typography variant="body2" className={classes.dashboard_text}>
+                                        {stats.reviewed_rose}
+                                    </Typography>
+                                    :
+                                    <></>
+                                    :
+                                    <> </>
+                                }
                                 
-                                <Tooltip title="Spirits">
-                                    <div>
-                                        <GlassMartiniIcon 
-                                        className={classes.dashboard_color_icon}
-                                        style={{color: 'silver'}}
-                                        />
-                                    </div>
-                                </Tooltip>
-                                <Typography variant="body2" className={classes.dashboard_text}>
-                                    297
-                                </Typography>
+                                {stats ? stats.reviewed_else > 0 
+                                    ? 
+                                    <Tooltip title="Spirits">
+                                        <div>
+                                            <GlassMartiniIcon 
+                                            className={classes.dashboard_color_icon}
+                                            style={{color: 'silver'}}
+                                            />
+                                        </div>
+                                    </Tooltip>
+                                    :  
+                                    <></>
+                                    :   
+                                    <></>
+                                }
+                                {stats ? stats.reviewed_else > 0 
+                                    ?
+                                    <Typography variant="body2" className={classes.dashboard_text}>
+                                        {stats.purchased_else}
+                                    </Typography>
+                                    :
+                                    <></>
+                                    :
+                                    <> </>
+                                }
 
                                 <Tooltip title="All">
                                     <Typography variant="button" className={classes.dashboard_text_T}>
@@ -484,7 +713,7 @@ export default function Dashboard(props) {
                                     </Typography>
                                 </Tooltip>
                                 <Typography variant="body2" className={classes.dashboard_text_last}>
-                                    986
+                                    {stats ? stats.reviewed : ''}
                                 </Typography>
                             </ListItem>
                         </Grid>
