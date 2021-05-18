@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem'
@@ -13,9 +12,9 @@ import EventIcon from '@material-ui/icons/Event';
 import ListIcon from '@material-ui/icons/List';
 import SearchIcon from '@material-ui/icons/Search';
 import StarOutlinedIcon from '@material-ui/icons/StarOutline';
-import StorefrontIcon from '@material-ui/icons/Storefront';
+import StoreIcon from '@material-ui/icons/Store';
 
-import { GlassMartiniIcon, GlassCheersIcon, WineBottleIcon, WineGlassIcon } from './SvgIcons';
+import { GlassCheersIcon, GlassWhiskeyIcon, WineBottleIcon, WineGlassIcon } from './SvgIcons';
 
 import brown from '@material-ui/core/colors/brown';
 
@@ -111,6 +110,16 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     dashboard_text_T: {
+        textAlign: 'right',
+        fontWeight: 500,
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]:{
+            fontSize: theme.spacing(1.75),
+        },
+        color: mystyleprops => mystyleprops.colorSchemaA,
+    },
+    dashboard_text_T_zero: {
+        marginLeft: 'auto',
         textAlign: 'right',
         fontWeight: 500,
         fontSize: theme.spacing(2),
@@ -316,9 +325,9 @@ export default function Dashboard(props) {
                                     ? 
                                     <Tooltip title="Spirits">
                                         <div>
-                                            <GlassMartiniIcon 
+                                            <GlassWhiskeyIcon 
                                             className={classes.dashboard_color_icon}
-                                            style={{color: 'silver'}}
+                                            style={{color: 'goldenrod'}}
                                             />
                                         </div>
                                     </Tooltip>
@@ -338,11 +347,17 @@ export default function Dashboard(props) {
                                     <> </>
                                 }
 
-                                <Tooltip title="All">
-                                    <Typography variant="button" className={classes.dashboard_text_T}>
-                                        T
-                                    </Typography>
-                                </Tooltip>
+                                {stats ? 
+                                    <Tooltip title="Total">
+                                        <Typography 
+                                        variant="button" 
+                                        className={stats.collection === 0 ? classes.dashboard_text_T_zero : classes.dashboard_text_T}
+                                        >                                        T
+                                        </Typography>
+                                    </Tooltip>
+                                    :
+                                    <></>
+                                }
                                 <Typography variant="body2" className={classes.dashboard_text_last}>
                                     {stats ? stats.collection : ''}
                                 </Typography>
@@ -439,9 +454,9 @@ export default function Dashboard(props) {
                                     ? 
                                     <Tooltip title="Spirits">
                                         <div>
-                                            <GlassMartiniIcon 
+                                            <GlassWhiskeyIcon 
                                             className={classes.dashboard_color_icon}
-                                            style={{color: 'silver'}}
+                                            style={{color: 'goldenrod'}}
                                             />
                                         </div>
                                     </Tooltip>
@@ -461,20 +476,27 @@ export default function Dashboard(props) {
                                     <> </>
                                 }
 
-                                <Tooltip title="All">
-                                    <Typography variant="button" className={classes.dashboard_text_T}>
-                                        T
-                                    </Typography>
-                                </Tooltip>
+                                {stats ? 
+                                    <Tooltip title="Total">
+                                        <Typography 
+                                        variant="button" 
+                                        className={stats.consumed === 0 ? classes.dashboard_text_T_zero : classes.dashboard_text_T}
+                                        >                                        T
+                                        </Typography>
+                                    </Tooltip>
+                                    :
+                                    <></>
+                                }
                                 <Typography variant="body2" className={classes.dashboard_text_last}>
                                     {stats ? stats.consumed : ''}
                                 </Typography>
                             </ListItem>
                         </Grid>
 
+
                         <Grid item xs={12} className={classes.dashboard_grid}>
                             <ListItem>
-                                <StorefrontIcon className={classes.dashboard_icon}/>
+                                <StoreIcon className={classes.dashboard_icon}/>
                                     
                                 <Typography variant="body2" className={classes.dashboard_label}> 
                                     Purchased
@@ -562,9 +584,9 @@ export default function Dashboard(props) {
                                     ? 
                                     <Tooltip title="Spirits">
                                         <div>
-                                            <GlassMartiniIcon 
+                                            <GlassWhiskeyIcon 
                                             className={classes.dashboard_color_icon}
-                                            style={{color: 'silver'}}
+                                            style={{color: 'goldenrod'}}
                                             />
                                         </div>
                                     </Tooltip>
@@ -584,16 +606,23 @@ export default function Dashboard(props) {
                                     <> </>
                                 }
 
-                                <Tooltip title="All">
-                                    <Typography variant="button" className={classes.dashboard_text_T}>
-                                        T
-                                    </Typography>
-                                </Tooltip>
+                                {stats ? 
+                                    <Tooltip title="Total">
+                                        <Typography 
+                                        variant="button" 
+                                        className={stats.purchased === 0 ? classes.dashboard_text_T_zero : classes.dashboard_text_T}
+                                        >                                        T
+                                        </Typography>
+                                    </Tooltip>
+                                    :
+                                    <></>
+                                }
                                 <Typography variant="body2" className={classes.dashboard_text_last}>
                                     {stats ? stats.purchased : ''}
                                 </Typography>
                             </ListItem>
                         </Grid>
+
 
                         <Grid item xs={12} className={classes.dashboard_grid}>
                             <ListItem>
@@ -685,9 +714,9 @@ export default function Dashboard(props) {
                                     ? 
                                     <Tooltip title="Spirits">
                                         <div>
-                                            <GlassMartiniIcon 
+                                            <GlassWhiskeyIcon 
                                             className={classes.dashboard_color_icon}
-                                            style={{color: 'silver'}}
+                                            style={{color: 'goldenrod'}}
                                             />
                                         </div>
                                     </Tooltip>
@@ -699,22 +728,28 @@ export default function Dashboard(props) {
                                 {stats ? stats.reviewed_else > 0 
                                     ?
                                     <Typography variant="body2" className={classes.dashboard_text}>
-                                        {stats.purchased_else}
+                                        {stats.reviews_else}
                                     </Typography>
                                     :
                                     <></>
                                     :
                                     <> </>
                                 }
-
-                                <Tooltip title="All">
-                                    <Typography variant="button" className={classes.dashboard_text_T}>
-                                        T
-                                    </Typography>
-                                </Tooltip>
+                                {stats ? 
+                                    <Tooltip title="Total">
+                                        <Typography 
+                                        variant="button" 
+                                        className={stats.reviewed === 0 ? classes.dashboard_text_T_zero : classes.dashboard_text_T}
+                                        >                                        T
+                                        </Typography>
+                                    </Tooltip>
+                                    :
+                                    <></>
+                                }
                                 <Typography variant="body2" className={classes.dashboard_text_last}>
                                     {stats ? stats.reviewed : ''}
                                 </Typography>
+                                
                             </ListItem>
                         </Grid>
                     </Paper>
