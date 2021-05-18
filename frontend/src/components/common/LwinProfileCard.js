@@ -33,12 +33,13 @@ import ImportExportIcon from '@material-ui/icons/ImportExport';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import PostAddIcon from '@material-ui/icons/PostAdd';
+import NatureIcon from '@material-ui/icons/Nature';
 import RemoveIcon from '@material-ui/icons/Remove'
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import StorefrontIcon from '@material-ui/icons/Storefront';
+import StoreIcon from '@material-ui/icons/Store';
 import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
 
-import { CompassIcon, GlassCheersIcon, WineBottleIcon } from './SvgIcons';
+import { CompassIcon, WineBottleIcon } from './SvgIcons';
 
 import brown from '@material-ui/core/colors/brown';
 
@@ -579,12 +580,13 @@ export default function LwinProfileCard(props) {
             }
             title={
                 <Typography variant="body2" className={classes.header_title}>
-                   {LwinData !== null && LwinData !== undefined ? LwinData.display_name : ""}
+                   {LwinData ? LwinData.display_name : ""}
                 </Typography>
             }
             subheader={
                 <Typography variant="body2" color="textSecondary" className={classes.header_subheader}>
-                   {LwinData !== null && LwinData !== undefined ? LwinData.colour + " " + LwinData.region + ", " + LwinData.country : ""}
+                   {LwinData ? LwinData.colour ? LwinData.colour + ' '  : LwinData.type + ' ' : ''}
+                   {LwinData ? LwinData.region + ", " + LwinData.country : ''}
                 </Typography>
             }
             />
@@ -633,7 +635,7 @@ export default function LwinProfileCard(props) {
                             renderInput={(params) => (
                                 <Grid container spacing={1} justify="center" alignItems="center">
                                     <Grid item>
-                                        <GlassCheersIcon className={classes.svg_icon} />
+                                        <NatureIcon className={classes.svg_icon} />
                                     </Grid>   
 
                                     <Grid item xs={8}>
@@ -821,7 +823,7 @@ export default function LwinProfileCard(props) {
                             renderInput={(params) => (
                                 <Grid container spacing={1} justify="center" alignItems="center">
                                     <Grid item>
-                                        <StorefrontIcon className={classes.svg_icon} />
+                                        <StoreIcon className={classes.svg_icon} />
                                     </Grid>   
 
                                     <Grid item xs={8} >

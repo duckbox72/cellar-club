@@ -21,6 +21,7 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import NatureIcon from '@material-ui/icons/Nature';
 import PeopleIcon from '@material-ui/icons/People';
 import PersonIcon from '@material-ui/icons/Person';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
@@ -30,7 +31,7 @@ import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
 
-import { GlassCheersIcon } from './SvgIcons';
+//import { } from './SvgIcons';
 
 import { getVintageOptions } from "../utils/getVintageOptions";
 
@@ -267,7 +268,7 @@ export default function LwinAddReview(props) {
 
             <Grid item xs={12} sm={6}>
                 <ListItem dense>
-                    <GlassCheersIcon className={classes.autocomplete_svg_icon} />
+                    <NatureIcon className={classes.autocomplete_svg_icon} />
 
                     <Autocomplete  
                     className={classes.autocomplete}

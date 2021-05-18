@@ -315,7 +315,7 @@ export default function MemoryCard(props) {
                         }
 
                         <div>
-                            <Tooltip title="Undo Remove Bottle">    
+                            <Tooltip title="Undo Remove / Unconsume">    
                                 <IconButton 
                                 onClick={handleUndoRemoveButtonClick} 
                                 className={classes.undo_remove_iconbutton}
