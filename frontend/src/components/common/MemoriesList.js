@@ -30,7 +30,7 @@ import SortIcon from '@material-ui/icons/Sort';
 import StarIcon from '@material-ui/icons/Star';
 import StarOutlinedIcon from '@material-ui/icons/StarOutline';
 
-import { GlassCheersIcon, WineBottleIcon,WineGlassIcon } from './SvgIcons';
+import { GlassWhiskeyIcon, WineBottleIcon,WineGlassIcon } from './SvgIcons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -170,11 +170,18 @@ export default function MemoriesList(props) {
                                 {memory.bottle.vintage}
                             </Typography>
                             <Typography variant="caption" className={classes.list_item_avatar_size}>
-                                <WineGlassIcon 
-                                className={classes.list_item_color_icon}
-                                // memory icon color  
-                                style={memory.bottle.colour === 'Red' ? {color: 'maroon'} : memory.bottle.colour === 'White' ? {color: 'tan'} : memory.bottle.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
-                                /> {memory.bottle.size}
+                                {memory.bottle.type === 'Spirit' ?
+                                    <GlassWhiskeyIcon 
+                                    className={classes.list_item_color_icon}
+                                    style={{color: 'silver'}}
+                                    />
+                                    :
+                                    <WineGlassIcon 
+                                    className={classes.list_item_color_icon}
+                                    // memory icon color  
+                                    style={memory.bottle.colour === 'Red' ? {color: 'maroon'} : memory.bottle.colour === 'White' ? {color: 'tan'} : memory.bottle.colour === 'Rose' ? {color: 'lightcoral'} : memory.bottle.type === 'Fortified Wine' ? {color: 'firebrick'} : {color: 'silver'}}
+                                    /> 
+                                } {memory.bottle.size}
                             </Typography>
                         </div>
                     </ListItemAvatar>     

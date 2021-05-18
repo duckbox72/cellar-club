@@ -210,6 +210,7 @@ class Review(models.Model):
     lwin_colour = models.CharField(max_length=16, null=True, blank=True)
     lwin_country = models.CharField(max_length=64, null=True, blank=True)
     lwin_region = models.CharField(max_length=64, null=True, blank=True)
+    lwin_type =  models.CharField(max_length=64, null=True, blank=True)
     
     is_public = models.BooleanField(default=True)
     like_status = models.CharField(max_length=64, default='like')
@@ -232,12 +233,14 @@ class Review(models.Model):
             colour = bottle.colour
             country = bottle.country
             region = bottle.region
+            type = bottle.type
         else:
-            serialized_bottle = None,
+            serialized_bottle = None
             vintage = self.lwin_vintage
             colour = self.lwin_colour
             country = self.lwin_country
             region = self.lwin_region
+            type = self.lwin_type
 
 
         return {
@@ -250,6 +253,7 @@ class Review(models.Model):
             "colour": colour,
             "country": country,
             "region" : region,
+            "type": type, 
 
             "is_public": self.is_public,
             "like_status": self.like_status,

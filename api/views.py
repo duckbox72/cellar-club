@@ -506,6 +506,7 @@ def add_review(request):
         lwin_colour = data['lwin_colour'],
         lwin_country = data['lwin_country'],
         lwin_region = data['lwin_region'],
+        lwin_type = data['lwin_type'],
 
 
         is_public = data['is_public'],
