@@ -96,6 +96,7 @@ class Bottle(models.Model):
     sub_region = models.CharField(max_length=64, null=True, blank=True)
     colour = models.CharField(max_length=16, null=True, blank=True)
     type = models.CharField(max_length=64, null=True, blank=True)
+    sub_type = models.CharField(max_length=64, null=True, blank=True)
 
     # data entered by user
     vintage = models.CharField(max_length=4)
@@ -103,13 +104,15 @@ class Bottle(models.Model):
     store = models.CharField(max_length=64, null=True, blank=True)
     cost = models.IntegerField(default=0, null=True, blank=True)
     note = models.CharField(max_length=256, null=True, blank=True)
-    consumed = models.BooleanField(default=False)
     favorite = models.BooleanField(default=False)
 
     # auto entered data
     lwin11 = models.CharField(max_length=11,null=True, blank=True)
     date_added = models.DateTimeField(null=True, blank=True)
     created = models.DateTimeField(default=timezone.now)
+
+    consumed = models.BooleanField(default=False)
+    permanently_deleted = models.BooleanField(default=False)
 
     def mini_serializer(self):
         return {
@@ -143,6 +146,8 @@ class Bottle(models.Model):
             "region": self.region,
             "sub_region": self.sub_region,
             "colour": self.colour,
+            "type": self.type,
+            "sub_type": self.sub_type, 
             "vintage": self.vintage,
             "size": self.size,
             "store": self.store,
@@ -152,6 +157,7 @@ class Bottle(models.Model):
             "date_added": self.date_added,
             "created": self.created,
             "consumed": self.consumed,
+            "permanently_deleted": self.permanently_deleted,
             "favorite": self.favorite,
         }
 

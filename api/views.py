@@ -237,6 +237,7 @@ def add_bottle_to_collection(request):
         sub_region = data['sub_region'],
         colour = data['colour'],
         type = data['type'],
+        sub_type = data['sub_type'],
         vintage = data['vintage'],
         size = data['size'],
         store = data['store'],
@@ -385,6 +386,7 @@ def add_consumption(request):
     try:
         bottle = Bottle.objects.get(id=data['bottle_id'])
         bottle.consumed = True
+        bottle.permanently_deleted = data['permanently_deleted']
         bottle.save()
     except:
         return JsonResponse({"error": "BAD request."}, safe=False, status=status.HTTP_400_BAD_REQUEST)

@@ -21,7 +21,7 @@ import KitchenIcon from '@material-ui/icons/Kitchen';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import SortIcon from '@material-ui/icons/Sort';
 
-import { WineBottleIcon ,WineGlassIcon } from './SvgIcons';
+import { GlassWhiskeyIcon, WineBottleIcon ,WineGlassIcon } from './SvgIcons';
 
 import brown from '@material-ui/core/colors/brown';
 
@@ -152,12 +152,19 @@ export default function BottleList(props) {
                             <Typography variant="subtitle2" className={classes.list_item_avatar}>
                                 {bottle.vintage}
                             </Typography>
-                            <Typography variant="caption" className={classes.list_item_avatar_size}>
-                                <WineGlassIcon 
-                                className={classes.list_item_color_icon}
-                                // bottle icon color  
-                                style={bottle.colour === 'Red' ? {color: 'maroon'} : bottle.colour === 'White' ? {color: 'tan'} : bottle.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
-                                /> {bottle.size}
+                            <Typography variant="caption" className={classes.list_item_avatar_size}>          
+                                {bottle.type === 'Spirit' ?
+                                    <GlassWhiskeyIcon 
+                                    className={classes.list_item_color_icon}
+                                    style={{color: 'silver'}}
+                                    />
+                                    :
+                                    <WineGlassIcon 
+                                    className={classes.list_item_color_icon}
+                                    // bottle icon color  
+                                    style={bottle.colour === 'Red' ? {color: 'maroon'} : bottle.colour === 'White' ? {color: 'tan'} : bottle.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'silver'}}
+                                    /> 
+                                } {bottle.size}
                             </Typography>
                         </div>
                     </ListItemAvatar>     
@@ -170,7 +177,7 @@ export default function BottleList(props) {
                     }
                     secondary={
                         <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
-                            {`${bottle.colour} ${bottle.region}, ${bottle.country}`} 
+                            {bottle.region ? `${bottle.region}, ${bottle.country}` : bottle.country}
                         </Typography>
                     } 
                     />    

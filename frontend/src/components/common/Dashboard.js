@@ -269,10 +269,13 @@ export default function Dashboard(props) {
                                     <> </>
                                 }
 
-                                {stats ? stats.collection_white > 0 
+                                {stats ? stats.collection_white > 0
                                     ? 
                                     <Tooltip title="White">
-                                        <div>
+                                        <div className={stats.collection_red === 0
+                                            ? classes.dashboard_color_icon_first_div
+                                            : ''}
+                                        >
                                             <WineGlassIcon 
                                             className={classes.dashboard_color_icon}
                                             style={{color: 'tan'}}
@@ -298,7 +301,10 @@ export default function Dashboard(props) {
                                 {stats ? stats.collection_rose > 0 
                                     ? 
                                     <Tooltip title="Rose">
-                                        <div>
+                                        <div className={stats.collection_red === 0  && stats.collection_white === 0 
+                                            ? classes.dashboard_color_icon_first_div
+                                            : ''}
+                                        >
                                             <WineGlassIcon 
                                             className={classes.dashboard_color_icon}
                                             style={{color: 'lightcoral'}}
@@ -324,10 +330,13 @@ export default function Dashboard(props) {
                                 {stats ? stats.collection_else > 0 
                                     ? 
                                     <Tooltip title="Spirits">
-                                        <div>
+                                        <div className={stats.collection_red === 0  && stats.collection_white === 0 && stats.collection_rose === 0 
+                                            ? classes.dashboard_color_icon_first_div
+                                            : ''}
+                                        >
                                             <GlassWhiskeyIcon 
                                             className={classes.dashboard_color_icon}
-                                            style={{color: 'goldenrod'}}
+                                            style={{color: 'silver'}}
                                             />
                                         </div>
                                     </Tooltip>
@@ -352,7 +361,8 @@ export default function Dashboard(props) {
                                         <Typography 
                                         variant="button" 
                                         className={stats.collection === 0 ? classes.dashboard_text_T_zero : classes.dashboard_text_T}
-                                        >                                        T
+                                        >
+                                            T
                                         </Typography>
                                     </Tooltip>
                                     :
@@ -401,7 +411,10 @@ export default function Dashboard(props) {
                                 {stats ? stats.consumed_white > 0 
                                     ? 
                                     <Tooltip title="White">
-                                        <div>
+                                        <div className={stats.consumed_red === 0
+                                            ? classes.dashboard_color_icon_first_div
+                                            : ''}
+                                        >
                                             <WineGlassIcon 
                                             className={classes.dashboard_color_icon}
                                             style={{color: 'tan'}}
@@ -427,7 +440,10 @@ export default function Dashboard(props) {
                                 {stats ? stats.consumed_rose > 0 
                                     ? 
                                     <Tooltip title="Rose">
-                                        <div>
+                                        <div className={stats.consumed_red === 0  && stats.consumed_white === 0
+                                            ? classes.dashboard_color_icon_first_div
+                                            : ''}
+                                        >
                                             <WineGlassIcon 
                                             className={classes.dashboard_color_icon}
                                             style={{color: 'lightcoral'}}
@@ -453,10 +469,13 @@ export default function Dashboard(props) {
                                 {stats ? stats.consumed_else > 0 
                                     ? 
                                     <Tooltip title="Spirits">
-                                        <div>
+                                        <div className={stats.consumed_red === 0  && stats.consumed_white === 0 && stats.consumed_rose === 0 
+                                            ? classes.dashboard_color_icon_first_div
+                                            : ''}
+                                        >
                                             <GlassWhiskeyIcon 
                                             className={classes.dashboard_color_icon}
-                                            style={{color: 'goldenrod'}}
+                                            style={{color: 'silver'}}
                                             />
                                         </div>
                                     </Tooltip>
@@ -481,7 +500,8 @@ export default function Dashboard(props) {
                                         <Typography 
                                         variant="button" 
                                         className={stats.consumed === 0 ? classes.dashboard_text_T_zero : classes.dashboard_text_T}
-                                        >                                        T
+                                        > 
+                                            T
                                         </Typography>
                                     </Tooltip>
                                     :
@@ -531,7 +551,10 @@ export default function Dashboard(props) {
                                 {stats ? stats.purchased_white > 0 
                                     ? 
                                     <Tooltip title="White">
-                                        <div>
+                                        <div className={stats.purchased_red === 0
+                                            ? classes.dashboard_color_icon_first_div
+                                            : ''}
+                                        >
                                             <WineGlassIcon 
                                             className={classes.dashboard_color_icon}
                                             style={{color: 'tan'}}
@@ -557,7 +580,10 @@ export default function Dashboard(props) {
                                 {stats ? stats.purchased_rose > 0 
                                     ? 
                                     <Tooltip title="Rose">
-                                        <div>
+                                        <div className={stats.purchased_red === 0  && stats.purchased_white === 0
+                                            ? classes.dashboard_color_icon_first_div
+                                            : ''}
+                                        >
                                             <WineGlassIcon 
                                             className={classes.dashboard_color_icon}
                                             style={{color: 'lightcoral'}}
@@ -583,10 +609,13 @@ export default function Dashboard(props) {
                                 {stats ? stats.purchased_else > 0 
                                     ? 
                                     <Tooltip title="Spirits">
-                                        <div>
+                                        <div className={stats.purchased_red === 0  && stats.purchased_white === 0 && stats.purchased_rose === 0 
+                                            ? classes.dashboard_color_icon_first_div
+                                            : ''}
+                                        >
                                             <GlassWhiskeyIcon 
                                             className={classes.dashboard_color_icon}
-                                            style={{color: 'goldenrod'}}
+                                            style={{color: 'silver'}}
                                             />
                                         </div>
                                     </Tooltip>
@@ -611,7 +640,8 @@ export default function Dashboard(props) {
                                         <Typography 
                                         variant="button" 
                                         className={stats.purchased === 0 ? classes.dashboard_text_T_zero : classes.dashboard_text_T}
-                                        >                                        T
+                                        > 
+                                            T
                                         </Typography>
                                     </Tooltip>
                                     :
@@ -661,7 +691,10 @@ export default function Dashboard(props) {
                                 {stats ? stats.reviewed_white > 0 
                                     ? 
                                     <Tooltip title="White">
-                                        <div>
+                                        <div className={stats.reviewed_red === 0
+                                            ? classes.dashboard_color_icon_first_div
+                                            : ''}
+                                        >
                                             <WineGlassIcon 
                                             className={classes.dashboard_color_icon}
                                             style={{color: 'tan'}}
@@ -687,7 +720,10 @@ export default function Dashboard(props) {
                                 {stats ? stats.reviewed_rose > 0 
                                     ? 
                                     <Tooltip title="Rose">
-                                        <div>
+                                        <div className={stats.reviewed_red === 0  && stats.reviewed_white === 0
+                                            ? classes.dashboard_color_icon_first_div
+                                            : ''}
+                                        >
                                             <WineGlassIcon 
                                             className={classes.dashboard_color_icon}
                                             style={{color: 'lightcoral'}}
@@ -713,10 +749,13 @@ export default function Dashboard(props) {
                                 {stats ? stats.reviewed_else > 0 
                                     ? 
                                     <Tooltip title="Spirits">
-                                        <div>
+                                        <div className={stats.reviewed_red === 0  && stats.reviewed_white === 0 && stats.reviewed_rose === 0 
+                                            ? classes.dashboard_color_icon_first_div
+                                            : ''}
+                                        >
                                             <GlassWhiskeyIcon 
                                             className={classes.dashboard_color_icon}
-                                            style={{color: 'goldenrod'}}
+                                            style={{color: 'silver'}}
                                             />
                                         </div>
                                     </Tooltip>
@@ -740,7 +779,8 @@ export default function Dashboard(props) {
                                         <Typography 
                                         variant="button" 
                                         className={stats.reviewed === 0 ? classes.dashboard_text_T_zero : classes.dashboard_text_T}
-                                        >                                        T
+                                        > 
+                                            T
                                         </Typography>
                                     </Tooltip>
                                     :

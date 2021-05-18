@@ -402,6 +402,7 @@ export default function LwinProfileCard(props) {
                 sub_region: LwinData.sub_region,
                 colour: LwinData.colour,
                 type: LwinData.type,
+                sub_type: LwinData.sub_type,
                 vintage: selectedVintage,
                 size: selectedSize,
                 store: selectedStore,
