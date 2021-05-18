@@ -446,7 +446,7 @@ export default function BottleCard(props) {
         backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
         colorSchemaA: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         flagImage: `url(/static/images/country-flags/${bottle.country.split(" ").join("-").toLowerCase()}.png)`,
-        infoColor: bottle.colour === 'Red' ? 'maroon' : bottle.colour === 'White' ? 'tan' : bottle.colour === 'Rose' ? 'lightcoral' : 'grey',
+        infoColor: bottle.colour === 'Red' ? 'maroon' : bottle.colour === 'White' ? 'tan' : bottle.colour === 'Rose' ? 'lightcoral' : bottle.type === 'Fortified Wine' ? 'firebrick' : 'grey',
         
     }
     const classes = useStyles(mystyleprops);
@@ -841,7 +841,7 @@ export default function BottleCard(props) {
                 </Typography>}
             subheader={
                 <Typography variant="body2" className={classes.header_subheader} color="textSecondary">
-                    {bottle.colour ? <WineGlassIcon className={classes.info_color_icon}/> : ''} {bottle.colour ? bottle.colour : ''} {bottle.region}, {bottle.country}
+                    {bottle.colour || bottle.type === 'Fortified Wine' ? <WineGlassIcon className={classes.info_color_icon}/> : ''} {bottle.colour ? bottle.colour : ''} {bottle.region}, {bottle.country}
                 </Typography>
             }  
             />
@@ -894,7 +894,7 @@ export default function BottleCard(props) {
                             
                                 
                                 <Typography variant="body2" className={classes.info_text} color="textPrimary">
-                                    <WineGlassIcon className={classes.info_color_icon}/> {bottle.colour ? bottle.colour : 'n/a'} {bottle.size}
+                                    {bottle.colour ? bottle.colour : bottle.sub_type ? bottle.sub_type : bottle.type } {bottle.size}
                                 </Typography>                               
                         </ListItem>
                     </Grid>

@@ -607,26 +607,26 @@ def toggle_review_privacy(request):
 def dashboard_stats(request):
     user = request.user
 
-    purchased = Bottle.objects.filter(user=user)
-    purchased_red = len(purchased.filter(colour='Red'))
+    purchased = Bottle.objects.filter(user=user, permanently_deleted=False)
+    purchased_red = len(purchased.filter(colour='Red')) + len(purchased.filter(type='Fortified Wine'))
     purchased_white = len(purchased.filter(colour='White'))
     purchased_rose = len(purchased.filter(colour='Rose'))
     purchased_else = len(purchased) - (purchased_red + purchased_white + purchased_rose)
     
     collection = purchased.filter(consumed=False)
-    collection_red = len(collection.filter(colour='Red'))
+    collection_red = len(collection.filter(colour='Red')) + len(collection.filter(type='Fortified Wine'))
     collection_white = len(collection.filter(colour='White'))
     collection_rose = len(collection.filter(colour='Rose'))
     collection_else = len(collection) - (collection_red + collection_white + collection_rose)
     
     consumed = purchased.filter(consumed=True)
-    consumed_red = len(consumed.filter(colour='Red'))
+    consumed_red = len(consumed.filter(colour='Red')) + len(consumed.filter(type='Fortified Wine'))
     consumed_white = len(consumed.filter(colour='White'))
     consumed_rose = len(consumed.filter(colour='Rose'))
     consumed_else = len(consumed) - (consumed_red + consumed_white + consumed_rose)
 
     reviewed = Review.objects.filter(user=user)
-    reviewed_red = len(reviewed.filter(bottle__isnull=False, bottle__colour='Red')) + len(reviewed.filter(bottle__isnull=True, lwin_colour='Red'))
+    reviewed_red = len(reviewed.filter(bottle__isnull=False, bottle__colour='Red')) + len(reviewed.filter(bottle__isnull=False, bottle__type='FortifiedWine')) + len(reviewed.filter(bottle__isnull=True, lwin_colour='Red'))
     reviewed_white = len(reviewed.filter(bottle__isnull=False, bottle__colour='White')) + len(reviewed.filter(bottle__isnull=True, lwin_colour='White'))
     reviewed_rose = len(reviewed.filter(bottle__isnull=False, bottle__colour='Rose')) + len(reviewed.filter(bottle__isnull=True, lwin_colour='Rose'))
     reviewed_else = len(reviewed) - (reviewed_red + reviewed_white + reviewed_rose)

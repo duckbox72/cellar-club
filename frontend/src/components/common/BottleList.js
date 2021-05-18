@@ -162,7 +162,7 @@ export default function BottleList(props) {
                                     <WineGlassIcon 
                                     className={classes.list_item_color_icon}
                                     // bottle icon color  
-                                    style={bottle.colour === 'Red' ? {color: 'maroon'} : bottle.colour === 'White' ? {color: 'tan'} : bottle.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'silver'}}
+                                    style={bottle.colour === 'Red' ? {color: 'maroon'} : bottle.colour === 'White' ? {color: 'tan'} : bottle.colour === 'Rose' ? {color: 'lightcoral'} : bottle.type === 'Fortified Wine' ? {color: 'firebrick'} : {color: 'silver'}}
                                     /> 
                                 } {bottle.size}
                             </Typography>
