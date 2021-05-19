@@ -299,12 +299,23 @@ export default function BottleList(props) {
                     
                 </Grid>
             </ListItem>
-            { bottleListLength === 0 ?
-            <LinearProgress color={darkMode ? 'primary' : 'secondary'}/>
-                :
-            <List onChange={handleListChange} className={classes.list_body} dense>                    
-                {bottleListItems(bottleList)}
-            </List>
+
+            { bottleListLength === null ?
+                <LinearProgress color={darkMode ? 'primary' : 'secondary'}/>
+                : 
+                bottleListLength > 0
+                    ?
+                    <List onChange={handleListChange} className={classes.list_body} dense>                    
+                        {bottleListItems(bottleList)}
+                    </List>
+                    :
+                    <Typography
+                    align="center"
+                    variant="body1"
+                    style={{margin: theme.spacing(2), paddingBottom: theme.spacing(2), alignItems: 'center'}}
+                    >
+                        No items added yet
+                    </Typography>
             }
         </Paper>
     );

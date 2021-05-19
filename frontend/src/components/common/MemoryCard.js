@@ -263,15 +263,14 @@ export default function MemoryCard(props) {
         setUndoRemoveAlertOpen(true);
     }
 
+    
     const handleUndoRemoveAlertSubmit = (e) => {
         fetch(`/api/delete_memory_unconsume_bottle/${memory.id}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-        });
-        
-        setUndoRemoveAlertOpen(false);
-        props.history.push('/collection');
+            setUndoRemoveAlertOpen(false);
+            props.history.push('/collection');
+        });  
     }
 
     

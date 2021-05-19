@@ -116,7 +116,7 @@ export default function ReviewsList(props) {
     const darkMode = props.darkMode;
     const reviewDisplayName = props.reviewDisplayName;
     const reviewsList = props.reviewsList != null ? props.reviewsList : [];
-    const reviewsListLength = props.reviewsListLength != null ? props.reviewsListLength : 0;
+    const reviewsListLength = props.reviewsListLength != null ? props.reviewsListLength : null;
     
 
     const [sortByMenuAnchor, setSortByMenuAnchor] = useState(null);
@@ -347,12 +347,22 @@ export default function ReviewsList(props) {
             </ListItem>
  
             
-            { reviewsListLength === 0 ?
-            <LinearProgress color={darkMode ? 'primary' : 'secondary'}/>
-                :
-            <List onChange={handleListChange} className={classes.list_body} dense>                    
-                {reviewsListItems(reviewsList)}
-            </List>
+            { reviewsListLength === null ?
+                <LinearProgress color={darkMode ? 'primary' : 'secondary'}/>
+                : 
+                reviewsListLength > 0
+                    ?
+                    <List onChange={handleListChange} className={classes.list_body} dense>                    
+                        {reviewsListItems(reviewsList)}
+                    </List>
+                    :
+                    <Typography
+                    align="center"
+                    variant="body1"
+                    style={{margin: theme.spacing(2), paddingBottom: theme.spacing(2), alignItems: 'center'}}
+                    >
+                        No tasting reviews added yet
+                    </Typography>
             }
         </Paper>
     );

@@ -120,7 +120,7 @@ export default function MemoriesList(props) {
     const darkMode = props.darkMode;
     const displayName = props.displayName;
     const memoriesList = props.memoriesList != null ? props.memoriesList : [];
-    const memoriesListLength = props.memoriesListLength != null ? props.memoriesListLength : 0;
+    const memoriesListLength = props.memoriesListLength != null ? props.memoriesListLength : null;
     
 
     const [sortByMenuAnchor, setSortByMenuAnchor] = useState(null);
@@ -340,13 +340,22 @@ export default function MemoriesList(props) {
                 </Grid>
             </ListItem>
 
-            
-            { memoriesListLength === 0 ?
-            <LinearProgress color={darkMode ? 'primary' : 'secondary'}/>
-                :
-            <List onChange={handleListChange} className={classes.list_body} dense>                    
-                {memoriesListItems(memoriesList)}
-            </List>
+            { memoriesListLength === null ?
+                <LinearProgress color={darkMode ? 'primary' : 'secondary'}/>
+                : 
+                memoriesListLength > 0
+                    ?
+                    <List onChange={handleListChange} className={classes.list_body} dense>                    
+                        {memoriesListItems(memoriesList)}
+                    </List>
+                    :
+                    <Typography
+                    align="center"
+                    variant="body1"
+                    style={{margin: theme.spacing(2), paddingBottom: theme.spacing(2), alignItems: 'center'}}
+                    >
+                        No memories added yet
+                    </Typography>
             }
         </Paper>
     );
