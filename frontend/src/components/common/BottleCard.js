@@ -842,7 +842,7 @@ export default function BottleCard(props) {
                 </Typography>}
             subheader={
                 <Typography variant="body2" className={classes.header_subheader} color="textSecondary">
-                    {bottle.colour || bottle.type === 'Fortified Wine' ? <WineGlassIcon className={classes.info_color_icon}/> : ''} {bottle.colour ? bottle.colour : ''} {bottle.region}, {bottle.country}
+                    {bottle.colour || bottle.type === 'Fortified Wine' ? <WineGlassIcon className={classes.info_color_icon}/> : ''} {bottle.colour ? bottle.colour : ''} {bottle.region ? bottle.region : bottle.type}, {bottle.country}
                 </Typography>
             }  
             />
@@ -923,7 +923,7 @@ export default function BottleCard(props) {
                                 </Typography>
                             
                                 <Typography variant="body2" className={classes.info_text}>
-                                    {bottle.region}, {bottle.country}
+                                    {bottle.region ? `${bottle.region}, ` : ''} {bottle.country}
                                 </Typography>          
                         </ListItem>
                     </Grid>

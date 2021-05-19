@@ -432,7 +432,7 @@ export default function MemoryCard(props) {
                     </Typography>}
                 subheader={
                     <Typography variant="body2" className={classes.header_subheader} color="textSecondary">
-                        {memory.bottle.colour || memory.bottle.type === 'Fortified Wine' ? <WineGlassIcon className={classes.info_color_icon}/> : ''} {memory.bottle.colour ? memory.bottle.colour : ''} {memory.bottle.region}, {memory.bottle.country}
+                        {memory.bottle.colour || memory.bottle.type === 'Fortified Wine' ? <WineGlassIcon className={classes.info_color_icon}/> : ''} {memory.bottle.colour ? memory.bottle.colour : ''} {memory.bottle.region ? memory.bottle.region : memory.bottle.type}, {memory.bottle.country}
                     </Typography>
                 }  
                 />

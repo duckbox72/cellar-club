@@ -525,7 +525,7 @@ export default function ConsumedBottleCard(props) {
                 </Typography>}
             subheader={
                 <Typography variant="body2" className={classes.header_subheader} color="textSecondary">
-                    {bottle.colour ? <WineGlassIcon className={classes.info_color_icon}/> : ''} {bottle.colour ? bottle.colour : ''} {bottle.region}, {bottle.country}
+                    {bottle.colour ? <WineGlassIcon className={classes.info_color_icon}/> : ''} {bottle.colour ? bottle.colour : ''} {bottle.region ? bottle.region : bottle.type} , {bottle.country}
                 </Typography>
             }  
             />
@@ -569,7 +569,7 @@ export default function ConsumedBottleCard(props) {
                         
                             
                             <Typography variant="body2" className={classes.info_text} color="textPrimary">
-                                <WineGlassIcon className={classes.info_color_icon}/> {bottle.colour ? bottle.colour : 'n/a'} {bottle.size}
+                                {bottle.colour ? bottle.colour : bottle.sub_type ? bottle.sub_type : bottle.type } {bottle.size}
                             </Typography>                               
                     </ListItem>
                 </Grid>
@@ -597,7 +597,7 @@ export default function ConsumedBottleCard(props) {
                             </Typography>
                         
                             <Typography variant="body2" className={classes.info_text}>
-                                {bottle.region}, {bottle.country}
+                            {bottle.region ? `${bottle.region}, ` : ''} {bottle.country}
                             </Typography>          
                     </ListItem>
                 </Grid>

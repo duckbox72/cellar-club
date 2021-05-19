@@ -584,9 +584,12 @@ def delete_review(request, review_id):
     review = Review.objects.get(id=review_id)
     
     if review.bottle:
-        consumption = Consumption.objects.get(bottle=review.bottle) 
-        consumption.has_review = (False)
-        consumption.save()
+        try:
+            consumption = Consumption.objects.get(bottle=review.bottle) 
+            consumption.has_review = (False)
+            consumption.save()
+        except: 
+            pass
     
     review.delete()
 

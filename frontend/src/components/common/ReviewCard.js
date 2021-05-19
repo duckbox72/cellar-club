@@ -326,7 +326,7 @@ export default function ReviewCard(props) {
                                         style={{
                                             width: theme.spacing(1.75),
                                             marginLeft: -theme.spacing(0.75),
-                                            marginTop: -theme.spacing(1.75),   
+                                            marginTop: -theme.spacing(2),   
                                         }}
                                         />
                                     </>
@@ -432,7 +432,7 @@ export default function ReviewCard(props) {
                     </Typography>}
                 subheader={
                     <Typography variant="body2" className={classes.header_subheader} color="textSecondary">
-                        {review.colour || review.type === 'Fortified Wine' ? <WineGlassIcon className={classes.info_color_icon}/> : ''} {review.colour ? review.colour : ''} {review.region}, {review.country}
+                        {review.colour || review.type === 'Fortified Wine' ? <WineGlassIcon className={classes.info_color_icon}/> : ''} {review.colour ? review.colour : ''} {review.region ? review.region : review.type}, {review.country}
                     </Typography>
                 }  
                 />
