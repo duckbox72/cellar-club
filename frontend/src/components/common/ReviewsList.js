@@ -29,7 +29,7 @@ import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
 
-import { WineBottleIcon, WineGlassIcon } from './SvgIcons';
+import { GlassWhiskeyIcon, WineBottleIcon, WineGlassIcon } from './SvgIcons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -82,7 +82,6 @@ const useStyles = makeStyles((theme) => ({
         },          
     },
     list_item_color_icon: { 
-        marginRight: -theme.spacing(0.25),
         height: theme.spacing(1.5),
         width: theme.spacing(1.5),
         [theme.breakpoints.down('xs')]: {
@@ -134,7 +133,6 @@ export default function ReviewsList(props) {
     
     const handleItemClick = (review) => {
         window.scrollTo(0, 0);
-        console.log(review)
         props.history.push({
             pathname: '/review',
             //search: '?query=abc',

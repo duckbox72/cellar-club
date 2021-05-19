@@ -180,8 +180,6 @@ export default function Dashboard(props) {
     const darkMode = props.darkMode
     const username = props.username;
     const stats = props.dashboardStats !== null ? props.dashboardStats : null;
-    console.log(stats)
-    
 
     const theme = useTheme(); 
     const mystyleprops = {
@@ -767,7 +765,7 @@ export default function Dashboard(props) {
                                 {stats ? stats.reviewed_else > 0 
                                     ?
                                     <Typography variant="body2" className={classes.dashboard_text}>
-                                        {stats.reviews_else}
+                                        {stats.reviewed_else}
                                     </Typography>
                                     :
                                     <></>

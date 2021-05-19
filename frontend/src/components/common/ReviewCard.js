@@ -248,7 +248,6 @@ export default function ReviewCard(props) {
 
 
     const handleSeeBottlelClick = (e) => {
-        console.log("SEE BOTLE CLICK")
         window.scrollTo(0, 0);
         props.history.push({
             pathname: '/consumed_bottle',
@@ -267,7 +266,7 @@ export default function ReviewCard(props) {
         fetch(`/api/delete_review/${review.id}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            //console.log(data);
         });
         
         setRemoveAlertOpen(false);

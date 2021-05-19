@@ -582,6 +582,12 @@ def get_review(request, bottle_id):
 @login_required
 def delete_review(request, review_id):
     review = Review.objects.get(id=review_id)
+    
+    if review.bottle:
+        consumption = Consumption.objects.get(bottle=review.bottle) 
+        consumption.has_review = (False)
+        consumption.save()
+    
     review.delete()
 
     return JsonResponse({"success": "deleted successfully"}, safe=False, status=status.HTTP_200_OK)
