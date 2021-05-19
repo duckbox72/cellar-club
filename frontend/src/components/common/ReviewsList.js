@@ -134,6 +134,7 @@ export default function ReviewsList(props) {
     
     const handleItemClick = (review) => {
         window.scrollTo(0, 0);
+        console.log(review)
         props.history.push({
             pathname: '/review',
             //search: '?query=abc',
@@ -169,12 +170,18 @@ export default function ReviewsList(props) {
                                 {review.vintage}
                             </Typography>
                             <Typography variant="caption" className={classes.list_item_avatar_size}>
-                                <WineGlassIcon 
-                                className={classes.list_item_color_icon}
-                                // memory icon color  
-                                style={review.colour === 'Red' ? {color: 'maroon'} : review.colour === 'White' ? {color: 'tan'} : review.colour === 'Rose' ? {color: 'lightcoral'} : {color: 'grey'}}
-                                
-                                /> {review.score}/100
+                                {review.type === 'Spirit' ?
+                                    <GlassWhiskeyIcon 
+                                    className={classes.list_item_color_icon}
+                                    style={{color: 'silver'}}
+                                    />
+                                    :
+                                    <WineGlassIcon 
+                                    className={classes.list_item_color_icon}
+                                    // review icon color  
+                                    style={review.colour === 'Red' ? {color: 'maroon'} : review.colour === 'White' ? {color: 'tan'} : review.colour === 'Rose' ? {color: 'lightcoral'} : review.type === 'Fortified Wine' ? {color: 'firebrick'} : {color: 'silver'}}
+                                    /> 
+                                } {review.score}/100
                             </Typography>
                         </div>
                     </ListItemAvatar>     
@@ -213,7 +220,7 @@ export default function ReviewsList(props) {
                                     </Tooltip>
                             }
 
-                            {review.bottle.id
+                            {review.bottle
                             ? <Tooltip title="Bottle from collection">
                                 <WineBottleIcon className={classes.list_item_subheader_icon} style={{color: mystyleprops.colorSchemaA}}/>
                               </Tooltip>

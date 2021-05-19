@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import Avatar from '@material-ui/core/Avatar';
@@ -225,7 +225,7 @@ export default function ReviewCard(props) {
         backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
         colorSchemaA: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         flagImage: `url(/static/images/country-flags/${review.country.split(" ").join("-").toLowerCase()}.png)`,
-        infoColor: review.colour === 'Red' ? 'maroon' : review.colour === 'White' ? 'tan' : review.colour === 'Rose' ? 'lightcoral' : 'grey', 
+        infoColor: review.colour === 'Red' ? 'maroon' : review.colour === 'White' ? 'tan' : review.colour === 'Rose' ? 'lightcoral' : review.type === 'Fortified Wine' ? 'firebrick' : 'grey',  
     }
     const classes = useStyles(mystyleprops);
 
@@ -327,7 +327,7 @@ export default function ReviewCard(props) {
                                         style={{
                                             width: theme.spacing(1.75),
                                             marginLeft: -theme.spacing(0.75),
-                                            marginTop: -theme.spacing(1.5),   
+                                            marginTop: -theme.spacing(1.75),   
                                         }}
                                         />
                                     </>
@@ -376,7 +376,7 @@ export default function ReviewCard(props) {
 
                         <Tooltip title="Bottle from collection, click for more info">
                             <IconButton 
-                            disabled={!review.bottle.id}
+                            disabled={!review.bottle}
                             onClick={handleSeeBottlelClick} 
                             className={classes.review_iconbutton}
                             >
@@ -433,7 +433,7 @@ export default function ReviewCard(props) {
                     </Typography>}
                 subheader={
                     <Typography variant="body2" className={classes.header_subheader} color="textSecondary">
-                        {review.colour ? <WineGlassIcon className={classes.info_color_icon}/> : ''} {review.colour ? review.colour : ''} {review.region}, {review.country}
+                        {review.colour || review.type === 'Fortified Wine' ? <WineGlassIcon className={classes.info_color_icon}/> : ''} {review.colour ? review.colour : ''} {review.region}, {review.country}
                     </Typography>
                 }  
                 />
