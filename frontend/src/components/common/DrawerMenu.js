@@ -15,12 +15,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import EventIcon from '@material-ui/icons/Event';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ListIcon from '@material-ui/icons/List';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
-import StarOutlinedIcon from '@material-ui/icons/StarOutline';
+import StarIcon from '@material-ui/icons/Star';
+
+import { GlassCheersIcon } from './SvgIcons';
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -135,14 +136,17 @@ export default function DrawerMenu(props) {
 
         <ListItem button key="memories" to="/memories" component={Link}>
           <ListItemIcon>
-            <EventIcon className={classes.iconButton} />
+            <GlassCheersIcon 
+            className={classes.iconButton} 
+            style={{width: theme.spacing(2.75), height: theme.spacing(2.75)}}
+            />
           </ListItemIcon>
           <ListItemText primary={"Memories"} />
         </ListItem>
 
         <ListItem button key="reviews" to="/reviews" component={Link}>
           <ListItemIcon>
-            <StarOutlinedIcon className={classes.iconButton} />
+            <StarIcon className={classes.iconButton} />
           </ListItemIcon>
           <ListItemText primary={"Reviews"} />
         </ListItem>

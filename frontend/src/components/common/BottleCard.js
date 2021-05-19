@@ -634,7 +634,7 @@ export default function BottleCard(props) {
         })
         .then(response => response.json())
         .then(result => {
-            console.log(result);
+            //console.log(result);
         });   
 
     }
@@ -668,7 +668,7 @@ export default function BottleCard(props) {
         })
         .then(response => response.json())
         .then(result => {
-            console.log(result);
+            //console.log(result);
             
             if (result.success) {
                 setDrinkSnackbarSeverity('success')
@@ -706,7 +706,7 @@ export default function BottleCard(props) {
         })
         .then(response => response.json())
         .then(result => {
-            console.log(result);
+            //console.log(result);
             
             if (result.success) {
                 setRemoveSnackbarSeverity('success')

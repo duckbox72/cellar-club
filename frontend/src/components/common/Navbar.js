@@ -15,14 +15,15 @@ import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import EventIcon from '@material-ui/icons/Event';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ListIcon from '@material-ui/icons/List';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
-import StarOutlinedIcon from '@material-ui/icons/StarOutline';
+import StarIcon from '@material-ui/icons/Star';
+
+import { GlassCheersIcon } from './SvgIcons';
 
 import DrawerMenu from "./DrawerMenu";
+
 
 
 const logoFontTheme = createMuiTheme({
@@ -43,10 +44,10 @@ const useStyles = makeStyles((theme) => ({
         letterSpacing: theme.spacing(0.75),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
-    iconButton: {
+    icon_button_icon: {
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
-    iconLogo: {
+    icon_logo: {
         color: mystyleprops => mystyleprops.colorSchemaA,
         width: theme.spacing(6),
         height: theme.spacing(6),
@@ -128,7 +129,7 @@ export default function Navbar(props) {
         <AppBar position="fixed" elevation={3} className={classes.appbar}>
             <Toolbar>   
                 <Tooltip title="Home">          
-                    <AllInclusiveIcon className={classes.iconLogo} onClick={() => {props.history.push('/')}}/>
+                    <AllInclusiveIcon className={classes.icon_logo} onClick={() => {props.history.push('/')}}/>
                 </Tooltip>   
                 <ThemeProvider theme={logoFontTheme}>
                     <Typography variant="h5" className={classes.appbar_typography}>
@@ -139,8 +140,8 @@ export default function Navbar(props) {
                     <Tooltip title="Toggle light/dark mode">
                         <IconButton className={classes.main_menu_on} aria-label="toggleDarkMode" onClick={toggleDarKMode}>
                         { darkMode
-                        ? <Brightness7Icon className={classes.iconButton} />
-                        : <Brightness4Icon className={classes.iconButton} />
+                        ? <Brightness7Icon className={classes.icon_button_icon} />
+                        : <Brightness4Icon className={classes.icon_button_icon} />
                         }
                         </IconButton>
                     </Tooltip>
@@ -155,46 +156,49 @@ export default function Navbar(props) {
                 
                     <Tooltip title="Home">
                         <IconButton className={classes.main_menu_off} aria-label="Home" to="/" component={Link}>
-                            <HomeOutlinedIcon className={classes.iconButton} />
+                            <HomeOutlinedIcon className={classes.icon_button_icon} />
                         </IconButton>
                     </Tooltip>
                     
                     <Tooltip title="Search">
                         <IconButton className={classes.main_menu_off} aria-label="Search" to="/search" component={Link}>
-                            <SearchIcon className={classes.iconButton} />
+                            <SearchIcon className={classes.icon_button_icon} />
                         </IconButton>
                     </Tooltip>
 
                     <Tooltip title="Collection">
                         <IconButton className={classes.main_menu_off} aria-label="Collection" to="/collection" component={Link}>
-                            <ListIcon className={classes.iconButton} />
+                            <ListIcon className={classes.icon_button_icon} />
                         </IconButton>
                     </Tooltip>
 
                     <Tooltip title="Memories">
                         <IconButton className={classes.main_menu_off} aria-label="Memories" to="/memories" component={Link}>
-                            <EventIcon className={classes.iconButton} />
+                            <GlassCheersIcon 
+                            className={classes.icon_button_icon} 
+                            style={{width: theme.spacing(2.75), height: theme.spacing(2.75)}}
+                            />
                         </IconButton>
                     </Tooltip>
 
                     <Tooltip title="Reviews">
                         <IconButton className={classes.main_menu_off} aria-label="Reviews" to="/reviews" component={Link}>
-                            <StarOutlinedIcon className={classes.iconButton} />
+                            <StarIcon className={classes.icon_button_icon} />
                         </IconButton>
                     </Tooltip>
 
                     <Tooltip className={classes.main_menu_off} title="Toggle light/dark mode">
                         <IconButton aria-label="toggleDarkMode" onClick={toggleDarKMode}>
                         { darkMode
-                        ? <Brightness7Icon className={classes.iconButton} />
-                        : <Brightness4Icon className={classes.iconButton} />
+                        ? <Brightness7Icon className={classes.icon_button_icon} />
+                        : <Brightness4Icon className={classes.icon_button_icon} />
                         }
                         </IconButton>
                     </Tooltip>
 
                     <Tooltip className={classes.main_menu_off} title="Signout">
                         <IconButton aria-label="Signout" onClick={handleSignOutButton}>
-                            <ExitToAppIcon className={classes.iconButton} />
+                            <ExitToAppIcon className={classes.icon_button_icon} />
                         </IconButton>
                     </Tooltip>  
             </Toolbar>

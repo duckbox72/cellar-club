@@ -8,10 +8,9 @@ import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography'
 
-import EventIcon from '@material-ui/icons/Event';
 import ListIcon from '@material-ui/icons/List';
 import SearchIcon from '@material-ui/icons/Search';
-import StarOutlinedIcon from '@material-ui/icons/StarOutline';
+import StarIcon from '@material-ui/icons/Star';
 import StoreIcon from '@material-ui/icons/Store';
 
 import { GlassCheersIcon, GlassWhiskeyIcon, WineBottleIcon, WineGlassIcon } from './SvgIcons';
@@ -171,6 +170,7 @@ const useStyles = makeStyles((theme) => ({
         //height: theme.spacing(3.5),
         //width: theme.spacing(3.5),
         //marginTop: theme.spacing(2),
+        color: mystyleprops => mystyleprops.colorSchemaA,
     },
 }));
 
@@ -654,7 +654,7 @@ export default function Dashboard(props) {
 
                         <Grid item xs={12} className={classes.dashboard_grid}>
                             <ListItem>
-                                <StarOutlinedIcon className={classes.dashboard_icon}/>
+                                <StarIcon className={classes.dashboard_icon}/>
                                     
                                 <Typography variant="body2" className={classes.dashboard_label}> 
                                     Reviews
@@ -875,7 +875,10 @@ export default function Dashboard(props) {
                                     </Grid>
                                     <Grid item>
                                         <IconButton>
-                                            <EventIcon className={classes.action_icon}/>
+                                            <GlassCheersIcon 
+                                            className={classes.action_icon} 
+                                            style={{width: theme.spacing(2.75), height: theme.spacing(2.75)}}
+                                            />
                                         </IconButton>
                                     </Grid>
                                     <Grid item>
@@ -902,7 +905,7 @@ export default function Dashboard(props) {
                                     </Grid>
                                     <Grid item>
                                         <IconButton>
-                                            <StarOutlinedIcon className={classes.action_icon}/>
+                                            <StarIcon className={classes.action_icon}/>
                                         </IconButton>
                                     </Grid>
                                     <Grid item>
