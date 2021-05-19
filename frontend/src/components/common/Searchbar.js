@@ -95,7 +95,7 @@ export default function Searchbar(props) {
         });
     };
     
-    // TO BE MOVED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // TO BE USED IN FUTURE !!!!!!!!!!!!!!!!!!!!!!!!!!
     const getBottleData = (bottle_id) => {
         fetch(`api/get_bottle/${bottle_id}`)
         .then((response) => response.json())
@@ -190,7 +190,6 @@ export default function Searchbar(props) {
     
     
     const handleSearchbarValueChange = e => {
-        console.log(`SEARCHBAR VALUE CHANGED TO ${e.target.value}`);
         setSearchbarValue(e.target.value);
         
         // Search.js calls
