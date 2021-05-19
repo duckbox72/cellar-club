@@ -15,8 +15,8 @@ import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import ListIcon from '@material-ui/icons/List';
+import HomeIcon from '@material-ui/icons/Home';
+import ViewListIcon from '@material-ui/icons/ViewList';
 import SearchIcon from '@material-ui/icons/Search';
 import StarIcon from '@material-ui/icons/Star';
 
@@ -156,7 +156,7 @@ export default function Navbar(props) {
                 
                     <Tooltip title="Home">
                         <IconButton className={classes.main_menu_off} aria-label="Home" to="/" component={Link}>
-                            <HomeOutlinedIcon className={classes.icon_button_icon} />
+                            <HomeIcon className={classes.icon_button_icon} />
                         </IconButton>
                     </Tooltip>
                     
@@ -168,7 +168,7 @@ export default function Navbar(props) {
 
                     <Tooltip title="Collection">
                         <IconButton className={classes.main_menu_off} aria-label="Collection" to="/collection" component={Link}>
-                            <ListIcon className={classes.icon_button_icon} />
+                            <ViewListIcon className={classes.icon_button_icon} />
                         </IconButton>
                     </Tooltip>
 

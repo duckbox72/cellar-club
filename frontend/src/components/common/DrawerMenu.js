@@ -15,8 +15,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import ListIcon from '@material-ui/icons/List';
+import HomeIcon from '@material-ui/icons/Home';
+import ViewListIcon from '@material-ui/icons/ViewList';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
 import StarIcon from '@material-ui/icons/Star';
@@ -115,7 +115,7 @@ export default function DrawerMenu(props) {
         
         <ListItem button key="home" to="/" component={Link}>
           <ListItemIcon>
-            <HomeOutlinedIcon className={classes.iconButton} />
+            <HomeIcon className={classes.iconButton} />
           </ListItemIcon>
           <ListItemText primary={"Home"} />
         </ListItem>
@@ -129,7 +129,7 @@ export default function DrawerMenu(props) {
 
         <ListItem button key="collection" to="/collection" component={Link}>
           <ListItemIcon>
-            <ListIcon className={classes.iconButton} />
+            <ViewListIcon className={classes.iconButton} />
           </ListItemIcon>
           <ListItemText primary={"Collection"} />
         </ListItem>

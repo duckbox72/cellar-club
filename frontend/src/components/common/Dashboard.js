@@ -8,7 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography'
 
-import ListIcon from '@material-ui/icons/List';
+import ViewListIcon from '@material-ui/icons/ViewList';
 import SearchIcon from '@material-ui/icons/Search';
 import StarIcon from '@material-ui/icons/Star';
 import StoreIcon from '@material-ui/icons/Store';
@@ -167,10 +167,7 @@ const useStyles = makeStyles((theme) => ({
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     action_icon: {
-        //height: theme.spacing(3.5),
-        //width: theme.spacing(3.5),
-        //marginTop: theme.spacing(2),
-        color: mystyleprops => mystyleprops.colorSchemaA,
+        
     },
 }));
 
@@ -848,7 +845,7 @@ export default function Dashboard(props) {
                                     </Grid>
                                     <Grid item>
                                         <IconButton>
-                                            <ListIcon className={classes.action_icon}/>
+                                            <ViewListIcon className={classes.action_icon}/>
                                         </IconButton> 
                                     </Grid>
                                     <Grid item>
