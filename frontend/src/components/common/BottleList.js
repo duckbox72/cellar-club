@@ -53,8 +53,8 @@ const useStyles = makeStyles((theme) => ({
     },
     icon_numof_bottles: { 
         transform: 'rotate(315deg)',
-        width: theme.spacing(2.75),
-        height:theme.spacing(2.75), 
+        width: theme.spacing(2.5),
+        height:theme.spacing(2.5), 
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     list_item_avatar_container: {

@@ -66,6 +66,15 @@ const useStyles = makeStyles((theme) => ({
             display: 'none'
         },
     },
+    main_menu_off_text: {
+        display: 'block',
+        [theme.breakpoints.down('md')]: {
+            display: 'none'
+        },
+        color: mystyleprops => mystyleprops.colorSchemaA,
+        //fontSize: theme.spacing(1.75),
+        marginLeft: theme.spacing(0.5),
+    },
 }));
 
 
@@ -146,14 +155,15 @@ export default function Navbar(props) {
                         </IconButton>
                     </Tooltip>
                     <span className={classes.main_menu_on}>
-                    <DrawerMenu
-                        {...props}
-                        darkMode={props.darkMode}
-                        username={username}
-                        parentSignOutCallback={sigOutCallback}
-                    />
+                        <DrawerMenu
+                            {...props}
+                            darkMode={props.darkMode}
+                            username={username}
+                            parentSignOutCallback={sigOutCallback}
+                        />
                     </span>
                 
+
                     <Tooltip title="Home">
                         <IconButton className={classes.main_menu_off} aria-label="Home" to="/" component={Link}>
                             <HomeIcon className={classes.icon_button_icon} />
@@ -165,13 +175,13 @@ export default function Navbar(props) {
                             <SearchIcon className={classes.icon_button_icon} />
                         </IconButton>
                     </Tooltip>
-
+                    
                     <Tooltip title="Collection">
                         <IconButton className={classes.main_menu_off} aria-label="Collection" to="/collection" component={Link}>
                             <ViewListIcon className={classes.icon_button_icon} />
                         </IconButton>
                     </Tooltip>
-
+                    
                     <Tooltip title="Memories">
                         <IconButton className={classes.main_menu_off} aria-label="Memories" to="/memories" component={Link}>
                             <GlassCheersIcon 
@@ -186,6 +196,7 @@ export default function Navbar(props) {
                             <StarIcon className={classes.icon_button_icon} />
                         </IconButton>
                     </Tooltip>
+                    
 
                     <Tooltip className={classes.main_menu_off} title="Toggle light/dark mode">
                         <IconButton aria-label="toggleDarkMode" onClick={toggleDarKMode}>
@@ -199,7 +210,7 @@ export default function Navbar(props) {
                     <Tooltip className={classes.main_menu_off} title="Signout">
                         <IconButton aria-label="Signout" onClick={handleSignOutButton}>
                             <ExitToAppIcon className={classes.icon_button_icon} />
-                        </IconButton>
+                            </IconButton>
                     </Tooltip>  
             </Toolbar>
         </AppBar>

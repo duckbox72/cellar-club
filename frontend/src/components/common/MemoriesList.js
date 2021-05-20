@@ -60,8 +60,8 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(1),
     },
     icon_numof_consumed: {
-        width: theme.spacing(2.75),
-        height:theme.spacing(2.75), 
+        width: theme.spacing(2.5),
+        height:theme.spacing(2.5), 
         //transform: 'rotate(270deg)',
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
