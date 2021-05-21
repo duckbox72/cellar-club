@@ -8,7 +8,13 @@ from django.utils import timezone
 class User(AbstractUser):
     photo = models.ImageField(upload_to='static', blank=True)
     dark_mode =  models.BooleanField(default=False)
-    pass
+    
+    def mini_serializer(self):
+        return {
+            "username": self.username,
+        }
+    
+    
 
 
 class Lwin(models.Model):
@@ -243,8 +249,9 @@ class Review(models.Model):
             type = self.lwin_type
 
 
-        return {
+        return {            
             "id": self.id,
+            "user": self.user.mini_serializer(),
             "date_tasted": self.date_tasted,
             "display_name": self.display_name,
             "bottle": serialized_bottle,

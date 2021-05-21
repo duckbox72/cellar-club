@@ -30,6 +30,7 @@ import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
 
 import { GlassWhiskeyIcon, WineBottleIcon, WineGlassIcon } from './SvgIcons';
+import { Avatar } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -62,25 +63,6 @@ const useStyles = makeStyles((theme) => ({
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     
-    
-    list_item_avatar_container: {
-        textAlign: 'center', 
-        marginLeft: -theme.spacing(2),
-        marginRight: theme.spacing(0.5),
-    },
-    list_item_avatar: {
-        fontWeight: 400,
-        fontSize: theme.spacing(2),
-        [theme.breakpoints.down('xs')]: {
-            fontSize: theme.spacing(1.75),
-        },          
-    },
-    list_item_avatar_size: {
-        fontSize: theme.spacing(1.75),
-        [theme.breakpoints.down('xs')]: {
-            fontSize: theme.spacing(1.5),
-        },          
-    },
     list_item_color_icon: { 
         height: theme.spacing(1.5),
         width: theme.spacing(1.5),
@@ -159,16 +141,11 @@ export default function CommunityReviewsList(props) {
                 key={review.id} 
                 onClick={() => handleItemClick(review)}
                 divider
-                >
-                    <ListItemAvatar>
-                        <div 
-                        className={classes.list_item_avatar_container}    
-                        >
-                            <Typography variant="subtitle2" className={classes.list_item_avatar}>
-                                {review.vintage}
-                            </Typography>
-                            <Typography variant="caption" className={classes.list_item_avatar_size}>
-                                {review.type === 'Spirit' ?
+                >    
+                    <ListItemText
+                    primary={
+                        <Typography variant="body2" className={classes.list_item_title}>
+                            {review.type === 'Spirit' ?
                                     <GlassWhiskeyIcon 
                                     className={classes.list_item_color_icon}
                                     style={{color: 'silver'}}
@@ -179,65 +156,23 @@ export default function CommunityReviewsList(props) {
                                     // review icon color  
                                     style={review.colour === 'Red' ? {color: 'maroon'} : review.colour === 'White' ? {color: 'tan'} : review.colour === 'Rose' ? {color: 'lightcoral'} : review.type === 'Fortified Wine' ? {color: 'firebrick'} : {color: 'silver'}}
                                     /> 
-                                } {review.score}/100
-                            </Typography>
-                        </div>
-                    </ListItemAvatar>     
-                    <ListItemText
-                    
-                    primary={
-                        <Typography variant="body2" className={classes.list_item_title}>
-                            {review.display_name}
+                                } {review.vintage} {review.display_name}
                         </Typography>    
                     }
                     secondary={ 
                         <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
-                            {`Tasted in ${new Date(review.date_tasted).toUTCString().slice(5, 16)}`} 
+                            {`On ${new Date(review.date_tasted).toUTCString().slice(5, 16)} `} 
                             
-                            {' '}
-                            
-                            {review.is_public
-                            ? <Tooltip title="Review is public">
-                                <PeopleIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
-                              </Tooltip>
-                            : <Tooltip title="Review is private">
-                                <PersonIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
-                              </Tooltip>
-                            }
-
-                            {review.like_status === 'like'
-                            ? <Tooltip title="Like">
-                                <ThumbUpOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
-                              </Tooltip>
-                            : review.like_status === 'neutral'
-                                ?   <Tooltip title="Neutral">
-                                        <ThumbsUpDownOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
-                                    </Tooltip>
-                                :   <Tooltip title="Dislike">
-                                        <ThumbDownOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
-                                    </Tooltip>
-                            }
-
-                            {review.bottle
-                            ? <Tooltip title="Bottle from collection">
-                                <WineBottleIcon className={classes.list_item_subheader_icon} style={{color: mystyleprops.colorSchemaA}}/>
-                              </Tooltip>
-                            : <Tooltip title="Bottle not from collection">
-                                <span>
-                                    <WineBottleIcon className={classes.list_item_subheader_icon} style={{filter: 'opacity(50%)'}}/>
-                                </span>
-                              </Tooltip>
-                            }
+                            {review.user.username}
                         </Typography>
                     } 
                     />    
                     <ListItemSecondaryAction>
-                        <IconButton 
-                        key={review.id} 
-                        onClick={() => handleItemActionClick(review)}
-                        >
-                            <MoreHorizIcon />
-                        </IconButton>
+                        <Avatar variant='circular' style={{backgroundColor: mystyleprops.colorSchemaA}}>
+                            <Typography className={classes.list_item_subheader}>
+                                {review.score}
+                            </Typography>
+                        </Avatar>
                     </ListItemSecondaryAction>
                 </ListItem>        
             ));

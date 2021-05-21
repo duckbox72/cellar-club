@@ -13,7 +13,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import StarIcon from '@material-ui/icons/Star';
 import StoreIcon from '@material-ui/icons/Store';
 
-import { GlassCheersIcon, GlassWhiskeyIcon, WineBottleIcon, WineGlassIcon } from './SvgIcons';
+import { GlassCheersIcon, GlassWhiskeyIcon, WineGlassAltIcon } from './SvgIcons';
 
 import brown from '@material-ui/core/colors/brown';
 
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     dashboard_paper: {
         height: screen.availHeight * 0.33,
         width: '100%',
-        overflowY: 'scroll',
+        //overflow: 'scroll',
         margin: theme.spacing(0, 3),
         borderRadius: 10,
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
@@ -46,9 +46,9 @@ const useStyles = makeStyles((theme) => ({
     },
 
     dashboard_grid: {
-        marginTop: theme.spacing(0.5),
+        //marginTop: theme.spacing(0.5),
     },
-    dashboard_icon: { 
+    dashboard_icon: {
         height: theme.spacing(2.5),
         width: theme.spacing(2.5),
         marginLeft: theme.spacing(1.25),
@@ -97,15 +97,20 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(1.5),
         color: mystyleprops => mystyleprops.infoColor,
     },
+    dashboard_color_icon_spirit: {
+        height: theme.spacing(1.5),
+        width: theme.spacing(1.5),
+        color: mystyleprops => mystyleprops.infoColor,
+    },
     dashboard_text: {
         textAlign: 'right',
         fontWeight: 400,
-        marginLeft: theme.spacing(0.5),
+        marginLeft: theme.spacing(0.25),
         marginRight: theme.spacing(2),
         fontSize: theme.spacing(2),
         [theme.breakpoints.down('xs')]:{
             fontSize: theme.spacing(1.75),
-            marginLeft: theme.spacing(0.25),
+            marginLeft: theme.spacing(0.125),
             marginRight: theme.spacing(0.75),
         },
     },
@@ -140,11 +145,6 @@ const useStyles = makeStyles((theme) => ({
             marginRight: theme.spacing(0),
         },
     },
-    dashboard_circular_progress: {
-        color: mystyleprops => mystyleprops.colorSchemaA,
-        margin: theme.spacing(0, 0.75, 0, 0.5),
-    },
-
 
 
     action_paper: {
@@ -233,7 +233,7 @@ export default function Dashboard(props) {
 
                         <Grid item xs={12} className={classes.dashboard_grid}>
                             <ListItem>
-                                <WineBottleIcon className={classes.dashboard_bottle_icon} style={{transform: 'rotate(315deg)',}}/>
+                                <ViewListIcon className={classes.dashboard_icon}/>
                                     
                                 <Typography variant="body2" className={classes.dashboard_label}> 
                                     Collection
@@ -243,7 +243,7 @@ export default function Dashboard(props) {
                                     ? 
                                     <Tooltip title="Red">
                                         <div className={classes.dashboard_color_icon_first_div}>
-                                                <WineGlassIcon 
+                                                <WineGlassAltIcon 
                                                 className={classes.dashboard_color_icon}
                                                 style={{color: 'maroon'}}
                                                 />
@@ -272,7 +272,7 @@ export default function Dashboard(props) {
                                             ? classes.dashboard_color_icon_first_div
                                             : ''}
                                         >
-                                            <WineGlassIcon 
+                                            <WineGlassAltIcon 
                                             className={classes.dashboard_color_icon}
                                             style={{color: 'tan'}}
                                             />
@@ -301,7 +301,7 @@ export default function Dashboard(props) {
                                             ? classes.dashboard_color_icon_first_div
                                             : ''}
                                         >
-                                            <WineGlassIcon 
+                                            <WineGlassAltIcon 
                                             className={classes.dashboard_color_icon}
                                             style={{color: 'lightcoral'}}
                                             />
@@ -331,7 +331,7 @@ export default function Dashboard(props) {
                                             : ''}
                                         >
                                             <GlassWhiskeyIcon 
-                                            className={classes.dashboard_color_icon}
+                                            className={classes.dashboard_color_icon_spirit}
                                             style={{color: 'silver'}}
                                             />
                                         </div>
@@ -382,7 +382,7 @@ export default function Dashboard(props) {
                                     ? 
                                     <Tooltip title="Red">
                                         <div className={classes.dashboard_color_icon_first_div}>
-                                                <WineGlassIcon 
+                                                <WineGlassAltIcon 
                                                 className={classes.dashboard_color_icon}
                                                 style={{color: 'maroon'}}
                                                 />
@@ -411,7 +411,7 @@ export default function Dashboard(props) {
                                             ? classes.dashboard_color_icon_first_div
                                             : ''}
                                         >
-                                            <WineGlassIcon 
+                                            <WineGlassAltIcon 
                                             className={classes.dashboard_color_icon}
                                             style={{color: 'tan'}}
                                             />
@@ -440,7 +440,7 @@ export default function Dashboard(props) {
                                             ? classes.dashboard_color_icon_first_div
                                             : ''}
                                         >
-                                            <WineGlassIcon 
+                                            <WineGlassAltIcon 
                                             className={classes.dashboard_color_icon}
                                             style={{color: 'lightcoral'}}
                                             />
@@ -470,7 +470,7 @@ export default function Dashboard(props) {
                                             : ''}
                                         >
                                             <GlassWhiskeyIcon 
-                                            className={classes.dashboard_color_icon}
+                                            className={classes.dashboard_color_icon_spirit}
                                             style={{color: 'silver'}}
                                             />
                                         </div>
@@ -522,7 +522,7 @@ export default function Dashboard(props) {
                                     ? 
                                     <Tooltip title="Red">
                                         <div className={classes.dashboard_color_icon_first_div}>
-                                                <WineGlassIcon 
+                                                <WineGlassAltIcon 
                                                 className={classes.dashboard_color_icon}
                                                 style={{color: 'maroon'}}
                                                 />
@@ -551,7 +551,7 @@ export default function Dashboard(props) {
                                             ? classes.dashboard_color_icon_first_div
                                             : ''}
                                         >
-                                            <WineGlassIcon 
+                                            <WineGlassAltIcon 
                                             className={classes.dashboard_color_icon}
                                             style={{color: 'tan'}}
                                             />
@@ -580,7 +580,7 @@ export default function Dashboard(props) {
                                             ? classes.dashboard_color_icon_first_div
                                             : ''}
                                         >
-                                            <WineGlassIcon 
+                                            <WineGlassAltIcon 
                                             className={classes.dashboard_color_icon}
                                             style={{color: 'lightcoral'}}
                                             />
@@ -610,7 +610,7 @@ export default function Dashboard(props) {
                                             : ''}
                                         >
                                             <GlassWhiskeyIcon 
-                                            className={classes.dashboard_color_icon}
+                                            className={classes.dashboard_color_icon_spirit}
                                             style={{color: 'silver'}}
                                             />
                                         </div>
@@ -662,7 +662,7 @@ export default function Dashboard(props) {
                                     ? 
                                     <Tooltip title="Red">
                                         <div className={classes.dashboard_color_icon_first_div}>
-                                                <WineGlassIcon 
+                                                <WineGlassAltIcon 
                                                 className={classes.dashboard_color_icon}
                                                 style={{color: 'maroon'}}
                                                 />
@@ -691,7 +691,7 @@ export default function Dashboard(props) {
                                             ? classes.dashboard_color_icon_first_div
                                             : ''}
                                         >
-                                            <WineGlassIcon 
+                                            <WineGlassAltIcon 
                                             className={classes.dashboard_color_icon}
                                             style={{color: 'tan'}}
                                             />
@@ -720,7 +720,7 @@ export default function Dashboard(props) {
                                             ? classes.dashboard_color_icon_first_div
                                             : ''}
                                         >
-                                            <WineGlassIcon 
+                                            <WineGlassAltIcon 
                                             className={classes.dashboard_color_icon}
                                             style={{color: 'lightcoral'}}
                                             />
@@ -750,7 +750,7 @@ export default function Dashboard(props) {
                                             : ''}
                                         >
                                             <GlassWhiskeyIcon 
-                                            className={classes.dashboard_color_icon}
+                                            className={classes.dashboard_color_icon_spirit}
                                             style={{color: 'silver'}}
                                             />
                                         </div>
