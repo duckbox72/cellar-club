@@ -16,6 +16,7 @@ import Brightness7Icon from '@material-ui/icons/Brightness7';
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HomeIcon from '@material-ui/icons/Home';
+import PublicIcon from '@material-ui/icons/Public';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import SearchIcon from '@material-ui/icons/Search';
 import StarIcon from '@material-ui/icons/Star';
@@ -194,6 +195,12 @@ export default function Navbar(props) {
                     <Tooltip title="Reviews">
                         <IconButton className={classes.main_menu_off} aria-label="Reviews" to="/reviews" component={Link}>
                             <StarIcon className={classes.icon_button_icon} />
+                        </IconButton>
+                    </Tooltip>
+
+                    <Tooltip title="Community reviews">
+                        <IconButton className={classes.main_menu_off} aria-label="Reviews" to="/community_reviews" component={Link}>
+                            <PublicIcon className={classes.icon_button_icon} />
                         </IconButton>
                     </Tooltip>
                     

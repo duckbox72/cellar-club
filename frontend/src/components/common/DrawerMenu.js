@@ -16,6 +16,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HomeIcon from '@material-ui/icons/Home';
+import PublicIcon from '@material-ui/icons/Public';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
@@ -149,6 +150,13 @@ export default function DrawerMenu(props) {
             <StarIcon className={classes.iconButton} />
           </ListItemIcon>
           <ListItemText primary={"Reviews"} />
+        </ListItem>
+
+        <ListItem button key="community_reviews" to="/community_reviews" component={Link}>
+          <ListItemIcon>
+            <PublicIcon className={classes.iconButton} />
+          </ListItemIcon>
+          <ListItemText primary={"Community"} />
         </ListItem>
 
         <ListItem button key="signout" onClick={handleSignOutButton}>

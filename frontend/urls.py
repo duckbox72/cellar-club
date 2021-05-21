@@ -11,6 +11,7 @@ urlpatterns = [
     path('memory', index),
     path('reviews', index),
     path('review', index),
+    path('community_reviews', index),
     
     
     # AUTH Routes

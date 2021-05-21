@@ -4,6 +4,7 @@ import { createMuiTheme, makeStyles, ThemeProvider } from "@material-ui/core/sty
 import { Paper } from "@material-ui/core";
 
 import Bottle from "./Bottle";
+import CommunityReviews from "./CommunityReviews";
 import ConsumedBottle from "./ConsumedBottle";
 import Collection from "./Collection";
 import Home from "./Home";
@@ -151,6 +152,13 @@ export default function App(props) {
                             username={username}
                             />} />
                             <Route path='/search' render={props => <Search {...props} 
+                            darkMode={darkMode}
+                            parentDarkModeCallback={darkModeCallback}
+                            parentSignOutCallback={signOutCallback}
+                            isAuthenticated={isAuthenticated}
+                            username={username}
+                            />} />
+                            <Route path='/community_reviews' render= {props => <CommunityReviews {...props} 
                             darkMode={darkMode}
                             parentDarkModeCallback={darkModeCallback}
                             parentSignOutCallback={signOutCallback}
