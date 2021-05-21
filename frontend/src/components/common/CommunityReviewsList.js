@@ -19,10 +19,7 @@ import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
-import CommentIcon from '@material-ui/icons/Comment';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import PeopleIcon from '@material-ui/icons/People';
-import PersonIcon from '@material-ui/icons/Person';
+import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import PublicIcon from '@material-ui/icons/Public';
 import SortIcon from '@material-ui/icons/Sort';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
@@ -46,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
     },
     sort_by_icon: {
         margin: theme.spacing(1,1,1,0),
+        [theme.breakpoints.down('xs')]: {
+            margin: theme.spacing(1,0,1,0),
+        }, 
     },
     sort_by_label: {
         fontSize: theme.spacing(2),
@@ -102,7 +102,7 @@ export default function CommunityReviewsList(props) {
     
 
     const [sortByMenuAnchor, setSortByMenuAnchor] = useState(null);
-    const [sortByLabel, setSortByLabel] = useState('Recent Tasting Notes')
+    const [sortByLabel, setSortByLabel] = useState('Recent Community Notes')
 
 
     const theme = useTheme(); 
@@ -136,11 +136,11 @@ export default function CommunityReviewsList(props) {
     const reviewsListItems = (reviewsList) => {
         if (reviewsList) {
             return reviewsList.map(review => (
+                <>
                 <ListItem 
-                button 
+                //button 
                 key={review.id} 
-                onClick={() => handleItemClick(review)}
-                divider
+                //onClick={() => handleItemClick(review)}
                 >    
                     <ListItemText
                     primary={
@@ -179,9 +179,15 @@ export default function CommunityReviewsList(props) {
                     } 
                     />
                         <Typography variant="body2" className={classes.list_item_title}>
-                            {`${review.score}/100`}
+                            {review.score ? `${review.score}/100` : 'Not scored'}
                         </Typography>    
-                </ListItem>        
+                </ListItem>
+                <ListItem divider >
+                    <Typography variant="body2" className={classes.list_item_title}>
+                        {`"${review.tasting_note}"`}
+                    </Typography> 
+                </ListItem>
+                </>        
             ));
         }     
     };
@@ -199,7 +205,7 @@ export default function CommunityReviewsList(props) {
 
     const handleSortRecentlyAddedClick = (event) => {
         reviewsList.sort((a,b) => (a.date_tasted < b.date_tasted) ? 1 : -1);
-        setSortByLabel('Recent Tasting Notes');
+        setSortByLabel('Recent Community Notes');
         handleSortByMenuClose();
     }
     
@@ -239,7 +245,7 @@ export default function CommunityReviewsList(props) {
     
 
     useEffect(() => {
-        setSortByLabel('Recent Tasting Notes')
+        setSortByLabel('Recent Community Notes')
     }, [reviewDisplayName],);
 
 
@@ -264,7 +270,7 @@ export default function CommunityReviewsList(props) {
                     open={Boolean(sortByMenuAnchor)}
                     onClose={handleSortByMenuClose}
                     >
-                        <MenuItem dense onClick={handleSortRecentlyAddedClick}>Recent Tasting Notes</MenuItem>
+                        <MenuItem dense onClick={handleSortRecentlyAddedClick}>Recent Community Notes</MenuItem>
                         <MenuItem dense onClick={handleSortNameAZClick}>{reviewDisplayName === null ? 'Name A-Z' : 'Vintage Up'}</MenuItem>
                         <MenuItem dense onClick={handleSortNameZAClick}>{reviewDisplayName === null ? 'Name Z-A' : 'Vintage Down'}</MenuItem>
                     </Menu>
