@@ -19,6 +19,8 @@ import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
+import CommentIcon from '@material-ui/icons/Comment';
+import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import PeopleIcon from '@material-ui/icons/People';
 import PersonIcon from '@material-ui/icons/Person';
@@ -215,6 +217,15 @@ export default function ReviewsList(props) {
                                 :   <Tooltip title="Dislike">
                                         <ThumbDownOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
                                     </Tooltip>
+                            }
+
+                            {review.tasting_note
+                            ? <Tooltip title="Has tasting note">
+                                <CommentOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                              </Tooltip>
+                            : <Tooltip title="Doesńt have tasting note">
+                                <CommentOutlinedIcon className={classes.list_item_subheader_icon} style={{filter: 'opacity(50%)'}} />
+                              </Tooltip>
                             }
 
                             {review.bottle
