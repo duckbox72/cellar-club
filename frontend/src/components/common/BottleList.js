@@ -17,11 +17,11 @@ import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
-import KitchenIcon from '@material-ui/icons/Kitchen';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import SortIcon from '@material-ui/icons/Sort';
+import ViewListIcon from '@material-ui/icons/ViewList'
 
-import { GlassWhiskeyIcon, WineBottleIcon ,WineGlassIcon } from './SvgIcons';
+import { GlassWhiskeyIcon,WineGlassIcon } from './SvgIcons';
 
 import brown from '@material-ui/core/colors/brown';
 
@@ -52,9 +52,6 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(1),
     },
     icon_numof_bottles: { 
-        transform: 'rotate(315deg)',
-        width: theme.spacing(2.5),
-        height:theme.spacing(2.5), 
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     list_item_avatar_container: {
@@ -107,7 +104,7 @@ export default function BottleList(props) {
     const bottleListLength = props.bottleListLength != null ? props.bottleListLength : 0;
     
     const [sortByMenuAnchor, setSortByMenuAnchor] = useState(null);
-    const [sortByLabel, setSortByLabel] = useState('Recently Added')
+    const [sortByLabel, setSortByLabel] = useState('Recent Additions')
 
 
     const theme = useTheme(); 
@@ -208,7 +205,7 @@ export default function BottleList(props) {
 
     const handleSortRecentlyAddedClick = (event) => {
         bottleList.sort((a,b) => (a.created < b.created) ? 1 : -1);
-        setSortByLabel('Recently Added');
+        setSortByLabel('Recent Additions');
         handleSortByMenuClose();
     }
     
@@ -249,7 +246,7 @@ export default function BottleList(props) {
     
 
     useEffect(() => {
-        setSortByLabel('Recently Added')
+        setSortByLabel('Recent Additions')
     }, [bottleName],);
     
     return (
@@ -273,7 +270,7 @@ export default function BottleList(props) {
                     open={Boolean(sortByMenuAnchor)}
                     onClose={handleSortByMenuClose}
                     >
-                        <MenuItem dense onClick={handleSortRecentlyAddedClick}>Recently Added</MenuItem>
+                        <MenuItem dense onClick={handleSortRecentlyAddedClick}>Recent Additions</MenuItem>
                         <MenuItem dense onClick={handleSortNameAZClick}>{bottleName === null ? 'Name A-Z' : 'Vintage Up'}</MenuItem>
                         <MenuItem dense onClick={handleSortNameZAClick}>{bottleName === null ? 'Name Z-A' : 'Vintage Down'}</MenuItem>
                     </Menu>
@@ -292,7 +289,7 @@ export default function BottleList(props) {
                         badgeContent={bottleListLength} 
                         >
                             <Tooltip title={bottleName ? "Selected items" : "All items"}>
-                                <WineBottleIcon className={classes.icon_numof_bottles} />
+                                <ViewListIcon className={classes.icon_numof_bottles} />
                             </Tooltip>
                         </Badge>
                     </IconButton>

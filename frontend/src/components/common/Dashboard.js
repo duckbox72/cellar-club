@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     dashboard_paper: {
         height: screen.availHeight * 0.33,
         width: '100%',
+        overflowY: 'scroll',
         margin: theme.spacing(0, 3),
         borderRadius: 10,
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,

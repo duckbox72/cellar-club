@@ -204,7 +204,6 @@ export default function Navbar(props) {
                         </IconButton>
                     </Tooltip>
                     
-
                     <Tooltip className={classes.main_menu_off} title="Toggle light/dark mode">
                         <IconButton aria-label="toggleDarkMode" onClick={toggleDarKMode}>
                         { darkMode

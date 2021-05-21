@@ -19,7 +19,6 @@ import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
-import CommentIcon from '@material-ui/icons/Comment';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import PeopleIcon from '@material-ui/icons/People';
 import PersonIcon from '@material-ui/icons/Person';
@@ -120,7 +119,7 @@ export default function ReviewsList(props) {
     
 
     const [sortByMenuAnchor, setSortByMenuAnchor] = useState(null);
-    const [sortByLabel, setSortByLabel] = useState('Recently Reviewed')
+    const [sortByLabel, setSortByLabel] = useState('Recent Reviews')
 
 
     const theme = useTheme(); 
@@ -192,7 +191,7 @@ export default function ReviewsList(props) {
                     }
                     secondary={ 
                         <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
-                            {`Tasted in ${new Date(review.date_tasted).toUTCString().slice(5, 16)}`} 
+                            {`Tasted ${new Date(review.date_tasted).toUTCString().slice(5, 16)}`} 
                             
                             {' '}
                             
@@ -257,7 +256,7 @@ export default function ReviewsList(props) {
 
     const handleSortRecentlyAddedClick = (event) => {
         reviewsList.sort((a,b) => (a.date_tasted < b.date_tasted) ? 1 : -1);
-        setSortByLabel('Recently Reviewed');
+        setSortByLabel('Recent Reviews');
         handleSortByMenuClose();
     }
     
@@ -297,7 +296,7 @@ export default function ReviewsList(props) {
     
 
     useEffect(() => {
-        setSortByLabel('Recently Reviewed')
+        setSortByLabel('Recent Reviews')
     }, [reviewDisplayName],);
 
 
@@ -322,7 +321,7 @@ export default function ReviewsList(props) {
                     open={Boolean(sortByMenuAnchor)}
                     onClose={handleSortByMenuClose}
                     >
-                        <MenuItem dense onClick={handleSortRecentlyAddedClick}>Recently Reviewed</MenuItem>
+                        <MenuItem dense onClick={handleSortRecentlyAddedClick}>Recent Reviews</MenuItem>
                         <MenuItem dense onClick={handleSortNameAZClick}>{reviewDisplayName === null ? 'Name A-Z' : 'Vintage Up'}</MenuItem>
                         <MenuItem dense onClick={handleSortNameZAClick}>{reviewDisplayName === null ? 'Name Z-A' : 'Vintage Down'}</MenuItem>
                     </Menu>

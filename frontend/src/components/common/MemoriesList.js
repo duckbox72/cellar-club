@@ -30,7 +30,8 @@ import SortIcon from '@material-ui/icons/Sort';
 import StarIcon from '@material-ui/icons/Star';
 import StarOutlinedIcon from '@material-ui/icons/StarOutline';
 
-import { GlassWhiskeyIcon, WineBottleIcon,WineGlassIcon } from './SvgIcons';
+
+import { GlassWhiskeyIcon, GlassCheersIcon, WineGlassIcon } from './SvgIcons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -60,8 +61,8 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(1),
     },
     icon_numof_consumed: {
-        width: theme.spacing(2.5),
-        height:theme.spacing(2.5), 
+        width: theme.spacing(2.75),
+        height:theme.spacing(2.75), 
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
     
@@ -123,7 +124,7 @@ export default function MemoriesList(props) {
     
 
     const [sortByMenuAnchor, setSortByMenuAnchor] = useState(null);
-    const [sortByLabel, setSortByLabel] = useState('Recently Consumed')
+    const [sortByLabel, setSortByLabel] = useState('Recent Memories')
 
 
     const theme = useTheme(); 
@@ -250,7 +251,7 @@ export default function MemoriesList(props) {
 
     const handleSortRecentlyAddedClick = (event) => {
         memoriesList.sort((a,b) => (a.date_consumed < b.date_consumed) ? 1 : -1);
-        setSortByLabel('Recently Consumed');
+        setSortByLabel('Recent Memories');
         handleSortByMenuClose();
     }
     
@@ -290,7 +291,7 @@ export default function MemoriesList(props) {
     
 
     useEffect(() => {
-        setSortByLabel('Recently Consumed')
+        setSortByLabel('Recent Memories')
     }, [displayName],);
 
 
@@ -315,7 +316,7 @@ export default function MemoriesList(props) {
                     open={Boolean(sortByMenuAnchor)}
                     onClose={handleSortByMenuClose}
                     >
-                        <MenuItem dense onClick={handleSortRecentlyAddedClick}>Recently Consumed</MenuItem>
+                        <MenuItem dense onClick={handleSortRecentlyAddedClick}>Recent Memories</MenuItem>
                         <MenuItem dense onClick={handleSortNameAZClick}>{displayName === null ? 'Name A-Z' : 'Vintage Up'}</MenuItem>
                         <MenuItem dense onClick={handleSortNameZAClick}>{displayName === null ? 'Name Z-A' : 'Vintage Down'}</MenuItem>
                     </Menu>
@@ -333,7 +334,7 @@ export default function MemoriesList(props) {
                         //color={darkMode ? 'primary' : 'secondary'}
                         badgeContent={memoriesListLength} 
                         >
-                            <WineBottleIcon className={classes.icon_numof_consumed} />
+                            <GlassCheersIcon className={classes.icon_numof_consumed} />
                         </Badge>
                     </IconButton>
                 </Grid>
