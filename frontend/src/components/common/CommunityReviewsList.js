@@ -161,19 +161,26 @@ export default function CommunityReviewsList(props) {
                     }
                     secondary={ 
                         <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
-                            {`On ${new Date(review.date_tasted).toUTCString().slice(5, 16)} `} 
+                            {`On ${new Date(review.date_tasted).toUTCString().slice(5, 16)} ${review.user.username.toUpperCase()} rated `} 
                             
-                            {review.user.username}
+                            {review.like_status === 'like'
+                            ? <Tooltip title="Like">
+                                <ThumbUpOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                              </Tooltip>
+                            : review.like_status === 'neutral'
+                                ?   <Tooltip title="Neutral">
+                                        <ThumbsUpDownOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                                    </Tooltip>
+                                :   <Tooltip title="Dislike">
+                                        <ThumbDownOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                                    </Tooltip>
+                            }    
                         </Typography>
                     } 
-                    />    
-                    <ListItemSecondaryAction>
-                        <Avatar variant='circular' style={{backgroundColor: mystyleprops.colorSchemaA}}>
-                            <Typography className={classes.list_item_subheader}>
-                                {review.score}
-                            </Typography>
-                        </Avatar>
-                    </ListItemSecondaryAction>
+                    />
+                        <Typography variant="body2" className={classes.list_item_title}>
+                            {`${review.score}/100`}
+                        </Typography>    
                 </ListItem>        
             ));
         }     
