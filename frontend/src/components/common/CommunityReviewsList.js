@@ -10,8 +10,6 @@ import IconButton from '@material-ui/core/IconButton';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -27,7 +25,6 @@ import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
 
 import { GlassWhiskeyIcon, WineBottleIcon, WineGlassIcon } from './SvgIcons';
-import { Avatar } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -62,7 +59,12 @@ const useStyles = makeStyles((theme) => ({
     icon_numof_consumed: {
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
-    
+
+    list_item: {
+        '&:hover': {
+            backdropFilter: 'invert(10%)',
+        },
+    },
     list_item_color_icon: { 
         height: theme.spacing(1.5),
         width: theme.spacing(1.5),
@@ -136,58 +138,61 @@ export default function CommunityReviewsList(props) {
     const reviewsListItems = (reviewsList) => {
         if (reviewsList) {
             return reviewsList.map(review => (
-                <>
-                <ListItem 
-                //button 
-                key={review.id} 
-                //onClick={() => handleItemClick(review)}
-                >    
-                    <ListItemText
-                    primary={
-                        <Typography variant="body2" className={classes.list_item_title}>
-                            {review.type === 'Spirit' ?
-                                    <GlassWhiskeyIcon 
-                                    className={classes.list_item_color_icon}
-                                    style={{color: 'silver'}}
-                                    />
-                                    :
-                                    <WineGlassIcon 
-                                    className={classes.list_item_color_icon}
-                                    // review icon color  
-                                    style={review.colour === 'Red' ? {color: 'maroon'} : review.colour === 'White' ? {color: 'tan'} : review.colour === 'Rose' ? {color: 'lightcoral'} : review.type === 'Fortified Wine' ? {color: 'firebrick'} : {color: 'silver'}}
-                                    /> 
-                                } {review.vintage} {review.display_name}
-                        </Typography>    
-                    }
-                    secondary={ 
-                        <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
-                            {`On ${new Date(review.date_tasted).toUTCString().slice(5, 16)} ${review.user.username.toUpperCase()} rated `} 
-                            
-                            {review.like_status === 'like'
-                            ? <Tooltip title="Like">
-                                <ThumbUpOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
-                              </Tooltip>
-                            : review.like_status === 'neutral'
-                                ?   <Tooltip title="Neutral">
-                                        <ThumbsUpDownOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
-                                    </Tooltip>
-                                :   <Tooltip title="Dislike">
-                                        <ThumbDownOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
-                                    </Tooltip>
-                            }    
-                        </Typography>
-                    } 
-                    />
-                        <Typography variant="body2" className={classes.list_item_title}>
-                            {review.score ? `${review.score}/100` : 'Not scored'}
-                        </Typography>    
-                </ListItem>
-                <ListItem divider >
-                    <Typography variant="body2" className={classes.list_item_title}>
-                        {`"${review.tasting_note}"`}
-                    </Typography> 
-                </ListItem>
-                </>        
+                <div className={classes.list_item}>
+                    <ListItem
+                    //button 
+                    key={review.id} 
+                    //onClick={() => handleItemClick(review)}
+                    >    
+                        <ListItemText
+                        primary={
+                            <Typography variant="body2" className={classes.list_item_title}>
+                                {review.type === 'Spirit' ?
+                                        <GlassWhiskeyIcon 
+                                        className={classes.list_item_color_icon}
+                                        style={{color: 'silver'}}
+                                        />
+                                        :
+                                        <WineGlassIcon 
+                                        className={classes.list_item_color_icon}
+                                        // review icon color  
+                                        style={review.colour === 'Red' ? {color: 'maroon'} : review.colour === 'White' ? {color: 'tan'} : review.colour === 'Rose' ? {color: 'lightcoral'} : review.type === 'Fortified Wine' ? {color: 'firebrick'} : {color: 'silver'}}
+                                        /> 
+                                    } {review.vintage} {review.display_name}
+                            </Typography>    
+                        }
+                        secondary={ 
+                            <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
+                                {`On ${new Date(review.date_tasted).toUTCString().slice(5, 16)} ${review.user.username.toUpperCase()} rated `} 
+                                
+                                {review.like_status === 'like'
+                                ? <Tooltip title="Like">
+                                    <ThumbUpOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                                </Tooltip>
+                                : review.like_status === 'neutral'
+                                    ?   <Tooltip title="Neutral">
+                                            <ThumbsUpDownOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                                        </Tooltip>
+                                    :   <Tooltip title="Dislike">
+                                            <ThumbDownOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
+                                        </Tooltip>
+                                }    
+                            </Typography>
+                        } 
+                        />
+                            <Typography variant="body2" className={classes.list_item_title}>
+                                {review.score ? `${review.score}/100` : 'No score'}
+                            </Typography>    
+                    </ListItem>
+                    <ListItem divider >
+                        {review.tasting_note 
+                            ? <Typography variant="body2" className={classes.list_item_title}>
+                                {`"${review.tasting_note}"`}
+                            </Typography>
+                            : <></>
+                        } 
+                    </ListItem>
+                </div>        
             ));
         }     
     };
