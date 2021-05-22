@@ -266,11 +266,9 @@ export default function ReviewCard(props) {
         fetch(`/api/delete_review/${review.id}`)
         .then(response => response.json())
         .then(data => {
-            //console.log(data);
+            setRemoveAlertOpen(false);
+            props.history.push('/reviews');
         });
-        
-        setRemoveAlertOpen(false);
-        props.history.push('/reviews');
     }
 
     

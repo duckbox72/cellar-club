@@ -369,7 +369,7 @@ def bin_options(request, cellarname):
     return JsonResponse([bin.serializer() for bin in options], safe=False, status=status.HTTP_200_OK)
 
 
-# ------------------------- MEMORY RELATED ROUTES models CONSUMPTION and REVIEW -------------------------
+# ------------------------- MEMORY RELATED ROUTES model CONSUMPTION and REVIEW -------------------------
 
 @csrf_exempt
 @login_required
@@ -472,6 +472,7 @@ def delete_memory_unconsume_bottle(request, memory_id):
     return JsonResponse({"success": "memory deleted and bottle returned to collection successfully"}, safe=False, status=status.HTTP_200_OK)
 
 
+# ------------------------- Review RELATED ROUTES model REVIEW -------------------------
 @csrf_exempt
 @login_required
 def add_review(request):
@@ -518,7 +519,6 @@ def add_review(request):
     review.save()
 
     return JsonResponse({"success": "posted successfully"}, safe=False, status=status.HTTP_200_OK)
-
 
 
 @login_required
@@ -610,6 +610,49 @@ def toggle_review_privacy(request):
     review.save()
 
     return JsonResponse({"success": "updated successfully"}, safe=False, status=status.HTTP_200_OK)
+
+
+@login_required
+def get_community_reviews_list(request, display_name):
+    if display_name == 'null':
+        review_list = Review.objects.filter(is_public=True).order_by('-date_tasted')
+    else:
+        try:
+            review_list = Review.objects.filter(is_public=True, display_name=display_name).order_by('-date_tasted')
+        except: 
+            return JsonResponse({"error": "Sorry, no results found."})
+
+    return JsonResponse([review.serializer() for review in review_list], safe=False, status=status.HTTP_200_OK)
+
+
+@login_required
+def get_community_review_display_name(request, display_name):
+    try:
+        result = Review.objects.filter(is_public=True, display_name=display_name)
+    except:
+        return JsonResponse({"error": "Sorry, no results found."})
+    
+    # Return first occurence of display_name // mini_serializer returns display_name data only
+    return JsonResponse(result[0].mini_serializer(),  safe=False, status=status.HTTP_200_OK)
+    # TO DO issue - handle no result-  
+
+
+@login_required
+def search_community_review(request, display_name):
+    results = Review.objects.filter(is_public=True, display_name__contains=display_name)
+    
+    # Lists only display_name (aka mini_serializer)
+    all_results = []
+    for result in results:
+        all_results.append({'display_name': result.display_name})
+
+    # Parse results to return only distinct items
+    response = []
+    for result in all_results:
+        if result not in response:
+            response.append(result)
+
+    return JsonResponse(response, safe=False, status=status.HTTP_200_OK)
 
 
 # ------------------------- DASHBOARD (HOME) RELATED ROUTES models BOTTLE, CONSUMPTION and REVIEW -------------------------

@@ -38,10 +38,10 @@ export default function CommunityReviews(props) {
 
 
     // Searchbar callbacks
-    const ReviewDisplayNameCallback = (review_display_name) => {
+    const CommunityReviewDisplayNameCallback = (review_display_name) => {
         setReviewDisplayName(review_display_name);
     }
-    const ReviewsListCallback = (reviews_list) => {
+    const CommunityReviewsListCallback = (reviews_list) => {
         setReviewsList(reviews_list);
         setReviewsListLength(Object.keys(reviews_list).length);
     }
@@ -66,9 +66,9 @@ export default function CommunityReviews(props) {
                     <Searchbar 
                     {...props} 
                     darkMode={props.darkMode}
-                    parentReviewDisplayNameCallback={ReviewDisplayNameCallback}
-                    parentReviewsListCallback={ReviewsListCallback}
-                    searchLocation={'Search My Reviews'}
+                    parentCommunityReviewDisplayNameCallback={CommunityReviewDisplayNameCallback}
+                    parentCommunityReviewsListCallback={CommunityReviewsListCallback}
+                    searchLocation={'Search Community'}
                     />
                 </Grid>
                 <Grid item xs={12} sm={10} md={8}>

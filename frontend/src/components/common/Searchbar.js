@@ -61,7 +61,7 @@ export default function Searchbar(props) {
     }
     const classes = useStyles(mystyleprops);
 
-    // LWIN and SEARCH RELATED
+    // LWIN and WINE SEARCH RELATED
     const getSearchResults = (location, value) => {
         fetch(`/api/search_${location}/${value}`)
         .then((response) => response.json())
@@ -105,7 +105,7 @@ export default function Searchbar(props) {
     }
 
 
-    // MEMORIES SEARCH RELATED
+    // MEMORIES SEARCH RELATED (Consumptions)
     const getDisplayName = (value) => {
         fetch(`api/get_display_name/${value}`)
         .then((response) => response.json())
@@ -123,7 +123,7 @@ export default function Searchbar(props) {
     }
 
 
-    // REVIEW SEARCH RELATED
+    // REVIEW SEARCH RELATED (Reviews)
     const getReviewDisplayName = (value) => {
         fetch(`api/get_review_display_name/${value}`)
         .then((response) => response.json())
@@ -137,6 +137,23 @@ export default function Searchbar(props) {
         .then(response => response.json())
         .then(reviews_list => {
             props.parentReviewsListCallback(reviews_list);
+        });
+    }
+
+    // COMMUNITY SEARCH RELATED (reviews)
+    const getCommunityReviewDisplayName = (value) => {
+        fetch(`api/get_community_review_display_name/${value}`)
+        .then((response) => response.json())
+        .then(review => {
+            props.parentCommunityReviewDisplayNameCallback(review.display_name);
+        });  
+    }
+
+    const getCommunityReviewsList = (value) => {
+        fetch(`/api/get_community_reviews_list/${value}`)
+        .then(response => response.json())
+        .then(reviews_list => {
+            props.parentCommunityReviewsListCallback(reviews_list);
         });
     }
 
@@ -183,6 +200,17 @@ export default function Searchbar(props) {
                 getReviewDisplayName(value);
             } else {
                 props.parentReviewDisplayNameCallback(value); // value = false
+                setSearchResult([]);
+            }
+        }
+
+        // CommunityReviews.js calls
+        if (searchLocation == 'Search Community') {
+            getCommunityReviewsList(value); //called in all change cases
+            if (value !== null) {
+                getCommunityReviewDisplayName(value);
+            } else {
+                props.parentCommunityReviewDisplayNameCallback(value); // value = false
                 setSearchResult([]);
             }
         }
@@ -251,6 +279,21 @@ export default function Searchbar(props) {
                 }
             }
         }
+
+        // CommunityReviews.js calls
+        if (searchLocation == 'Search Community') {
+            const location = 'community_review';
+
+            if (e.target.value == null ) {
+                setSearchResult([]);
+            } else {
+                if ((e.target.value).length > 2) {
+                    getSearchResults(location, e.target.value);
+                } else {
+                    setSearchResult([]);
+                }
+            }
+        }
     }
 
 
@@ -283,7 +326,13 @@ export default function Searchbar(props) {
             // default reviews list
             getReviewsList(null); 
             setToggler(false);
-        }   
+        }
+        
+        if (searchLocation == 'Search Community' && toggler) {
+            // default reviews list
+            getCommunityReviewsList(null); 
+            setToggler(false);
+        } 
     })
 
     
@@ -309,6 +358,7 @@ export default function Searchbar(props) {
                 <MenuItem dense onClick={() => props.history.push('/collection')}>Search Collection</MenuItem>
                 <MenuItem dense onClick={() => props.history.push('/memories')}>Search Memories</MenuItem>
                 <MenuItem dense onClick={() => props.history.push('/reviews')}>Search Reviews</MenuItem>
+                <MenuItem dense onClick={() => props.history.push('/community_reviews')}>Search Community</MenuItem>
             </Menu>
                 <Divider className={classes.divider} orientation="vertical" />
             <Autocomplete  

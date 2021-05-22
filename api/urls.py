@@ -41,7 +41,7 @@ urlpatterns = [
     path('cellar_options', views.cellar_options, name="cellar_options"),
     path('bin_options/<str:cellarname>', views.bin_options, name="bin_options"),
 
-    # MEMORY RELATED ROUTES
+    # MEMORY and REVIEWS RELATED ROUTES
     path('add_consumption', views.add_consumption, name="add_consumption"),
     path('add_review', views.add_review, name="add_review"),
 
@@ -57,6 +57,11 @@ urlpatterns = [
     path('delete_review/<str:review_id>', views.delete_review, name="delete_review"),
     path('toggle_review_privacy', views.toggle_review_privacy, name="toggle_review_privacy"),
 
+    path('get_community_reviews_list/<str:display_name>', views.get_community_reviews_list, name="get_community_reviews_list"),
+    path('get_community_review_display_name/<str:display_name>', views.get_community_review_display_name, name="get_community_review_display_name"),
+    path('search_community_review/<str:display_name>', views.search_community_review, name="search_community_review"),
+    
+    
     # DASHBOARD (HOME) CALLS RELATED ROUTES
     path('dashboard_stats', views.dashboard_stats, name="dashboard_stats"),
 ]
