@@ -101,7 +101,7 @@ export default function BottleList(props) {
     const darkMode = props.darkMode;
     const bottleName = props.bottleName;
     const bottleList = props.bottleList != null ? props.bottleList : [];
-    const bottleListLength = props.bottleListLength != null ? props.bottleListLength : 0;
+    const bottleListLength = props.bottleListLength != null ? props.bottleListLength : null;
     
     const [sortByMenuAnchor, setSortByMenuAnchor] = useState(null);
     const [sortByLabel, setSortByLabel] = useState('Recent Additions')
