@@ -347,7 +347,7 @@ export default function ReviewsList(props) {
                             vertical: 'top',
                             horizontal: 'left',
                         }}
-                        //color={darkMode ? 'primary' : 'secondary'}
+                        color={darkMode ? 'primary' : 'secondary'}
                         badgeContent={reviewsListLength} 
                         >
                             <StarIcon className={classes.icon_numof_consumed} />

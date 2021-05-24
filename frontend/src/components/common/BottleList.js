@@ -285,7 +285,7 @@ export default function BottleList(props) {
                             vertical: 'top',
                             horizontal: 'left',
                         }}
-                        //color={darkMode ? 'primary' : 'secondary'}
+                        color={darkMode ? 'primary' : 'secondary'}
                         badgeContent={bottleListLength} 
                         >
                             <Tooltip title={bottleName ? "Selected items" : "All items"}>

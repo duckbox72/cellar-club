@@ -290,7 +290,7 @@ export default function CommunityReviewsList(props) {
                             vertical: 'top',
                             horizontal: 'left',
                         }}
-                        //color={darkMode ? 'primary' : 'secondary'}
+                        color={darkMode ? 'primary' : 'secondary'}
                         badgeContent={reviewsListLength} 
                         >
                             <PublicIcon className={classes.icon_numof_consumed} />
