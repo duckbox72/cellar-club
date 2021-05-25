@@ -22,7 +22,6 @@ export default function Home(props) {
 
     //const userProfile = (getUserProfile());
     const username = props.username
-    const [LwinData, setLwinData] = useState({});
     const [dashboardStats, setDashbosardStats] = useState(null);
 
 
@@ -34,6 +33,7 @@ export default function Home(props) {
         props.parentSignOutCallback(false);
     }
 
+
     const getDashboardStats = () => {
         fetch('/api/dashboard_stats')
         .then(response => response.json())
@@ -41,6 +41,7 @@ export default function Home(props) {
             setDashbosardStats(data)
         });
     };
+
 
     useEffect(() => {
         if (dashboardStats === null)

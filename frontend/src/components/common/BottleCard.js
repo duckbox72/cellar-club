@@ -176,7 +176,6 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(0.5,2,0,2.5),
         color: mystyleprops => mystyleprops.colorSchemaA,
         fontSize: theme.spacing(2),
-        fontWeight: 400,
     },
     info_link: {
         marginTop: theme.spacing(1),

@@ -149,7 +149,7 @@ const useStyles = makeStyles((theme) => ({
 
 
     action_paper: {
-        height: screen.availHeight * 0.15,
+        height: screen.availHeight * 0.10,
         borderRadius: 10,
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
         elevation: 3,
@@ -162,23 +162,35 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(2,2,0,2),
     },
     action_title_grid: {
-        marginTop: theme.spacing(1)
+        marginTop: theme.spacing(2.5),
+        marginBottom: -theme.spacing(0.5),
+        color: mystyleprops => mystyleprops.colorSchemaA,
+        [theme.breakpoints.down('xs')]:{
+            marginBottom: -theme.spacing(1),
+        },
+    },
+    action_icon: {
+        marginRight: theme.spacing(1),
+        color: mystyleprops => mystyleprops.colorSchemaA,
     },
     action_title: {
         fontSize: theme.spacing(2),
         color: mystyleprops => mystyleprops.colorSchemaA,
         [theme.breakpoints.down('xs')]:{
-            fontSize: theme.spacing(1.75),
+        //    fontSize: theme.spacing(1.75),
         },
 
     },
-    action_icon: {
-        
+    action_description_grid: {
+        textAlign: 'center',
+    },
+    action_description: {
+    
     },
 }));
 
 
-export default function Dashboard(props) {
+export default function SearchDashboard(props) {
 
     const darkMode = props.darkMode
     const username = props.username;
@@ -191,12 +203,6 @@ export default function Dashboard(props) {
         backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
     }
     const classes = useStyles(mystyleprops);
-
-
-    const handleSearchActionClick = e => {
-        window.scrollTo(0, 0);
-        props.history.push('/search');
-    }
 
 
     const handleCollectionActionClick = e => {
@@ -813,85 +819,60 @@ export default function Dashboard(props) {
 
                 <div className={classes.action_root}>
                     <Grid container spacing={2} justify="center">     
-                        
-                        <Grid item xs={4}>
-                            <Paper 
-                            elevation={3} 
-                            className={classes.action_paper} 
-                            role="button"
-                            onClick={handleSearchActionClick}
-                            >
-                                <Grid container spacing={0} direction="column" alignItems="center">
-                                    <Grid item className={classes.action_title_grid}>
-                                        <Typography variant="button" className={classes.action_title}>
-                                            Search
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item>
-                                        <IconButton>
-                                            <SearchIcon className={classes.action_icon} />
-                                        </IconButton>
-                                    </Grid>
-                                    <Grid item>
-                                        <Typography variant="caption">
-                                            find/add/review
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
-                            </Paper> 
-                        </Grid>
 
-                        <Grid item xs={4}>
+                        <Grid item xs={6}>
                             <Paper 
                             elevation={3} 
                             className={classes.action_paper} 
                             role="button"
                             onClick={handleCollectionActionClick}
                             >
-                                <Grid container spacing={0} direction="column" alignItems="center">
+                                <Grid container spacing={0} justify="center" alignItems="center">
+                                    <Grid item className={classes.action_title_grid}>     
+                                        <ViewListIcon className={classes.action_icon}/>
+                                    </Grid>
+                                    
                                     <Grid item className={classes.action_title_grid}>
+                                        
                                         <Typography variant="button" className={classes.action_title}>
                                             Collection
                                         </Typography>
+                                      
                                     </Grid>
-                                    <Grid item>
-                                        <IconButton>
-                                            <ViewListIcon className={classes.action_icon}/>
-                                        </IconButton> 
-                                    </Grid>
-                                    <Grid item>
-                                        <Typography variant="caption">
-                                            browse/consume
+
+                                    <Grid item xs={12} className={classes.action_description_grid}>
+                                        <Typography variant="caption" className={classes.action_description}>
+                                            drink • remove • rate
                                         </Typography>
                                     </Grid>
                                 </Grid>
                             </Paper> 
                         </Grid>
 
-                        <Grid item xs={4}>
+                        <Grid item xs={6}>
                             <Paper 
                             elevation={3} 
                             className={classes.action_paper} 
                             role="button"
                             onClick={handleMemoriesActionClick}
                             >
-                                <Grid container spacing={0} direction="column" alignItems="center">
+                                <Grid container spacing={0} justify="center" alignItems="center">
+                                    <Grid item className={classes.action_title_grid}>     
+                                        <GlassCheersIcon 
+                                        className={classes.action_icon} 
+                                        style={{width: theme.spacing(2.75), height: theme.spacing(2.75)}}
+                                        />
+                                    </Grid>
+                                    
                                     <Grid item className={classes.action_title_grid}>
                                         <Typography variant="button" className={classes.action_title}>
                                             Memories
                                         </Typography>
                                     </Grid>
-                                    <Grid item>
-                                        <IconButton>
-                                            <GlassCheersIcon 
-                                            className={classes.action_icon} 
-                                            style={{width: theme.spacing(2.75), height: theme.spacing(2.75)}}
-                                            />
-                                        </IconButton>
-                                    </Grid>
-                                    <Grid item>
-                                        <Typography variant="caption">
-                                            Browse and manage
+
+                                    <Grid item xs={12} className={classes.action_description_grid}>
+                                        <Typography variant="caption" className={classes.action_description}>
+                                            browse • unconsume 
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -904,21 +885,21 @@ export default function Dashboard(props) {
                             className={classes.action_paper} 
                             role="button"
                             onClick={handleReviewActionClick}
-                            >
-                                <Grid container spacing={0} direction="column" alignItems="center">
+                            >   
+                                <Grid container spacing={0} justify="center" alignItems="center">
+                                    <Grid item className={classes.action_title_grid}>     
+                                    <StarIcon className={classes.action_icon}/>
+                                    </Grid>
+                                    
                                     <Grid item className={classes.action_title_grid}>
                                         <Typography variant="button" className={classes.action_title}>
-                                            Reviews
+                                        Reviews
                                         </Typography>
                                     </Grid>
-                                    <Grid item>
-                                        <IconButton>
-                                            <StarIcon className={classes.action_icon}/>
-                                        </IconButton>
-                                    </Grid>
-                                    <Grid item>
-                                        <Typography variant="caption">
-                                            Browse and manage
+
+                                    <Grid item xs={12} className={classes.action_description_grid}>
+                                        <Typography variant="caption" className={classes.action_description}>
+                                            browse • share  
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -932,20 +913,20 @@ export default function Dashboard(props) {
                             role="button"
                             onClick={handleCommunityReviewActionClick}
                             >
-                                <Grid container spacing={0} direction="column" alignItems="center">
+                                <Grid container spacing={0} justify="center" alignItems="center">
+                                    <Grid item className={classes.action_title_grid}>     
+                                    <PublicIcon className={classes.action_icon}/>
+                                    </Grid>
+                                    
                                     <Grid item className={classes.action_title_grid}>
                                         <Typography variant="button" className={classes.action_title}>
-                                            Community
+                                        Community
                                         </Typography>
                                     </Grid>
-                                    <Grid item>
-                                        <IconButton>
-                                            <PublicIcon className={classes.action_icon}/>
-                                        </IconButton>
-                                    </Grid>
-                                    <Grid item>
-                                        <Typography variant="caption">
-                                            Browse and manage
+
+                                    <Grid item xs={12} className={classes.action_description_grid}>
+                                        <Typography variant="caption" className={classes.action_description}>
+                                            browse • find  
                                         </Typography>
                                     </Grid>
                                 </Grid>

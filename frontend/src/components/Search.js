@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 import Grid  from "@material-ui/core/Grid";
 
-import CCLogo from "./common/CCLogo";
+import SearchDashboard from "./common/SearchDashboard";
 import Copyright from './common/Copyright';
 import LwinProfileCard from "./common/LwinProfileCard";
 import Navbar from "./common/Navbar";
@@ -18,17 +18,19 @@ const useStyles = makeStyles((theme) => ({
         //minHeight: screen.availHeight,
     },
     lwin_profile_card: {
-        visibility: 'hidden',
+        //visibility: 'hidden',
+        display: 'none',
         opacity: 0,
-        transition: theme.transitions.create('opacity', 'visibility', {
+        transition: theme.transitions.create('opacity', 'display', {
             duration: theme.transitions.long,
         }),
     },
     lwin_profile_card_open: {   
-        visibility: 'visible',
+        //visibility: 'visible',
+        display: 'block',
         opacity: 1,
     },
-    cc_logo: {
+    dashboard: {
         display: mystyleprops => mystyleprops.displaySchema,
     },
 }));
@@ -42,7 +44,9 @@ export default function Search(props) {
 
     const [lwinProfileCardOpened, setLwinProfileCardOpened] = useState(false);
     const [formExpanded, setFormExpanded] = useState(false);
-    
+
+    const [dashboardStats, setDashbosardStats] = useState(null);
+
     const mystyleprops = {
         displaySchema: lwinProfileCardOpened ? 'none' : 'block', 
     }
@@ -86,6 +90,22 @@ export default function Search(props) {
     const formExpandedCallback = (expanded) => {
         setFormExpanded(expanded);
     }
+
+
+    // dashboardStats auto loaded on rendering
+    const getDashboardStats = () => {
+        fetch('/api/dashboard_stats')
+        .then(response => response.json())
+        .then(data => {
+            setDashbosardStats(data)
+        });
+    };
+
+
+    useEffect(() => {
+        if (dashboardStats === null)
+            getDashboardStats();
+    })
     
     
     return (
@@ -125,11 +145,13 @@ export default function Search(props) {
                     />     
                 </Grid> 
                 <Grid item xs={12} sm={10} md={8}
-                className={classes.cc_logo}
+                className={classes.dashboard}
                 >
-                    <CCLogo 
+                    <SearchDashboard 
                     {...props}
                     darkMode={props.darkMode}
+                    username={username}
+                    dashboardStats={dashboardStats}
                     />
                 </Grid>
                 <Grid item xs={12} sm={10} md={8} style={{margin: 16}}>

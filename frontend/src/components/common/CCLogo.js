@@ -57,9 +57,6 @@ export default function CClogo(props) {
                     Search CellarClub and have acess to more than 100.000 products. Find your favorite bottle of wine or spirit, add to your collection, write a review and more.
                 </Typography>
             </Grid>
-
-
-        </Grid>
-                
+        </Grid>            
     );
 }
