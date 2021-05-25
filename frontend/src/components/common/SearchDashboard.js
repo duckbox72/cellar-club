@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem'
 import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography'
 
+import HomeIcon from '@material-ui/icons/Home';
 import PublicIcon from '@material-ui/icons/Public'; 
 import ViewListIcon from '@material-ui/icons/ViewList';
-import SearchIcon from '@material-ui/icons/Search';
 import StarIcon from '@material-ui/icons/Star';
 import StoreIcon from '@material-ui/icons/Store';
 
@@ -27,23 +26,22 @@ const useStyles = makeStyles((theme) => ({
     dashboard_paper: {
         height: screen.availHeight * 0.33,
         width: '100%',
-        //overflow: 'scroll',
         margin: theme.spacing(0, 3),
         borderRadius: 10,
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
     },
-    dashboard_header_title: {
+    dashboard_header_username: {
         fontSize: theme.spacing(2),
-        marginLeft: theme.spacing(2.5),
+        fontWeight: 500,
+        marginLeft: theme.spacing(2),
         marginTop: theme.spacing(1.5),
         color:  mystyleprops => mystyleprops.colorSchemaA,
     },
-    dashboard_header_username: {
+    dashboard_header_icon: {
         marginLeft: 'auto',
         marginRight: theme.spacing(2),
         marginTop: theme.spacing(1.125),
         color: mystyleprops => mystyleprops.colorSchemaA,
-        fontWeight: 500,
     },
 
     dashboard_grid: {
@@ -58,17 +56,6 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]:{
             marginLeft: -theme.spacing(0.375),
             marginRight: theme.spacing(0.5),
-        },
-    },
-    dashboard_bottle_icon: {
-        height: theme.spacing(1.75),
-        width: theme.spacing(1.75),
-        marginLeft: theme.spacing(1.5),
-        marginRight: theme.spacing(1),
-        color: theme.palette.text.secondary,
-        [theme.breakpoints.down('xs')]:{
-            marginLeft: theme.spacing(0),
-            marginRight: theme.spacing(0.75),
         },
     },
     dashboard_cheers_icon: {
@@ -170,6 +157,8 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     action_icon: {
+        height: theme.spacing(2.5),
+        width: theme.spacing(2.5),
         marginRight: theme.spacing(1),
         color: mystyleprops => mystyleprops.colorSchemaA,
     },
@@ -234,13 +223,11 @@ export default function SearchDashboard(props) {
                     <Paper  className={classes.dashboard_paper} elevation={3}>
                         <Grid item xs={12}>
                             <ListItem> 
-                                <Typography className={classes.dashboard_header_title} variant="button">
-                                    Home
-                                </Typography>
-                                
-                                <Typography  className={classes.dashboard_header_username} variant="body1">
+                                <Typography className={classes.dashboard_header_username} variant="body1">
                                     Hello, {username}
                                 </Typography>
+                                
+                                <HomeIcon className={classes.dashboard_header_icon}/>
                             </ListItem>
                         </Grid> 
 
@@ -860,7 +847,7 @@ export default function SearchDashboard(props) {
                                     <Grid item className={classes.action_title_grid}>     
                                         <GlassCheersIcon 
                                         className={classes.action_icon} 
-                                        style={{width: theme.spacing(2.75), height: theme.spacing(2.75)}}
+                                        style={{width: theme.spacing(2.25), height: theme.spacing(2.75)}}
                                         />
                                     </Grid>
                                     

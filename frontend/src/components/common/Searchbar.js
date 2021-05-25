@@ -377,7 +377,10 @@ export default function Searchbar(props) {
                         id="search-field"
                         {...params}
                         onChange={handleSearchbarValueChange} 
-                        label={searchLocation} 
+                        label={searchLocation === 'Search Wines'
+                            ? 'Search, add and review wines'
+                            : searchLocation
+                        } 
                         margin="normal" 
                         variant="standard"
                         color={props.darkMode == true ? "primary" : "secondary"}
