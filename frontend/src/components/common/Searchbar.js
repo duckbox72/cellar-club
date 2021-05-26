@@ -31,7 +31,11 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: theme.spacing(1.75),
     },
     searchIconButton: {
-        padding: 10,
+        backgroundColor: mystyleprops => mystyleprops.backgroundColorSearchButton,
+    },
+    searchIconButtonIcon: {
+        height: theme.spacing(3.5),
+        width: theme.spacing(3.5),
     },
     divider: {
         height: theme.spacing(4),
@@ -58,6 +62,7 @@ export default function Searchbar(props) {
     const theme = useTheme(); 
     const mystyleprops = {
         backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
+        backgroundColorSearchButton: darkMode ? brown[400] : brown[50],
     }
     const classes = useStyles(mystyleprops);
 
@@ -340,11 +345,12 @@ export default function Searchbar(props) {
         <Paper className={classes.root} elevation={3}>
             <Tooltip title={'Search Menu'}>
                 <IconButton 
+                className={classes.searchIconButton}
                 aria-controls="source-menu" 
                 aria-haspopup="true"
                 onClick={handleSourceMenuClick}
                 >
-                    <FindReplaceIcon />
+                    <FindReplaceIcon className={classes.searchIconButtonIcon} />
                 </IconButton>
             </Tooltip>
             <Menu
