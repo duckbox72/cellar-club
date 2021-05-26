@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -19,7 +20,6 @@ import Copyright from './common/Copyright';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    //height: '100vh',
     height: screen.availHeight,
   },
   image: {
@@ -28,8 +28,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: 'center',
   },
   paper: {
-    //background: 'linear-gradient(225deg, #fff3e0 10%, #ffffff 100%)',
-    //height: '100vh',
     backgroundColor: "#fafafa",
     height: screen.availHeight,
     padding: theme.spacing(8,4),

@@ -39,13 +39,6 @@ export default function App(props) {
     const [darkMode, setDarkMode] = useState(props.darkMode);
     const [username, updateUsername] = useState(props.username);
     
-    //console.log(`(App) props.isAuthenticated:  ${props.isAuthenticated}`)
-    //console.log(`(App) const isAuthenticated:  ${isAuthenticated}`)
-    //console.log(`(App) props.darkMode:  ${props.darkMode}`)
-    //console.log(`(App) const darkMode:  ${darkMode}`)
-    //console.log(`(App) props.username:  ${props.username}`)
-    //console.log(`(App) const username:  ${username}`)
-    
 
     const mytheme = createMuiTheme({ 
         palette: {

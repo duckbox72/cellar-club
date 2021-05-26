@@ -31,8 +31,6 @@ import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
 
-//import { } from './SvgIcons';
-
 import { getVintageOptions } from "../utils/getVintageOptions";
 
 import brown from '@material-ui/core/colors/brown';

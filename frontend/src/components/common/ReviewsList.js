@@ -19,7 +19,6 @@ import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
-import CommentIcon from '@material-ui/icons/Comment';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import PeopleIcon from '@material-ui/icons/People';

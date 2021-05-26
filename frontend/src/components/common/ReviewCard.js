@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import Avatar from '@material-ui/core/Avatar';
@@ -19,7 +19,6 @@ import Link from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
 import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
 import LockIcon from '@material-ui/icons/Lock';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
@@ -101,7 +100,6 @@ const useStyles = makeStyles((theme) => ({
     iconbutton_external_link_vivino: {
         height: theme.spacing(6.5),
         width: theme.spacing(6.5),
-        //marginLeft: 'auto',   
     },
     avatar_vivinologo: {
         backgroundImage: "url(/static/images/vivino-logo.png)",
@@ -120,11 +118,10 @@ const useStyles = makeStyles((theme) => ({
         backgroundPosition: 'center',
     },
     header_title: {
-        fontWeight: 500,
-        //color: mystyleprops => mystyleprops.colorSchemaA,       
+        fontWeight: 500,     
     },
     header_subheader: {
-        //fontWeight: 400,
+
     },
     
     divider: {

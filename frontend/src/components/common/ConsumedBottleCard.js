@@ -1,77 +1,42 @@
 import React, {  useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-import DateFnsUtils from '@date-io/date-fns';
 import { format } from 'date-fns';
-
-import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-
-import Alert from '@material-ui/lab/Alert'
-import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import Collapse from '@material-ui/core/Collapse';
-import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import Link from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Snackbar from '@material-ui/core/Snackbar';
-import Slider from '@material-ui/core/Slider'
-import Switch from '@material-ui/core/Switch'; 
-import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-import Checkbox from '@material-ui/core/Checkbox';
-import CloseIcon from '@material-ui/icons/Close';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
-import RemoveIcon from '@material-ui/icons/Remove';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import LanguageIcon from '@material-ui/icons/Language';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import PeopleIcon from '@material-ui/icons/People';
-import PersonIcon from '@material-ui/icons/Person';
-import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
-import PostAddIcon from '@material-ui/icons/PostAdd';
 import PublicIcon from '@material-ui/icons/Public';
-import Radio from '@material-ui/core/Radio';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StoreIcon from '@material-ui/icons/Store';
 import SwapVertIcon from '@material-ui/icons/SwapVert';
-import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
-import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
-import ThumbsUpDownOutlinedIcon from '@material-ui/icons/ThumbsUpDownOutlined';
 
-import { WineBottleIcon, WineGlassIcon, WineGlassAltIcon} from './SvgIcons';
-
-import { currencyNumberFormat } from "../utils/currencyNumberFormat";
-import { getRemovalReasonsOptions } from '../utils/getRemovalReasonsOptions';
-
+import { WineGlassIcon } from './SvgIcons';
 
 import brown from '@material-ui/core/colors/brown';
 
 
-
-
 const useStyles = makeStyles((theme) => ({
     header_card: {
-        //height: screen.availHeight * 0.69,
-        //overflowY: 'scroll',
         margin: theme.spacing(0, 2),
         borderRadius: '10px 10px 0px 0px',
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
@@ -129,7 +94,6 @@ const useStyles = makeStyles((theme) => ({
     iconbutton_external_link_vivino: {
         height: theme.spacing(6.5),
         width: theme.spacing(6.5),
-        //marginLeft: 'auto',   
     },
     avatar_vivinologo: {
         backgroundImage: "url(/static/images/vivino-logo.png)",
@@ -148,11 +112,10 @@ const useStyles = makeStyles((theme) => ({
         backgroundPosition: 'center',
     },
     header_title: {
-        fontWeight: 500,
-        //color: mystyleprops => mystyleprops.colorSchemaA,       
+        fontWeight: 500,   
     },
     header_subheader: {
-        //fontWeight: 400,
+        
     },
     
     divider: {
@@ -176,7 +139,6 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(0.5,2,0,2.5),
         color: mystyleprops => mystyleprops.colorSchemaA,
         fontSize: theme.spacing(2),
-        //fontWeight: 400,
     },
     info_link: {
         marginTop: theme.spacing(1),
@@ -332,7 +294,6 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(4),
         borderRadius: 10,
-        //backdropFilter: 'brightness(95%)',
     },
     drink_snackbar: {
         width: '100%',
@@ -346,7 +307,6 @@ const useStyles = makeStyles((theme) => ({
     drink_alert: {
         width: '100%',
         borderRadius: 10,
-        //margin: theme.spacing(4, 2),
     },
 
     remove_card: {

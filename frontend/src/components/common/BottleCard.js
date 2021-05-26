@@ -62,16 +62,11 @@ import { WineBottleIcon, WineGlassIcon, WineGlassAltIcon} from './SvgIcons';
 import { currencyNumberFormat } from "../utils/currencyNumberFormat";
 import { getRemovalReasonsOptions } from '../utils/getRemovalReasonsOptions';
 
-
 import brown from '@material-ui/core/colors/brown';
-
-
 
 
 const useStyles = makeStyles((theme) => ({
     header_card: {
-        //height: screen.availHeight * 0.69,
-        //overflowY: 'scroll',
         margin: theme.spacing(0, 2),
         borderRadius: '10px 10px 0px 0px',
         backgroundColor: mystyleprops => mystyleprops.backgroundColorSchemaA,
@@ -129,7 +124,6 @@ const useStyles = makeStyles((theme) => ({
     iconbutton_external_link_vivino: {
         height: theme.spacing(6.5),
         width: theme.spacing(6.5),
-        //marginLeft: 'auto',   
     },
     avatar_vivinologo: {
         backgroundImage: "url(/static/images/vivino-logo.png)",
@@ -148,11 +142,10 @@ const useStyles = makeStyles((theme) => ({
         backgroundPosition: 'center',
     },
     header_title: {
-        fontWeight: 500,
-        //color: mystyleprops => mystyleprops.colorSchemaA,       
+        fontWeight: 500,     
     },
     header_subheader: {
-        //fontWeight: 400,
+
     },
     
     divider: {
@@ -331,7 +324,6 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(4),
         borderRadius: 10,
-        //backdropFilter: 'brightness(95%)',
     },
     drink_snackbar: {
         width: '100%',
@@ -345,7 +337,6 @@ const useStyles = makeStyles((theme) => ({
     drink_alert: {
         width: '100%',
         borderRadius: 10,
-        //margin: theme.spacing(4, 2),
     },
 
     remove_card: {
@@ -423,7 +414,6 @@ const useStyles = makeStyles((theme) => ({
     remove_alert: {
         width: '100%',
         borderRadius: 10,
-        //margin: theme.spacing(4, 2),
     },
 
     

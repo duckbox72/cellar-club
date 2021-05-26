@@ -25,7 +25,6 @@ import { GlassCheersIcon } from './SvgIcons';
 import DrawerMenu from "./DrawerMenu";
 
 
-
 const logoFontTheme = createMuiTheme({
     typography: {
         fontFamily: [

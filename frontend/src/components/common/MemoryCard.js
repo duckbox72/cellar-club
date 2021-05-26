@@ -33,7 +33,7 @@ import StarIcon from '@material-ui/icons/Star';
 import SwapVertIcon from '@material-ui/icons/SwapVert';
 import UndoIcon from '@material-ui/icons/Undo';
 
-import { WineBottleIcon, WineGlassIcon, WineGlassAltIcon} from './SvgIcons';
+import { WineBottleIcon, WineGlassIcon } from './SvgIcons';
 
 import brown from '@material-ui/core/colors/brown';
 

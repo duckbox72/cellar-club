@@ -131,8 +131,7 @@ const useStyles = makeStyles((theme) => ({
     },
     header_title: {
         fontWeight: 500,
-        fontSize: theme.spacing(2),    
-        //color: mystyleprops => mystyleprops.colorSchemaA,       
+        fontSize: theme.spacing(2),     
     },
     header_subheader: {
         fontWeight: 400,
@@ -191,7 +190,6 @@ const useStyles = makeStyles((theme) => ({
     alert: {
         width: '100%',
         borderRadius: 10,
-        //margin: theme.spacing(4, 2),
     },
     add_review_container_collapse: {
         maxHeight: screen.availHeight * 0.39,
@@ -199,7 +197,6 @@ const useStyles = makeStyles((theme) => ({
             maxHeight: screen.availHeight * 0.36
         },
         overflowY: 'scroll',
-        //padding: theme.spacing(2,2,1,2),
     },
 }));
 

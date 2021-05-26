@@ -15,7 +15,7 @@ import Searchbar from "./common/Searchbar";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        //minHeight: screen.availHeight,
+        
     },
     lwin_profile_card: {
         display: 'none',

@@ -105,7 +105,6 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]: {
             fontSize: theme.spacing(1.75),
         }, 
-        //color: mystyleprops => mystyleprops.colorSchemaA,
     },
     list_item_subheader_icon:{
         width: theme.spacing(1.75),
