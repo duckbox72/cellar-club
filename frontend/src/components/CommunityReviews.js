@@ -77,6 +77,7 @@ export default function CommunityReviews(props) {
                     darkMode={props.darkMode}
                     reviewsList={reviewsList}
                     reviewsListLength={reviewsListLength}
+                    reviewDisplayName={reviewDisplayName}
                     />
                 </Grid>
                 <Grid item xs={12} sm={10} md={8} style={{margin: 8}}>

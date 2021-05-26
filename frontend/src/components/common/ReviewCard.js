@@ -194,6 +194,16 @@ const useStyles = makeStyles((theme) => ({
             fontSize: theme.spacing(1.75),
         },
     },
+    info_text_tasting_note: {
+        textAlign: 'justify',
+        fontWeight: 400,
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2),
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]:{
+            fontSize: theme.spacing(1.75),
+        },
+    },
     info_button: { 
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(4),
@@ -538,8 +548,11 @@ export default function ReviewCard(props) {
                                 Tasting Note
                             </Typography>
                         
-                            <Typography variant="body2" className={classes.info_text} >
-                                {review.tasting_note ? review.tasting_note : 'n/a'}
+                            
+                        </ListItem>
+                        <ListItem>
+                            <Typography variant="body2" className={classes.info_text_tasting_note} >
+                                {review.tasting_note ? `"${review.tasting_note}"`: 'n/a'}
                             </Typography>
                         </ListItem>
                     </Grid>

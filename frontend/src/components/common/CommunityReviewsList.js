@@ -17,7 +17,6 @@ import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
-import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import PublicIcon from '@material-ui/icons/Public';
 import SortIcon from '@material-ui/icons/Sort';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
@@ -61,9 +60,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     list_item: {
-        '&:hover': {
-            backdropFilter: 'invert(10%)',
-        },
+        
     },
     list_item_color_icon: { 
         height: theme.spacing(1.5),
