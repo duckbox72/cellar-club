@@ -18,14 +18,19 @@ const logoFontTheme = createMuiTheme({
 
 const useStyles = makeStyles((theme) => ({
     logo_icon: {
-        height: theme.spacing(15),
-        width: theme.spacing(15),
-        marginTop: -theme.spacing(2),
-        color: mystyleprops => mystyleprops.color,
+        height: theme.spacing(24),
+        width: theme.spacing(24),
+        color: theme.palette.common.white,
+        [theme.breakpoints.down("sm")]: {
+            color: theme.palette.secondary.dark,
+        },
     },
     logo_typo: {
-        marginTop: -theme.spacing(4),
-        color: mystyleprops => mystyleprops.color,
+        marginTop: -theme.spacing(7),
+        color: theme.palette.common.white,
+        [theme.breakpoints.down("sm")]: {
+            color: theme.palette.secondary.dark,
+        },
     }
 }));
 
@@ -35,7 +40,7 @@ export default function CClogo(props) {
 
     const theme = useTheme(); 
     const mystyleprops = {
-        color: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
+        colorSchemaA: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
     }
     const classes = useStyles(mystyleprops);
 
@@ -47,15 +52,10 @@ export default function CClogo(props) {
             </Grid>
             <Grid item>
                 <ThemeProvider theme={logoFontTheme}>
-                    <Typography className={classes.logo_typo}>
+                    <Typography variant="h5" className={classes.logo_typo}>
                         C e l l a r C l u b
                     </Typography>
                 </ThemeProvider>
-            </Grid>
-            <Grid item xs={10} sm={6} md={6}>
-                <Typography variant="body2" style={{textAlign: 'center'}}>
-                    Search CellarClub and have acess to more than 100.000 products. Find your favorite bottle of wine or spirit, add to your collection, write a review and more.
-                </Typography>
             </Grid>
         </Grid>            
     );

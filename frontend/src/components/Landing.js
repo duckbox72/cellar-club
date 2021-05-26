@@ -6,6 +6,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 
+import CCLogo from './common/CCLogo';
 import Copyright from './common/Copyright';
 
 
@@ -54,15 +55,12 @@ const useStyles = makeStyles((theme) => ({
     },
     body_container: {
         textAlign: 'center',
-        marginTop: theme.spacing(8),
+        marginTop: theme.spacing(2),
         marginLeft: theme.spacing(4),
         marginRight: theme.spacing(4),
     },
     body_typography: {
-        //fontWeight: theme.typography.fontWeightMedium,
-        //color: theme.palette.secondary.dark,
-        
-        color: 'beige',
+        color: theme.palette.common.white,
         [theme.breakpoints.down("sm")]: {
             color: theme.palette.secondary.dark,
             fontWeight: 500,
@@ -72,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: 0,
         fontWeight: theme.typography.fontWeightMedium,
         padding: theme.spacing(2, 8),
-        margin: theme.spacing(10),
+        margin: theme.spacing(8),
         boxShadow: 'none',
     },
 }));
@@ -84,7 +82,7 @@ export default function Landing(props) {
     return (
         <div className={classes.root}>
             <Paper className={classes.root_paper}>
-            <Grid container spacing={6} direction="column">
+            <Grid container spacing={0} direction="column">
                 <Grid item container xs={12}>
                     <AppBar position="static" className={classes.appbar}>
                     <Toolbar  >
@@ -102,21 +100,25 @@ export default function Landing(props) {
                 </Grid>    
                 <div className={classes.body_container}>
                     <Grid item container 
-                        spacing={1} 
+                        spacing={0} 
                         direction="column"
                         justify="space-between"
-                        
+                        alignItems="center"
                         >
+                        <Grid itme>
+                            <CCLogo />
+                        </Grid>
                         <Grid item>
-                            <Typography variant="h4" className={classes.body_typography} style={{marginTop: 60}}>
+                            <Typography variant="h4" className={classes.body_typography}>
                                 UPGRADE YOUR EXPERIENCE 
                             </Typography>
                         </Grid>
-                        <Grid item>
-                            <Typography variant="h6" className={classes.body_typography}>
-                                easily setup, manage and review your bottle collection.  
+                        <Grid item item xs={12} sm={10} md={8}>
+                            <Typography variant="body1" className={classes.body_typography}>
+                                Join CellarClub and have free acess to more than 100.000 products. Find your favorite bottle of wine or spirit, add to collection, track consume, write reviews and more.  
                             </Typography>
                         </Grid>
+                        
                         <Grid item>
                             <Button variant="contained" color="primary" className={classes.body_button} href="/signup">
                                 Register
