@@ -160,8 +160,15 @@ export default function CommunityReviewsList(props) {
                         }
                         secondary={ 
                             <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
-                                {`On ${new Date(review.date_tasted).toUTCString().slice(5, 16)} ${review.user.username.toUpperCase()} rated `} 
+                                {`On ${new Date(review.date_tasted).toUTCString().slice(5, 16)} ${review.user.username.toUpperCase()} `} 
                                 
+                                {review.like_status === 'like'
+                                ? 'liked'
+                                : review.like_status === 'neutral'
+                                    ?   'neutral'
+                                    :   'disliked'
+                                } 
+
                                 {review.like_status === 'like'
                                 ? <Tooltip title="Like">
                                     <ThumbUpOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
@@ -173,7 +180,7 @@ export default function CommunityReviewsList(props) {
                                     :   <Tooltip title="Dislike">
                                             <ThumbDownOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
                                         </Tooltip>
-                                }    
+                                }   
                             </Typography>
                         } 
                         />
