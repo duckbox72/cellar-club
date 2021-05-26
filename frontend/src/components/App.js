@@ -95,7 +95,7 @@ export default function App(props) {
                     <Switch>
                         {isAuthenticated ? 
                         (<>
-                            <Route exact path="/" render={props => <Home {...props} 
+                            <Route exact path="/" render={props => <Search {...props} 
                             darkMode={darkMode}
                             parentDarkModeCallback={darkModeCallback}
                             parentSignOutCallback={signOutCallback}

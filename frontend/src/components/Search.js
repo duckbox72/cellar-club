@@ -154,7 +154,7 @@ export default function Search(props) {
                     dashboardStats={dashboardStats}
                     />
                 </Grid>
-                <Grid item xs={12} sm={10} md={8} style={{margin: 16}}>
+                <Grid item xs={12} sm={10} md={8}>
                     <Copyright />
                 </Grid>
             </Grid>

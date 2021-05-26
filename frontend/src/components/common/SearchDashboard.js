@@ -20,7 +20,7 @@ import brown from '@material-ui/core/colors/brown';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        height: screen.availHeight * 0.68,
+        height: screen.availHeight * 0.58,
         marginTop: theme.spacing(1),
     },
     dashboard_paper: {
@@ -150,7 +150,7 @@ const useStyles = makeStyles((theme) => ({
     },
     action_title_grid: {
         marginTop: theme.spacing(2.5),
-        marginBottom: -theme.spacing(0.5),
+        marginBottom: -theme.spacing(0.75),
         color: mystyleprops => mystyleprops.colorSchemaA,
         [theme.breakpoints.down('xs')]:{
             marginBottom: -theme.spacing(1),
@@ -829,7 +829,7 @@ export default function SearchDashboard(props) {
 
                                     <Grid item xs={12} className={classes.action_description_grid}>
                                         <Typography variant="caption" className={classes.action_description}>
-                                            drink • remove • rate
+                                            drink • remove • review
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -859,7 +859,7 @@ export default function SearchDashboard(props) {
 
                                     <Grid item xs={12} className={classes.action_description_grid}>
                                         <Typography variant="caption" className={classes.action_description}>
-                                            browse • unconsume 
+                                            find • manage • revert 
                                         </Typography>
                                     </Grid>
                                 </Grid>

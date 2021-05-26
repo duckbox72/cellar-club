@@ -181,7 +181,7 @@ export default function CommunityReviewsList(props) {
                         } 
                         />
                             <Typography variant="body2" className={classes.list_item_title}>
-                                {review.score ? `${review.score}/100` : 'No score'}
+                                {review.score ? `${review.score}/100` : 'NR'}
                             </Typography>    
                     </ListItem>
                     <ListItem divider >
