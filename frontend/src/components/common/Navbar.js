@@ -18,7 +18,6 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HomeIcon from '@material-ui/icons/Home';
 import PublicIcon from '@material-ui/icons/Public';
 import ViewListIcon from '@material-ui/icons/ViewList';
-import SearchIcon from '@material-ui/icons/Search';
 import StarIcon from '@material-ui/icons/Star';
 
 import { GlassCheersIcon } from './SvgIcons';
@@ -147,12 +146,9 @@ export default function Navbar(props) {
                     </Typography> 
                 </ThemeProvider>
                 
-                    <Tooltip title="Toggle light/dark mode">
-                        <IconButton className={classes.main_menu_on} aria-label="toggleDarkMode" onClick={toggleDarKMode}>
-                        { darkMode
-                        ? <Brightness7Icon className={classes.icon_button_icon} />
-                        : <Brightness4Icon className={classes.icon_button_icon} />
-                        }
+                    <Tooltip title="Home">
+                        <IconButton className={classes.main_menu_on} aria-label="Home" to="/" component={Link}>
+                            <HomeIcon className={classes.icon_button_icon} />
                         </IconButton>
                     </Tooltip>
                     <span className={classes.main_menu_on}>
@@ -161,6 +157,7 @@ export default function Navbar(props) {
                             darkMode={props.darkMode}
                             username={username}
                             parentSignOutCallback={sigOutCallback}
+                            parentDarkModeCallback={toggleDarKMode}
                         />
                     </span>
                 
@@ -168,12 +165,6 @@ export default function Navbar(props) {
                     <Tooltip title="Home">
                         <IconButton className={classes.main_menu_off} aria-label="Home" to="/" component={Link}>
                             <HomeIcon className={classes.icon_button_icon} />
-                        </IconButton>
-                    </Tooltip>
-                    
-                    <Tooltip title="Search">
-                        <IconButton className={classes.main_menu_off} aria-label="Search" to="/search" component={Link}>
-                            <SearchIcon className={classes.icon_button_icon} />
                         </IconButton>
                     </Tooltip>
                     

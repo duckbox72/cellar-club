@@ -7,7 +7,6 @@ import Bottle from "./Bottle";
 import CommunityReviews from "./CommunityReviews";
 import ConsumedBottle from "./ConsumedBottle";
 import Collection from "./Collection";
-import Home from "./Home";
 import Landing from "./Landing";
 import Memories from "./Memories";
 import Memory from "./Memory";

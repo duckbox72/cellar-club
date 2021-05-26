@@ -14,13 +14,14 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Tooltip from '@material-ui/core/Tooltip';
 
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import Brightness7Icon from '@material-ui/icons/Brightness7';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HomeIcon from '@material-ui/icons/Home';
+import MenuIcon from '@material-ui/icons/Menu';
 import PublicIcon from '@material-ui/icons/Public';
-import ViewListIcon from '@material-ui/icons/ViewList';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import SearchIcon from '@material-ui/icons/Search';
 import StarIcon from '@material-ui/icons/Star';
+import ViewListIcon from '@material-ui/icons/ViewList';
 
 import { GlassCheersIcon } from './SvgIcons';
 
@@ -121,13 +122,6 @@ export default function DrawerMenu(props) {
           <ListItemText primary={"Home"} />
         </ListItem>
 
-        <ListItem button key="search" to="/search" component={Link}>
-          <ListItemIcon>
-            <SearchIcon className={classes.iconButton} />
-          </ListItemIcon>
-          <ListItemText primary={"Search"} />
-        </ListItem>
-
         <ListItem button key="collection" to="/collection" component={Link}>
           <ListItemIcon>
             <ViewListIcon className={classes.iconButton} />
@@ -159,12 +153,26 @@ export default function DrawerMenu(props) {
           <ListItemText primary={"Community"} />
         </ListItem>
 
+        <Divider />
+
+        <ListItem button key="toggle_dark_mode" to="/community_reviews" onClick={props.parentDarkModeCallback}>
+          <ListItemIcon>
+            {darkMode
+              ? <Brightness7Icon className={classes.iconButton} />
+              : <Brightness4Icon className={classes.iconButton} />
+            }
+          </ListItemIcon>
+          <ListItemText primary={darkMode ? 'Light mode' : 'Dark mode'} />            
+        </ListItem>
+
         <ListItem button key="signout" onClick={handleSignOutButton}>
           <ListItemIcon>
             <ExitToAppIcon className={classes.iconButton} />
           </ListItemIcon>
           <ListItemText primary={"Sign out"} />
         </ListItem>
+
+        <Divider />
 
       </List>
     </div>
@@ -178,7 +186,7 @@ export default function DrawerMenu(props) {
           aria-label="menu"
           onClick={toggleDrawer(anchor, true)}
         >
-          <MoreVertIcon className={classes.iconButton} />
+          <MenuIcon className={classes.iconButton} />
         </IconButton>
       </Tooltip>
       <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>

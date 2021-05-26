@@ -18,15 +18,13 @@ const useStyles = makeStyles((theme) => ({
         //minHeight: screen.availHeight,
     },
     lwin_profile_card: {
-        //visibility: 'hidden',
         display: 'none',
         opacity: 0,
         transition: theme.transitions.create('opacity', 'display', {
             duration: theme.transitions.long,
         }),
     },
-    lwin_profile_card_open: {   
-        //visibility: 'visible',
+    lwin_profile_card_open: {  
         display: 'block',
         opacity: 1,
     },
