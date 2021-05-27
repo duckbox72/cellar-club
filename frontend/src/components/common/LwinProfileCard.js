@@ -25,21 +25,20 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import AddIcon from '@material-ui/icons/Add';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import CloseIcon from '@material-ui/icons/Close';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import ImportExportIcon from '@material-ui/icons/ImportExport';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
-import PostAddIcon from '@material-ui/icons/PostAdd';
-import NatureIcon from '@material-ui/icons/Nature';
 import RemoveIcon from '@material-ui/icons/Remove'
+import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StoreIcon from '@material-ui/icons/Store';
 import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
+import WavesIcon from '@material-ui/icons/Waves';
 
-import { CompassIcon, WineBottleIcon } from './SvgIcons';
+import { CompassIcon, WineBottleIcon, WineGlassIcon } from './SvgIcons';
 
 import brown from '@material-ui/core/colors/brown';
 
@@ -82,6 +81,13 @@ const useStyles = makeStyles((theme) => ({
     },
     expandOpen: {
         transform: 'rotate(180deg)', 
+    },
+    add_review_iconbutton: {
+        height: theme.spacing(6),
+        width: theme.spacing(6),
+    },
+    add_review_iconbutton_icon: {
+        
     },
     add_bottle_iconbutton: {
         height: theme.spacing(6),
@@ -135,6 +141,12 @@ const useStyles = makeStyles((theme) => ({
     },
     header_subheader: {
         fontWeight: 400,
+    },
+    header_color_icon: {
+        height: theme.spacing(1.5),
+        width: theme.spacing(1.5),
+        marginRight: theme.spacing(0.25),
+        color: mystyleprops => mystyleprops.infoColor,
     },
     form_title: {
         fontSize: theme.spacing(2),
@@ -215,6 +227,7 @@ export default function LwinProfileCard(props) {
         colorSchemaA: darkMode ? theme.palette.primary.main : theme.palette.secondary.main,
         backgroundColorSchemaA: darkMode ? brown[600] : theme.palette.common.white,
         countryFlag: LwinData === null ? '' : `url(/static/images/country-flags/${countryFlag}.png)`,
+        infoColor: LwinData === null ? '' : LwinData.colour === 'Red' ? 'maroon' : LwinData.colour === 'White' ? 'tan' : LwinData.colour === 'Rose' ? 'lightcoral' : LwinData.type === 'Fortified Wine' ? 'firebrick' : 'grey',
     }
     const classes = useStyles(mystyleprops);
     
@@ -237,13 +250,6 @@ export default function LwinProfileCard(props) {
         clearFormState();
         props.parentFormExpandedCallback(!expanded);
     };
-
-
-    // Toggle Bookmark --TO DO functionalities--
-    const handleBookmarkButtonClick = () => {
-        console.log("BOOKMARK CLICK");
-        console.log(new Date());
-    }
 
 
     // Add Bottle Form options
@@ -490,20 +496,22 @@ export default function LwinProfileCard(props) {
             <div id="actions">
                 <Grid container spacing={1} className={classes.container_actions} alignItems="center">
                     
-                    <Tooltip title="Bookmark">
-                        <IconButton
-                        onClick={handleBookmarkButtonClick}
-                        >
-                            <BookmarkBorderIcon/>
-                        </IconButton>
-                    </Tooltip>
-                    
                     <Tooltip title="Write a tasting review">
                         <IconButton
+                        className={classes.add_review_iconbutton}
                         disabled={expanded}
                         onClick={handleAddReviewButtonClick}
                         >
-                            <PostAddIcon />
+                            <>
+                                <StarIcon className={classes.add_review_iconbutton_icon}/>
+                                <AddIcon 
+                                style={{
+                                    width: theme.spacing(1.75),
+                                    marginLeft: -theme.spacing(1.25),
+                                    marginTop: -theme.spacing(2),   
+                                }}
+                                />
+                            </>
                         </IconButton>
                     </Tooltip>
 
@@ -519,7 +527,7 @@ export default function LwinProfileCard(props) {
                                 style={{
                                     width: theme.spacing(1.75),
                                     marginLeft: -theme.spacing(0.25),
-                                    marginTop: -theme.spacing(1.5),   
+                                    marginTop: -theme.spacing(2),   
                                 }}
                                 />
                             </>
@@ -581,11 +589,12 @@ export default function LwinProfileCard(props) {
                    {LwinData ? LwinData.display_name : ""}
                 </Typography>
             }
-            subheader={
-                <Typography variant="body2" color="textSecondary" className={classes.header_subheader}>
-                   {LwinData ? LwinData.colour ? LwinData.colour + ' '  : LwinData.type + ' ' : ''}
-                   {LwinData ? LwinData.region + ", " + LwinData.country : ''}
-                </Typography>
+            subheader={LwinData
+                    ? <Typography variant="body2" color="textSecondary" className={classes.header_subheader}>
+                    {LwinData.colour || LwinData.type === 'Fortified Wine' ? <WineGlassIcon className={classes.header_color_icon}/> : ''}
+                    {LwinData.colour ? LwinData.colour : ''} {LwinData.region ? LwinData.region : LwinData.type}, {LwinData.country}
+                    </Typography>
+                    : <></>
             }
             />
 
@@ -633,7 +642,7 @@ export default function LwinProfileCard(props) {
                             renderInput={(params) => (
                                 <Grid container spacing={1} justify="center" alignItems="center">
                                     <Grid item>
-                                        <NatureIcon className={classes.svg_icon} />
+                                        <WavesIcon className={classes.svg_icon} />
                                     </Grid>   
 
                                     <Grid item xs={8}>

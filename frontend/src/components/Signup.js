@@ -95,7 +95,6 @@ export default function SignUp(props) {
     fetch('/api/signup', requestOptions)
     .then(response => response.json())
     .then(data => {
-      console.log(data)
       if (data.success) {
         props.parentSignupCallback(true)
         props.history.push('/') 
