@@ -205,11 +205,11 @@ export default function ReviewsList(props) {
                               </Tooltip>
                             }
 
-                            {review.like_status === 'Like'
+                            {review.like_status === 'like'
                             ? <Tooltip title="Like">
                                 <ThumbUpOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
                               </Tooltip>
-                            : review.like_status === 'Neutral'
+                            : review.like_status === 'neutral'
                                 ?   <Tooltip title="Neutral">
                                         <ThumbsUpDownOutlinedIcon color={darkMode ? 'primary' : 'secondary'} className={classes.list_item_subheader_icon} />
                                     </Tooltip>

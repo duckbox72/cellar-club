@@ -417,7 +417,6 @@ export default function LwinProfileCard(props) {
         })
         .then(response => response.json())
         .then(result => {
-            console.log(result);
             if (result.success) {
                 handleSnackbarCall();
               } else {
