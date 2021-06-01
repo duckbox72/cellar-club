@@ -96,7 +96,7 @@ export default function SignUp(props) {
     .then(response => response.json())
     .then(data => {
       if (data.success) {
-        props.parentSignupCallback(true)
+        props.parentSignupCallback([true, username])
         props.history.push('/') 
       } else {
         setUsername('');

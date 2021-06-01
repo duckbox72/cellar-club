@@ -73,7 +73,8 @@ export default function App(props) {
     }
 
     const signUpCallback = (status) => {
-        updateIsAuthenticated(status);
+        updateIsAuthenticated(status[0]);
+        updateUsername(status[1]);
     }
 
     const signOutCallback = (status) => {
