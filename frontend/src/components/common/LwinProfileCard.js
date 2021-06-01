@@ -717,7 +717,8 @@ export default function LwinProfileCard(props) {
                                         id="quantity"
                                         type="text"
                                         {...params} 
-                                        onChange={handleQuantityTextFieldChange}
+                                        // Momentarely disabled (For now only quantity = 1 is allowed).
+                                        //onChange={handleQuantityTextFieldChange}
                                         label="Quantity" 
                                         variant="standard"
                                         color={darkMode == true ? "primary" : "secondary"}
