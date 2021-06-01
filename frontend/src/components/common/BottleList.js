@@ -104,7 +104,7 @@ export default function BottleList(props) {
     const bottleListLength = props.bottleListLength != null ? props.bottleListLength : null;
     
     const [sortByMenuAnchor, setSortByMenuAnchor] = useState(null);
-    const [sortByLabel, setSortByLabel] = useState('Recent Additions')
+    const [sortByLabel, setSortByLabel] = useState('Recently Added')
 
 
     const theme = useTheme(); 
@@ -205,7 +205,7 @@ export default function BottleList(props) {
 
     const handleSortRecentlyAddedClick = (event) => {
         bottleList.sort((a,b) => (a.created < b.created) ? 1 : -1);
-        setSortByLabel('Recent Additions');
+        setSortByLabel('Recently Added');
         handleSortByMenuClose();
     }
     
@@ -246,7 +246,7 @@ export default function BottleList(props) {
     
 
     useEffect(() => {
-        setSortByLabel('Recent Additions')
+        setSortByLabel('Recently Added')
     }, [bottleName],);
     
     return (
@@ -270,7 +270,7 @@ export default function BottleList(props) {
                     open={Boolean(sortByMenuAnchor)}
                     onClose={handleSortByMenuClose}
                     >
-                        <MenuItem dense onClick={handleSortRecentlyAddedClick}>Recent Additions</MenuItem>
+                        <MenuItem dense onClick={handleSortRecentlyAddedClick}>Recently Added</MenuItem>
                         <MenuItem dense onClick={handleSortNameAZClick}>{bottleName === null ? 'Name A-Z' : 'Vintage Up'}</MenuItem>
                         <MenuItem dense onClick={handleSortNameZAClick}>{bottleName === null ? 'Name Z-A' : 'Vintage Down'}</MenuItem>
                     </Menu>
