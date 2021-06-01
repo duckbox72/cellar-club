@@ -1,29 +1,16 @@
 import os
-import re
-from typing import Sized
-from django.db.models.query_utils import RegisterLookupMixin
 import requests
 import json
-from re import L, S
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
-from django.db.models.fields import BooleanField, NullBooleanField
 from django.http import JsonResponse
-from django.shortcuts import render
-#from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
 # generics classes from a generic view, access to HTTP status codes
-from rest_framework import generics, serializers, status
-from rest_framework import response 
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from rest_framework import status
 
 from .models import * 
-# from .serializers import *
-
-import pandas as pd 
 
 
 # --------------------------- AUTH API ROUTES --------------------------- 
@@ -719,6 +706,9 @@ def dashboard_stats(request):
 
 
 
+
+# To be used in conjunction with lwin_import ROUTE below when needed
+# import pandas as pd 
 
 # To be used as temp ROUTE when loading the complete LWIN database
 '''
