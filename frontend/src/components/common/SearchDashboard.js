@@ -81,13 +81,22 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 'auto',
     },
     dashboard_color_icon: {
-        height: theme.spacing(1.5),
-        width: theme.spacing(1.5),
+        height: theme.spacing(1.75),
+        width: theme.spacing(1.75),
+        [theme.breakpoints.down('xs')]:{
+            height: theme.spacing(1.5),
+            width: theme.spacing(1.5),
+        },
         color: mystyleprops => mystyleprops.infoColor,
     },
     dashboard_color_icon_spirit: {
         height: theme.spacing(1.5),
         width: theme.spacing(1.5),
+        marginRight: theme.spacing(0.25),
+        [theme.breakpoints.down('xs')]:{
+            height: theme.spacing(1.25),
+            width: theme.spacing(1.25),
+        },
         color: mystyleprops => mystyleprops.infoColor,
     },
     dashboard_text: {
