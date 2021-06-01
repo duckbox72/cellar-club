@@ -1,5 +1,8 @@
-/api/lwin_import.py
+# /api/lwin_import.py
 /api/LWINdatabase.xlsx
 /api/LWINdatabase.tsv
+
+/api/serializers.py
+/api/views_old_classes.py
 
 /burgundigger/.env

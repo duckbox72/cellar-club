@@ -1,11 +1,8 @@
 from django.urls import path
-from django.views.generic.base import View
-#from .views import CreateLwinView, UserView
 from . import views
 
 
 urlpatterns = [
-    # path('', UserView.as_view()),
     # IMPORT LWIN datadabase TEMP ROUTE
     # path('lwin_import', views.lwin_import, name="lwin_import"),
 
