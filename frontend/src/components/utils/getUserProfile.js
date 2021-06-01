@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-// Momentarily deprecated.
+// Momentarily deprecated. KEPT FOR FUTURE USE AT USER SETTINGS page.
 // Function replaced at index.js request isAuthenticated
 export function getUserProfile(props) {
 
