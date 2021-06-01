@@ -84,6 +84,14 @@ const useStyles = makeStyles((theme) => ({
             fontSize: theme.spacing(1.75),
         }, 
     },
+    list_item_subheader_username: {
+        fontWeight: 500,
+        fontSize: theme.spacing(2),
+        [theme.breakpoints.down('xs')]: {
+            fontSize: theme.spacing(1.75),
+        },
+        color: mystyleprops => mystyleprops.colorSchemaA,
+    },
     list_item_subheader_icon:{
         width: theme.spacing(1.75),
         height: theme.spacing(1.75),
@@ -111,7 +119,7 @@ export default function CommunityReviewsList(props) {
     }
     const classes = useStyles(mystyleprops);
 
-    
+    // Momentarily disabled
     const handleItemClick = (review) => {
         window.scrollTo(0, 0);
         props.history.push({
@@ -121,7 +129,7 @@ export default function CommunityReviewsList(props) {
         });
     }
 
-
+    // Momentarily disabled  
     const handleItemActionClick = (review) => {
         window.scrollTo(0, 0);
         props.history.push({
@@ -131,6 +139,15 @@ export default function CommunityReviewsList(props) {
         });
     }
     
+
+    const reviewUsername = () => {
+        return (
+            <Typography>
+
+            </Typography>
+        )
+    }
+
 
     const reviewsListItems = (reviewsList) => {
         if (reviewsList) {
@@ -160,7 +177,9 @@ export default function CommunityReviewsList(props) {
                         }
                         secondary={ 
                             <Typography variant="body2" color="textSecondary" className={classes.list_item_subheader}>
-                                {`On ${new Date(review.date_tasted).toUTCString().slice(5, 16)} ${review.user.username.toUpperCase()} `} 
+                                {`On ${new Date(review.date_tasted).toUTCString().slice(5, 16)} `} 
+
+                                {<span className={classes.list_item_subheader_username}>{review.user.username + ' '}</span>}
                                 
                                 {review.like_status === 'like'
                                 ? 'liked'
