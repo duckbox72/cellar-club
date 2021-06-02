@@ -3,7 +3,7 @@ from . import views
 
 
 urlpatterns = [
-    # IMPORT LWIN datadabase TEMP ROUTE
+    # IMPORT LWIN datadabase TEMP SERVICE ROUTE momentarily disabled.
     # path('lwin_import', views.lwin_import, name="lwin_import"),
 
     # AUTH API Routes
