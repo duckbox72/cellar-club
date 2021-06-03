@@ -1,15 +1,17 @@
 # CellarClub
 
-CellarClub is a complete and fully functional wine cellar manager web application where users, specially those interested in wines and spirits, as collectors, connoisseurs, fans, clubs, restaurants or anyone intending to manage a bottle inventory, are able to  easily create and mantain a collection from a more than 100.000 items native database, taking advantage of each item's provided metadata, also keeping track of purchase information and more importantly the actual item location in the cellar. Additionally users are  also able to create and keep memories from consumed items as well as write tasting reviews and publish them to the CellarClub community.
+CellarClub is a complete and fully functional wine cellar manager web application where users, specially those interested in wines and spirits, as collectors, connoisseurs, fans, clubs, restaurants or anyone intending to manage a bottle inventory, are able to easily create and mantain a collection from a more than 100.000 items native database, taking advantage of each item's provided metadata, also keeping track of purchase information and more importantly the actual item location in the cellar. Additionally users are  also able to create and keep memories from consumed items as well as write tasting reviews and publish them to the CellarClub community.
 
 
 ## Instalation Requirements and Usage
 
-To run CellarClub in local server server is required that users have Python 3.8 or superior and Django 3.1 or superior installed on their virtual enviroment or global enviroment. For a list of additional required dependencies to be installed please see requirements.txt located at project's root folder. 
+To run CellarClub in local server server is required that users have Python 3.8 or superior and Django 3.1 or superior installed on their virtual enviroments. For a list of additional required dependencies to be installed please see [requirements.txt](requirements.txt) located at project's root folder. 
 
-A .env file located in the main app (cellarclub) root folder containing the application SECRET_KEY and a GWS_API_KEY as enviroment variables is also required to run the application. A GWS_API_KEY can be obtained for free at globalwinescore.com/api
+A .env file located in the main app root folder containing the application enviroment variables SECRET_KEY and GWS_API_KEY is also required to run the application. A GWS_API_KEY can be obtained for free at globalwinescore.com/api
 
-* **Note regarding CS50 Web final project submission**: For simplicity and prompt use availability a .env file containing the required SECRET_KEY and GWS_API_KEY is provided.
+* **Note regarding CS50 WEB Capstone Project submission**: For simplicity and imediate availability a .env file containing the required enviroment variables is provided within the project.
+
+
 
 
 
