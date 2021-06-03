@@ -21,7 +21,7 @@ Finally, open a terminal window, cd into project's [root folder](/) and enter th
 
 CellarClub was conceived to combine a bottle collection manager and a cellar/cooler in order to offer the ability to keep track of the physical location of items, helping users to find them easily when they need. Among other features, it also offers users the ability to write tasting reviews for own future reference and to publicise them to the CellarClub community where other users can also acess, reference and compare to their own reviews. 
 
-The project was structured in a way to completely detach rendering responsibitities from back-end. Leaving to the [frontend](/frontend) the roles of handling all views/pages routing and rendering and performing api requests to fetch on-demand data. In this schema, esides serving the application and the database, the [backend](/api) is also responsible to provide all api routes consumed by the front-end, including external api calls.
+The project was structured in a way to completely detach rendering responsibitities from back-end. Leaving to the [frontend](/frontend) the roles of handling all views/pages routing and rendering and performing api requests to fetch on-demand data. In this schema, besides serving the application and the database, the [backend](/api) is also responsible to provide all api routes consumed by the front-end, including external api calls.
 
 The application utilizes Django on the [backend](/api) including 7 models and 35 api routes that handle authentication, database search engine, external service api calls, users and collections related data management, database imports and data to be rendered requests. Also on the back, a SQLite3 database is used in order to keep things simple and lighweight.
 
@@ -34,7 +34,7 @@ On the [frontend](/frontend) CellarClub utilizes JavaScript's library React.js i
 
 - Robust search engine offering access to information on more than 100.000 items and shared with different contexts by multiple views
 
-- Easy to use and straightfoward interface enables users to manage their collection inventory and storage places, keep track of consumption memories and reviews, browse and search through community reviews and more
+- Easy to use and straightfoward interface enables users to manage and mantain their collection having prompt access to all information available.
 
 
 ## Tech Stack and Acknowledgements
@@ -51,5 +51,6 @@ Application was implemented using the following technologies:
     - [Liv-Ex LWIN](http://www.liv-ex.com/wwd/lwin) open-source database for wines and spirits
     - [Globalwinescore](https://globalwinescore.docs.apiary.io/) beverage scores api provider 
 
-Created by Luis Felipe Klaus for CS50 Web Programming with Python and JavaScript
+#
+Created by Luis Felipe Klaus for CS50 Web Programming with Python and JavaScript Final Project
 
