@@ -5,13 +5,15 @@ CellarClub is a complete and fully functional wine cellar manager web applicatio
 
 ## Instalation requirements and Usage
 
-In order to run CellarClub in local server is required that users have Python 3.8 or superior and Django 3.1 or superior installed on their enviroments. For a list of additional required dependencies to install please see [requirements.txt](requirements.txt). 
+In order to run CellarClub in local server is required that users have Python 3.8 and Django 3.1 or superior installed on their enviroments. For a list of additional required dependencies to install please see [requirements.txt](requirements.txt). 
 
 A file named **.env** located in the cellarclub app root folder containing the application enviroment variables SECRET_KEY and GWS_API_KEY is also required to run the application. A GWS_API_KEY can be obtained for free at [globalwinescore.com/api](https://www.globalwinescore.com/api/).
 
 * **Note regarding CS50 WEB Capstone Project submission**: For simplicity and imediate availability, the required **.env** file, containing the enviroment variables, is provided within the project.
 
-To run the application open a terminal window, cd to project's root folder and enter:
+Finally, open a terminal window, cd into project's [root folder](/) and enter the following line:
+
+    $ python3 manage.py runserver
 
 
 
@@ -19,20 +21,20 @@ To run the application open a terminal window, cd to project's root folder and e
 
 CellarClub was conceived to combine a bottle collection manager and a cellar/cooler in order to offer the ability to keep track of the physical location of items, helping users to find them easily when they need. Among other features, it also offers users the ability to write tasting reviews for own future reference and to publicise them to the CellarClub community where other users can also acess, reference and compare to their own reviews. 
 
-The project was structured in a way to completely detach rendering responsibitities from back-end. Handling all views/pages routing and rendering with the [frontend](/frontend), performing api requests to fetch required data. Besides serving the application and database, the [backend](/api) in this schema is also responsible to provide all api routes consumed by the front-end, including the external api call.
+The project was structured in a way to completely detach rendering responsibitities from back-end. Handling all views/pages routing and rendering from the [frontend](/frontend) and performing api requests to fetch on-demand data. Besides serving the application and database, the [backend](/api) in this schema is also responsible to provide all api routes consumed by the front-end, including the external api call.
 
-The application utilizes Django on the [backend](/api) including 7 models and 35 api routes and that handle authentication, database search engine, external service api calls, users and collections related data management, database imports and data to be rendered requests. Also on the back, a SQLite3 database was preferred in order to keep things simple and lighweight.
+The application utilizes Django on the [backend](/api) including 7 models and 35 api routes that handle authentication, database search engine, external service api calls, users and collections related data management, database imports and data to be rendered requests. Also on the back, a SQLite3 database is used in order to keep things simple and lighweight.
 
-On the [frontend](/frontend) CellarClub utilizes JavaScript's library React.js in conjunction with Node.js routing features to improve application page routing and rendering response time among 12 different available pages/views and 18 complementary components that are rendered to compound them. In addition to that, seeking the best UI experience and having layout, styling and mobile-responsiveness performances in mind, Material-UI framework is also extensively used throughout the application.
-
-
+On the [frontend](/frontend) CellarClub utilizes JavaScript's library React.js in conjunction with Node.js routing features to improve application's page routing and rendering response times, among 12 different available pages/views and 18 complementary components that are used to compose them. In addition to that, seeking the best UI experience and having layout, styling and mobile-responsiveness performances in mind, Material-UI framework is also extensively used throughout the application.
 
 
 ## Main Features
 
-### Searchbar
-### Keep track of bottle location
+- Fully responsive UI including mobile devices
 
+- Robust search engine offering access to information on more than 100.000 items and shared with different contexts by multiple views
+
+- Easy to use and straightfoward interface enables users to manage their collection inventory and storage places, keep track of consumption memories and reviews, browse and search through community reviews and more
 
 
 ## Tech Stack and Acknowledgements
