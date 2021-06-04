@@ -23,17 +23,18 @@ CellarClub was conceived to combine a bottle collection and a cellar/cooler into
 
 The project was structured to completely detach rendering responsibitities from back-end. Leaving to the front-end the roles of handling all views/pages routing and rendering, and when necessary, performing fetch requests for on-demand data. In this schema, all routes consumed by these front-end requests are provided by the back-end [API](/api/views.py).
 
-The application is written in Python and utilizes Django to serve and control the [backend](/api) which includes 7 models and 35 API routes that take care of authentication, database search engine, external service API calls, users and collections related data management, database imports and data to be rendered requests. In order to keep things simple and lighweight the app uses a SQLite3 database.
+The application utilizes Django to serve and control the [backend](/api) which includes 7 models and 35 API routes that take care of authentication, database search engine, external service API calls, users and collections related data management, database imports and data to be rendered requests. In order to keep things simple and lighweight the app uses a SQLite3 database.
 
-To handle the [frontend](/frontend) CellarClub utilizes JavaScript's library React.js in conjunction with Node.js routing features to improve application's page routing and rendering response times among 12 different available pages/views and 18 complementary components that are used to compose them. In addition to that, having layout, styling and mobile-responsiveness performances in mind, Material-UI framework is also extensively used throughout the application is seek if the best UI experience and .
+To handle the [frontend](/frontend) CellarClub utilizes JavaScript's library React.js in conjunction with Node.js routing features to improve application's page routing and rendering response times among it's 12 different available pages/views and 18 complementary components used to compose them. In addition to that, having layout, styling and mobile-responsiveness performances in mind, Material-UI framework is also extensively used throughout the application is seek if the best UI experience and responsiveness.
 
 
 ## Main Features
 
-- Fully responsive UI including mobile devices
-- Robust search engine offering access to information on more than 100.000 items and shared with different contexts by multiple views
+- Declarative, component-based User Interface
+- Fully mobile-responsive
+- Robust search engine offering access to information on more than 100.000 items and shared by multiple views in their different contexts.
 - Easy to use and straightfoward interface, enables users to manage and mantain their collection effortless having prompt access to all information available.
-- Built-in Lightmode / Darkmode theme toggler. 
+- Built-in Lightmode/Darkmode color theme toggler. 
 
 
 ## Tech Stack and Acknowledgements
