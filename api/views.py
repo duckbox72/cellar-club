@@ -160,7 +160,7 @@ def get_lwin(request, display_name):
 
 @login_required
 def search_lwin(request, display_name):
-    results = Lwin.objects.filter(display_name__contains=display_name)
+    results = Lwin.objects.filter(display_name__contains=display_name).order_by('wine', 'display_name')
     #results = results[:50]
     
     #mini_serializer returns display_name data only
@@ -296,7 +296,7 @@ def get_bottle_name(request, display_name):
 @login_required
 def search_bottle(request, display_name):
     user = request.user
-    results = Bottle.objects.filter(user=user, display_name__contains=display_name, consumed=False)
+    results = Bottle.objects.filter(user=user, display_name__contains=display_name, consumed=False).order_by('display_name')
     
     # Lists only display_name (aka mini_serializer)
     all_results = []
@@ -429,7 +429,7 @@ def get_display_name(request, display_name):
 @login_required
 def search_memory(request, display_name):
     user = request.user
-    results = Consumption.objects.filter(user=user, display_name__contains=display_name, permanently_deleted=False)
+    results = Consumption.objects.filter(user=user, display_name__contains=display_name, permanently_deleted=False).order_by('display_name')
     
     # Lists only display_name (aka mini_serializer)
     all_results = []
@@ -540,7 +540,7 @@ def get_review_display_name(request, display_name):
 @login_required
 def search_review(request, display_name):
     user = request.user
-    results = Review.objects.filter(user=user, display_name__contains=display_name)
+    results = Review.objects.filter(user=user, display_name__contains=display_name).order_by('display_name')
     
     # Lists only display_name (aka mini_serializer)
     all_results = []
@@ -626,7 +626,7 @@ def get_community_review_display_name(request, display_name):
 
 @login_required
 def search_community_review(request, display_name):
-    results = Review.objects.filter(is_public=True, display_name__contains=display_name)
+    results = Review.objects.filter(is_public=True, display_name__contains=display_name).order_by('display_name')
     
     # Lists only display_name (aka mini_serializer)
     all_results = []

@@ -3,7 +3,7 @@
 CellarClub is a complete and fully functional wine cellar manager web application where users, specially those interested in wines and spirits, as collectors, connoisseurs, enthusiasts, clubs, restaurants or anyone intending to manage a bottle inventory, are able to easily create and mantain a collection from a more than 100.000 items native database, taking advantage of each item's provided metadata, also keeping track of purchase information and more importantly the actual item location in the cellar. Additionally users are  also able to create and keep memories from consumed items as well as write tasting reviews and publish them to the CellarClub community.
 
 
-## Instalation requirements and Usage
+## Installation requirements and Usage
 
 In order to run CellarClub in local server is required that users have Python 3.8 and Django 3.1 or superior installed on their enviroments. For a list of additional required dependencies to install please see [requirements.txt](requirements.txt). 
 

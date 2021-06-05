@@ -207,7 +207,7 @@ export default function CommunityReviewsList(props) {
                                 {review.score ? `${review.score}/100` : 'NR'}
                             </Typography>    
                     </ListItem>
-                    <ListItem divider >
+                    <ListItem divider style={{paddingBottom: theme.spacing(1)}}>
                         {review.tasting_note 
                             ? <Typography variant="body2" className={classes.list_item_title}>
                                 {`"${review.tasting_note}"`}
