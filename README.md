@@ -5,7 +5,7 @@ CellarClub is a complete and fully functional wine cellar manager web applicatio
 
 ## Installation requirements and Usage
 
-In order to run CellarClub in local server is required that users have Python 3.8 and Django 3.1 or superior installed on their enviroments. For a list of additional required dependencies to install please see [requirements.txt](requirements.txt). 
+In order to run CellarClub in local server is required that users have Python 3.8 and Django 3.1 or superior installed on their enviroments. For a list of additional required packages to install please see [requirements.txt](requirements.txt). 
 
 A file named **.env** located in the [cellarclub](/cellarclub) root folder containing the application enviroment variables SECRET_KEY and GWS_API_KEY is also required to run the application. A GWS_API_KEY can be obtained for free at [globalwinescore.com/api](https://www.globalwinescore.com/api/).
 
