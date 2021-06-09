@@ -11,12 +11,25 @@ After authentication we are taken to the Home page from where we can perform sea
 
 CellarClub has a completely responsive UI - added to improve the experience among multiple devices - including web and mobile. A Darkmode-theme-selector is also available to make usage more confortable in dark enviroments.
 
-## Searchbar ann Add item or Review [1:05]
+## Searchbar and Add item or Review [1:05]
 The SEARCHBAR is present throughout the app. Here in Home Page it's role is to search for wines to be added to the collection or to be reviewed.
 
 So, let's seach for Caymus which is a top tier Napa Valley Cabernet, let's select it and now we can write a tasting review for this item, or add it to our collection,
 
-To do that we enter some bottle specific information like vintage, size, quantity, unit cost, location including cellar or fridge and bin, store date and a personal note - then press the submit button to confirm. 
+To do that we can enter some specific information ON the bottle like vintage, size, quantity, unit cost, location including cellar or fridge and bin, store, date and a personal note - and to confirm we press the submit button. 
+
+## Collection page [1:50]
+Next, we are taken to the COLLECTION page, where we can see by default, the most recently added items including the one we have just added, click the SORT-BY menu to change the listing order, OR use the searchbar to locate specific items.
+
+Additionally every item is clickable so we can open it's profile just by clicking on it.
+
+## Bottle page [2:13]
+In this page we have access to the bottle complete profile including all provided metadata plus the information we entered ourselfs. Other than that we also have the ability to FAVORITE, drink or remove the bottle.
+
+So, Let's open the drink Bottle view. Here we can provide a PRIVATE NOTE, drinking date and register if any money was gathered. We also have the option to add a review for the item.For that we set the privacy status, select a like/dislike feedback, set a score and write a tasting note.
 
 
- taking advantage of each item's provided metadata, also keeping track of purchase information and more importantly the actual item location in the cellar. Additionally users are  also able to create and keep memories from consumed items as well as write tasting reviews and publish them to the CellarClub community.
+
+This time when submit is pressed, the cosumption is added and we are taken to de Memories Page
+
+
