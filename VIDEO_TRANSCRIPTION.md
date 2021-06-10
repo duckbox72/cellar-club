@@ -29,7 +29,12 @@ In this page we have access to the bottle complete profile including all provide
 So, Let's open the drink Bottle view. Here we can provide a PRIVATE NOTE, drinking date and register if any money was gathered. We also have the option to add a review for the item.For that we set the privacy status, select a like/dislike feedback, set a score and write a tasting note.
 
 
+## Memories page [2:58]
+This time when submit is pressed, the cosumption is added and we are taken to de Memories Page. 
+By default MEMORIES are also shown from the most recent. For each item we can quickly reference the REASON of removal THE-DATE the bottle was consumed, AND these icons represent wheter the item has A-PRIVATE-NOTE, has gathered any money or has a review.      
 
-This time when submit is pressed, the cosumption is added and we are taken to de Memories Page
+## Memory page [3:22]
+Clicking on the item will access the Memory page. Where we can see the complete profile, and have the hability to UNCONSUME the bottle returning it to collectio AND access it's review if there is one.  
 
-
+## Reviews page [3:34]
+But in fact we have the REVIEWS-Page, 
