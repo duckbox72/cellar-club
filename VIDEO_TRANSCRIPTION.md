@@ -34,7 +34,20 @@ This time when submit is pressed, the cosumption is added and we are taken to de
 By default MEMORIES are also shown from the most recent. For each item we can quickly reference the REASON of removal THE-DATE the bottle was consumed, AND these icons represent wheter the item has A-PRIVATE-NOTE, has gathered any money or has a review.      
 
 ## Memory page [3:22]
-Clicking on the item will access the Memory page. Where we can see the complete profile, and have the hability to UNCONSUME the bottle returning it to collectio AND access it's review if there is one.  
+Clicking on the item will access the Memory page. Where we can see the complete profile, and have the hability to UNCONSUME the bottle returning it to collection AND access it's review if there is one.  
 
 ## Reviews page [3:34]
-But in fact we have the REVIEWS-Page, 
+ALTERNATIVELY we have the REVIEWS-Page, where we can search for reviews and access any of them straight from here. 
+Besides, we can quickly reference review SCORE.. TASTING-DATE - AND these icons represent wheter the review is puclic or private, like/dislike feedback, wether it has a tasting note and whether the bottle was from collection or not. 
+
+## Review page [4:03]
+Once angain clicking on the item will access the Review page. Where we can see the complete profile, and have the hability to toggle public/private status, delete the review and recolect bottle complete information.
+
+## Community Page [4:15]
+The last PAGE i wanna show is COMMUNITY PAGE. Here we can have a glance of community members public reviews gathering information on date-of-review, MEMBER-NAME, LIKE/UNLIKE feedback, the given score, and the tasting notel when available.
+
+## Conclusion [4:33] 
+And this was CELLAR CLUB -- CS50 WEB PROGRAMMING WITH PYHON AND JAVASCRIPT final project. 
+I hope you have enjoyed.
+
+## Sample mobile views Pictures [4:40]
