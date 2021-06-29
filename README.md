@@ -9,8 +9,6 @@ In order to run CellarClub in local server is required that users have Python 3.
 
 A file named **.env** located in the [cellarclub](/cellarclub) root folder containing the application enviroment variables SECRET_KEY and GWS_API_KEY is also required to run the application. A GWS_API_KEY can be obtained for free at [globalwinescore.com/api](https://www.globalwinescore.com/api/).
 
-* **Note regarding CS50 WEB Capstone Project submission**: For simplicity and imediate availability, the required **.env** file, containing the enviroment variables, is provided within the project.
-
 Finally, open a terminal window, cd into project's [root folder](/) and enter the following command line:
 
     $ python3 manage.py runserver
@@ -55,7 +53,7 @@ Application was implemented using the following technologies:
 
 
 Youtube Link:
-Watch[demo video](https://youtu.be/DlXvMzUhy_k) on Youtube.
+Watch the [demo video](https://youtu.be/DlXvMzUhy_k) on Youtube.
 #
 Created by Luis Felipe Klaus for CS50 Web Programming with Python and JavaScript Final Project
 #
