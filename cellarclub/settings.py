@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 # Included to handle enviroment variables
+import os
 import environ
 # Initialise environment variables
 env = environ.Env()
@@ -143,4 +144,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # ADDED FOR DEPLOYMENT
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
