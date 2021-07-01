@@ -36,9 +36,12 @@ SECRET_KEY = env('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.22', '0.0.0.0']
+# PRODUCTION SETTING
+DEBUG = False
+
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.25', '0.0.0.0', 'cellarclub-cli.herokuapp.com']
 
 
 # Application definition
