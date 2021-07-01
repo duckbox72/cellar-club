@@ -143,4 +143,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # ADDED FOR DEPLOYMENT
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static') /Users/duckbox/cs50/cs50w/capstone/frontend/static
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
