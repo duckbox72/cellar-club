@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '9^0w=lr(d3oq7b73=bx-6uwm=r-@p5j_zffo$)4re33r%x2w30'
+# SECRET_KEY = '**************************************************'
 # original key above moved to .env file
 
 # Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
@@ -140,5 +140,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 STATIC_URL = '/static/'
+
+# ADDED FOR DEPLOYMENT
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static') /Users/duckbox/cs50/cs50w/capstone/frontend/static
